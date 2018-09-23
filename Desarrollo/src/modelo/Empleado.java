@@ -1,6 +1,5 @@
 package modelo;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -8,14 +7,14 @@ public class Empleado {
 	private String nombre;
 	private String apellido;
 	private Cargo cargo; 
-	private Calendar fechaContratacion;
-	private Calendar fechaNacimiento;
+	private Date fechaContratacion;
+	private Date fechaNacimiento;
 	private String nacionalidad;
 	private Date fechaFinContrato;
 	
 	private List<Sala> salas;
 	
-	public Empleado(String nombre, String apellido, Cargo cargo, Calendar fechaContratacion, Calendar fechaNacimiento,
+	public Empleado(String nombre, String apellido, Cargo cargo, Date fechaContratacion, Date fechaNacimiento,
 			String nacionalidad, Date fechaFinContrato) {
 		this.nombre = nombre;
 		this.apellido = apellido;
