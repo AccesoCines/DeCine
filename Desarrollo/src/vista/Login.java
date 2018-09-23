@@ -1,19 +1,16 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Panel;
-import java.awt.image.BufferedImage;
+
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import com.sun.org.apache.bcel.internal.classfile.Field;
-
-import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.image.BufferedImage;
 
 public class Login extends JFrame {
 	public Login() {
@@ -23,16 +20,6 @@ public class Login extends JFrame {
 	}
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
-	
-
 	
 	public static void main(String[] args) {
 		
@@ -43,19 +30,18 @@ public class Login extends JFrame {
 			public void run() {
 
 				BufferedImage fotFondo = null;
+				File f;
 				try {
-					File f = new File("PantallaPrincipal.png");
-					 fotFondo =  ImageIO.read(f);
-			
+					f = new File(getClass().getResource("PantallaPrincipal.png").toURI());
+					fotFondo =  ImageIO.read(f);
 				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}		
-				try {
 					Login frame = new Login();
+					
+					
 					frame.setVisible(true);
 					frame.setSize(400,300);
 					JPanel p = new ParaFondos(fotFondo);
+					
 					frame.getContentPane().add(p);
 				} catch (Exception e) {
 					e.printStackTrace();
