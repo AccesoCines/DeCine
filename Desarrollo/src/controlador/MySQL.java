@@ -1,5 +1,5 @@
 package controlador;
 
-public class BBDD {
+public class MySQL {
 
 }
