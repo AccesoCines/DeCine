@@ -25,10 +25,6 @@ public class Empleado {
 		this.nacionalidad = nacionalidad;
 		this.fechaFinContrato = fechaFinContrato;
 	}
-	
-	public void anadirSala(Sala sala) {
-		salas.add(sala);
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -54,19 +50,19 @@ public class Empleado {
 		this.cargo = cargo;
 	}
 
-	public Date getFechaContratacion() {
+	public Calendar getFechaContratacion() {
 		return fechaContratacion;
 	}
 
-	public void setFechaContratacion(Date fechaContratacion) {
+	public void setFechaContratacion(Calendar fechaContratacion) {
 		this.fechaContratacion = fechaContratacion;
 	}
 
-	public Date getFechaNacimiento() {
+	public Calendar getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(Calendar fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -77,7 +73,7 @@ public class Empleado {
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
-	
+
 	public Date getFechaFinContrato() {
 		return fechaFinContrato;
 	}
@@ -86,8 +82,14 @@ public class Empleado {
 		this.fechaFinContrato = fechaFinContrato;
 	}
 
-	public List<Sala> getSalas(){
+	public List<Sala> getSalas() {
 		return salas;
 	}
+
+	public void anadirSala(Sala sala) {
+		salas.add(sala);
+		
+	}
+	
 	
 }
