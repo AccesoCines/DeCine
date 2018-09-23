@@ -1,42 +1,53 @@
-package Desarrollo.src.vista;
+package vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.image.BufferedImage;
 
 public class Login extends JFrame {
+	public Login() {
+		
+		JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.CENTER);
+	}
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
+		
+		
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+
+				BufferedImage fotFondo = null;
+				File f;
 				try {
+					f = new File(getClass().getResource("PantallaPrincipal.png").toURI());
+					fotFondo =  ImageIO.read(f);
+				
 					Login frame = new Login();
+					
+					
 					frame.setVisible(true);
+					frame.setSize(400,300);
+					JPanel p = new ParaFondos(fotFondo);
+					
+					frame.getContentPane().add(p);
 				} catch (Exception e) {
 					e.printStackTrace();
+
 				}
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Login() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-	}
-
 }
