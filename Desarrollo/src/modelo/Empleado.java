@@ -1,22 +1,21 @@
 package modelo;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class Empleado {
 	private String nombre;
 	private String apellido;
-	private Cargo cargo; 
+	private Cargo cargo;
 	private Calendar fechaContratacion;
 	private Calendar fechaNacimiento;
 	private String nacionalidad;
-	private Date fechaFinContrato;
-	
+	private Calendar fechaFinContrato;
+
 	private List<Sala> salas;
-	
+
 	public Empleado(String nombre, String apellido, Cargo cargo, Calendar fechaContratacion, Calendar fechaNacimiento,
-			String nacionalidad, Date fechaFinContrato) {
+			String nacionalidad, Calendar fechaFinContrato) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cargo = cargo;
@@ -74,11 +73,11 @@ public class Empleado {
 		this.nacionalidad = nacionalidad;
 	}
 
-	public Date getFechaFinContrato() {
+	public Calendar getFechaFinContrato() {
 		return fechaFinContrato;
 	}
 
-	public void setFechaFinContrato(Date fechaFinContrato) {
+	public void setFechaFinContrato(Calendar fechaFinContrato) {
 		this.fechaFinContrato = fechaFinContrato;
 	}
 
@@ -88,8 +87,7 @@ public class Empleado {
 
 	public void anadirSala(Sala sala) {
 		salas.add(sala);
-		
+
 	}
-	
-	
+
 }
