@@ -21,11 +21,16 @@ public class DB4o {
 	//Abrir la BD
 	ObjectContainer db= Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
 
-	Calendar date = Calendar.getInstance();
+	java.sql.Date date = new java.sql.Date(1985, 6, 10);
+	//Recoger del jcalendar en la ventana
+	//java.util.Date fecha2 = (java.util.Date) jcalendar.getvalue();
+	//En el modelo
+	//java.sql.Date sql = new java.sql.Date(fecha2.getTime());
+
 	
 	// Creamos Empleados
-	Empleado e1 = new Empleado("Irene", "Aparicio", Cargo.camarero, date, date, "española", date);
-	Empleado e2 = new Empleado("Belen", "Campos", Cargo.acomodadorResposableBar, date, date, "española", date);
+	Empleado e1 = new Empleado("Irene", "Aparicio", Cargo.camarero, date, "española", date,date);
+	Empleado e2 = new Empleado("Belen", "Campos", Cargo.acomodadorResposableBar, date, "española", date, date);
 	
 	// Creamos Peliculas
 	Pelicula p1 = new Pelicula("Jurassic World: El reino caido", 2018, "Juan Antonio Bayona","Chris Pratt", "Bryce Dallas Howard", 128, "trailer" );

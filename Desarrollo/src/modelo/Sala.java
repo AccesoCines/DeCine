@@ -1,6 +1,8 @@
 package modelo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Sala {
 	private int numero;
@@ -8,8 +10,8 @@ public class Sala {
 	private String dimPantalla;
 	private int anoInauguracion;
 	private boolean discapacidad;
+	private Map<Pelicula,java.sql.Date> proyecciones;
 	
-	private List<Pelicula> peliculas;
 	private List<Empleado> empleados;
 	
 	
@@ -19,10 +21,11 @@ public class Sala {
 		this.dimPantalla = dimPantalla;
 		this.anoInauguracion = anoInauguracion;
 		this.discapacidad = discapacidad;
+		proyecciones = new HashMap<>();
 	}
 
-	public void anadirPelicula(Pelicula pelicula) {
-		peliculas.add(pelicula);
+	public void anadirProyeccion(Pelicula pelicula,java.sql.Date hora) {
+		proyecciones.put(pelicula, hora);
 	}
 	
 	public void anadirEmpleado(Empleado empleado) {
@@ -68,11 +71,11 @@ public class Sala {
 	public void setDiscapacidad(boolean discapacidad) {
 		this.discapacidad = discapacidad;
 	}
-
-	public List<Pelicula> getPeliculas() {
-		return peliculas;
-	}
 	
+	public Map<Pelicula, java.sql.Date> getProyecciones() {
+		return proyecciones;
+	}
+
 	public List<Empleado> getEmpleados() {
 		return empleados;
 	}

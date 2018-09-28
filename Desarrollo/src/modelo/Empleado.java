@@ -7,15 +7,15 @@ public class Empleado {
 	private String nombre;
 	private String apellido;
 	private Cargo cargo;
-	private Calendar fechaContratacion;
-	private Calendar fechaNacimiento;
+	private java.sql.Date fechaContratacion;
+	private java.sql.Date fechaNacimiento;
 	private String nacionalidad;
-	private Calendar fechaFinContrato;
+	private java.sql.Date fechaFinContrato;
 
 	private List<Sala> salas;
 
-	public Empleado(String nombre, String apellido, Cargo cargo, Calendar fechaContratacion, Calendar fechaNacimiento,
-			String nacionalidad, Calendar fechaFinContrato) {
+	public Empleado(String nombre, String apellido, Cargo cargo, java.sql.Date fechaNacimiento,
+			String nacionalidad,java.sql.Date fechaContratacion, java.sql.Date fechaFinContrato ) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cargo = cargo;
@@ -49,19 +49,19 @@ public class Empleado {
 		this.cargo = cargo;
 	}
 
-	public Calendar getFechaContratacion() {
+	public java.sql.Date getFechaContratacion() {
 		return fechaContratacion;
 	}
 
-	public void setFechaContratacion(Calendar fechaContratacion) {
+	public void setFechaContratacion(java.sql.Date fechaContratacion) {
 		this.fechaContratacion = fechaContratacion;
 	}
 
-	public Calendar getFechaNacimiento() {
+	public java.sql.Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Calendar fechaNacimiento) {
+	public void setFechaNacimiento(java.sql.Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -73,11 +73,11 @@ public class Empleado {
 		this.nacionalidad = nacionalidad;
 	}
 
-	public Calendar getFechaFinContrato() {
+	public java.sql.Date getFechaFinContrato() {
 		return fechaFinContrato;
 	}
 
-	public void setFechaFinContrato(Calendar fechaFinContrato) {
+	public void setFechaFinContrato(java.sql.Date fechaFinContrato) {
 		this.fechaFinContrato = fechaFinContrato;
 	}
 

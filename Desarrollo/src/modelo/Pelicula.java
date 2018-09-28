@@ -1,6 +1,8 @@
 package modelo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Pelicula {
 	private String titulo;
@@ -10,8 +12,7 @@ public class Pelicula {
 	private String actorSecundario;
 	private int duracion;
 	private String trailer;
-	
-	private List<Sala> salas;
+	private Map<Sala, java.sql.Date> proyeccion;
 	
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
 			int duracion, String trailer) {
@@ -22,11 +23,9 @@ public class Pelicula {
 		this.actorSecundario = actorSecundario;
 		this.duracion = duracion;
 		this.trailer = trailer;
+		proyeccion = new HashMap<>();
 	}
 	
-	public void anadirSala(Sala sala) {
-		salas.add(sala);
-	}
 
 	public String getTitulo() {
 		return titulo;
@@ -84,8 +83,13 @@ public class Pelicula {
 		this.trailer = trailer;
 	}
 	
-	public List<Sala> getSalas(){
-		return salas;
+	public Map<Sala, java.sql.Date> getProyeccion() {
+		return proyeccion;
+	}
+
+	public void añadirProyeccion(Sala sala, java.sql.Date hora) {
+		proyeccion.put(sala, hora);
+		sala.anadirProyeccion(this, hora);
 	}
 	
 }
