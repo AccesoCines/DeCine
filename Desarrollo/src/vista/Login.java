@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -13,8 +14,11 @@ import java.awt.EventQueue;
 import java.awt.image.BufferedImage;
 
 public class Login extends JFrame {
+	
 	public Login() {
 		
+		// Poner icono ventana
+	    setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 	}
