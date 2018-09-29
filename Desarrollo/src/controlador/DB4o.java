@@ -21,6 +21,8 @@ public class DB4o {
 	
 	
 	final static String BDEmpl = "DBEmpleados.yap";
+	final static String BDPeli = "DBPeliculas.yap";
+	final static String BDSala = "DBSalas.yap";
 	
 	
 	public static void main(String[] args) {
@@ -134,6 +136,147 @@ public class DB4o {
 		}
 		db.close();
 		return listaEmpleados;
+	
+	}
+
+
+
+		public static void guardarPeli(Pelicula p){
+		
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+		db.store(p);
+		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
+		db.close();
+		
+	}
+	
+	public static void eliminarPeli(Pelicula p) {
+		
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+		p.setAlta(false);
+		//No se elimina la pelicula, el atributo alta pasa a false.
+		javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
+		db.close();
+	}
+		
+	public static void modificarPeli(Pelicula p) {
+		
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+		
+		//p.setNombre(getText(jlabel1));
+		//p.setApellido(getText(jlabel2));
+		
+		db.store(p);
+		javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
+		db.close();
+	}
+	
+	public static ArrayList <Pelicula> mostrarListPeli() {
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+		Pelicula pe = new Pelicula( null, 0, null, null, null, null, 0, null, null, null );
+		
+		ArrayList<Pelicula> listaPeliculas = new ArrayList<Pelicula>();
+		ObjectSet<Pelicula> result = db.queryByExample(pe);
+		if (result.size() == 0){
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas.");
+		}
+		while (result.hasNext()) {
+		Pelicula p = result.next();
+		listaPeliculas.add(p);
+	
+		}
+		
+		db.close();
+		return listaPeliculas;
+		
+	}
+
+	
+	public static ArrayList<Pelicula> historicoPeli() {
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+		Pelicula pe = new Pelicula( null, 0, null, null, null, null, 0, null, null, null, false);
+		
+		ArrayList<Pelicula> listaPeliculas = new ArrayList<>();
+		ObjectSet<Pelicula> result = db.queryByExample(pe);
+		if (result.size() == 0){
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas en histórico.");
+		}
+		while (result.hasNext()) {
+		Pelicula p = result.next();
+		
+		listaPeliculas.add(p);
+		}
+		db.close();
+		return listaPeliculas;
+	}
+	
+	public static void guardarSala(Sala s){
+		
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+		db.store(s);
+		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
+		db.close();
+		
+	}
+	
+	public static void eliminarSala(Sala s) {
+		
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+		s.setAlta(false);
+		//No se elimina la sala, el atributo alta pasa a false.
+		javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
+		db.close();
+	}
+		
+	public static void modificarSala(Sala s) {
+		
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+		
+		//s.setNombre(getText(jlabel1));
+		//s.setApellido(getText(jlabel2));
+		
+		db.store(s);
+		javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
+		db.close();
+	}
+	
+	public static ArrayList <Sala> mostrarListSala() {
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+		Sala sa = new Sala( 0, 0, null, 0, false, null);
+		
+		ArrayList<Sala> listaSalas = new ArrayList<Sala>();
+		ObjectSet<Sala> result = db.queryByExample(sa);
+		if (result.size() == 0){
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas.");
+		}
+		while (result.hasNext()) {
+		Sala s = result.next();
+		listaSalas.add(s);
+	
+		}
+		
+		db.close();
+		return listaSalas;
+		
+	}
+
+	
+	public static ArrayList<Sala> historicoSalas() {
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+		Sala sa = new Sala( 0, 0, null, 0, false, null, false);
+		
+		ArrayList<Sala> listaSalas = new ArrayList<>();
+		ObjectSet<Sala> result = db.queryByExample(sa);
+		if (result.size() == 0){
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas en histórico.");
+		}
+		while (result.hasNext()) {
+		Sala s = result.next();
+		
+		listaSalas.add(s);
+		}
+		db.close();
+		return listaSalas;
 	}
 	}
 	

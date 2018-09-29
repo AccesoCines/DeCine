@@ -11,21 +11,35 @@ public class Sala {
 	private int anoInauguracion;
 	private boolean discapacidad;
 	private Empleado responsable;
-	private Map<Pelicula,java.sql.Date> proyecciones;
 	private boolean alta;
 	
-	
+	private Map<Pelicula,java.sql.Date> proyecciones;
 	private List<Empleado> empleados;
 	
 	
-	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad) {
+	
+
+	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
+			Empleado responsable, boolean alta) {
+		super();
 		this.numero = numero;
 		this.aforo = aforo;
 		this.dimPantalla = dimPantalla;
 		this.anoInauguracion = anoInauguracion;
 		this.discapacidad = discapacidad;
-		this.alta = true;
-		proyecciones = new HashMap<>();
+		this.responsable = responsable;
+		this.alta = alta;
+	}
+
+	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
+			Empleado responsable) {
+		super();
+		this.numero = numero;
+		this.aforo = aforo;
+		this.dimPantalla = dimPantalla;
+		this.anoInauguracion = anoInauguracion;
+		this.discapacidad = discapacidad;
+		this.responsable = responsable;
 	}
 
 	public void anadirProyeccion(Pelicula pelicula,java.sql.Date hora) {
