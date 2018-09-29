@@ -1,5 +1,5 @@
 package modelo;
 
 public enum Cargo {
-	camarero,portero,acomodadorResposableBar,responsableSala,responsableCine
+	camarero,portero,acomodadorResponsableBar,responsableSala,responsableCine,mantenimiento
 }
