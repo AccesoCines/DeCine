@@ -28,6 +28,7 @@ public class Empleado {
 		this.fechaNacimiento = fechaNacimiento;
 		this.nacionalidad = nacionalidad;
 		this.fechaFinContrato = fechaFinContrato;
+		this.alta = true;
 	}
 
 	public String getNombre() {
@@ -95,4 +96,12 @@ public class Empleado {
 
 	}
 
+	public boolean isAlta() {
+		return alta;
+	}
+
+	public void setAlta(boolean alta) {
+		this.alta = alta;
+	}
+	
 }

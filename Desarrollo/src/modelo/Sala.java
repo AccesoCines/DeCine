@@ -24,6 +24,7 @@ public class Sala {
 		this.dimPantalla = dimPantalla;
 		this.anoInauguracion = anoInauguracion;
 		this.discapacidad = discapacidad;
+		this.alta = true;
 		proyecciones = new HashMap<>();
 	}
 
@@ -81,6 +82,14 @@ public class Sala {
 
 	public List<Empleado> getEmpleados() {
 		return empleados;
+	}
+
+	public boolean isAlta() {
+		return alta;
+	}
+
+	public void setAlta(boolean alta) {
+		this.alta = alta;
 	}
 
 	

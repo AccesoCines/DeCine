@@ -27,6 +27,7 @@ public class Pelicula {
 		this.actorSecundario = actorSecundario;
 		this.duracion = duracion;
 		this.trailer = trailer;
+		this.alta = true;
 		proyeccion = new HashMap<>();
 	}
 	
@@ -95,5 +96,14 @@ public class Pelicula {
 		proyeccion.put(sala, hora);
 		sala.anadirProyeccion(this, hora);
 	}
+
+	public boolean isAlta() {
+		return alta;
+	}
+
+	public void setAlta(boolean alta) {
+		this.alta = alta;
+	}
+
 	
 }
