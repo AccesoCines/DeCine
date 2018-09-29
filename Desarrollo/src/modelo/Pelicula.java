@@ -10,9 +10,13 @@ public class Pelicula {
 	private String director;
 	private String actorPrincipal;
 	private String actorSecundario;
+	private String sinopsis;
 	private int duracion;
 	private String trailer;
+	private java.sql.Date fechaInicio;
+	private java.sql.Date fechaFin;
 	private Map<Sala, java.sql.Date> proyeccion;
+	private boolean alta;
 	
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
 			int duracion, String trailer) {
