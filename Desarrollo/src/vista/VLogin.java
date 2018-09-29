@@ -49,11 +49,11 @@ public class VLogin extends JFrame {
 		getContentPane().setLayout(null);
 		
 		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(157, 113, 116, 22);
+		passwordField_1.setBounds(157, 113, 230, 22);
 		getContentPane().add(passwordField_1);
 		
 		textField = new JTextField();
-		textField.setBounds(157, 78, 116, 22);
+		textField.setBounds(157, 78, 230, 22);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -62,15 +62,15 @@ public class VLogin extends JFrame {
 		lblDecine.setBounds(341, 13, 124, 16);
 		getContentPane().add(lblDecine);
 		
-		JLabel lblUsuario = new JLabel("Usuario");
+		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setBounds(71, 80, 74, 19);
 		getContentPane().add(lblUsuario);
 		
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
+		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
 		lblContrasea.setBounds(71, 116, 74, 16);
 		getContentPane().add(lblContrasea);
 		
-		JButton btnNewButton = new JButton("DeCine");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.setVerticalAlignment(SwingConstants.TOP);
 		btnNewButton.setBackground(new Color(240, 240, 240));
 		btnNewButton.addActionListener(new ActionListener() {
