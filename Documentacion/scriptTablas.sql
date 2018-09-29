@@ -12,7 +12,8 @@ CREATE TABLE "Empleado" (
 	FechaNacimiento DATE, 
 	Nacionalidad VARCHAR ( 25 ), 
 	FechaContratacion DATE, 
-	FechaFinContrato DATE 
+	FechaFinContrato DATE,
+	Alta BOOLEAN NOT NULL
 );
 
 CREATE TABLE "Pelicula" (
@@ -23,7 +24,8 @@ CREATE TABLE "Pelicula" (
 	Actor_principal VARCHAR (25) NOT NULL,
 	Actor_secundario VARCHAR (25) NOT NULL,
 	Duracion NUMERIC NOT NULL,
-	Trailer VARCHAR (500) NOT NULL
+	Trailer VARCHAR (500) NOT NULL,
+	Alta BOOLEAN NOT NULL
 );
 
 CREATE TABLE "Sala" (
@@ -32,7 +34,8 @@ CREATE TABLE "Sala" (
 	Aforo NUMERIC NOT NULL,
 	Dimensiones_pantalla VARCHAR (25) NOT NULL,
 	Ano_inaiguracion NUMERIC NOT NULL,
-	Discapacidad BOOLEAN NOT NULL	
+	Discapacidad BOOLEAN NOT NULL,
+	Alta BOOLEAN NOT NULL
 );
 
 CREATE TABLE "Proyeccion" (
@@ -40,6 +43,7 @@ CREATE TABLE "Proyeccion" (
 	Id_sala NUMERIC NOT NULL,
 	Id_pelicula NUMERIC NOT NULL,
 	Hora DATE NOT NULL,
+	Alta BOOLEAN NOT NULL,
 	CONSTRAINT "Proyeccion_id_pelicula_fkey" FOREIGN KEY (id_pelicula)
       REFERENCES public."Pelicula" (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
