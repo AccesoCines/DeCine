@@ -10,7 +10,10 @@ public class Sala {
 	private String dimPantalla;
 	private int anoInauguracion;
 	private boolean discapacidad;
+	private Empleado responsable;
 	private Map<Pelicula,java.sql.Date> proyecciones;
+	private boolean alta;
+	
 	
 	private List<Empleado> empleados;
 	

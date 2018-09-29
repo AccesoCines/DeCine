@@ -11,7 +11,12 @@ public class Empleado {
 	private java.sql.Date fechaNacimiento;
 	private String nacionalidad;
 	private java.sql.Date fechaFinContrato;
+	private boolean alta;
 
+	// De 0 a 1 año : Portero , camarero
+	// De 1 a 3 años : Acomodador o responsable del bar
+	// De 3 a 5 años : Responsable de sala
+	// Más de 5 años : Responsable salón de cine
 	private List<Sala> salas;
 
 	public Empleado(String nombre, String apellido, Cargo cargo, java.sql.Date fechaNacimiento,
