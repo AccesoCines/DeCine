@@ -3,9 +3,36 @@ DROP TABLE "Empleado";
 DROP TABLE "Pelicula";
 DROP TABLE "Sala";
 
+CREATE SEQUENCE empleado_id
+  INCREMENT 0
+  MINVALUE 0
+  MAXVALUE 0
+  START 0
+  CACHE 0;
+
+CREATE SEQUENCE sala_id
+  INCREMENT 0
+  MINVALUE 0
+  MAXVALUE 0
+  START 0
+  CACHE 0;
+
+CREATE SEQUENCE pelicula_id
+  INCREMENT 0
+  MINVALUE 0
+  MAXVALUE 0
+  START 0
+  CACHE 0;
+
+CREATE SEQUENCE proyeccion_id
+  INCREMENT 0
+  MINVALUE 0
+  MAXVALUE 0
+  START 0
+  CACHE 0;
 
 CREATE TABLE "Empleado" ( 
-	Id NUMERIC NOT NULL PRIMARY KEY,
+	Id NUMERIC NOT NULL PRIMARY KEY nextval('empleado_id'::regclass),
 	Nombre VARCHAR ( 25 ) NOT NULL,
 	Apellido VARCHAR ( 25 ) NOT NULL, 
 	Cargo VARCHAR ( 25 ) NOT NULL, 
@@ -17,7 +44,7 @@ CREATE TABLE "Empleado" (
 );
 
 CREATE TABLE "Pelicula" (
-	Id NUMERIC NOT NULL PRIMARY KEY,
+	Id NUMERIC NOT NULL PRIMARY KEY nextval('pelicula_id'::regclass),
 	Titulo VARCHAR (25) NOT NULL,
 	Ano_estreno NUMERIC NOT NULL,
 	Director VARCHAR (25) NOT NULL,
@@ -29,7 +56,7 @@ CREATE TABLE "Pelicula" (
 );
 
 CREATE TABLE "Sala" (
-	Id NUMERIC NOT NULL PRIMARY KEY,
+	Id NUMERIC NOT NULL PRIMARY KEY nextval('sala_id'::regclass),
 	Numero NUMERIC NOT NULL,
 	Aforo NUMERIC NOT NULL,
 	Dimensiones_pantalla VARCHAR (25) NOT NULL,
@@ -39,7 +66,7 @@ CREATE TABLE "Sala" (
 );
 
 CREATE TABLE "Proyeccion" (
-	Id NUMERIC NOT NULL PRIMARY KEY,
+	Id NUMERIC NOT NULL PRIMARY KEY nextval('proyeccion_id'::regclass),
 	Id_sala NUMERIC NOT NULL,
 	Id_pelicula NUMERIC NOT NULL,
 	Hora DATE NOT NULL,
