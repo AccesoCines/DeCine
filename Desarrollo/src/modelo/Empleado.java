@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,6 +19,19 @@ public class Empleado {
 	// De 3 a 5 años : Responsable de sala
 	// Más de 5 años : Responsable salón de cine
 	private List<Sala> salas;
+
+	public Empleado(String nombre, String apellido, Cargo cargo, Date fechaContratacion, Date fechaNacimiento,
+			String nacionalidad, Date fechaFinContrato, boolean alta) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.cargo = cargo;
+		this.fechaContratacion = fechaContratacion;
+		this.fechaNacimiento = fechaNacimiento;
+		this.nacionalidad = nacionalidad;
+		this.fechaFinContrato = fechaFinContrato;
+		this.alta = alta;
+	}
 
 	public Empleado(String nombre, String apellido, Cargo cargo, java.sql.Date fechaNacimiento,
 			String nacionalidad,java.sql.Date fechaContratacion, java.sql.Date fechaFinContrato ) {
