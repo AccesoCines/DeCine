@@ -1,7 +1,10 @@
 package controlador;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
@@ -13,6 +16,23 @@ import modelo.Pelicula;
 import modelo.Sala;
 
 public class DB4o {
+	
+	/*protected static ObjectContainer getDb_4o() {
+
+        try {
+            Conector.setConfig(Conector.getConfig());
+        } catch (IOException ex) {
+            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String DB4o = config.getProperty("db4o");
+
+        Conector.db_4o = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), );
+
+        return db_4o;
+
+    }*/
+
 	
 	final static String BDEmpl = "DBEmpleados.yap";
 	
