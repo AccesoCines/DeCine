@@ -17,6 +17,8 @@ public class Pelicula {
 	private java.sql.Date fechaInicio;
 	private java.sql.Date fechaFin;
 	private boolean alta;
+	
+	private Map<Sala, java.sql.Time> proyeccion;
 
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
 			String sinopsis, int duracion, String trailer, Date fechaInicio, Date fechaFin, boolean b) {
@@ -26,11 +28,11 @@ public class Pelicula {
 		this.director = director;
 		this.actorPrincipal = actorPrincipal;
 		this.actorSecundario = actorSecundario;
-		this.sinopsis = sinopsis;
+		this.setSinopsis(sinopsis);
 		this.duracion = duracion;
 		this.trailer = trailer;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
+		this.setFechaInicio(fechaInicio);
+		this.setFechaFin(fechaFin);
 	}
 
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
@@ -41,14 +43,12 @@ public class Pelicula {
 		this.director = director;
 		this.actorPrincipal = actorPrincipal;
 		this.actorSecundario = actorSecundario;
-		this.sinopsis = sinopsis;
+		this.setSinopsis(sinopsis);
 		this.duracion = duracion;
 		this.trailer = trailer;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
+		this.setFechaInicio(fechaInicio);
+		this.setFechaFin(fechaFin);
 	}
-
-	private Map<Sala, java.sql.Date> proyeccion;
 
 	public String getTitulo() {
 		return titulo;
@@ -106,11 +106,11 @@ public class Pelicula {
 		this.trailer = trailer;
 	}
 
-	public Map<Sala, java.sql.Date> getProyeccion() {
+	public Map<Sala, java.sql.Time> getProyeccion() {
 		return proyeccion;
 	}
 
-	public void añadirProyeccion(Sala sala, java.sql.Date hora) {
+	public void añadirProyeccion(Sala sala, java.sql.Time hora) {
 		proyeccion.put(sala, hora);
 		sala.anadirProyeccion(this, hora);
 	}
@@ -123,4 +123,34 @@ public class Pelicula {
 		this.alta = alta;
 	}
 
+	public String getSinopsis() {
+		return sinopsis;
+	}
+
+	public void setSinopsis(String sinopsis) {
+		this.sinopsis = sinopsis;
+	}
+
+	public java.sql.Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(java.sql.Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public java.sql.Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(java.sql.Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public Sala getSala() {
+		
+		
+		
+		return null;
+	}
 }

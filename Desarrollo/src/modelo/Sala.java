@@ -12,12 +12,10 @@ public class Sala {
 	private boolean discapacidad;
 	private Empleado responsable;
 	private boolean alta;
+	private int id;
 	
-	private Map<Pelicula,java.sql.Date> proyecciones;
+	private Map<Pelicula,java.sql.Time> proyecciones;
 	private List<Empleado> empleados;
-	
-	
-	
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
 			Empleado responsable, boolean alta) {
@@ -30,6 +28,20 @@ public class Sala {
 		this.setResponsable(responsable);
 		this.alta = alta;
 	}
+	
+	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
+			Empleado responsable, boolean alta, int id) {
+		this.numero = numero;
+		this.aforo = aforo;
+		this.dimPantalla = dimPantalla;
+		this.anoInauguracion = anoInauguracion;
+		this.discapacidad = discapacidad;
+		this.responsable = responsable;
+		this.alta = alta;
+		this.id = id;
+	}
+
+
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
 			Empleado responsable) {
@@ -42,7 +54,7 @@ public class Sala {
 		this.setResponsable(responsable);
 	}
 
-	public void anadirProyeccion(Pelicula pelicula,java.sql.Date hora) {
+	public void anadirProyeccion(Pelicula pelicula,java.sql.Time hora) {
 		proyecciones.put(pelicula, hora);
 	}
 	
@@ -90,7 +102,7 @@ public class Sala {
 		this.discapacidad = discapacidad;
 	}
 	
-	public Map<Pelicula, java.sql.Date> getProyecciones() {
+	public Map<Pelicula, java.sql.Time> getProyecciones() {
 		return proyecciones;
 	}
 
@@ -112,6 +124,14 @@ public class Sala {
 
 	public void setResponsable(Empleado responsable) {
 		this.responsable = responsable;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	
