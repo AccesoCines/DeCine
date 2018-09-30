@@ -1,4 +1,4 @@
-﻿DROP TABLE "Proyeccion";
+DROP TABLE "Proyeccion";
 DROP TABLE "Empleado";
 DROP TABLE "Pelicula";
 DROP TABLE "Sala";
@@ -60,9 +60,13 @@ CREATE TABLE "Sala" (
 	Numero NUMERIC NOT NULL,
 	Aforo NUMERIC NOT NULL,
 	Dimensiones_pantalla VARCHAR (25) NOT NULL,
-	Ano_inaiguracion NUMERIC NOT NULL,
+	Ano_inauguracion NUMERIC NOT NULL,
 	Discapacidad BOOLEAN NOT NULL,
-	Alta BOOLEAN NOT NULL
+	Alta BOOLEAN NOT NULL,
+	CONSTRAINT id_responsable FOREIGN KEY (id_responsable)
+        REFERENCES public."Empleado" (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
 );
 
 CREATE TABLE "Proyeccion" (

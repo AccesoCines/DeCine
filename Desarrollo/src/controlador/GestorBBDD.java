@@ -40,6 +40,17 @@ public class GestorBBDD {
 			
 			break;
 		case "sqlite":
+			url = "jdbc:sqlite:SQLiteExperimental.db";
+		    try {
+				Class.forName("org.sqlite.JDBC");
+				con = DriverManager.getConnection(url);
+			} catch (SQLException e) {
+				javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+				e.printStackTrace();
+			}
 			
 			break;			
 		}
