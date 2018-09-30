@@ -7,6 +7,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import himevico.GestorBBDD;
+import himevico.VInicio;
+import login.VLogin;
+import partes.VParteAdministracion;
+import trabajadores.Logistica;
+
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -15,10 +22,15 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Font;
@@ -31,13 +43,21 @@ public class VLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
+	private JPasswordField JPassword;
 	private JTextField textField;
+	private JButton btn;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VLogin().setVisible(true);
+        
+            }
+        });
 		
 	}
 
@@ -45,12 +65,29 @@ public class VLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public VLogin() {
+		
+			btn = new JButton("");
+				btn.addActionListener( new ActionListener () { 
+				public void actionPerformed( ActionEvent evento ) { 
+					String usuario = textField.getText();
+			        String contrasena = new String(JPassword.getPassword()); 
+		
+				
+				if(textField.getText().equals("cines1510") && JPassword.equals("12345")){
+		     
+				}
+				}
+				});
+	
 		getContentPane().setBackground(new Color(255, 99, 71));
 		getContentPane().setLayout(null);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(157, 113, 230, 22);
-		getContentPane().add(passwordField_1);
+		JPassword = new JPasswordField();
+		JPassword.setBounds(157, 113, 230, 22);
+		getContentPane().add(JPassword);
+	
+		JPassword.setBounds(157, 113, 230, 22);
+		getContentPane().add(JPassword);
 		
 		textField = new JTextField();
 		textField.setBounds(157, 78, 230, 22);
@@ -70,18 +107,18 @@ public class VLogin extends JFrame {
 		lblContrasea.setBounds(71, 116, 74, 16);
 		getContentPane().add(lblContrasea);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setVerticalAlignment(SwingConstants.TOP);
-		btnNewButton.setBackground(new Color(240, 240, 240));
-		btnNewButton.addActionListener(new ActionListener() {
+		btn = new JButton("");
+		btn.setVerticalAlignment(SwingConstants.TOP);
+		btn.setBackground(new Color(240, 240, 240));
+		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon("D:\\Desktop\\cine\\DeCine\\Desarrollo\\src\\imagenes\\BOTONES\\botENTRAR.png"));
-		btnNewButton.setBounds(12, 195, 768, 250);
-		btnNewButton.setContentAreaFilled(false);
+		btn.setIcon(new ImageIcon("D:\\Desktop\\cine\\DeCine\\Desarrollo\\src\\imagenes\\BOTONES\\botENTRAR.png"));
+		btn.setBounds(12, 195, 768, 250);
+		btn.setContentAreaFilled(false);
 		
-		getContentPane().add(btnNewButton);
+		getContentPane().add(btn);
 
 		
 		// Poner icono ventana

@@ -29,7 +29,7 @@ public class DB4o {
 		
 	//Abrir la BD
 	//ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
-
+		
 	java.sql.Date date = new java.sql.Date(1985, 6, 10);
 	//Recoger del jcalendar en la ventana
 	//java.util.Date fecha2 = (java.util.Date) jcalendar.getvalue();
@@ -38,16 +38,56 @@ public class DB4o {
 
 	/*
 	// Creamos Empleados
-	Empleado e1 = new Empleado("Irene", "Aparicio", Cargo.camarero, date, "española", date,date);
-	Empleado e2 = new Empleado("Belen", "Campos", Cargo.acomodadorResponsableBar, date, "española", date, date);
+	Empleado e1 = new Empleado("Irene", "Aparicio", Cargo.camarero, date, date "española",date);
+	Empleado e2 = new Empleado("Belen", "Campos", Cargo.acomodadorResponsableBar, date, date, "española", date);
+	Empleado e3 = new Empleado("Maria", "Elorza", Cargo.portero, date, date, "española", date);
+	Empleado e4 = new Empleado("Jon", "Garcia", Cargo.responsableSala, date, date, "española", date);
+	Empleado e5 = new Empleado("Mario", "Izquierdo", Cargo.responsableCine, date, date, "venezolano", date);
+	Empleado e6 = new Empleado("John", "Smith", Cargo.camarero, date, date, "canadiense", date);
+	Empleado e7 = new Empleado("Oscar", "Gonzalez", Cargo.portero, date, date, "argentino", date);
+	Empleado e8 = new Empleado("Marta", "Lopez", Cargo.mantenimiento, date, date, "española", date);
+	Empleado e9 = new Empleado("Iker", Urquiza, Cargo.responsableSala, date, date, "española", date);
+	Empleado e10 = new Empleado("Uxune", "Etxeberria", Cargo.responsableCine,date, date, "española", date);
+	db.store(e1);
+	db.store(e2);
+	db.store(e3);
+	db.store(e4);
+	db.store(e5);
+	db.store(e6);
+	db.store(e7);
+	db.store(e8);
+	db.store(e9);
+	db.store(e10);
 	
+	
+	// ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDPeli);
 	// Creamos Peliculas
+	String titulo;
+	int anoEstreno;
+	String director;
+	String actorPrincipal;
+	String actorSecundario;
+	String sinopsis;
+	int duracion;
+	String trailer;
+	java.sql.Date fechaInicio;
+	java.sql.Date fechaFin;
 	Pelicula p1 = new Pelicula("Jurassic World: El reino caido", 2018, "Juan Antonio Bayona","Chris Pratt", "Bryce Dallas Howard", 128, "trailer" );
 	Pelicula p2 = new Pelicula("La Monja", 2018, "Corin Hardy", "Bonnie Aarons", "Taissa Farmiga", 96, "trailer");
 	
+	
+	// ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDSala);
 	// Creamos Salas
 	Sala s1 = new Sala(1, 100, "15*8,5", 2015, true);
-	Sala s2 = new Sala(2, 120, "15*8,5", 2015, true);
+	Sala s2 = new Sala(2, 125, "15*8,5", 2015, true);
+	Sala s3 = new Sala(3, 125, "5*3,5", 2013, false);
+	Sala s4 = new Sala(4, 150, "15*8,5, 2014, true);
+	Sala s5 = new Sala(5, 100, "10*5", 2012, true);
+	Sala s6 = new Sala(6, 125, "7*3,5", 2012, false);
+	Sala s7 = new Sala(7, 150, "10*5, 2014, true);
+	Sala s8 = new Sala(8, 125, "15*8,5", 2012, true);
+	Sala s9 = new Sala(9, 150, "10*5", 2013, true);
+	Sala s10 = new Sala(10, 125, "7*3,5", 2012, true);
 	
 	//Almacenar objetos Persona en la base de datos
 	db.store(e1);
