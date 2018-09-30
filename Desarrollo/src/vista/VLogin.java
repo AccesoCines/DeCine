@@ -1,18 +1,13 @@
 package vista;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import himevico.GestorBBDD;
-import himevico.VInicio;
-import login.VLogin;
-import partes.VParteAdministracion;
-import trabajadores.Logistica;
 
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;

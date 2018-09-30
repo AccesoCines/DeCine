@@ -104,6 +104,32 @@ public class GestorBBDD {
 		
 	}
 	
+	public boolean guardarEmpleadoQL(Empleado empleado) {
+		try {
+			String query = "INSERT INTO Empleado (nombre,apellido,cargo,fechanacimiento,"
+					+ "nacionalidad,fechacontratacion,fechafincontrato,alta, id) VALUES(?,?,"
+					+ "?,?,?,?,?,?, (select max (id) from Empleado)+1)";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, empleado.getNombre());
+			ps.setString(2, empleado.getApellido());		
+			ps.setString(3, empleado.getCargo().toString());
+			ps.setDate(4, empleado.getFechaNacimiento());
+			ps.setString(5, empleado.getNacionalidad());
+			ps.setDate(6, empleado.getFechaContratacion());
+			ps.setDate(7, empleado.getFechaFinContrato());
+			ps.setBoolean(8, empleado.isAlta());
+		//	ps.setString(9,  (select max (id) from Empleado)+1);
+			ps.execute();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
 	public boolean guardarPelicula(Pelicula pelicula) {
 		try {
 			String query = "INSERT INTO "+'"'+"Pelicula"+'"'+" (titulo,ano_estreno,director,actor_principal,"
