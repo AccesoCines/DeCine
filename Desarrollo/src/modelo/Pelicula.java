@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +18,9 @@ public class Pelicula {
 	private java.sql.Date fechaInicio;
 	private java.sql.Date fechaFin;
 	private boolean alta;
+	private int id;
 	
-	private Map<Sala, java.sql.Time> proyeccion;
+	private ArrayList<Proyeccion> proyecciones;
 
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
 			String sinopsis, int duracion, String trailer, Date fechaInicio, Date fechaFin, boolean b) {
@@ -33,6 +35,7 @@ public class Pelicula {
 		this.trailer = trailer;
 		this.setFechaInicio(fechaInicio);
 		this.setFechaFin(fechaFin);
+		proyecciones = new ArrayList<>();
 	}
 
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
@@ -48,6 +51,26 @@ public class Pelicula {
 		this.trailer = trailer;
 		this.setFechaInicio(fechaInicio);
 		this.setFechaFin(fechaFin);
+		proyecciones = new ArrayList<>();
+	}
+
+	
+	
+	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
+			String sinopsis, int duracion, String trailer, Date fechaInicio, Date fechaFin, boolean alta, int id) {
+		this.titulo = titulo;
+		this.anoEstreno = anoEstreno;
+		this.director = director;
+		this.actorPrincipal = actorPrincipal;
+		this.actorSecundario = actorSecundario;
+		this.sinopsis = sinopsis;
+		this.duracion = duracion;
+		this.trailer = trailer;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.alta = alta;
+		this.id = id;
+		proyecciones = new ArrayList<>();
 	}
 
 	public String getTitulo() {
@@ -106,13 +129,12 @@ public class Pelicula {
 		this.trailer = trailer;
 	}
 
-	public Map<Sala, java.sql.Time> getProyeccion() {
-		return proyeccion;
+	public ArrayList<Proyeccion> getProyecciones() {
+		return proyecciones;
 	}
 
-	public void añadirProyeccion(Sala sala, java.sql.Time hora) {
-		proyeccion.put(sala, hora);
-		sala.anadirProyeccion(this, hora);
+	public void añadirProyeccion(Proyeccion proyeccion) {
+		proyecciones.add(proyeccion);
 	}
 
 	public boolean isAlta() {
@@ -147,10 +169,11 @@ public class Pelicula {
 		this.fechaFin = fechaFin;
 	}
 
-	public Sala getSala() {
-		
-		
-		
-		return null;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

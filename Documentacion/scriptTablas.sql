@@ -1,4 +1,4 @@
-﻿DROP TABLE "Proyeccion";
+DROP TABLE "Proyeccion";
 DROP TABLE "Empleado";
 DROP TABLE "Pelicula";
 DROP TABLE "Sala";
@@ -66,10 +66,10 @@ CREATE TABLE "Sala" (
 );
 
 CREATE TABLE "Proyeccion" (
-	Id NUMERIC NOT NULL PRIMARY KEY nextval('proyeccion_id'::regclass),
+	Id NUMERIC NOT NULL PRIMARY KEY DEFAULT nextval('proyeccion_id'::regclass),
 	Id_sala NUMERIC NOT NULL,
 	Id_pelicula NUMERIC NOT NULL,
-	Hora DATE NOT NULL,
+	Hora TIME NOT NULL,
 	Alta BOOLEAN NOT NULL,
 	CONSTRAINT "Proyeccion_id_pelicula_fkey" FOREIGN KEY (id_pelicula)
       REFERENCES public."Pelicula" (id) MATCH SIMPLE

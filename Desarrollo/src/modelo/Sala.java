@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,8 @@ public class Sala {
 	private boolean alta;
 	private int id;
 	
-	private Map<Pelicula,java.sql.Time> proyecciones;
-	private List<Empleado> empleados;
+	private ArrayList<Proyeccion> proyecciones;
+	private ArrayList<Empleado> empleados;
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
 			Empleado responsable, boolean alta) {
@@ -27,6 +28,7 @@ public class Sala {
 		this.discapacidad = discapacidad;
 		this.setResponsable(responsable);
 		this.alta = alta;
+		proyecciones = new ArrayList<>();
 	}
 	
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
@@ -39,6 +41,7 @@ public class Sala {
 		this.responsable = responsable;
 		this.alta = alta;
 		this.id = id;
+		proyecciones = new ArrayList<>();
 	}
 
 
@@ -52,10 +55,11 @@ public class Sala {
 		this.anoInauguracion = anoInauguracion;
 		this.discapacidad = discapacidad;
 		this.setResponsable(responsable);
+		proyecciones = new ArrayList<>();
 	}
 
-	public void anadirProyeccion(Pelicula pelicula,java.sql.Time hora) {
-		proyecciones.put(pelicula, hora);
+	public void anadirProyeccion(Proyeccion proyeccion) {
+		proyecciones.add(proyeccion);
 	}
 	
 	public void anadirEmpleado(Empleado empleado) {
@@ -102,7 +106,7 @@ public class Sala {
 		this.discapacidad = discapacidad;
 	}
 	
-	public Map<Pelicula, java.sql.Time> getProyecciones() {
+	public ArrayList<Proyeccion> getProyecciones() {
 		return proyecciones;
 	}
 
