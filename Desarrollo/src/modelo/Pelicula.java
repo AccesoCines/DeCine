@@ -1,5 +1,6 @@
 package modelo;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,22 +16,39 @@ public class Pelicula {
 	private String trailer;
 	private java.sql.Date fechaInicio;
 	private java.sql.Date fechaFin;
-	private Map<Sala, java.sql.Date> proyeccion;
 	private boolean alta;
-	
+
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
-			int duracion, String trailer) {
+			String sinopsis, int duracion, String trailer, Date fechaInicio, Date fechaFin, boolean b) {
+		super();
 		this.titulo = titulo;
 		this.anoEstreno = anoEstreno;
 		this.director = director;
 		this.actorPrincipal = actorPrincipal;
 		this.actorSecundario = actorSecundario;
+		this.sinopsis = sinopsis;
 		this.duracion = duracion;
 		this.trailer = trailer;
-		this.alta = true;
-		proyeccion = new HashMap<>();
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
 	}
-	
+
+	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
+			String sinopsis, int duracion, String trailer, Date fechaInicio, Date fechaFin) {
+		super();
+		this.titulo = titulo;
+		this.anoEstreno = anoEstreno;
+		this.director = director;
+		this.actorPrincipal = actorPrincipal;
+		this.actorSecundario = actorSecundario;
+		this.sinopsis = sinopsis;
+		this.duracion = duracion;
+		this.trailer = trailer;
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+	}
+
+	private Map<Sala, java.sql.Date> proyeccion;
 
 	public String getTitulo() {
 		return titulo;
@@ -87,7 +105,7 @@ public class Pelicula {
 	public void setTrailer(String trailer) {
 		this.trailer = trailer;
 	}
-	
+
 	public Map<Sala, java.sql.Date> getProyeccion() {
 		return proyeccion;
 	}
@@ -105,5 +123,4 @@ public class Pelicula {
 		this.alta = alta;
 	}
 
-	
 }
