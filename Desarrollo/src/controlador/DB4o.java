@@ -38,16 +38,16 @@ public class DB4o {
 
 	/*
 	// Creamos Empleados
-	Empleado e1 = new Empleado("Irene", "Aparicio", Cargo.camarero, date, date "española",date);
-	Empleado e2 = new Empleado("Belen", "Campos", Cargo.acomodadorResponsableBar, date, date, "española", date);
-	Empleado e3 = new Empleado("Maria", "Elorza", Cargo.portero, date, date, "española", date);
-	Empleado e4 = new Empleado("Jon", "Garcia", Cargo.responsableSala, date, date, "española", date);
+	Empleado e1 = new Empleado("Irene", "Aparicio", Cargo.camarero, date, date "espaï¿½ola",date);
+	Empleado e2 = new Empleado("Belen", "Campos", Cargo.acomodadorResponsableBar, date, date, "espaï¿½ola", date);
+	Empleado e3 = new Empleado("Maria", "Elorza", Cargo.portero, date, date, "espaï¿½ola", date);
+	Empleado e4 = new Empleado("Jon", "Garcia", Cargo.responsableSala, date, date, "espaï¿½ola", date);
 	Empleado e5 = new Empleado("Mario", "Izquierdo", Cargo.responsableCine, date, date, "venezolano", date);
 	Empleado e6 = new Empleado("John", "Smith", Cargo.camarero, date, date, "canadiense", date);
 	Empleado e7 = new Empleado("Oscar", "Gonzalez", Cargo.portero, date, date, "argentino", date);
-	Empleado e8 = new Empleado("Marta", "Lopez", Cargo.mantenimiento, date, date, "española", date);
-	Empleado e9 = new Empleado("Iker", Urquiza, Cargo.responsableSala, date, date, "española", date);
-	Empleado e10 = new Empleado("Uxune", "Etxeberria", Cargo.responsableCine,date, date, "española", date);
+	Empleado e8 = new Empleado("Marta", "Lopez", Cargo.mantenimiento, date, date, "espaï¿½ola", date);
+	Empleado e9 = new Empleado("Iker", Urquiza, Cargo.responsableSala, date, date, "espaï¿½ola", date);
+	Empleado e10 = new Empleado("Uxune", "Etxeberria", Cargo.responsableCine,date, date, "espaï¿½ola", date);
 	db.store(e1);
 	db.store(e2);
 	db.store(e3);
@@ -103,7 +103,7 @@ public class DB4o {
 	
 	
 	
-		Empleado e2 = new Empleado("Miriam", "Campos", Cargo.acomodadorResponsableBar, date, "española", date, date);
+		Empleado e2 = new Empleado("Miriam", "Campos", Cargo.acomodadorResponsableBar, date, "espaï¿½ola", date, date);
 	//guardarEmple(e2);
 	
 	
@@ -167,7 +167,7 @@ public class DB4o {
 		ArrayList<Empleado> listaEmpleados = new ArrayList<>();
 		ObjectSet<Empleado> result = db.queryByExample(em);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay empleados en histórico.");
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay empleados en histï¿½rico.");
 		}
 		while (result.hasNext()) {
 		Empleado e = result.next();
@@ -239,7 +239,7 @@ public class DB4o {
 		ArrayList<Pelicula> listaPeliculas = new ArrayList<>();
 		ObjectSet<Pelicula> result = db.queryByExample(pe);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas en histórico.");
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas en histï¿½rico.");
 		}
 		while (result.hasNext()) {
 		Pelicula p = result.next();
@@ -308,7 +308,7 @@ public class DB4o {
 		ArrayList<Sala> listaSalas = new ArrayList<>();
 		ObjectSet<Sala> result = db.queryByExample(sa);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas en histórico.");
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas en histï¿½rico.");
 		}
 		while (result.hasNext()) {
 		Sala s = result.next();

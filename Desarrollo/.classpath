@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Desktop/cine/DeCine/Librerias/db4o-8.0.276.16149-all-java5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Susana/Desktop/DeCine/Librerias/db4o-8.0.276.16149-all-java5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Susana/Desktop/DeCine/Librerias/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Susana/Desktop/DeCine/Librerias/postgresql-42.2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Susana/Desktop/DeCine/Librerias/sqlite-jdbc-3.8.11.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

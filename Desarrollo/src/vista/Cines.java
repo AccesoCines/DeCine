@@ -3,10 +3,13 @@ package vista;
 
 import java.io.File;
 
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,10 +27,26 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import javax.swing.JCheckBox;
+import java.awt.Font;
+import java.awt.Dimension;
+import java.awt.Component;
+import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
+import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Cines extends JFrame {
 
 	private JPanel contentPane;
+	private JRadioButton rbPrincipe;
+	private JRadioButton rbZubiarte;
+	private JRadioButton rbAzul;
+	private JRadioButton rbYelmo;
+	private JLabel lbAdvertenciaCines;
+	private ButtonGroup btnGroup;
+	private JButton botonCartelera;
 
 	/**
 	 * Launch the application.
@@ -50,13 +69,15 @@ public class Cines extends JFrame {
 	 */
 	public Cines() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.RED);
-		contentPane.setForeground(new Color(255, 0, 0));
+		
+		contentPane.setBackground(new Color(233, 69, 75));
+		contentPane.setForeground(new Color(233, 69, 75));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setBounds(100, 100, 1920, 1080);
+
 		
 	//	JButton botonAlta = new JButton(new ImageIcon("botALTA.png"));
 	//	botonAlta.setBounds (0, 0, 0, 0);
@@ -64,37 +85,169 @@ public class Cines extends JFrame {
 		
 		/*Método mostrado por Gregg Bolinger en JavaRanch*/ImageIcon icon = new ImageIcon("..\\imagenes\\imagenesBOTONES\\botALTA.png");
 		Image img = icon.getImage(); //convertimos icon en una imagen
-		Image otraimg = img.getScaledInstance(200,100,java.awt.Image.SCALE_SMOOTH); //creamos una imagen nueva dándole las dimensiones que queramos a la antigua
+		Image otraimg = img.getScaledInstance(452,350,java.awt.Image.SCALE_SMOOTH); //creamos una imagen nueva dándole las dimensiones que queramos a la antigua		
 		ImageIcon otroicon = new ImageIcon(otraimg);
-		JButton botonAlta = new JButton(new ImageIcon("C:\\Users\\Susana\\Desktop\\DeCine\\Desarrollo\\src\\imagenes\\BOTONES\\botALTA.png"));
-		botonAlta.setSelectedIcon(new ImageIcon("..\\imagenes\\imagenesBOTONES\\botALTA.png"));
-		botonAlta.setContentAreaFilled(false);
-		botonAlta.setBorderPainted(false);
-		botonAlta.setContentAreaFilled(false);
-		botonAlta.setBorderPainted(false);
-		botonAlta.setBounds(new Rectangle(50,50,100,75));
+		JButton botonCartelera = new JButton(new ImageIcon(Cines.class.getResource("/imagenes/CLAQUETAS/clac cartelera.png")));
+		botonCartelera.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				System.out.println("Hew pulsado");
+				
+
+				if ( rbPrincipe.isSelected()) {
+					
+					lbAdvertenciaCines.setVisible(false);
+					
+				}
+				else
+				{
+					lbAdvertenciaCines.setVisible(true);
+					
+				}
+				
+			}
+		});
+		//botonCartelera.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		botonCartelera.setBounds(new Rectangle(100, 100, 452, 350));
+		botonCartelera.setAlignmentX(Component.CENTER_ALIGNMENT);
+		botonCartelera.setPreferredSize(new Dimension(452, 350));
+		botonCartelera.setSelectedIcon(new ImageIcon("..\\imagenes\\imagenesBOTONES\\botALTA.png"));
+		botonCartelera.setContentAreaFilled(false);
+		botonCartelera.setContentAreaFilled(false);
+		botonCartelera.setBorderPainted(false);
+
+		
+		botonCartelera.setBounds(217, 25, 594, 513);
+		contentPane.add(botonCartelera);
+		botonCartelera.setMargin(null);
+
 		
 		
+	
+		botonCartelera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+
+				
+				
 		
-		botonAlta.addActionListener(new ActionListener() {
+			}
+		});
+		
+		
+		Image img2 = icon.getImage(); //convertimos icon en una imagen
+		Image otraimg2 = img.getScaledInstance(452,350,java.awt.Image.SCALE_SMOOTH); //creamos una imagen nueva dándole las dimensiones que queramos a la antigua		
+		ImageIcon otroicon2 = new ImageIcon(otraimg2);
+		JButton btBotonSalas = new JButton(new ImageIcon(Cines.class.getResource("/imagenes/CLAQUETAS/clac SALAS.png")));
+		btBotonSalas.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+		btBotonSalas.setContentAreaFilled(false);
+		btBotonSalas.setBorderPainted(false);
+		//botonSalas.setBorderPainted(false);
+		
+		btBotonSalas.setBounds(1028, 18, 657, 520);
+		contentPane.add(btBotonSalas);
+		
+		
+		btBotonSalas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 			}
 		});
-		botonAlta.setBounds(82, 21, 278, 125);
-		contentPane.add(botonAlta);
-		
-		
 
 		
-		JComboBox comboBoxTodos = new JComboBox();
-		comboBoxTodos.setModel(new DefaultComboBoxModel(new String[] {"Películas", "Empleados", "Salas"}));
-		comboBoxTodos.setMaximumRowCount(100);
-		comboBoxTodos.setBounds(0, 145, 424, 84);
-		contentPane.add(comboBoxTodos);
-		comboBoxTodos.addItem("Películas");
-		comboBoxTodos.addItem("Empleados");
-		comboBoxTodos.addItem("Salas");
+		
+		
+	/*	
+		JCheckBox checkBoxPrincipe = new JCheckBox("  PRÍNCIPE (Cine Comercial)");
+		checkBoxPrincipe.setForeground(Color.WHITE);
+		checkBoxPrincipe.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		checkBoxPrincipe.setBounds(551, 732, 2000, 46);
+		contentPane.add(checkBoxPrincipe);
+		checkBoxPrincipe.setContentAreaFilled(false);
+		
+		JCheckBox checkBoxAzul = new JCheckBox("  AZUL (Cine Experimental)");
+		checkBoxAzul.setForeground(Color.WHITE);
+		checkBoxAzul.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		checkBoxAzul.setBounds(551, 809, 2000, 46);
+		contentPane.add(checkBoxAzul);
+		checkBoxAzul.setContentAreaFilled(false);
+		
+		
+		JCheckBox checkBoxJunior = new JCheckBox("  JUNIOR YELMO (Cine Infantil)");
+		checkBoxJunior.setForeground(Color.WHITE);
+		checkBoxJunior.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		checkBoxJunior.setBounds(551, 885, 2000, 46);
+		contentPane.add(checkBoxJunior);
+		checkBoxJunior.setContentAreaFilled(false);
+		
+		
+		*/
+		
+		
+		
+		
+		
+		JRadioButton rbPrincipe = new JRadioButton("  PR\u00CDNCIPE (Cine Comercial)");
+		rbPrincipe.setForeground(Color.WHITE);
+		rbPrincipe.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		rbPrincipe.setBounds(551, 655, 2000, 46);
+		contentPane.add(rbPrincipe);
+		rbPrincipe.setContentAreaFilled(false);
+		
+		
+		JRadioButton rbZubiarte = new JRadioButton("  ZUBIARTE 3D (Cine documental)");
+		rbZubiarte.setForeground(Color.WHITE);
+		rbZubiarte.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		rbZubiarte.setBounds(551, 732, 2000, 46);
+		contentPane.add(rbZubiarte);
+		rbZubiarte.setContentAreaFilled(false);
+		
+		
+		JRadioButton rbAzul = new JRadioButton("  AZUL (Cine Experimental)");
+		rbAzul.setForeground(Color.WHITE);
+		rbAzul.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		rbAzul.setBounds(551, 809, 2000, 46);
+		contentPane.add(rbAzul);
+		rbAzul.setContentAreaFilled(false);
+		
+		
+		JRadioButton rbYelmo = new JRadioButton("  JUNIOR YELMO (Cine Infantil)");
+		rbYelmo.setForeground(Color.WHITE);
+		rbYelmo.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		rbYelmo.setBounds(551, 885, 2000, 46);
+		contentPane.add(rbYelmo);
+		rbYelmo.setContentAreaFilled(false);
+		
+		 
+		
+		
+		  ButtonGroup btnGroup = new ButtonGroup();
+		    btnGroup.add(rbPrincipe);
+		    btnGroup.add(rbZubiarte);
+		    btnGroup.add(rbAzul);
+		    btnGroup.add(rbYelmo);
+		    
+		    
+		    
+		    
+		    JLabel lbAdvertenciaCines = new JLabel("Seleccionar Cine");
+		    lbAdvertenciaCines.setVisible(false);
+		    lbAdvertenciaCines.setBackground(Color.GREEN);
+		    lbAdvertenciaCines.setHorizontalAlignment(SwingConstants.CENTER);
+		    lbAdvertenciaCines.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		    lbAdvertenciaCines.setBounds(393, 504, 400, 113);
+		    contentPane.add(lbAdvertenciaCines);
+
+
 		
 	}
+	
+
+	
+	
+	
+	
+	
 }
