@@ -13,6 +13,7 @@ public class Empleado {
 	private String nacionalidad;
 	private java.sql.Date fechaFinContrato;
 	private boolean alta;
+	private int id;
 
 	// De 0 a 1 año : Portero , camarero
 	// De 1 a 3 años : Acomodador o responsable del bar
@@ -43,6 +44,22 @@ public class Empleado {
 		this.nacionalidad = nacionalidad;
 		this.fechaFinContrato = fechaFinContrato;
 		this.alta = true;
+	}
+	
+	
+
+	public Empleado(String nombre, String apellido, Cargo cargo, Date fechaContratacion, Date fechaNacimiento,
+			String nacionalidad, Date fechaFinContrato, boolean alta, int id) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.cargo = cargo;
+		this.fechaContratacion = fechaContratacion;
+		this.fechaNacimiento = fechaNacimiento;
+		this.nacionalidad = nacionalidad;
+		this.fechaFinContrato = fechaFinContrato;
+		this.alta = alta;
+		this.setId(id);
 	}
 
 	public String getNombre() {
@@ -116,6 +133,14 @@ public class Empleado {
 
 	public void setAlta(boolean alta) {
 		this.alta = alta;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

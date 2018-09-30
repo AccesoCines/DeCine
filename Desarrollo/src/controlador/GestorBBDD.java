@@ -49,7 +49,7 @@ public class GestorBBDD {
 	public boolean guardarSala(Sala sala) {
 		try {
 			String query = "INSERT INTO "+'"'+"Sala"+'"'+"(numero,aforo,dimensiones_pantalla,"
-					+ "ano_inauguracion,discapacidad,alta) VALUES(?,?,?,?,?,?)";
+					+ "ano_inauguracion,discapacidad,alta,id_responsable) VALUES(?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setInt(1, sala.getNumero());
 			ps.setInt(2, sala.getAforo());
@@ -57,6 +57,7 @@ public class GestorBBDD {
 			ps.setInt(4, sala.getAnoInauguracion());
 			ps.setBoolean(5, sala.isDiscapacidad());
 			ps.setBoolean(6, sala.isAlta());
+			ps.setInt(7, sala.getResponsable().getId());
 			ps.execute();
 			ps.close();
 			return true;
@@ -65,9 +66,6 @@ public class GestorBBDD {
 			e.printStackTrace();
 			return false;
 		}
-		//"INSERT INTO sala (nombre,apellido,cargo,fechanacimiento,"
-		//+ "nacionalidad,fechacontratacion,fechafincontrato,alta VALUES(?,?,"
-		//+ "?,?,?,?,?,?))"
 	}
 	
 	public boolean guardarEmpleado(Empleado empleado) {

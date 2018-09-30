@@ -27,7 +27,7 @@ public class Sala {
 		this.dimPantalla = dimPantalla;
 		this.anoInauguracion = anoInauguracion;
 		this.discapacidad = discapacidad;
-		this.responsable = responsable;
+		this.setResponsable(responsable);
 		this.alta = alta;
 	}
 
@@ -39,7 +39,7 @@ public class Sala {
 		this.dimPantalla = dimPantalla;
 		this.anoInauguracion = anoInauguracion;
 		this.discapacidad = discapacidad;
-		this.responsable = responsable;
+		this.setResponsable(responsable);
 	}
 
 	public void anadirProyeccion(Pelicula pelicula,java.sql.Date hora) {
@@ -104,6 +104,14 @@ public class Sala {
 
 	public void setAlta(boolean alta) {
 		this.alta = alta;
+	}
+
+	public Empleado getResponsable() {
+		return responsable;
+	}
+
+	public void setResponsable(Empleado responsable) {
+		this.responsable = responsable;
 	}
 
 	
