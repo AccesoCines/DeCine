@@ -36,6 +36,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Frame;
 
 public class Cines extends JFrame {
 
@@ -68,6 +69,7 @@ public class Cines extends JFrame {
 	 * Create the frame.
 	 */
 	public Cines() {
+		setExtendedState(Frame.MAXIMIZED_BOTH);	//Usue--probando pantalla completa
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		

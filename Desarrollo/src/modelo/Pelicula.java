@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import controlador.*;
+
 public class Pelicula {
 	private String titulo;
 	private int anoEstreno;
@@ -19,12 +21,18 @@ public class Pelicula {
 	private java.sql.Date fechaFin;
 	private boolean alta;
 	private int id;
+	private String bbdd = "postgre"; //TODO cambiar por variable desde la ventana anterior
+	//Cuando se carga la ventana hay que traer aquí la variable de que BBDD es para pasarla al new GestorBBDD
 	
 	private ArrayList<Proyeccion> proyecciones;
-
+	
+	public ArrayList<Pelicula> cargarPeliculas(){
+		GestorBBDD gb = new GestorBBDD(bbdd);	
+		return gb.cargarPeliculas();
+	}
+	
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
-			String sinopsis, int duracion, String trailer, Date fechaInicio, Date fechaFin, boolean b) {
-		super();
+			String sinopsis, int duracion, String trailer, Date fechaInicio, Date fechaFin, boolean alta) {
 		this.titulo = titulo;
 		this.anoEstreno = anoEstreno;
 		this.director = director;
@@ -33,8 +41,9 @@ public class Pelicula {
 		this.setSinopsis(sinopsis);
 		this.duracion = duracion;
 		this.trailer = trailer;
-		this.setFechaInicio(fechaInicio);
-		this.setFechaFin(fechaFin);
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.alta = alta;
 		proyecciones = new ArrayList<>();
 	}
 
@@ -72,6 +81,8 @@ public class Pelicula {
 		this.id = id;
 		proyecciones = new ArrayList<>();
 	}
+
+	public Pelicula() {	}
 
 	public String getTitulo() {
 		return titulo;

@@ -1,7 +1,7 @@
---DROP TABLE "Proyeccion";
---DROP TABLE "Sala";
---DROP TABLE "Empleado";
---DROP TABLE "Pelicula";
+DROP TABLE "Proyeccion";
+DROP TABLE "Sala";
+DROP TABLE "Empleado";
+DROP TABLE "Pelicula";
 
 
 CREATE SEQUENCE empleado_id
@@ -54,6 +54,8 @@ CREATE TABLE "Pelicula" (
 	Duracion NUMERIC NOT NULL,
 	Trailer VARCHAR (500) NOT NULL,
 	Sinopsis VARCHAR (500) NOT NULL,
+	Fecha_inicio DATE NOT NULL,
+	Fecha_fin DATE NOT NULL,
 	Alta BOOLEAN NOT NULL
 );
 

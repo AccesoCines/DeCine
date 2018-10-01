@@ -17,6 +17,8 @@ public class Sala {
 	
 	private ArrayList<Proyeccion> proyecciones;
 	private ArrayList<Empleado> empleados;
+	
+	public Sala() {	}
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
 			Empleado responsable, boolean alta) {
