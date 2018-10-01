@@ -11,7 +11,7 @@ import modelo.*;
 
 public class GestorBBDD {
 	
-	private String baseDatos;
+	//private String baseDatos;
 	private String url;
 	private String user;
 	private String passw;
@@ -95,8 +95,8 @@ public class GestorBBDD {
 	public boolean guardarPelicula(Pelicula pelicula) {
 		try {
 			String query = "INSERT INTO "+'"'+"Pelicula"+'"'+" (titulo,ano_estreno,director,actor_principal,"
-					+ "actor_secundario,duracion,trailer,alta) VALUES(?,?,"
-					+ "?,?,?,?,?,?)";
+					+ "actor_secundario,duracion,trailer,alta,sinopsis) VALUES(?,?,"
+					+ "?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, pelicula.getTitulo());
 			ps.setInt(2, pelicula.getAnoEstreno());		
@@ -106,6 +106,7 @@ public class GestorBBDD {
 			ps.setInt(6, pelicula.getDuracion());
 			ps.setString(7, pelicula.getTrailer());
 			ps.setBoolean(8, pelicula.isAlta());
+			ps.setString(9, pelicula.getSinopsis());
 			ps.execute();
 			ps.close();
 			return true;
@@ -166,7 +167,7 @@ public class GestorBBDD {
 	public boolean modificarPelicula(Pelicula pelicula) {
 		try {
 			String query = "UPDATE "+'"'+"Pelicula"+'"'+" SET (titulo,ano_estreno,director,"
-					+ "actor_principal,actor_secundario,duracion,trailer) = (?,?,?,?,?,?,?)"
+					+ "actor_principal,actor_secundario,duracion,trailer,sinopsis) = (?,?,?,?,?,?,?,?)"
 					+ "WHERE id=?";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, pelicula.getTitulo());
@@ -176,7 +177,8 @@ public class GestorBBDD {
 			ps.setString(5, pelicula.getActorSecundario());
 			ps.setInt(6, pelicula.getDuracion());
 			ps.setString(7, pelicula.getTrailer());
-			ps.setInt(8, pelicula.getId());
+			ps.setString(8, pelicula.getSinopsis());
+			ps.setInt(9, pelicula.getId());
 			ps.execute();
 			ps.close();
 			return true;

@@ -20,7 +20,6 @@ public class Sala {
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
 			Empleado responsable, boolean alta) {
-		super();
 		this.numero = numero;
 		this.aforo = aforo;
 		this.dimPantalla = dimPantalla;
