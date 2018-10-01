@@ -67,6 +67,33 @@ public class GestorBBDD {
 		}
 	}
 	
+	public boolean guardarSalaQL(Sala sala) {
+		try {
+			
+			/*
+			 * public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
+			Empleado responsable, boolean alta)
+			 */
+			String query = "INSERT INTO Sala (numero,aforo,dimensiones_pantalla,"
+					+ "ano_inauguracion,discapacidad,id_responsable, alta, id) VALUES(?,?,?,?,?,?,?, (select max (id) from Sala)+1)";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, sala.getNumero());
+			ps.setInt(2, sala.getAforo());
+			ps.setString(3, sala.getDimPantalla());
+			ps.setInt(4, sala.getAnoInauguracion());
+			ps.setBoolean(5, sala.isDiscapacidad());
+			ps.setBoolean(6, sala.isAlta());
+			ps.setInt(7, sala.getResponsable().getId());
+			ps.execute();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public boolean guardarEmpleado(Empleado empleado) {
 		try {
 			String query = "INSERT INTO "+'"'+"Empleado"+'"'+" (nombre,apellido,cargo,fechanacimiento,"
