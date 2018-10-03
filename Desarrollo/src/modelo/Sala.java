@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import controlador.GestorBBDD;
+
 public class Sala {
 	private int numero;
 	private int aforo;
@@ -14,6 +16,8 @@ public class Sala {
 	private Empleado responsable;
 	private boolean alta;
 	private int id;
+	private String bbdd = "postgre"; //TODO cambiar por variable desde la ventana anterior
+	//Cuando se carga la ventana hay que traer aquí la variable de que BBDD es para pasarla al new GestorBBDD
 	
 	private ArrayList<Proyeccion> proyecciones;
 	private ArrayList<Empleado> empleados;
@@ -45,6 +49,15 @@ public class Sala {
 		proyecciones = new ArrayList<>();
 	}
 
+	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad, int id) {
+		this.numero = numero;
+		this.aforo = aforo;
+		this.dimPantalla = dimPantalla;
+		this.anoInauguracion = anoInauguracion;
+		this.discapacidad = discapacidad;
+		this.id = id;
+		proyecciones = new ArrayList<>();
+	}
 
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
@@ -137,6 +150,12 @@ public class Sala {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public ArrayList<Sala> cargarSalas() {
+		GestorBBDD gb = new GestorBBDD(bbdd);	
+		return gb.cargarSalas();
+		
 	}
 
 	

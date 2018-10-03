@@ -46,6 +46,16 @@ public class VAltaProyecciones extends JFrame {
 					DefaultComboBoxModel dfb = new DefaultComboBoxModel(pelis);
 					cbPeliculas.setModel(dfb);
 					if(peliculas!=null) cbPeliculas.setModel(dfb);
+					
+					ArrayList<Sala> salas = new Sala().cargarSalas();
+					Integer[] salasAr = new Integer[salas.size()];
+					int j = 0;
+					for(Sala s : salas) {
+						salasAr[j] = s.getNumero();
+						j++;
+					}
+					dfb = new DefaultComboBoxModel(salasAr);
+					if(salasAr!=null) cbSalas.setModel(dfb);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
