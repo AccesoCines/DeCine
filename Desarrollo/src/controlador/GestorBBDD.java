@@ -211,8 +211,52 @@ public class GestorBBDD {
 			ps.setString(5, pelicula.getActorSecundario());
 			ps.setInt(6, pelicula.getDuracion());
 			ps.setString(7, pelicula.getTrailer());
+<<<<<<< Updated upstream
 			ps.setString(8, pelicula.getSinopsis());
 			ps.setInt(9, pelicula.getId());
+=======
+			ps.setBoolean(8, pelicula.isAlta());
+			
+			ps.execute();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+/*
+ * public Pelicula(String titulo, int anoEstreno, 
+ * String director, String actorPrincipal, 
+ * String actorSecundario,
+			String sinopsis, int duracion, 
+			String trailer, Date fechaInicio, 
+			Date fechaFin, boolean b) {
+ */
+
+	
+	public boolean guardarPeliculaQL(Pelicula pelicula) {
+		try {
+			String query = "INSERT INTO Pelicula (titulo,ano_estreno,director,actor_principal,"
+					+ "actor_secundario,sinopsis,duracion,trailer,fecha_Inicio,fecha_Fin,alta) VALUES(?,?,"
+					+ "?,?,?,?,?,?,?,?,?,?, (select max (id) from Empleado)+1)";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, pelicula.getTitulo());
+			ps.setInt(2, pelicula.getAnoEstreno());		
+			ps.setString(3, pelicula.getDirector());
+			ps.setString(4, pelicula.getActorPrincipal());
+			ps.setString(5, pelicula.getActorSecundario());
+			ps.setString(6, pelicula.getSinopsis()); 
+			ps.setInt(7, pelicula.getDuracion());
+			ps.setString(8, pelicula.getTrailer());
+			ps.setBoolean(9, pelicula.isAlta());
+			ps.setDate(10, pelicula.getFechaInicio());
+			ps.setDate(11, pelicula.getFechaFin());
+			ps.setBoolean(12, pelicula.isAlta());
+>>>>>>> Stashed changes
 			ps.execute();
 			ps.close();
 			return true;

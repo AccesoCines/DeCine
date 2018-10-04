@@ -9,10 +9,25 @@ import javax.swing.JOptionPane;
 
 
 import modelo.*;
+/*
+INSERT INTO Pelicula VALUES (1, "COLOR SEQUENCE", 1943, "DWINELL GRANT",
+ "-", "-", "Una de las pelï¿½culas mï¿½s interesantes e importantes de 
+ Grant es Color Sequence (1943), que consiste solo en cuadros de
+  color sï¿½lido que se desvanecen, mutan y parpadean. 
+  Hizo la pelï¿½cula como una investigaciï¿½n sobre los ritmos 
+  de color y los fenï¿½menos perceptuales, 
+  y aunque ahora parece no solo visualmente emocionante 
+  sino tambiï¿½n un precedente para el trabajo de cineastas mï¿½s ï¿½
+  jï¿½venes como Paul Sharits, el propio Grant encontrï¿½ la pelï¿½cula demasiado 
+  inquietante cuando se proyectï¿½ por primera vez", 2, "https://www.caninomag.es/cine-experimental-10-peliculas-que-te-haran-amarlo-de-una-vez-por-todas/", "2018-10-01", "2018-10-01", 1);
+ 
+
+  "INSERT INTO Pelicula (titulo,ano_estreno,director,actor_principal,"
+					+ "actor_secundario,sinopsis,duracion,trailer,fecha_Inicio,fecha_Fin,alta) VALUES(?,?,"
+					+ "?,?,?,?,?,?,?,?,?,?, (select max (id) from Empleado)+1)";
+ */
 
 
-
-//TODO INSERT PELICULA PREGUNTAR POR QUE EN EL CONSTRUCTOR NO ESTÁN LAS FECHAS Y LA SINOPSIS
 public class SQLite{
 	public static void main(String[] args) {
 
