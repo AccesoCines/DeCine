@@ -281,4 +281,33 @@ public class GestorBBDD {
 			return null;
 		}
 	}
+
+
+	public ArrayList<Sala> cargarSalas() {
+		ArrayList<Sala> salas = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Sala"+'"'+" WHERE ALTA=true";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				salas.add(new Sala(
+						rs.getInt("numero"),
+						rs.getInt("aforo"),
+						rs.getString("dimensiones_pantalla"),
+						rs.getInt("ano_inauguracion"),
+						rs.getBoolean("discapacidad"),
+						rs.getInt("id")
+						));
+			}
+			if(salas.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay salas", null, 0);
+				return null;
+			}else {
+				return salas;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
