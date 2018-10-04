@@ -28,7 +28,7 @@ public class GestorBBDD {
 		case "postgre":
 			url = "jdbc:postgresql://localhost:5433/cines";
 		    user = "postgres";
-		    passw = "";
+		    passw = "cines1510";
 		    try {
 		    	Class.forName("org.postgresql.Driver"); 
 				con = DriverManager.getConnection(url,user,passw);

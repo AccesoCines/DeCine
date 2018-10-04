@@ -21,12 +21,19 @@ import javax.swing.border.LineBorder;
 import modelo.*;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JSpinner;
+import com.toedter.components.JSpinField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VAltaProyecciones extends JFrame {
 
 	private JPanel contentPane;
 	private static JComboBox cbPeliculas;
 	private static JComboBox cbSalas;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -96,11 +103,11 @@ public class VAltaProyecciones extends JFrame {
 		JLabel lblSala = new JLabel("Sala");
 		lblSala.setForeground(Color.WHITE);
 		lblSala.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblSala.setBounds(100, 327, 288, 31);
+		lblSala.setBounds(532, 161, 288, 31);
 		contentPane.add(lblSala);
 		
 		cbPeliculas = new JComboBox();
-		cbPeliculas.setModel(new DefaultComboBoxModel(new String[] {"Prueba", "Prueba2"}));
+		//cbPeliculas.setModel(new DefaultComboBoxModel(new String[] {"Prueba", "Prueba2"}));
 		cbPeliculas.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbPeliculas.setForeground(Color.WHITE);
 		cbPeliculas.setBackground(new Color(233, 69, 75));
@@ -109,13 +116,41 @@ public class VAltaProyecciones extends JFrame {
 		contentPane.add(cbPeliculas);
 		
 		cbSalas = new JComboBox();
-		cbSalas.setModel(new DefaultComboBoxModel(new String[] {"Prueba", "Prueba2"}));
+		//cbSalas.setModel(new DefaultComboBoxModel(new String[] {"Prueba", "Prueba2"}));
 		cbSalas.setBorder(new LineBorder(Color.WHITE));
 		cbSalas.setForeground(Color.WHITE);
 		cbSalas.setBackground(new Color(233, 69, 75));
 		cbSalas.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		cbSalas.setBounds(100, 409, 224, 31);
+		cbSalas.setBounds(532, 243, 224, 31);
 		contentPane.add(cbSalas);
+		
+		JButton btnAadirHoras = new JButton("A\u00F1adir horas");
+		btnAadirHoras.setBounds(100, 325, 132, 23);
+		contentPane.add(btnAadirHoras);
+		
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+		panel.setBounds(100, 400, 656, 55);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblSesin = new JLabel("Sesi\u00F3n");
+		lblSesin.setBounds(0, 11, 72, 31);
+		lblSesin.setForeground(Color.WHITE);
+		lblSesin.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		panel.add(lblSesin);
+		
+		
+		
+		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//java.sql.Time hora = spinField.g
+				
+			}
+		});
+		btnGuardar.setBounds(94, 840, 89, 23);
+		contentPane.add(btnGuardar);
 		
 		
 	}

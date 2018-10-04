@@ -1,7 +1,7 @@
-DROP TABLE "Proyeccion";
-DROP TABLE "Sala";
-DROP TABLE "Empleado";
-DROP TABLE "Pelicula";
+--DROP TABLE "Proyeccion";
+--DROP TABLE "Sala";
+--DROP TABLE "Empleado";
+--DROP TABLE "Pelicula";
 
 
 CREATE SEQUENCE empleado_id
@@ -19,10 +19,10 @@ CREATE SEQUENCE sala_id
   CACHE 1;
 
 CREATE SEQUENCE pelicula_id
-  INCREMENT 0
-  MINVALUE 0
-  MAXVALUE 0
-  START 0
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 2000
+  START 1
   CACHE 1;
 
 CREATE SEQUENCE proyeccion_id
