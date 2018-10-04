@@ -25,7 +25,6 @@ public class DB4o {
 	final static String BDSala = "DBSalas.yap";
 	
 	
-	public static void main(String[] args) {
 		
 	//Abrir la BD
 	//ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
@@ -108,7 +107,7 @@ public class DB4o {
 	
 	
 	
-	}
+	
 	public static void guardarEmple(Empleado e){
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
@@ -239,7 +238,7 @@ public class DB4o {
 		ArrayList<Pelicula> listaPeliculas = new ArrayList<>();
 		ObjectSet<Pelicula> result = db.queryByExample(pe);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas en hist�rico.");
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas en historico.");
 		}
 		while (result.hasNext()) {
 		Pelicula p = result.next();
@@ -308,7 +307,7 @@ public class DB4o {
 		ArrayList<Sala> listaSalas = new ArrayList<>();
 		ObjectSet<Sala> result = db.queryByExample(sa);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas en hist�rico.");
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas en historico.");
 		}
 		while (result.hasNext()) {
 		Sala s = result.next();

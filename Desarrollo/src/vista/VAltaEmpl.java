@@ -64,7 +64,7 @@ public class VAltaEmpl extends JFrame {
 		lblCargo.setBounds(5, 108, 56, 16);
 		contentPane.add(lblCargo);
 		
-		JLabel lblFechaContratacin = new JLabel("Fecha contrataci\u00F3n: ");
+		JLabel lblFechaContratacin = new JLabel("Fecha contratacion: ");
 		lblFechaContratacin.setBounds(5, 137, 134, 16);
 		contentPane.add(lblFechaContratacin);
 		

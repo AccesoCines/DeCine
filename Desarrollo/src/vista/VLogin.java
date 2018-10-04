@@ -3,6 +3,8 @@ package vista;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -49,7 +51,7 @@ public class VLogin extends JFrame {
 		
 				
 				if(textField.getText().equals("cines1510") && JPassword.equals("12345")){
-		     
+					
 				}
 				}
 				});
