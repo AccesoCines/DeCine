@@ -22,7 +22,7 @@ public class Pelicula {
 	private boolean alta;
 	private int id;
 	private String bbdd = "postgre"; //TODO cambiar por variable desde la ventana anterior
-	//Cuando se carga la ventana hay que traer aquí la variable de que BBDD es para pasarla al new GestorBBDD
+	//Cuando se carga la ventana hay que traer aquï¿½ la variable de que BBDD es para pasarla al new GestorBBDD
 	
 	private ArrayList<Proyeccion> proyecciones;
 	
@@ -144,7 +144,7 @@ public class Pelicula {
 		return proyecciones;
 	}
 
-	public void añadirProyeccion(Proyeccion proyeccion) {
+	public void aï¿½adirProyeccion(Proyeccion proyeccion) {
 		proyecciones.add(proyeccion);
 	}
 
