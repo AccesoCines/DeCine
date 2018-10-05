@@ -42,7 +42,7 @@ public class PostgreSQL {
 				new java.sql.Date(1985, 6, 10), new java.sql.Date(1985, 6, 10));
 		
 		
-		boolean correcto = gb.guardarEmpleado(e);
+		boolean correcto = gb.guardarEmpleado(e);{
 		
 		if (correcto) {
 			JOptionPane.showMessageDialog(null, "Correcto", null, 0);

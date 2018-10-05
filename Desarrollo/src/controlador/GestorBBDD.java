@@ -53,7 +53,10 @@ public class GestorBBDD {
 				e.printStackTrace();
 			}
 			
-			break;			
+			break;		
+		case "db4o":
+			
+			break;
 		}
 	}
 
