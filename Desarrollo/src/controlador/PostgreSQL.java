@@ -5,10 +5,16 @@ package controlador;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
+
 import modelo.*;
 
 public class PostgreSQL {
 	public static void main(String args[]) throws Exception {
+		
+	
+		
 	    GestorBBDD gb = new GestorBBDD("postgre");
 	    Pelicula p = new Pelicula("dfsf", 
 	    							2000, 
@@ -23,6 +29,7 @@ public class PostgreSQL {
 	    							true,4);
 	    Empleado e = new Empleado("apagado", "dsfsdf", Cargo.camarero, new java.sql.Date(1985, 6, 10), new java.sql.Date(1985, 6, 10), "erer", new java.sql.Date(1985, 6, 10), true, 4);
 	    Sala sala = new Sala(34, 0, "alalal", 0, true, e,true,6);
+	 
     
 	   //gb.guardarPelicula(p);
 	    //gb.guardarEmpleado(e);

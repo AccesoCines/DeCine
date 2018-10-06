@@ -17,13 +17,18 @@ public class Sala {
 	private Empleado responsable;
 	private boolean alta;
 	private int id;
-	private String bbdd = "postgre"; //TODO cambiar por variable desde la ventana anterior
-	//Cuando se carga la ventana hay que traer aquí la variable de que BBDD es para pasarla al new GestorBBDD
+	private String bbdd = "db4o"; //TODO cambiar por variable desde la ventana anterior
+	//Cuando se carga la ventana hay que traer aquï¿½ la variable de que BBDD es para pasarla al new GestorBBDD
 	
 	private ArrayList<Proyeccion> proyecciones;
 	private ArrayList<Empleado> empleados;
 	
 	public Sala() {	}
+	
+	public Sala(Empleado responsable,int numero) {
+		this.responsable = responsable;
+		this.numero = numero;
+	}
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
 			Empleado responsable, boolean alta) {

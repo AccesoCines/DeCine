@@ -21,12 +21,18 @@ public class Pelicula {
 	private java.sql.Date fechaFin;
 	private boolean alta;
 	private int id;
+<<<<<<< Updated upstream
 	private String bbdd = "sqlite"; 
+=======
+	private String bbdd = "db4o"; //TODO cambiar por variable desde la ventana anterior
+	//Cuando se carga la ventana hay que traer aquï¿½ la variable de que BBDD es para pasarla al new GestorBBDD
+>>>>>>> Stashed changes
 	
 	private ArrayList<Proyeccion> proyecciones;
 	
 	public ArrayList<Pelicula> cargarPeliculas(){
 		GestorBBDD gb = new GestorBBDD(bbdd);
+<<<<<<< Updated upstream
 		ArrayList<Pelicula> pelis = new ArrayList<>();
 		switch(bbdd) {
 			case "postgre":
@@ -40,6 +46,19 @@ public class Pelicula {
 				break;
 		}
 		return pelis;
+=======
+		ArrayList<Pelicula> peliculas = new ArrayList<>();
+		switch(bbdd) {
+		case "postgre":
+			peliculas = gb.cargarPeliculas();
+		//case "sqlite":
+		case "db4o":
+			DB4o d = new DB4o();
+			peliculas = d.mostrarListPeli();
+		}
+		return peliculas;
+		
+>>>>>>> Stashed changes
 		
 	}
 	
@@ -175,7 +194,7 @@ public class Pelicula {
 		return proyecciones;
 	}
 
-	public void añadirProyeccion(Proyeccion proyeccion) {
+	public void aï¿½adirProyeccion(Proyeccion proyeccion) {
 		proyecciones.add(proyeccion);
 	}
 
