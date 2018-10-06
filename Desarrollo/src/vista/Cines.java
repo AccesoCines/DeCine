@@ -69,7 +69,8 @@ public class Cines extends JFrame {
 	 * Create the frame.
 	 */
 	public Cines() {
-		setExtendedState(Frame.MAXIMIZED_BOTH);	//Usue--probando pantalla completa
+		
+		setExtendedState(Frame.NORMAL);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		
@@ -243,6 +244,7 @@ public class Cines extends JFrame {
 		    contentPane.add(lbAdvertenciaCines);
 
 
+		    setLocationRelativeTo(null);
 		
 	}
 	
