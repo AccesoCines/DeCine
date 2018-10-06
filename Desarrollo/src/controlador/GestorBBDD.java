@@ -89,10 +89,6 @@ public class GestorBBDD {
 	public boolean guardarSalaQL(Sala sala) {
 		try {
 			
-			/*
-			 * public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
-			Empleado responsable, boolean alta)
-			 */
 			String query = "INSERT INTO Sala (numero,aforo,dimensiones_pantalla,"
 					+ "ano_inauguracion,discapacidad,id_responsable, alta, id) VALUES(?,?,?,?,?,?,?, (select max (id) from Sala)+1)";
 			PreparedStatement ps = con.prepareStatement(query);
@@ -307,6 +303,8 @@ public class GestorBBDD {
 	
 	public ArrayList<Pelicula> cargarPeliculasQL() {
 		ArrayList<Pelicula> peliculas = new ArrayList<>();
+		
+		//SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}';
 		try {
 			String query = "SELECT * FROM Pelicula WHERE ALTA=1 AND fecha_inicio<current_date and fecha_fin>current_date ";
 			ResultSet rs = con.createStatement().executeQuery(query);
