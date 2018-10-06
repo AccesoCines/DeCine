@@ -27,6 +27,7 @@ public class Pelicula {
 	
 	public ArrayList<Pelicula> cargarPeliculas(){
 		GestorBBDD gb = new GestorBBDD(bbdd);
+<<<<<<< Updated upstream
 		ArrayList<Pelicula> pelis = new ArrayList<>();
 		switch(bbdd) {
 			case "postgre":
@@ -40,6 +41,19 @@ public class Pelicula {
 				break;
 		}
 		return pelis;
+=======
+		ArrayList<Pelicula> peliculas = new ArrayList<>();
+		switch(bbdd) {
+		case "postgre":
+			peliculas = gb.cargarPeliculas();
+		//case "sqlite":
+		case "db4o":
+			DB4o d = new DB4o();
+			peliculas = d.mostrarListPeli();
+		}
+		return peliculas;
+		
+>>>>>>> Stashed changes
 		
 	}
 	
@@ -178,7 +192,7 @@ public class Pelicula {
 		return proyecciones;
 	}
 
-	public void añadirProyeccion(Proyeccion proyeccion) {
+	public void aï¿½adirProyeccion(Proyeccion proyeccion) {
 		proyecciones.add(proyeccion);
 	}
 

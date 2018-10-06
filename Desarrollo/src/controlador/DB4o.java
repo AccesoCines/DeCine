@@ -23,12 +23,19 @@ public class DB4o {
 	final static String BDEmpl = "DBEmpleados.yap";
 	final static String BDPeli = "DBPeliculas.yap";
 	final static String BDSala = "DBSalas.yap";
+	final static String BDProy = "DBProyecciones.yap";
 	
+	private ObjectContainer rootContainer;
 	
 		
 	//Abrir la BD
 	//ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
 		
+	public DB4o() {
+		
+		rootContainer = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
+	}
+
 	java.sql.Date date = new java.sql.Date(1985, 6, 10);
 	//Recoger del jcalendar en la ventana
 	//java.util.Date fecha2 = (java.util.Date) jcalendar.getvalue();
@@ -87,6 +94,8 @@ public class DB4o {
 	Sala s8 = new Sala(8, 125, "15*8,5", 2012, true);
 	Sala s9 = new Sala(9, 150, "10*5", 2013, true);
 	Sala s10 = new Sala(10, 125, "7*3,5", 2012, true);
+	
+	
 	
 	//Almacenar objetos Persona en la base de datos
 	db.store(e1);
@@ -210,22 +219,22 @@ public class DB4o {
 		db.close();
 	}
 	
-	public static ArrayList <Pelicula> mostrarListPeli() {
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+	public ArrayList <Pelicula> mostrarListPeli() {
+		ObjectContainer db = rootContainer.ext().openSession();
 		Pelicula pe = new Pelicula( null, 0, null, null, null, null, 0, null, null, null );
 		
 		ArrayList<Pelicula> listaPeliculas = new ArrayList<Pelicula>();
 		ObjectSet<Pelicula> result = db.queryByExample(pe);
 		if (result.size() == 0){
 			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas.");
-		}
+		}else {
 		while (result.hasNext()) {
 		Pelicula p = result.next();
 		listaPeliculas.add(p);
 	
 		}
+		}
 		
-		db.close();
 		return listaPeliculas;
 		
 	}
@@ -279,8 +288,9 @@ public class DB4o {
 		db.close();
 	}
 	
-	public static ArrayList <Sala> mostrarListSala() {
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+	public ArrayList <Sala> mostrarListSala() {
+		ObjectContainer db = rootContainer.ext().openSession();		
+		
 		Sala sa = new Sala( 0, 0, null, 0, false, null);
 		
 		ArrayList<Sala> listaSalas = new ArrayList<Sala>();
@@ -317,12 +327,16 @@ public class DB4o {
 		db.close();
 		return listaSalas;
 	}
-
-	public static boolean guardarProyecciones(Pelicula pelicula) {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public boolean guardarProyecciones(Pelicula p) {
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDProy);
+		//Proyeccion pr = new 
+	
+	
+		return true;
 	}
-	}
+}
+	
 	
 	
 	

@@ -80,13 +80,19 @@ public class VAltaEmpl extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		cancelar.setBounds(37, 599, 157, 99);
+		cancelar.setBounds(37, 599, 244, 107);
 		contentPane.add(cancelar);
+		cancelar.setContentAreaFilled(false);
 		
 		JButton ok = new JButton("");
+		ok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		ok.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
-		ok.setBounds(641, 44, 104, 92);
+		ok.setBounds(619, 44, 126, 99);
 		contentPane.add(ok);
+		ok.setContentAreaFilled(false);
 		
 		JDateChooser txtfecCont = new JDateChooser();
 		txtfecCont.getCalendarButton().addActionListener(new ActionListener() {

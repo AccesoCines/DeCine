@@ -34,6 +34,10 @@ public class Empleado {
 		this.alta = alta;
 	}
 
+	public Empleado() {
+		
+	}
+	
 	public Empleado(String nombre, String apellido, Cargo cargo, java.sql.Date fechaNacimiento,
 			String nacionalidad,java.sql.Date fechaContratacion, java.sql.Date fechaFinContrato ) {
 		this.nombre = nombre;
