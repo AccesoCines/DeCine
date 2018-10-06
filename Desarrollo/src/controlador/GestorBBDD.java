@@ -250,7 +250,7 @@ public class GestorBBDD {
 			PreparedStatement ps = null;
 			for(Proyeccion proyeccion:pelicula.getProyecciones()) {
 				String query = "INSERT INTO Proyeccion(id_sala,id_pelicula,hora,alta, id) VALUES( ?,?,"
-						+ "?,?, (select max (id) from Pelicula)+1)";
+						+ "?,?, (select max (id) from Proyeccion)+1)";
 				ps = con.prepareStatement(query);
 				ps.setInt(1, proyeccion.getSala().getId());		
 				ps.setInt(2, pelicula.getId());
@@ -274,6 +274,41 @@ public class GestorBBDD {
 		ArrayList<Pelicula> peliculas = new ArrayList<>();
 		try {
 			String query = "SELECT * FROM "+'"'+"Pelicula"+'"'+" WHERE ALTA=true AND fecha_inicio<current_date and fecha_fin>current_date ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				peliculas.add(new Pelicula(
+						rs.getString("titulo"),
+						rs.getInt("ano_estreno"),
+						rs.getString("director"),
+						rs.getString("actor_principal"),
+						rs.getString("actor_secundario"),
+						rs.getString("sinopsis"),
+						rs.getInt("duracion"),
+						rs.getString("trailer"),
+						rs.getDate("fecha_inicio"),
+						rs.getDate("fecha_fin"),
+						rs.getBoolean("alta"),
+						rs.getInt("id")
+						));
+			}
+			if(peliculas.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay peliculas", null, 0);
+				return null;
+			}else {
+				return peliculas;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
+	public ArrayList<Pelicula> cargarPeliculasQL() {
+		ArrayList<Pelicula> peliculas = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM Pelicula WHERE ALTA=1 AND fecha_inicio<current_date and fecha_fin>current_date ";
 			ResultSet rs = con.createStatement().executeQuery(query);
 			while(rs.next()) {
 				peliculas.add(new Pelicula(
