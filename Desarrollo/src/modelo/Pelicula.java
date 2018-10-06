@@ -27,16 +27,19 @@ public class Pelicula {
 	
 	public ArrayList<Pelicula> cargarPeliculas(){
 		GestorBBDD gb = new GestorBBDD(bbdd);
+		ArrayList<Pelicula> pelis = new ArrayList<>();
 		switch(bbdd) {
-		case "postgre":
-			return gb.cargarPeliculas();
-			break;
-		case "sqlite":
-			return gb.cargarPeliculasQL();
-			break;
-		case "db4o":
-			return DB4o.mostrarListPeli();
+			case "postgre":
+				pelis = gb.cargarPeliculas();
+				break;
+			case "sqlite":
+				pelis = gb.cargarPeliculasQL();
+				break;
+			case "db4o":
+				pelis = DB4o.mostrarListPeli();
+				break;
 		}
+		return pelis;
 		
 	}
 	
@@ -51,6 +54,7 @@ public class Pelicula {
 			break;
 		case "db4o":
 			return DB4o.guardarProyecciones();
+			break;
 		}
 	}
 	
