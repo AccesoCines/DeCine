@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import controlador.DB4o;
 import controlador.GestorBBDD;
 
 public class Sala {
@@ -70,6 +71,21 @@ public class Sala {
 		this.discapacidad = discapacidad;
 		this.setResponsable(responsable);
 		proyecciones = new ArrayList<>();
+	}
+	
+	public ArrayList<Sala> cargarSalas() {
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		switch(bbdd) {
+		case "postgre":
+			return gb.cargarSalas();
+			break;
+		case "sqlite":
+			return gb.cargarSalasQL();
+			break;
+		case "db4o":
+			return DB4o.mostrarListSala();
+		}
+		
 	}
 
 	public void anadirProyeccion(Proyeccion proyeccion) {
@@ -150,12 +166,6 @@ public class Sala {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public ArrayList<Sala> cargarSalas() {
-		GestorBBDD gb = new GestorBBDD(bbdd);	
-		return gb.cargarSalas();
-		
 	}
 
 	

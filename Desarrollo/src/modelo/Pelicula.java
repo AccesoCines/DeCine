@@ -27,13 +27,32 @@ public class Pelicula {
 	private ArrayList<Proyeccion> proyecciones;
 	
 	public ArrayList<Pelicula> cargarPeliculas(){
-		GestorBBDD gb = new GestorBBDD(bbdd);	
-		return gb.cargarPeliculas();
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		switch(bbdd) {
+		case "postgre":
+			return gb.cargarPeliculas();
+			break;
+		case "sqlite":
+			return gb.cargarPeliculasQL();
+			break;
+		case "db4o":
+			return DB4o.mostrarListPeli();
+		}
+		
 	}
 	
 	public boolean guardarProyecciones() {
-		GestorBBDD gb = new GestorBBDD(bbdd);	
-		return gb.guardarProyecciones(this);
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		switch(bbdd) {
+		case "postgre":
+			return gb.guardarProyecciones(this);
+			break;
+		case "sqlite":
+			return gb.guardarProyeccionesQL(this);
+			break;
+		case "db4o":
+			return DB4o.guardarProyecciones();
+		}
 	}
 	
 	public boolean guardarPelicula() {
