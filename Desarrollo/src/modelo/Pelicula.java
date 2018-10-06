@@ -31,6 +31,16 @@ public class Pelicula {
 		return gb.cargarPeliculas();
 	}
 	
+	public boolean guardarProyecciones() {
+		GestorBBDD gb = new GestorBBDD(bbdd);	
+		return gb.guardarProyecciones(this);
+	}
+	
+	public boolean guardarPelicula() {
+		GestorBBDD gb = new GestorBBDD(bbdd);	
+		return gb.guardarPelicula(this);
+	}
+	
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
 			String sinopsis, int duracion, String trailer, Date fechaInicio, Date fechaFin, boolean alta) {
 		this.titulo = titulo;

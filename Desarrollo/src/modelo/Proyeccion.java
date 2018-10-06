@@ -21,6 +21,13 @@ public class Proyeccion {
 		this.id = id;
 	}
 	
+	public Proyeccion(Sala sala, Pelicula pelicula, Time hora, boolean alta) {
+		this.sala = sala;
+		this.pelicula = pelicula;
+		this.hora = hora;
+		this.alta = alta;
+	}
+	
 	public Proyeccion(Sala sala, Pelicula pelicula, Time hora, int id, boolean alta) {
 		this.sala = sala;
 		this.pelicula = pelicula;
