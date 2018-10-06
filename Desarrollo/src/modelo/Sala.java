@@ -75,17 +75,18 @@ public class Sala {
 	
 	public ArrayList<Sala> cargarSalas() {
 		GestorBBDD gb = new GestorBBDD(bbdd);
+		ArrayList<Sala> salas = new ArrayList<>();
 		switch(bbdd) {
 		case "postgre":
-			return gb.cargarSalas();
+			salas = gb.cargarSalas();
 			break;
 		case "sqlite":
-			return gb.cargarSalasQL();
+			salas = gb.cargarSalasQL();
 			break;
 		case "db4o":
-			return DB4o.mostrarListSala();
+			salas = DB4o.mostrarListSala();
 		}
-		
+		return salas;
 	}
 
 	public void anadirProyeccion(Proyeccion proyeccion) {

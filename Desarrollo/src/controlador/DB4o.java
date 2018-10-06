@@ -317,6 +317,11 @@ public class DB4o {
 		db.close();
 		return listaSalas;
 	}
+
+	public static boolean guardarProyecciones(Pelicula pelicula) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	}
 	
 	

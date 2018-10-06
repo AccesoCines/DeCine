@@ -45,17 +45,16 @@ public class Pelicula {
 	
 	public boolean guardarProyecciones() {
 		GestorBBDD gb = new GestorBBDD(bbdd);
+		boolean correcto = false;
 		switch(bbdd) {
 		case "postgre":
-			return gb.guardarProyecciones(this);
-			break;
+			correcto = gb.guardarProyecciones(this);
 		case "sqlite":
-			return gb.guardarProyeccionesQL(this);
-			break;
+			correcto = gb.guardarProyeccionesQL(this);
 		case "db4o":
-			return DB4o.guardarProyecciones();
-			break;
+			correcto = DB4o.guardarProyecciones(this);
 		}
+		return correcto;
 	}
 	
 	public boolean guardarPelicula() {

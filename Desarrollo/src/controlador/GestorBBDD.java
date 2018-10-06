@@ -367,4 +367,10 @@ public class GestorBBDD {
 			return null;
 		}
 	}
+
+
+	public ArrayList<Sala> cargarSalasQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
