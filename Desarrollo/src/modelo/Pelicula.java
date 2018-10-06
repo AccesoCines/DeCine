@@ -38,7 +38,7 @@ public class Pelicula {
 		this.director = director;
 		this.actorPrincipal = actorPrincipal;
 		this.actorSecundario = actorSecundario;
-		this.setSinopsis(sinopsis);
+		this.sinopsis = sinopsis;
 		this.duracion = duracion;
 		this.trailer = trailer;
 		this.fechaInicio = fechaInicio;
@@ -144,7 +144,7 @@ public class Pelicula {
 		return proyecciones;
 	}
 
-	public void aï¿½adirProyeccion(Proyeccion proyeccion) {
+	public void añadirProyeccion(Proyeccion proyeccion) {
 		proyecciones.add(proyeccion);
 	}
 

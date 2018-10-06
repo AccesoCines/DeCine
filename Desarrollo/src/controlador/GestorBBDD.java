@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
-import modelo.Empleado;
-import modelo.Pelicula;
-import modelo.Sala;
+import javax.swing.JOptionPane;
+
+import modelo.*;
+
 
 public class GestorBBDD {
 	
@@ -164,8 +167,8 @@ public class GestorBBDD {
 	public boolean guardarPelicula(Pelicula pelicula) {
 		try {
 			String query = "INSERT INTO "+'"'+"Pelicula"+'"'+" (titulo,ano_estreno,director,actor_principal,"
-					+ "actor_secundario,duracion,trailer,alta) VALUES(?,?,"
-					+ "?,?,?,?,?,?)";
+					+ "actor_secundario,duracion,trailer,alta,sinopsis,fecha_inicio,fecha_fin) VALUES(?,?,"
+					+ "?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, pelicula.getTitulo());
 			ps.setInt(2, pelicula.getAnoEstreno());		
@@ -175,7 +178,9 @@ public class GestorBBDD {
 			ps.setInt(6, pelicula.getDuracion());
 			ps.setString(7, pelicula.getTrailer());
 			ps.setBoolean(8, pelicula.isAlta());
-			
+			ps.setString(9, pelicula.getSinopsis());
+			ps.setDate(10, pelicula.getFechaInicio());
+			ps.setDate(11, pelicula.getFechaFin());
 			ps.execute();
 			ps.close();
 			return true;
@@ -223,5 +228,92 @@ public class GestorBBDD {
 			return false;
 		}
 		
+	}
+	
+	public boolean guardarProyecciones(Pelicula pelicula) {
+		try {
+			PreparedStatement ps = null;
+			for(Proyeccion proyeccion:pelicula.getProyecciones()) {
+				String query = "INSERT INTO "+'"'+"Proyeccion"+'"'+" (id_sala,id_pelicula,hora,alta) VALUES(?,?,"
+						+ "?,?)";
+				ps = con.prepareStatement(query);
+				ps.setInt(1, proyeccion.getSala().getId());		
+				ps.setInt(2, pelicula.getId());
+				ps.setTime(3, proyeccion.getHora());
+				ps.setBoolean(4, proyeccion.isAlta());
+				ps.execute();
+			}
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
+	
+	public ArrayList<Pelicula> cargarPeliculas() {
+		ArrayList<Pelicula> peliculas = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Pelicula"+'"'+" WHERE ALTA=true AND fecha_inicio<current_date and fecha_fin>current_date ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				peliculas.add(new Pelicula(
+						rs.getString("titulo"),
+						rs.getInt("ano_estreno"),
+						rs.getString("director"),
+						rs.getString("actor_principal"),
+						rs.getString("actor_secundario"),
+						rs.getString("sinopsis"),
+						rs.getInt("duracion"),
+						rs.getString("trailer"),
+						rs.getDate("fecha_inicio"),
+						rs.getDate("fecha_fin"),
+						rs.getBoolean("alta"),
+						rs.getInt("id")
+						));
+			}
+			if(peliculas.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay peliculas", null, 0);
+				return null;
+			}else {
+				return peliculas;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	public ArrayList<Sala> cargarSalas() {
+		ArrayList<Sala> salas = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Sala"+'"'+" WHERE ALTA=true ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				salas.add(new Sala(
+						rs.getInt("numero"),
+						rs.getInt("aforo"),
+						rs.getString("dimensiones_pantalla"),
+						rs.getInt("ano_inauguracion"),
+						rs.getBoolean("discapacidad"),
+						rs.getInt("id")
+						));
+			}
+			if(salas.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay salas", null, 0);
+				return null;
+			}else {
+				return salas;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
