@@ -44,7 +44,7 @@ public class GestorBBDD {
 			
 			break;
 		case "sqlite":
-			url = "jdbc:sqlite:SQLiteExperimental.db";
+			url = "jdbc:sqlite:NuevaQL.db";
 		    try {
 				Class.forName("org.sqlite.JDBC");
 				con = DriverManager.getConnection(url);
@@ -192,21 +192,12 @@ public class GestorBBDD {
 		
 	}
 	
-/*
- * public Pelicula(String titulo, int anoEstreno, 
- * String director, String actorPrincipal, 
- * String actorSecundario,
-			String sinopsis, int duracion, 
-			String trailer, Date fechaInicio, 
-			Date fechaFin, boolean b) {
- */
+
 
 	
 	public boolean guardarPeliculaQL(Pelicula pelicula) {
 		try {
-			String query = "INSERT INTO Pelicula (titulo,ano_estreno,director,actor_principal,"
-					+ "actor_secundario,sinopsis,duracion,trailer,fecha_Inicio,fecha_Fin,alta) VALUES(?,?,"
-					+ "?,?,?,?,?,?,?,?,?, (select max (id) from Empleado)+1)";
+			String query = "INSERT INTO Pelicula (titulo,ano_estreno,director,actor_principal,actor_secundario,sinopsis,duracion,trailer,fecha_Inicio,fecha_Fin,alta,id) VALUES(?,?,?,?,?,?,?,?,?,?,?, (select max (id) from Pelicula)+1)";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, pelicula.getTitulo());
 			ps.setInt(2, pelicula.getAnoEstreno());		
@@ -253,6 +244,31 @@ public class GestorBBDD {
 		
 		
 	}
+	
+	public boolean guardarProyeccionesQL(Pelicula pelicula) {
+		try {
+			PreparedStatement ps = null;
+			for(Proyeccion proyeccion:pelicula.getProyecciones()) {
+				String query = "INSERT INTO Proyeccion(id_sala,id_pelicula,hora,alta, id) VALUES( ?,?,"
+						+ "?,?, (select max (id) from Pelicula)+1)";
+				ps = con.prepareStatement(query);
+				ps.setInt(1, proyeccion.getSala().getId());		
+				ps.setInt(2, pelicula.getId());
+				ps.setTime(3, proyeccion.getHora());
+				ps.setBoolean(4, proyeccion.isAlta());
+				ps.execute();
+			}
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
+	
 	
 	public ArrayList<Pelicula> cargarPeliculas() {
 		ArrayList<Pelicula> peliculas = new ArrayList<>();
