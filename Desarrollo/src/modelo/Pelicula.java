@@ -21,7 +21,7 @@ public class Pelicula {
 	private java.sql.Date fechaFin;
 	private boolean alta;
 	private int id;
-	private String bbdd = "sqlite"; 
+	private String bbdd = "postgre"; 
 	
 	private ArrayList<Proyeccion> proyecciones;
 	
@@ -49,10 +49,13 @@ public class Pelicula {
 		switch(bbdd) {
 		case "postgre":
 			correcto = gb.guardarProyecciones(this);
+			break;
 		case "sqlite":
 			correcto = gb.guardarProyeccionesQL(this);
+			break;
 		case "db4o":
 			correcto = DB4o.guardarProyecciones(this);
+			break;
 		}
 		return correcto;
 	}
@@ -175,7 +178,7 @@ public class Pelicula {
 		return proyecciones;
 	}
 
-	public void aï¿½adirProyeccion(Proyeccion proyeccion) {
+	public void añadirProyeccion(Proyeccion proyeccion) {
 		proyecciones.add(proyeccion);
 	}
 

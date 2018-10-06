@@ -310,9 +310,9 @@ public class DB4o {
 			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas en historico.");
 		}
 		while (result.hasNext()) {
-		Sala s = result.next();
-		
-		listaSalas.add(s);
+			Sala s = result.next();
+			
+			listaSalas.add(s);
 		}
 		db.close();
 		return listaSalas;
