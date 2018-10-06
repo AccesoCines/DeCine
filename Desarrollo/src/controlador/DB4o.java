@@ -31,11 +31,6 @@ public class DB4o {
 	//Abrir la BD
 	//ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
 		
-	public DB4o() {
-		
-		rootContainer = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
-	}
-
 	java.sql.Date date = new java.sql.Date(1985, 6, 10);
 	//Recoger del jcalendar en la ventana
 	//java.util.Date fecha2 = (java.util.Date) jcalendar.getvalue();
@@ -219,8 +214,8 @@ public class DB4o {
 		db.close();
 	}
 	
-	public ArrayList <Pelicula> mostrarListPeli() {
-		ObjectContainer db = rootContainer.ext().openSession();
+	public static ArrayList <Pelicula> mostrarListPeli() {
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
 		Pelicula pe = new Pelicula( null, 0, null, null, null, null, 0, null, null, null );
 		
 		ArrayList<Pelicula> listaPeliculas = new ArrayList<Pelicula>();
@@ -288,8 +283,8 @@ public class DB4o {
 		db.close();
 	}
 	
-	public ArrayList <Sala> mostrarListSala() {
-		ObjectContainer db = rootContainer.ext().openSession();		
+	public static ArrayList <Sala> mostrarListSala() {
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
 		
 		Sala sa = new Sala( 0, 0, null, 0, false, null);
 		
@@ -328,7 +323,7 @@ public class DB4o {
 		return listaSalas;
 	}
 	
-	public boolean guardarProyecciones(Pelicula p) {
+	public static boolean guardarProyecciones(Pelicula p) {
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDProy);
 		//Proyeccion pr = new 
 	
