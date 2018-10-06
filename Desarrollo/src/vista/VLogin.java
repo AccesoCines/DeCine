@@ -20,7 +20,7 @@ import java.awt.Frame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
+
 
 public class VLogin extends JFrame {
 
