@@ -24,7 +24,6 @@ public class VAltaSalas extends JPanel {
 	 * Create the panel.
 	 */
 
-private JPanel contentPane;
 private JTextField txtnumSala;
 private JTextField txtaforo;
 private JTextField txtDiscapacidad;
@@ -55,7 +54,7 @@ public static void main(String[] args) {
  */
 public VAltaSalas() {
     	
-	contentPane.setBackground(new Color(233, 69, 75));
+
 	
 	txtnumSala = new JTextField();
 	txtnumSala.setBounds(184, 135, 205, 22);
@@ -136,7 +135,6 @@ public VAltaSalas() {
 	altaEmple.setBounds(24, 30, 225, 31);
 	contentPane.add(altaEmple);
 	
-	//setLocationRelativeTo(null);
 
 }
 }
