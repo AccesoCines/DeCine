@@ -48,6 +48,7 @@ public class VLogin extends JFrame {
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		
 		jPassw = new JPasswordField();
+		jPassw.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		jPassw.setBounds(new Rectangle(0, 0, 0, 31));
 		jPassw.setBounds(188, 135, 230, 31);
 		getContentPane().add(jPassw);
@@ -56,6 +57,7 @@ public class VLogin extends JFrame {
 		getContentPane().setLayout(null);
 
 		JUsuario = new JTextField();
+		JUsuario.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		JUsuario.setBounds(new Rectangle(0, 0, 0, 31));
 		JUsuario.setBounds(188, 79, 230, 31);
 		getContentPane().add(JUsuario);
