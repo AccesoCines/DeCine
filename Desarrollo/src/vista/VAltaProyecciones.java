@@ -29,14 +29,19 @@ import javax.swing.JButton;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Calendar;
 import java.awt.ScrollPane;
 import java.awt.Scrollbar;
+import com.toedter.components.JSpinField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VAltaProyecciones extends JFrame {
 
@@ -44,13 +49,14 @@ public class VAltaProyecciones extends JFrame {
 	private static JComboBox cbPeliculas;
 	private static JComboBox cbSalas;
 	private ArrayList<JPanel> paneles = new ArrayList<>();
-	private int x = 334;
+	private int x = 420;
 	private int contadorPaneles = 5;
 	private JButton btnGuardar;
 	private static VAltaProyecciones  frame;
 	private JSpinner.DateEditor de;
 	private static ArrayList<Pelicula> peliculas;
 	private static ArrayList<Sala> salas;
+	private Time hora = new Time(new Date().getTime());
 	/**
 	 * Launch the application.
 	 */
@@ -144,9 +150,10 @@ public class VAltaProyecciones extends JFrame {
 		cbSalas.setBounds(440, 184, 225, 31);
 		contentPane.add(cbSalas);
 		
-		JButton btnAadirPase = new JButton("A\u00F1adir pase");
+		JButton btnAadirPase = new JButton("");
 		btnAadirPase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				btnGuardar.setEnabled(true);
 				if(contadorPaneles>0) {
 					JPanel panel = new JPanel();
 					panel.setOpaque(false);
@@ -162,10 +169,10 @@ public class VAltaProyecciones extends JFrame {
 					
 					JSpinner spinner = new JSpinner(new SpinnerDateModel(new Date(), null, null, Calendar.MINUTE));
 					spinner.setFont(new Font("Tahoma", Font.PLAIN, 25));
-					de = new JSpinner.DateEditor(spinner, "hh:mm a");
+					de = new JSpinner.DateEditor(spinner, "HH:mm");
 					de.getTextField().setEditable(false);
 					spinner.setEditor(de);
-					spinner.setBounds(113, 10, 159, 31);
+					spinner.setBounds(113, 10, 100, 31);
 					panel.add(spinner);
 					
 					contentPane.add(panel);
@@ -173,40 +180,65 @@ public class VAltaProyecciones extends JFrame {
 					panel.repaint();
 					x+=65;
 					contadorPaneles--;
-					if(x>540) btnGuardar.setBounds(100, x+30, 160, 31);
 					panel.revalidate();
 				}
 			}
 		});
-		btnAadirPase.setBounds(100, 263, 160, 31);
+		btnAadirPase.setBounds(100, 263,189, 113);
+		btnAadirPase.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botPASE.png")));
+		btnAadirPase.setContentAreaFilled(false);
 		contentPane.add(btnAadirPase);
 
 		
 		
-		btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("");
+		btnGuardar.setEnabled(false);
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Pelicula peli = peliculas.get(cbPeliculas.getSelectedIndex());
 				Sala sala = salas.get(cbSalas.getSelectedIndex());
-				Time hora = new Time(new Date().getTime());
+				
 				ArrayList<java.sql.Time> horas = new ArrayList<>();
+				LinkedHashSet<Time> horasSet = new LinkedHashSet<>();
 				for(JPanel jp :paneles) {
 					Component[] components = jp.getComponents();
 					for(Component comp:components) {
 						if(comp instanceof JSpinner) {
-							JSpinner spinner =(JSpinner) comp;
-		                    Date d = (Date)spinner.getValue();						
-			                hora = new Time(d.getTime());
+		                    try {
+		                    	JSpinner spinner =(JSpinner) comp;
+			                    Date d = (Date)spinner.getValue();		
+			                    DateFormat df = new SimpleDateFormat("HH:mm");
+			                    String fecha = df.format(d);
+								Date date = new SimpleDateFormat("HH:mm").parse(fecha);
+								hora = new Time(date.getTime());
+								
+							} catch (ParseException e1) {
+								e1.printStackTrace();
+							}
+			                
 						}
                     }
+					
 					peli.añadirProyeccion(new Proyeccion(sala,peli,hora,true));
+					horas.add(hora);
 				}
-				boolean correcto = peli.guardarProyecciones();
-				if(correcto) javax.swing.JOptionPane.showMessageDialog(null ,"Guardado correctamente!");
+				int n=-1;
+				
+				horasSet.addAll(horas);
+				if(horasSet.size() != horas.size()) {
+					javax.swing.JOptionPane.showMessageDialog(null ,"No puedes repetir pases","Error", JOptionPane.WARNING_MESSAGE);
+				}else {
+					boolean correcto = peli.guardarProyecciones();
+					if(correcto) javax.swing.JOptionPane.showMessageDialog(null ,"Guardado correctamente!","OK",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
-		btnGuardar.setBounds(100, 541, 160, 31);
+		btnGuardar.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botALTA.png")));
+		btnGuardar.setContentAreaFilled(false);
+		btnGuardar.setBounds(476, 263, 189, 113);
 		contentPane.add(btnGuardar);
+		
+		
 		
 		
 	}

@@ -73,7 +73,7 @@ public class VLogin extends JFrame {
 			}
 		});
 
-		btn.setIcon(new ImageIcon("D:\\Desktop\\cine\\DeCine\\Desarrollo\\src\\imagenes\\BOTONES\\botENTRAR.png"));
+		btn.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botENTRAR.png")));
 		btn.setBounds(0, 365, 189, 113);
 		btn.setContentAreaFilled(false);
 
