@@ -70,6 +70,11 @@ public class VCines extends JFrame {
 	 */
 	public VCines() {
 		
+		// Poner icono ventana
+		setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
+		
+		setBounds(0, 0, 800, 800);
+		
 		setExtendedState(Frame.NORMAL);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
@@ -79,7 +84,7 @@ public class VCines extends JFrame {
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setBounds(100, 100, 1920, 1080);
+	
 
 		
 	//	JButton botonAlta = new JButton(new ImageIcon("botALTA.png"));
