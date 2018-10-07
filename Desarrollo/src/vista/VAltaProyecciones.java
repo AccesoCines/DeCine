@@ -185,7 +185,7 @@ public class VAltaProyecciones extends JFrame {
 				}
 			}
 		});
-		btnAadirPase.setBounds(100, 263,189, 113);
+		btnAadirPase.setBounds(100, 263,130, 80);
 		btnAadirPase.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botPASE.png")));
 		btnAadirPase.setContentAreaFilled(false);
 		contentPane.add(btnAadirPase);
@@ -236,7 +236,7 @@ public class VAltaProyecciones extends JFrame {
 		});
 		btnGuardar.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botOK.png")));
 		btnGuardar.setContentAreaFilled(false);
-		btnGuardar.setBounds(476, 263, 189, 113);
+		btnGuardar.setBounds(476, 263, 130, 80);
 		contentPane.add(btnGuardar);
 		
 		

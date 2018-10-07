@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Rectangle;
 
-public class VAltaEmpl extends JFrame {
+public class VAltaEmpl extends JPanel {
 
 	private JPanel contentPane;
 	private JTextField txtnombre;
@@ -29,34 +29,16 @@ public class VAltaEmpl extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VAltaEmpl frame = new VAltaEmpl();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public VAltaEmpl() {
-		// Poner icono ventana
-	    setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
-	    
-	    setTitle ("Alta empleados");
-	    
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    //setTitle ("Alta empleados"); //TODO pasar al parent
 		setBounds(0, 0, 800, 800);
 		contentPane = new JPanel();
 		contentPane.setBounds(new Rectangle(0, 0, 500,500));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		contentPane.setBackground(new Color(233, 69, 75));
@@ -163,8 +145,6 @@ public class VAltaEmpl extends JFrame {
 		altaEmple.setForeground(new Color(255, 255, 255));
 		altaEmple.setBounds(24, 30, 225, 31);
 		contentPane.add(altaEmple);
-		
-		setLocationRelativeTo(null);
 
 	}
 }

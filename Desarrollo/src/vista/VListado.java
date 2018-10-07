@@ -11,6 +11,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
@@ -20,15 +21,26 @@ import controlador.DB4o;
 import modelo.Empleado;
 
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JList;
 import javax.swing.border.BevelBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Rectangle;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.EtchedBorder;
+import java.awt.Cursor;
+import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class VListado extends JFrame {
 
@@ -37,6 +49,7 @@ public class VListado extends JFrame {
 	private static ArrayList<Empleado> empleados;
 	private static DefaultTableModel model;
 	private static JTable table;
+	private JFrame jframe = this;
 
 	/**
 	 * Launch the application.
@@ -63,6 +76,7 @@ public class VListado extends JFrame {
 	}
 
 	public VListado() {
+		setBounds(new Rectangle(0, 0, 800, 800));
 
 		// Poner icono ventana
 		setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
@@ -72,7 +86,8 @@ public class VListado extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBounds(new Rectangle(0, 0, 800, 800));
+		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -86,41 +101,85 @@ public class VListado extends JFrame {
 		table.setModel(new DefaultTableModel(new Object[][] {
 
 		}, new String[] { "New column", "New column", "New column", "New column", "New column" }));
-		table.setBounds(285, 472, 497, 268);
+		table.setBounds(50, 472, 700, 270);
 		contentPane.add(table);
 
 		JButton alta = new JButton("");
+		alta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		alta.setBorder(null);
 		alta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				jframe.setContentPane(new VAltaEmpl());
+				jframe.repaint();
+				System.out.println("hola");
 
-				VAltaEmpl ae = new VAltaEmpl();
-				ae.setVisible(true);
-
-				dispose();
 			}
 		});
-		alta.setIcon(new ImageIcon(VListado.class.getResource("/vista/botALTA.png")));
-		alta.setBounds(12, 62, 51, 51);
+		alta.setIcon(new ImageIcon(VListado.class.getResource("../imagenes/BOTONES/botALTA.png")));
+		alta.setBounds(50, 50, 100, 80);
+		alta.setContentAreaFilled(false);
 		contentPane.add(alta);
 
 		JButton modificacion = new JButton("");
-		modificacion.setIcon(new ImageIcon(VListado.class.getResource("/imagenes/BOTONES/botMODIFICAC.png")));
-		modificacion.setBounds(0, 522, 124, 153);
+		modificacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		modificacion.setBorder(null);
+		modificacion.setBounds(50, 350,228, 80);
+		modificacion.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botMODIFICAC.png")));
+		modificacion.setContentAreaFilled(false);
 		contentPane.add(modificacion);
 
 		JButton baja = new JButton("");
-		baja.setIcon(new ImageIcon(VListado.class.getResource("/imagenes/BOTONES/botBAJA.png")));
+		baja.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		baja.setBorder(null);
 		baja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		baja.setBounds(29, 184, 150, 97);
+		baja.setBounds(50, 150,107, 80);
+		baja.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botBAJA.png")));
+		baja.setContentAreaFilled(false);
 		contentPane.add(baja);
 
 		JButton historico = new JButton("");
-		historico.setIcon(new ImageIcon(VListado.class.getResource("/imagenes/BOTONES/botHIST.png")));
-		historico.setBounds(0, 317, 158, 133);
+		historico.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		historico.setBorder(null);
+		historico.setBounds(50, 250,174, 80);
+		historico.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botHIST.png")));
+		historico.setContentAreaFilled(false);
 		contentPane.add(historico);
+		
+		JComboBox cbCines = new JComboBox();
+		cbCines.setSize(350, 31);
+		cbCines.setLocation(350, 100);
+		cbCines.setBorder(new LineBorder(Color.WHITE, 3, true));
+		cbCines.setForeground(Color.WHITE);
+		cbCines.setBackground(new Color(233, 69, 75));
+		cbCines.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		contentPane.add(cbCines);
+		
+		JComboBox cbEmpleados = new JComboBox();
+		cbEmpleados.setForeground(Color.WHITE);
+		cbEmpleados.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		cbEmpleados.setBorder(new LineBorder(Color.WHITE, 3, true));
+		cbEmpleados.setBackground(new Color(233, 69, 75));
+		cbEmpleados.setBounds(350, 180, 350, 31);
+		contentPane.add(cbEmpleados);
+		
+		JComboBox cbPeliculas = new JComboBox();
+		cbPeliculas.setForeground(Color.WHITE);
+		cbPeliculas.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		cbPeliculas.setBorder(new LineBorder(Color.WHITE, 3, true));
+		cbPeliculas.setBackground(new Color(233, 69, 75));
+		cbPeliculas.setBounds(350, 260, 350, 31);
+		contentPane.add(cbPeliculas);
+		
+		JComboBox cbSalas = new JComboBox();
+		cbSalas.setForeground(Color.WHITE);
+		cbSalas.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		cbSalas.setBorder(new LineBorder(Color.WHITE, 3, true));
+		cbSalas.setBackground(new Color(233, 69, 75));
+		cbSalas.setBounds(350, 340, 350, 31);
+		contentPane.add(cbSalas);
 
 		setLocationRelativeTo(null);
 
