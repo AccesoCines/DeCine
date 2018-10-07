@@ -41,6 +41,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.Cursor;
 import javax.swing.JComboBox;
 import java.awt.Font;
+import javax.swing.JFormattedTextField;
 
 public class VListado extends JFrame {
 
@@ -156,7 +157,7 @@ public class VListado extends JFrame {
 		
 		JComboBox cbCines = new JComboBox();
 		cbCines.setSize(350, 31);
-		cbCines.setLocation(350, 100);
+		cbCines.setLocation(350, 74);
 		cbCines.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbCines.setForeground(Color.WHITE);
 		cbCines.setBackground(new Color(233, 69, 75));
@@ -168,7 +169,7 @@ public class VListado extends JFrame {
 		cbEmpleados.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbEmpleados.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbEmpleados.setBackground(new Color(233, 69, 75));
-		cbEmpleados.setBounds(350, 180, 350, 31);
+		cbEmpleados.setBounds(350, 154, 350, 31);
 		contentPane.add(cbEmpleados);
 		
 		JComboBox cbPeliculas = new JComboBox();
@@ -176,7 +177,7 @@ public class VListado extends JFrame {
 		cbPeliculas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbPeliculas.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbPeliculas.setBackground(new Color(233, 69, 75));
-		cbPeliculas.setBounds(350, 260, 350, 31);
+		cbPeliculas.setBounds(350, 234, 350, 31);
 		contentPane.add(cbPeliculas);
 		
 		JComboBox cbSalas = new JComboBox();
@@ -184,8 +185,14 @@ public class VListado extends JFrame {
 		cbSalas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbSalas.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbSalas.setBackground(new Color(233, 69, 75));
-		cbSalas.setBounds(350, 340, 350, 31);
+		cbSalas.setBounds(350, 314, 350, 31);
 		contentPane.add(cbSalas);
+		
+		JButton btnInfo = new JButton("");
+		btnInfo.setBounds(650, 380, 100, 80);
+		btnInfo.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/Info.png")));
+		btnInfo.setContentAreaFilled(false);
+		contentPane.add(btnInfo);
 
 		setLocationRelativeTo(null);
 
