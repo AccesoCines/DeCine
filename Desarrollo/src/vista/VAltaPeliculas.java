@@ -43,24 +43,24 @@ public class VAltaPeliculas extends JPanel {
 	 */
 	public VAltaPeliculas() {
 		
-	
-		setBounds(0, 0, 800, 800);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(null);
+		setBounds(0, 0, 800, 800);
 		
 		contentPane.setBackground(new Color(233, 69, 75));
+		contentPane.setLayout(null);
 		
 		JLabel altaPeliculas = new JLabel("| Alta pel\u00EDculas");
+		altaPeliculas.setBounds(24, 29, 225, 31);
 		altaPeliculas.setForeground(Color.WHITE);
 		altaPeliculas.setFont(new Font("Tahoma", Font.BOLD, 25));
-		altaPeliculas.setBounds(24, 29, 225, 31);
 		contentPane.add(altaPeliculas);
 		
 		JLabel titulo = new JLabel("T\u00EDtulo: ");
+		titulo.setBounds(24, 93, 225, 31);
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		titulo.setForeground(Color.WHITE);
-		titulo.setBounds(24, 93, 225, 31);
 		contentPane.add(titulo);
 		
 		txtTitulo = new JTextField();
@@ -69,15 +69,15 @@ public class VAltaPeliculas extends JPanel {
 		txtTitulo.setColumns(10);
 		
 		JLabel anyoEstreno = new JLabel("A\u00F1o de estreno: ");
+		anyoEstreno.setBounds(24, 153, 225, 31);
 		anyoEstreno.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		anyoEstreno.setForeground(Color.WHITE);
-		anyoEstreno.setBounds(24, 153, 225, 31);
 		contentPane.add(anyoEstreno);
 		
 		JLabel fechaInicio = new JLabel("Fecha inicio: ");
+		fechaInicio.setBounds(24, 211, 225, 31);
 		fechaInicio.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		fechaInicio.setForeground(Color.WHITE);
-		fechaInicio.setBounds(24, 211, 225, 31);
 		contentPane.add(fechaInicio);
 		
 		JDateChooser dateChooser = new JDateChooser();
@@ -85,9 +85,9 @@ public class VAltaPeliculas extends JPanel {
 		contentPane.add(dateChooser);
 		
 		JLabel fechaFin = new JLabel("Fecha fin: ");
+		fechaFin.setBounds(24, 267, 225, 31);
 		fechaFin.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		fechaFin.setForeground(Color.WHITE);
-		fechaFin.setBounds(24, 267, 225, 31);
 		contentPane.add(fechaFin);
 		
 		JDateChooser dateChooser_1 = new JDateChooser();
@@ -95,9 +95,9 @@ public class VAltaPeliculas extends JPanel {
 		contentPane.add(dateChooser_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("G\u00E9nero:");
+		lblNewLabel_3.setBounds(290, 431, 225, 31);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setBounds(290, 431, 225, 31);
 		contentPane.add(lblNewLabel_3);
 		
 		textField_1 = new JTextField();
@@ -106,9 +106,9 @@ public class VAltaPeliculas extends JPanel {
 		textField_1.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Duraci\u00F3n:");
+		lblNewLabel_4.setBounds(348, 403, 225, 31);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setBounds(348, 403, 225, 31);
 		contentPane.add(lblNewLabel_4);
 		
 		textField_2 = new JTextField();
@@ -117,9 +117,9 @@ public class VAltaPeliculas extends JPanel {
 		textField_2.setColumns(10);
 		
 		JLabel lblSinopsis = new JLabel("Sinopsis:");
+		lblSinopsis.setBounds(24, 368, 225, 31);
 		lblSinopsis.setForeground(Color.WHITE);
 		lblSinopsis.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblSinopsis.setBounds(24, 368, 225, 31);
 		contentPane.add(lblSinopsis);
 		
 	}
