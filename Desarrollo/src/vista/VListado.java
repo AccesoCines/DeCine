@@ -109,9 +109,15 @@ public class VListado extends JFrame {
 		alta.setBorder(null);
 		alta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				jframe.setContentPane(new VAltaEmpl());
-				jframe.repaint();
-				System.out.println("hola");
+				
+					
+				
+				VAltaEmpl ae = new VAltaEmpl();
+				jframe.setContentPane(ae);
+				ae.setVisible(true);
+				//jframe.setLayout(getLayout());
+				//jframe.setContentPane(new VAltaEmpl());
+				//jframe.repaint();
 
 			}
 		});

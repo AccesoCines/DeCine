@@ -1,140 +1,92 @@
 package vista;
 
-import java.awt.BorderLayout;
-
-import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import com.toedter.calendar.JDateChooser;
-import java.awt.Rectangle;
+import javax.swing.JTextField;
+import com.toedter.calendar.JYearChooser;
+import javax.swing.JCheckBox;
+import java.awt.Color;
+import java.awt.Font;
 
 public class VAltaSalas extends JPanel {
+	private JTextField txtAforo;
 
 	/**
 	 * Create the panel.
 	 */
+	public VAltaSalas() {
+		
+		setBounds(0, 0, 800, 800);
+		setLayout(null);
+		
+		JLabel altaSala = new JLabel("| Alta salas");
+		altaSala.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		altaSala.setForeground(Color.WHITE);
+		altaSala.setBounds(23, 28, 114, 16);
+		add(altaSala);
+		
+		JLabel numero = new JLabel("N\u00FAmero: ");
+		numero.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		numero.setForeground(Color.WHITE);
+		numero.setBounds(23, 83, 56, 16);
+		add(numero);
+		
+		JComboBox txtNumero = new JComboBox();
+		txtNumero.setBounds(169, 85, 101, 22);
+		add(txtNumero);
+		
+		JLabel aforo = new JLabel("Aforo: ");
+		aforo.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		aforo.setForeground(Color.WHITE);
+		aforo.setBounds(23, 136, 56, 16);
+		add(aforo);
+		
+		txtAforo = new JTextField();
+		txtAforo.setBounds(118, 133, 101, 22);
+		add(txtAforo);
+		txtAforo.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Dimensi\u00F3n pantalla:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(23, 195, 56, 16);
+		add(lblNewLabel_1);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(118, 192, 101, 22);
+		add(comboBox_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("A\u00F1o inaguraci\u00F3n:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_2.setForeground(Color.WHITE);
+		lblNewLabel_2.setBounds(23, 262, 56, 16);
+		add(lblNewLabel_2);
+		
+		JYearChooser yearChooser = new JYearChooser();
+		yearChooser.setBounds(118, 256, 101, 22);
+		add(yearChooser);
+		
+		JLabel lblDiscapacidad = new JLabel("Discapacidad:");
+		lblDiscapacidad.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblDiscapacidad.setForeground(Color.WHITE);
+		lblDiscapacidad.setBounds(23, 325, 56, 16);
+		add(lblDiscapacidad);
+		
+		JCheckBox checkBox = new JCheckBox("");
+		checkBox.setBounds(118, 321, 113, 25);
+		add(checkBox);
+		
+		JLabel lblNewLabel_3 = new JLabel("Responsable:");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_3.setForeground(Color.WHITE);
+		lblNewLabel_3.setBounds(23, 377, 56, 16);
+		add(lblNewLabel_3);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(118, 374, 101, 22);
+		add(comboBox);
+		
 
-private JTextField txtnumSala;
-private JTextField txtaforo;
-private JTextField txtDiscapacidad;
-private JTextField txtDimPantalla;
-private JTextField txtAnoInaug;
-private JTextField txtResponsable;
-
-
-
-/**
- * Launch the application.
- */
-public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
-		public void run() {
-			try {
-				VAltaSalas panel = new VAltaSalas();
-				panel.setVisible(true);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	});
-}
-
-/**
- * Create the frame.
- */
-public VAltaSalas() {
-    	
-
-	
-	txtnumSala = new JTextField();
-	txtnumSala.setBounds(184, 135, 205, 22);
-	contentPane.add(txtnumSala);
-	txtnumSala.setColumns(10);
-	
-	txtaforo = new JTextField();
-	txtaforo.setBounds(184, 191, 204, 22);
-	contentPane.add(txtaforo);
-	txtaforo.setColumns(10);
-	
-	JComboBox txtresponsable = new JComboBox();
-	txtresponsable.setBounds(184, 245, 205, 22);
-	contentPane.add(txtresponsable);
-	
-	JButton cancelar = new JButton("");
-	cancelar.setIcon(new ImageIcon(VAltaSalas.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
-	cancelar.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		}
-	});
-	cancelar.setBounds(37, 599, 157, 99);
-	contentPane.add(cancelar);
-	
-	JButton ok = new JButton("");
-	ok.setIcon(new ImageIcon(VAltaSalas.class.getResource("/imagenes/BOTONES/botOK.png")));
-	ok.setBounds(641, 44, 104, 92);
-	contentPane.add(ok);
-
-
-	
-	JLabel numSala = new JLabel("Nº Sala:");
-	numSala.setForeground(new Color(255, 255, 255));
-	numSala.setFont(new Font("Tahoma", Font.PLAIN, 25));
-	numSala.setBounds(24, 126, 112, 31);
-	contentPane.add(numSala);
-	
-	JLabel afo = new JLabel("Aforo:");
-	afo.setForeground(Color.WHITE);
-	afo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-	afo.setBounds(23, 182, 134, 31);
-	contentPane.add(afo);
-	
-	JLabel discap = new JLabel("Discapacidad:");
-	discap.setForeground(Color.WHITE);
-	discap.setFont(new Font("Tahoma", Font.PLAIN, 25));
-	discap.setBounds(24, 236, 112, 31);
-	contentPane.add(discap);
-
-	JLabel dimensiones = new JLabel("Dimensiones pantalla:");
-	dimensiones.setForeground(Color.WHITE);
-	dimensiones.setFont(new Font("Tahoma", Font.PLAIN, 25));
-	dimensiones.setBounds(24, 292, 112, 31);
-	contentPane.add(dimensiones);
-	
-	JLabel Inauguracion = new JLabel("Fecha inauguraci\u00F3n:");
-	Inauguracion.setForeground(Color.WHITE);
-	Inauguracion.setFont(new Font("Tahoma", Font.PLAIN, 25));
-	Inauguracion.setBounds(24, 295, 225, 31);
-	contentPane.add(Inauguracion);
-	
-	
-	JLabel nacionalidad = new JLabel("Nacionalidad: ");
-	nacionalidad.setForeground(Color.WHITE);
-	nacionalidad.setFont(new Font("Tahoma", Font.PLAIN, 25));
-	nacionalidad.setBounds(24, 398, 225, 31);
-	contentPane.add(nacionalidad);
-	
-	JLabel fecFinCon = new JLabel("Fecha fin contrato: ");
-	fecFinCon.setForeground(Color.WHITE);
-	fecFinCon.setFont(new Font("Tahoma", Font.PLAIN, 25));
-	fecFinCon.setBounds(24, 456, 225, 31);
-	contentPane.add(fecFinCon);
-	
-	JLabel altaEmple = new JLabel("| Alta empleados");
-	altaEmple.setFont(new Font("Tahoma", Font.BOLD, 25));
-	altaEmple.setForeground(new Color(255, 255, 255));
-	altaEmple.setBounds(24, 30, 225, 31);
-	contentPane.add(altaEmple);
-	
-
-}
+	}
 }

@@ -59,7 +59,7 @@ public class VLogin extends JFrame {
 					VListado vl = new VListado();
 					vl.setVisible(true);
 
-					dispose();
+					
 
 				}
 
