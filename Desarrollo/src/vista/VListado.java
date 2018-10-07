@@ -76,9 +76,10 @@ public class VListado extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		getContentPane().setBackground(new Color(233, 69, 75));
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(380, 217, -337, -153);
-		getContentPane().setBackground(new Color(233, 69, 75));
 		contentPane.add(scrollPane);
 
 		table = new JTable();

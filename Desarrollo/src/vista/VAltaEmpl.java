@@ -53,7 +53,7 @@ public class VAltaEmpl extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
 		contentPane = new JPanel();
-		contentPane.setBounds(new Rectangle(0, 0, 225, 31));
+		contentPane.setBounds(new Rectangle(0, 0, 500,500));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

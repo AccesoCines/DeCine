@@ -233,7 +233,7 @@ public class VAltaProyecciones extends JFrame {
 				}
 			}
 		});
-		btnGuardar.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botALTA.png")));
+		btnGuardar.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botOK.png")));
 		btnGuardar.setContentAreaFilled(false);
 		btnGuardar.setBounds(476, 263, 189, 113);
 		contentPane.add(btnGuardar);

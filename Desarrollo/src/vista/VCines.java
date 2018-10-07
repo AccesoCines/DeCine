@@ -38,7 +38,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Frame;
 
-public class Cines extends JFrame {
+public class VCines extends JFrame {
 
 	private JPanel contentPane;
 	private JRadioButton rbPrincipe;
@@ -56,7 +56,7 @@ public class Cines extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Cines frame = new Cines();
+					VCines frame = new VCines();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,7 +68,7 @@ public class Cines extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Cines() {
+	public VCines() {
 		
 		setExtendedState(Frame.NORMAL);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,7 +90,7 @@ public class Cines extends JFrame {
 		Image img = icon.getImage(); //convertimos icon en una imagen
 		Image otraimg = img.getScaledInstance(452,350,java.awt.Image.SCALE_SMOOTH); //creamos una imagen nueva dándole las dimensiones que queramos a la antigua		
 		ImageIcon otroicon = new ImageIcon(otraimg);
-		JButton botonCartelera = new JButton(new ImageIcon(Cines.class.getResource("/imagenes/CLAQUETAS/clac cartelera.png")));
+		JButton botonCartelera = new JButton(new ImageIcon(VCines.class.getResource("/imagenes/CLAQUETAS/clac cartelera.png")));
 		botonCartelera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -142,7 +142,7 @@ public class Cines extends JFrame {
 		Image img2 = icon.getImage(); //convertimos icon en una imagen
 		Image otraimg2 = img.getScaledInstance(452,350,java.awt.Image.SCALE_SMOOTH); //creamos una imagen nueva dándole las dimensiones que queramos a la antigua		
 		ImageIcon otroicon2 = new ImageIcon(otraimg2);
-		JButton btBotonSalas = new JButton(new ImageIcon(Cines.class.getResource("/imagenes/CLAQUETAS/clac SALAS.png")));
+		JButton btBotonSalas = new JButton(new ImageIcon(VCines.class.getResource("/imagenes/CLAQUETAS/clac SALAS.png")));
 		btBotonSalas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		btBotonSalas.setContentAreaFilled(false);
