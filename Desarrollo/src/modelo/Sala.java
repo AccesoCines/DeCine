@@ -86,7 +86,7 @@ public class Sala {
 			salas = gb.cargarSalas();
 			break;
 		case "sqlite":
-			salas = gb.cargarSalasQL();
+			//salas = gb.cargarSalasQL();
 			break;
 		case "db4o":
 			salas = DB4o.mostrarListSala();
