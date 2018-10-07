@@ -18,16 +18,14 @@ import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JCheckBox;
+import com.toedter.calendar.JYearChooser;
+import javax.swing.JSpinner;
 
 public class VAltaSalas extends JPanel {
-	private JTextField txtnumSala;
-	private JTextField txtaforo;
 	private JTextField txtDiscapacidad;
 	private JTextField txtDimPantalla;
 	private JTextField txtAnoInaug;
 	private JTextField txtResponsable;
-	private JTextField txtDim;
-	private JTextField txtInaug;
 
 
 	
@@ -54,73 +52,53 @@ public class VAltaSalas extends JPanel {
 		setBounds(new Rectangle(0, 0, 800, 800));
 		setLayout(null);
 		
-		JLabel lblCine = new JLabel("Cine");
-		lblCine.setBounds(100, 150, 300, 31);
-		add(lblCine);
-		lblCine.setForeground(Color.WHITE);
-		lblCine.setFont(new Font("Tahoma", Font.BOLD, 25));
+		JLabel cine = new JLabel("Cine");
+		cine.setBounds(100, 150, 300, 31);
+		add(cine);
+		cine.setForeground(Color.WHITE);
+		cine.setFont(new Font("Tahoma", Font.BOLD, 25));
 		
-		JLabel numSala = new JLabel("N� Sala:");
+		JLabel numSala = new JLabel("N\u00FAmero Sala:");
 		numSala.setBounds(50, 266, 300, 31);
 		add(numSala);
 		numSala.setForeground(new Color(255, 255, 255));
 		numSala.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
-		JLabel afo = new JLabel("Aforo:");
-		afo.setBounds(50, 316, 300, 31);
-		add(afo);
-		afo.setForeground(Color.WHITE);
-		afo.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		JLabel aforo = new JLabel("Aforo:");
+		aforo.setBounds(50, 316, 300, 31);
+		add(aforo);
+		aforo.setForeground(Color.WHITE);
+		aforo.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
-		JLabel dimensiones = new JLabel("Dimensiones pantalla:");
-		dimensiones.setBounds(50, 366, 300, 31);
-		add(dimensiones);
-		dimensiones.setForeground(Color.WHITE);
-		dimensiones.setFont(new Font("Tahoma", Font.PLAIN, 25));	
+		JLabel dimPant = new JLabel("Dimensiones pantalla:");
+		dimPant.setBounds(50, 366, 300, 31);
+		add(dimPant);
+		dimPant.setForeground(Color.WHITE);
+		dimPant.setFont(new Font("Tahoma", Font.PLAIN, 25));	
 		
-		JCheckBox discap = new JCheckBox("Discapacidad");
-		discap.setBounds(50, 416, 300, 31);
-		discap.setForeground(Color.WHITE);
-		discap.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		add(discap);
+		JCheckBox discapacitados = new JCheckBox("Accesible discapacitados: ");
+		discapacitados.setBounds(50, 416, 325, 31);
+		discapacitados.setForeground(Color.WHITE);
+		discapacitados.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		add(discapacitados);
 		
-		JLabel Inauguracion = new JLabel("A\u00F1o inauguraci\u00F3n:");
-		Inauguracion.setBounds(50, 466, 300, 31);
-		add(Inauguracion);
-		Inauguracion.setForeground(Color.WHITE);
-		Inauguracion.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		JLabel anyoInaguracion = new JLabel("A\u00F1o inauguraci\u00F3n:");
+		anyoInaguracion.setBounds(50, 466, 300, 31);
+		add(anyoInaguracion);
+		anyoInaguracion.setForeground(Color.WHITE);
+		anyoInaguracion.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
-		JLabel lblResponsable = new JLabel("Responsable:");
-		lblResponsable.setBounds(50, 516, 300, 31);
-		add(lblResponsable);
-		lblResponsable.setForeground(Color.WHITE);
-		lblResponsable.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		
-		txtnumSala = new JTextField();
-		add(txtnumSala);
-		txtnumSala.setBounds(new Rectangle(450, 266, 300, 31));
-		txtnumSala.setColumns(10);
-		
-		txtaforo = new JTextField();
-		txtaforo.setBounds(450, 316, 300, 31);
-		add(txtaforo);
-		txtaforo.setColumns(10);
-		
-		txtDim = new JTextField();
-		txtDim.setBounds(450, 366, 300, 31);
-		add(txtDim);
-		txtDim.setColumns(10);
-		
-		txtInaug = new JTextField();
-		txtInaug.setBounds(450, 466, 300, 31);
-		add(txtInaug);
-		txtInaug.setColumns(10);
+		JLabel responsable = new JLabel("Responsable:");
+		responsable.setBounds(50, 516, 300, 31);
+		add(responsable);
+		responsable.setForeground(Color.WHITE);
+		responsable.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(450, 516, 300, 31);
-		add(comboBox);
+		JComboBox txtResponsable_1 = new JComboBox();
+		txtResponsable_1.setBounds(450, 516, 300, 31);
+		add(txtResponsable_1);
 		
 		JButton ok = new JButton("");
 		ok.setIcon(new ImageIcon(VAltaSalas.class.getResource("/imagenes/BOTONES/botOK.png")));
@@ -139,6 +117,22 @@ public class VAltaSalas extends JPanel {
 		label.setFont(new Font("Tahoma", Font.BOLD, 25));
 		label.setBounds(50, 50, 300, 31);
 		add(label);
+		
+		JComboBox txtDimensiones = new JComboBox();
+		txtDimensiones.setBounds(450, 366, 300, 31);
+		add(txtDimensiones);
+		
+		JYearChooser txtAnyoInagu = new JYearChooser();
+		txtAnyoInagu.setBounds(450, 466, 300, 31);
+		add(txtAnyoInagu);
+		
+		JSpinner txtNumSala = new JSpinner();
+		txtNumSala.setBounds(450, 275, 300, 31);
+		add(txtNumSala);
+		
+		JSpinner txtAforo = new JSpinner();
+		txtAforo.setBounds(450, 321, 300, 31);
+		add(txtAforo);
 		
 	
 	}
