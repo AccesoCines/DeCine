@@ -99,7 +99,7 @@ public class VAltaProyecciones extends JFrame {
 	 * Create the frame.
 	 */
 	public VAltaProyecciones() {
-		setTitle("Horarios proyecci\u00F3n");
+		setTitle("Horarios proyecciï¿½n");
 		setExtendedState(Frame.NORMAL);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
@@ -113,7 +113,7 @@ public class VAltaProyecciones extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("| Horarios proyecci\u00F3n");
+		JLabel lblNewLabel = new JLabel("| Horarios proyecciï¿½n");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel.setForeground(Color.WHITE);
@@ -121,7 +121,7 @@ public class VAltaProyecciones extends JFrame {
 		lblNewLabel.setBounds(100, 50, 500, 50);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblPelcula = new JLabel("Pel\u00EDcula");
+		JLabel lblPelcula = new JLabel("Pelï¿½cula");
 		lblPelcula.setForeground(Color.WHITE);
 		lblPelcula.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblPelcula.setBounds(100, 135, 288, 31);
@@ -220,7 +220,7 @@ public class VAltaProyecciones extends JFrame {
 						}
                     }
 					
-					peli.añadirProyeccion(new Proyeccion(sala,peli,hora,true));
+					peli.aï¿½adirProyeccion(new Proyeccion(sala,peli,hora,true));
 					horas.add(hora);
 				}
 				int n=-1;
