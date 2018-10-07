@@ -92,7 +92,7 @@ public class VAltaProyecciones extends JFrame {
 	 * Create the frame.
 	 */
 	public VAltaProyecciones() {
-		setTitle("Horarios proyecci\u00F3n");
+		setTitle("Horarios proyección");
 		setExtendedState(Frame.NORMAL);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
@@ -106,7 +106,7 @@ public class VAltaProyecciones extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("| Horarios proyecci\u00F3n");
+		JLabel lblNewLabel = new JLabel("| Horarios proyección");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel.setForeground(Color.WHITE);
@@ -114,7 +114,7 @@ public class VAltaProyecciones extends JFrame {
 		lblNewLabel.setBounds(100, 50, 500, 50);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblPelcula = new JLabel("Pel\u00EDcula");
+		JLabel lblPelcula = new JLabel("Película");
 		lblPelcula.setForeground(Color.WHITE);
 		lblPelcula.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblPelcula.setBounds(100, 135, 288, 31);
@@ -144,7 +144,7 @@ public class VAltaProyecciones extends JFrame {
 		cbSalas.setBounds(440, 184, 225, 31);
 		contentPane.add(cbSalas);
 		
-		JButton btnAadirPase = new JButton("A\u00F1adir pase");
+		JButton btnAadirPase = new JButton("Añadir pase");
 		btnAadirPase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(contadorPaneles>0) {
