@@ -220,7 +220,7 @@ public class VAltaProyecciones extends JFrame {
 						}
                     }
 					
-					peli.aï¿½adirProyeccion(new Proyeccion(sala,peli,hora,true));
+					peli.añadirProyeccion(new Proyeccion(sala,peli,hora,true));
 					horas.add(hora);
 				}
 				int n=-1;
