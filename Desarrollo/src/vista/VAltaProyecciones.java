@@ -57,6 +57,7 @@ public class VAltaProyecciones extends JFrame {
 	private static ArrayList<Pelicula> peliculas;
 	private static ArrayList<Sala> salas;
 	private Time hora = new Time(new Date().getTime());
+	
 	/**
 	 * Launch the application.
 	 */

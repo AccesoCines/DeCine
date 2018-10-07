@@ -17,7 +17,7 @@ public class Sala {
 	private Empleado responsable;
 	private boolean alta;
 	private int id;
-	private String bbdd = "postgre"; //TODO cambiar por variable desde la ventana anterior
+	private String bbdd = "db4o"; //TODO cambiar por variable desde la ventana anterior
 	//Cuando se carga la ventana hay que traer aqu� la variable de que BBDD es para pasarla al new GestorBBDD
 	
 	private ArrayList<Proyeccion> proyecciones;

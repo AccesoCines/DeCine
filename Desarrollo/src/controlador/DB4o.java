@@ -3,7 +3,7 @@ package controlador;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,23 +15,21 @@ import com.db4o.ObjectSet;
 import modelo.Cargo;
 import modelo.Empleado;
 import modelo.Pelicula;
+import modelo.Proyeccion;
 import modelo.Sala;
 
 public class DB4o {
 	
 	
-	final static String BDEmpl = "DBEmpleados.yap";
-	final static String BDPeli = "DBPeliculas.yap";
-	final static String BDSala = "DBSalas.yap";
-	final static String BDProy = "DBProyecciones.yap";
+	final static String BDCine = "DBCines.yap";
 	
 	private ObjectContainer rootContainer;
 	
 		
 	//Abrir la BD
-	//ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
+	ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		
-	java.sql.Date date = new java.sql.Date(1985, 6, 10);
+	//java.sql.Date date = new java.sql.Date(1985, 6, 10);
 	//Recoger del jcalendar en la ventana
 	//java.util.Date fecha2 = (java.util.Date) jcalendar.getvalue();
 	//En el modelo
@@ -106,7 +104,16 @@ public class DB4o {
 	
 	
 	
-		Empleado e2 = new Empleado("Miriam", "Campos", Cargo.acomodadorResponsableBar, date, "espa�ola", date, date);
+		Empleado e2 = new Empleado(
+				"Miriam", 
+				"Campos", 
+				Cargo.acomodadorResponsableBar, 
+				new Date(2018,12,20), 
+				new Date(2018,12,20), 
+				"espa�ola", 
+				new Date(2018,12,20),
+				true
+				);
 	//guardarEmple(e2);
 	
 	
@@ -114,7 +121,7 @@ public class DB4o {
 	
 	public static void guardarEmple(Empleado e){
 		
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		db.store(e);
 		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
 		db.close();
@@ -123,7 +130,7 @@ public class DB4o {
 	
 	public static void eliminarEmple(Empleado e) {
 		
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		e.setAlta(false);
 		//No se elimina el empleado, el atributo alta pasa a false.
 		javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
@@ -132,7 +139,7 @@ public class DB4o {
 		
 	public static void modificarEmple(Empleado e) {
 		
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		
 		//e.setNombre(getText(jlabel1));
 		//e.setApellido(getText(jlabel2));
@@ -143,7 +150,7 @@ public class DB4o {
 	}
 	
 	public static ArrayList <Empleado> mostrarListEmple() {
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		Empleado em = new Empleado( null, null, null, null, null, null, null );
 		
 		ArrayList<Empleado> listaEmpleados = new ArrayList<Empleado>();
@@ -164,7 +171,7 @@ public class DB4o {
 
 	
 	public static ArrayList<Empleado> historicoEmple() {
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDEmpl);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		Empleado em = new Empleado( null, null, null, null, null, null, null, false);
 		
 		ArrayList<Empleado> listaEmpleados = new ArrayList<>();
@@ -186,7 +193,7 @@ public class DB4o {
 
 		public static void guardarPeli(Pelicula p){
 		
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		db.store(p);
 		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
 		db.close();
@@ -195,7 +202,7 @@ public class DB4o {
 	
 	public static void eliminarPeli(Pelicula p) {
 		
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		p.setAlta(false);
 		//No se elimina la pelicula, el atributo alta pasa a false.
 		javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
@@ -204,7 +211,7 @@ public class DB4o {
 		
 	public static void modificarPeli(Pelicula p) {
 		
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		
 		//p.setNombre(getText(jlabel1));
 		//p.setApellido(getText(jlabel2));
@@ -214,29 +221,49 @@ public class DB4o {
 		db.close();
 	}
 	
+	public static ArrayList <Sala> mostrarListSala() {
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
+		
+		Sala sa = new Sala();
+		
+		ArrayList<Sala> listaSalas = new ArrayList<Sala>();
+		ObjectSet<Sala> result = db.queryByExample(sa);
+		if (result.size() == 0){
+			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas.");
+		}else {
+			while (result.hasNext()) {
+			Sala s = result.next();
+			listaSalas.add(s);
+			}
+		}
+		
+		db.close();
+		return listaSalas;
+		
+	}
+	
 	public static ArrayList <Pelicula> mostrarListPeli() {
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
-		Pelicula pe = new Pelicula( null, 0, null, null, null, null, 0, null, null, null );
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
+		Pelicula pe = new Pelicula();
 		
 		ArrayList<Pelicula> listaPeliculas = new ArrayList<Pelicula>();
 		ObjectSet<Pelicula> result = db.queryByExample(pe);
 		if (result.size() == 0){
 			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas.");
 		}else {
-		while (result.hasNext()) {
-		Pelicula p = result.next();
-		listaPeliculas.add(p);
-	
-		}
-		}
+			while (result.hasNext()) {
+				Pelicula p = (Pelicula) result.next();
+				listaPeliculas.add(p);
 		
+			}
+		}
+		db.close();
 		return listaPeliculas;
-		
 	}
 
 	
 	public static ArrayList<Pelicula> historicoPeli() {
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDPeli);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		Pelicula pe = new Pelicula( null, 0, null, null, null, null, 0, null, null, null, false);
 		
 		ArrayList<Pelicula> listaPeliculas = new ArrayList<>();
@@ -255,7 +282,7 @@ public class DB4o {
 	
 	public static void guardarSala(Sala s){
 		
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		db.store(s);
 		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
 		db.close();
@@ -264,7 +291,7 @@ public class DB4o {
 	
 	public static void eliminarSala(Sala s) {
 		
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		s.setAlta(false);
 		//No se elimina la sala, el atributo alta pasa a false.
 		javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
@@ -273,7 +300,7 @@ public class DB4o {
 		
 	public static void modificarSala(Sala s) {
 		
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		
 		//s.setNombre(getText(jlabel1));
 		//s.setApellido(getText(jlabel2));
@@ -283,30 +310,8 @@ public class DB4o {
 		db.close();
 	}
 	
-	public static ArrayList <Sala> mostrarListSala() {
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
-		
-		Sala sa = new Sala( 0, 0, null, 0, false, null);
-		
-		ArrayList<Sala> listaSalas = new ArrayList<Sala>();
-		ObjectSet<Sala> result = db.queryByExample(sa);
-		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas.");
-		}
-		while (result.hasNext()) {
-		Sala s = result.next();
-		listaSalas.add(s);
-	
-		}
-		
-		db.close();
-		return listaSalas;
-		
-	}
-
-	
 	public static ArrayList<Sala> historicoSalas() {
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDSala);
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		Sala sa = new Sala( 0, 0, null, 0, false, null, false);
 		
 		ArrayList<Sala> listaSalas = new ArrayList<>();
@@ -324,12 +329,19 @@ public class DB4o {
 	}
 	
 	public static boolean guardarProyecciones(Pelicula p) {
-		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDProy);
-		//Proyeccion pr = new 
-	
-	
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
+		for(Proyeccion pro :p.getProyecciones() ) {
+			db.store(pro);
+		}
+		db.close();
 		return true;
 	}
+	
+	/*public ArrayList<Proyeccion> mostrarListaProyecciones(){
+		ArrayList<Proyeccion> proyecciones = new ArrayList<>();
+		
+		
+	}*/
 }
 	
 	

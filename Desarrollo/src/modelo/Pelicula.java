@@ -21,7 +21,7 @@ public class Pelicula {
 	private java.sql.Date fechaFin;
 	private boolean alta;
 	private int id;
-	private String bbdd = "postgre"; 
+	private String bbdd = "db4o"; 
 	
 	private ArrayList<Proyeccion> proyecciones;
 	
