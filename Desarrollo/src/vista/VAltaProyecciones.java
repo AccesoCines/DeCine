@@ -49,7 +49,7 @@ public class VAltaProyecciones extends JFrame {
 	private static JComboBox cbPeliculas;
 	private static JComboBox cbSalas;
 	private ArrayList<JPanel> paneles = new ArrayList<>();
-	private int x = 420;
+	private int x = 350;
 	private int contadorPaneles = 5;
 	private JButton btnGuardar;
 	private static VAltaProyecciones  frame;
@@ -99,7 +99,7 @@ public class VAltaProyecciones extends JFrame {
 	 * Create the frame.
 	 */
 	public VAltaProyecciones() {
-		setTitle("Horarios proyecciï¿½n");
+		setTitle("Horarios proyección");
 		setExtendedState(Frame.NORMAL);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
@@ -113,7 +113,7 @@ public class VAltaProyecciones extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("| Horarios proyecciï¿½n");
+		JLabel lblNewLabel = new JLabel("| Horarios proyecci\u00F3n");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblNewLabel.setForeground(Color.WHITE);
@@ -121,7 +121,7 @@ public class VAltaProyecciones extends JFrame {
 		lblNewLabel.setBounds(100, 50, 500, 50);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblPelcula = new JLabel("Pelï¿½cula");
+		JLabel lblPelcula = new JLabel("Pel\u00EDcula");
 		lblPelcula.setForeground(Color.WHITE);
 		lblPelcula.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblPelcula.setBounds(100, 135, 288, 31);
@@ -190,6 +190,33 @@ public class VAltaProyecciones extends JFrame {
 		btnAadirPase.setContentAreaFilled(false);
 		contentPane.add(btnAadirPase);
 
+		/*JButton btnQuitarPase = new JButton("");
+		btnQuitarPase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnGuardar.setEnabled(true);
+				if(contadorPaneles == 0) {
+					btnGuardar.setEnabled(false);
+				}
+			if(contadorPaneles>0) {
+					paneles.remove(paneles.size()-1);
+					contentPane.repaint();
+					contentPane.revalidate();
+					
+					
+					for(int i=0;i<paneles.size();i++) {
+						remove(i);
+						paneles.remove(i);
+						contadorPaneles++;
+						contentPane.revalidate();
+					}
+				}
+			}
+		});
+		btnQuitarPase.setBounds(535, 263,130, 80);
+		btnQuitarPase.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botPASE.png")));
+		btnQuitarPase.setContentAreaFilled(false);
+		contentPane.add(btnQuitarPase);*/
+
 		
 		
 		btnGuardar = new JButton("");
@@ -220,7 +247,7 @@ public class VAltaProyecciones extends JFrame {
 						}
                     }
 					
-					peli.aï¿½adirProyeccion(new Proyeccion(sala,peli,hora,true));
+					peli.añadirProyeccion(new Proyeccion(sala,peli,hora,true));
 					horas.add(hora);
 				}
 				int n=-1;
@@ -236,8 +263,21 @@ public class VAltaProyecciones extends JFrame {
 		});
 		btnGuardar.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botOK.png")));
 		btnGuardar.setContentAreaFilled(false);
-		btnGuardar.setBounds(476, 263, 130, 80);
+		btnGuardar.setBounds(659, 50, 91, 80);
 		contentPane.add(btnGuardar);
+		
+		JButton cancelar = new JButton("");
+		cancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VListado vl = new VListado();
+				dispose();	//TODO cerrar ventana
+				
+			}
+		});
+		cancelar.setBounds(50,670,181,80);
+		cancelar.setIcon(new ImageIcon(VAltaSalas.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		cancelar.setContentAreaFilled(false);
+		getContentPane().add(cancelar);
 		
 		
 		
