@@ -44,9 +44,9 @@ public class VAltaPeliculas extends JPanel {
 	public VAltaPeliculas() {
 		
 
+		setBounds(0, 0, 800, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setBounds(0, 0, 800, 800);
 		
 		contentPane.setBackground(new Color(233, 69, 75));
 		contentPane.setLayout(null);
