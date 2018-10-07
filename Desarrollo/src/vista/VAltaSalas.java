@@ -139,7 +139,7 @@ public VAltaSalas() {
 	JButton cancelar = new JButton("");
 	cancelar.setBounds(50,670,181,80);
 	cancelar.setIcon(new ImageIcon(VAltaSalas.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
-	ok.setContentAreaFilled(false);
+	cancelar.setContentAreaFilled(false);
 	add(cancelar);
 	
 	JLabel label = new JLabel("| Alta Sala");
