@@ -99,7 +99,7 @@ public class VAltaProyecciones extends JFrame {
 	 * Create the frame.
 	 */
 	public VAltaProyecciones() {
-		setTitle("Horarios proyecciï¿½n");
+		setTitle("Horarios proyección");
 		setExtendedState(Frame.NORMAL);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
@@ -220,7 +220,7 @@ public class VAltaProyecciones extends JFrame {
 						}
                     }
 					
-					peli.aï¿½adirProyeccion(new Proyeccion(sala,peli,hora,true));
+					peli.añadirProyeccion(new Proyeccion(sala,peli,hora,true));
 					horas.add(hora);
 				}
 				int n=-1;
