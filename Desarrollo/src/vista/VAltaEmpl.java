@@ -3,6 +3,7 @@ package vista;
 import java.awt.BorderLayout;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -10,13 +11,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.awt.event.ActionEvent;
+
+import com.sun.glass.ui.Window;
 import com.toedter.calendar.JDateChooser;
+
+import modelo.Cargo;
+import modelo.Empleado;
+
 import java.awt.Rectangle;
 
 public class VAltaEmpl extends JPanel {
@@ -25,6 +36,10 @@ public class VAltaEmpl extends JPanel {
 	private JTextField txtnombre;
 	private JTextField txtapellido;
 	private JTextField txtnaci;
+	private JComboBox txtcargo;
+	private JDateChooser txtfecCont;
+	private JDateChooser txtfecNac;
+	private JDateChooser txtfecFinCon;
 
 	/**
 	 * Launch the application.
@@ -57,11 +72,18 @@ public class VAltaEmpl extends JPanel {
 		txtcargo.setBounds(358, 246, 205, 22);
 		contentPane.add(txtcargo);
 		
+		
+		
 		JButton cancelar = new JButton("");
 		cancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		cancelar.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-			}
+				//TOODO FALTA PROBAR CUANDO EST� LA VENTANA DE LISTADOS
+				((java.awt.Window) getParent()).dispose();
+				VListado list = new VListado();
+				list.setVisible(true);
+				}
 		});
 		cancelar.setBounds(37, 599, 244, 107);
 		contentPane.add(cancelar);
@@ -70,6 +92,46 @@ public class VAltaEmpl extends JPanel {
 		JButton ok = new JButton("");
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (txtnombre.getText().toCharArray().length<2 ) {
+					//validar campo +2 letras
+					JOptionPane.showMessageDialog(null, "No admite menos de dos letras..", "Error en nombre", JOptionPane.ERROR_MESSAGE);
+				}
+				if (txtapellido.getText().toCharArray().length<2) {
+					JOptionPane.showMessageDialog(null, "No admite menos de dos letras..", "Error en apellido", JOptionPane.ERROR_MESSAGE);
+					
+				}
+				if (txtnaci.getText().toCharArray().length<2) {
+					JOptionPane.showMessageDialog(null, "No admite menos de dos letras..", "Error en nacionalidad", JOptionPane.ERROR_MESSAGE);
+				}
+				Cargo car = Cargo.camarero;
+
+			switch(txtcargo.getSelectedItem().toString()){
+				case "camarero":
+					car = Cargo.camarero;
+					break;
+				case "portero":
+					car = Cargo.portero;
+					break;
+				case "acomodadorResponsableBar":
+					car = Cargo.acomodadorResponsableBar;
+					break;
+				case "mantenimiento":
+					car = Cargo.mantenimiento;
+					break;
+				case "responsableCine":
+					car = Cargo.responsableCine;
+					break;
+				case "responsableSala":
+					car = Cargo.responsableSala;
+				break;
+				}
+				
+				Empleado emple = new Empleado(txtnombre.getText(), txtapellido.getText(), car, (Date) txtfecCont.getDate(), (Date)txtfecNac.getDate(), txtnaci.getText(), (Date)txtfecFinCon.getDate(), true);
+	
+				emple.guardarEmpleado();
+				
+				//TODO: PROBAR SI FUNSIONA
 			}
 		});
 		ok.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
@@ -145,6 +207,14 @@ public class VAltaEmpl extends JPanel {
 		altaEmple.setForeground(new Color(255, 255, 255));
 		altaEmple.setBounds(50, 50, 225, 31);
 		contentPane.add(altaEmple);
+		
+		JButton okey = new JButton("");
+		okey.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		okey.setBorder(null);
+		okey.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 
 	}
 	

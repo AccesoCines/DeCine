@@ -119,13 +119,13 @@ public class DB4o {
 	
 	
 	
-	public static void guardarEmple(Empleado e){
+	public static boolean guardarEmple(Empleado e){
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		db.store(e);
 		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
 		db.close();
-		
+		return true;
 	}
 	
 	public static void eliminarEmple(Empleado e) {
