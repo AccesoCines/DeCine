@@ -37,24 +37,24 @@ public class VAltaEmpl extends JPanel {
 	    //setTitle ("Alta empleados"); //TODO pasar al parent
 		setBounds(0, 0, 800, 800);
 		contentPane = new JPanel();
-		contentPane.setBounds(new Rectangle(0, 0, 500,500));
+		contentPane.setBounds(new Rectangle(0, 0, 800,800));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		
 		contentPane.setBackground(new Color(233, 69, 75));
 		
 		txtnombre = new JTextField();
-		txtnombre.setBounds(184, 135, 205, 22);
+		txtnombre.setBounds(358, 137, 205, 22);
 		contentPane.add(txtnombre);
 		txtnombre.setColumns(10);
 		
 		txtapellido = new JTextField();
-		txtapellido.setBounds(184, 191, 204, 22);
+		txtapellido.setBounds(359, 193, 204, 22);
 		contentPane.add(txtapellido);
 		txtapellido.setColumns(10);
 		
 		JComboBox txtcargo = new JComboBox();
-		txtcargo.setBounds(184, 245, 205, 22);
+		txtcargo.setBounds(358, 246, 205, 22);
 		contentPane.add(txtcargo);
 		
 		JButton cancelar = new JButton("");
@@ -82,69 +82,74 @@ public class VAltaEmpl extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		txtfecCont.setBounds(274, 306, 205, 22);
+		txtfecCont.setBounds(358, 306, 205, 22);
 		contentPane.add(txtfecCont);
 		
 		JDateChooser txtfecNac = new JDateChooser();
-		txtfecNac.setBounds(274, 358, 205, 22);
+		txtfecNac.setBounds(358, 358, 205, 22);
 		contentPane.add(txtfecNac);
 		
 		txtnaci = new JTextField();
-		txtnaci.setBounds(274, 407, 205, 22);
+		txtnaci.setBounds(358, 407, 205, 22);
 		contentPane.add(txtnaci);
 		txtnaci.setColumns(10);
 		
 		JDateChooser txtfecFinCon = new JDateChooser();
-		txtfecFinCon.setBounds(274, 465, 203, 22);
+		txtfecFinCon.setBounds(358, 465, 203, 22);
 		contentPane.add(txtfecFinCon);
 		
 		JLabel nombre = new JLabel("Nombre:");
 		nombre.setForeground(new Color(255, 255, 255));
 		nombre.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		nombre.setBounds(24, 126, 112, 31);
+		nombre.setBounds(50, 126, 112, 31);
 		contentPane.add(nombre);
 		
 		JLabel apellido = new JLabel("Apellido:");
 		apellido.setForeground(Color.WHITE);
 		apellido.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		apellido.setBounds(23, 182, 134, 31);
+		apellido.setBounds(50, 182, 134, 31);
 		contentPane.add(apellido);
 		
 		JLabel cargo = new JLabel("Cargo:");
 		cargo.setForeground(Color.WHITE);
 		cargo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		cargo.setBounds(24, 236, 112, 31);
+		cargo.setBounds(50, 236, 112, 31);
 		contentPane.add(cargo);
 		
 		JLabel fecCon = new JLabel("Fecha contrataci\u00F3n:");
 		fecCon.setForeground(Color.WHITE);
 		fecCon.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		fecCon.setBounds(24, 295, 225, 31);
+		fecCon.setBounds(50, 295, 225, 31);
 		contentPane.add(fecCon);
 		
 		JLabel fecNac = new JLabel("Fecha nacimiento: ");
 		fecNac.setForeground(Color.WHITE);
 		fecNac.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		fecNac.setBounds(24, 349, 225, 31);
+		fecNac.setBounds(50, 349, 225, 31);
 		contentPane.add(fecNac);
 		
 		JLabel nacionalidad = new JLabel("Nacionalidad: ");
 		nacionalidad.setForeground(Color.WHITE);
 		nacionalidad.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		nacionalidad.setBounds(24, 398, 225, 31);
+		nacionalidad.setBounds(50, 398, 225, 31);
 		contentPane.add(nacionalidad);
 		
 		JLabel fecFinCon = new JLabel("Fecha fin contrato: ");
 		fecFinCon.setForeground(Color.WHITE);
 		fecFinCon.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		fecFinCon.setBounds(24, 456, 225, 31);
+		fecFinCon.setBounds(50, 456, 225, 31);
 		contentPane.add(fecFinCon);
 		
 		JLabel altaEmple = new JLabel("| Alta empleados");
 		altaEmple.setFont(new Font("Tahoma", Font.BOLD, 25));
 		altaEmple.setForeground(new Color(255, 255, 255));
-		altaEmple.setBounds(24, 30, 225, 31);
+		altaEmple.setBounds(50, 50, 225, 31);
 		contentPane.add(altaEmple);
 
+	}
+	
+
+	public JPanel getPanelVentana() {
+		return this;
 	}
 }
