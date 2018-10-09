@@ -74,12 +74,21 @@ public class VCines extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		
+	/*	
+		contentPane = new JPanel();
+		contentPane.setBounds(new Rectangle(0, 0, 800, 800));
+		contentPane.setBorder(null);
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		getContentPane().setBackground(new Color(233, 69, 75));
+*/
+		
 		contentPane.setBackground(new Color(233, 69, 75));
 		contentPane.setForeground(new Color(233, 69, 75));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setBounds(100, 100, 1920, 1080);
+		setBounds(100, 100, 1200, 1200);
 
 		
 	//	JButton botonAlta = new JButton(new ImageIcon("botALTA.png"));
@@ -88,14 +97,16 @@ public class VCines extends JFrame {
 		
 		/*Método mostrado por Gregg Bolinger en JavaRanch*/ImageIcon icon = new ImageIcon("..\\imagenes\\imagenesBOTONES\\botALTA.png");
 		Image img = icon.getImage(); //convertimos icon en una imagen
-		Image otraimg = img.getScaledInstance(452,350,java.awt.Image.SCALE_SMOOTH); //creamos una imagen nueva dándole las dimensiones que queramos a la antigua		
+		 //creamos una imagen nueva dándole las dimensiones que queramos a la antigua		
+		Image otraimg = img.getScaledInstance(452,350,java.awt.Image.SCALE_SMOOTH);
 		ImageIcon otroicon = new ImageIcon(otraimg);
+		
 		JButton botonCartelera = new JButton(new ImageIcon(VCines.class.getResource("/imagenes/CLAQUETAS/clac cartelera.png")));
 		botonCartelera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
-				System.out.println("Hew pulsado");
+				System.out.println("He pulsado");
 				
 
 				if ( rbPrincipe.isSelected()) {
@@ -121,7 +132,7 @@ public class VCines extends JFrame {
 		botonCartelera.setBorderPainted(false);
 
 		
-		botonCartelera.setBounds(217, 25, 594, 513);
+		botonCartelera.setBounds(133, 177, 131, 97);
 		contentPane.add(botonCartelera);
 		botonCartelera.setMargin(null);
 
@@ -194,32 +205,32 @@ public class VCines extends JFrame {
 		
 		JRadioButton rbPrincipe = new JRadioButton("  PR\u00CDNCIPE (Cine Comercial)");
 		rbPrincipe.setForeground(Color.WHITE);
-		rbPrincipe.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		rbPrincipe.setBounds(551, 655, 2000, 46);
+		rbPrincipe.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		rbPrincipe.setBounds(159, 329, 2000, 46);
 		contentPane.add(rbPrincipe);
 		rbPrincipe.setContentAreaFilled(false);
 		
 		
 		JRadioButton rbZubiarte = new JRadioButton("  ZUBIARTE 3D (Cine documental)");
 		rbZubiarte.setForeground(Color.WHITE);
-		rbZubiarte.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		rbZubiarte.setBounds(551, 732, 2000, 46);
+		rbZubiarte.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		rbZubiarte.setBounds(159, 400, 2000, 46);
 		contentPane.add(rbZubiarte);
 		rbZubiarte.setContentAreaFilled(false);
 		
 		
 		JRadioButton rbAzul = new JRadioButton("  AZUL (Cine Experimental)");
 		rbAzul.setForeground(Color.WHITE);
-		rbAzul.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		rbAzul.setBounds(551, 809, 2000, 46);
+		rbAzul.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		rbAzul.setBounds(159, 467, 2000, 46);
 		contentPane.add(rbAzul);
 		rbAzul.setContentAreaFilled(false);
 		
 		
 		JRadioButton rbYelmo = new JRadioButton("  JUNIOR YELMO (Cine Infantil)");
 		rbYelmo.setForeground(Color.WHITE);
-		rbYelmo.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		rbYelmo.setBounds(551, 885, 2000, 46);
+		rbYelmo.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		rbYelmo.setBounds(159, 542, 2000, 46);
 		contentPane.add(rbYelmo);
 		rbYelmo.setContentAreaFilled(false);
 		
@@ -239,8 +250,8 @@ public class VCines extends JFrame {
 		    lbAdvertenciaCines.setVisible(false);
 		    lbAdvertenciaCines.setBackground(Color.GREEN);
 		    lbAdvertenciaCines.setHorizontalAlignment(SwingConstants.CENTER);
-		    lbAdvertenciaCines.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		    lbAdvertenciaCines.setBounds(393, 504, 400, 113);
+		    lbAdvertenciaCines.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		    lbAdvertenciaCines.setBounds(294, 220, 242, 51);
 		    contentPane.add(lbAdvertenciaCines);
 
 
