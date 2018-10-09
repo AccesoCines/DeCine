@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -99,7 +100,7 @@ public class VAltaProyecciones extends JFrame {
 	 * Create the frame.
 	 */
 	public VAltaProyecciones() {
-		setTitle("Horarios proyecciï¿½n");
+		setTitle("Horarios proyección");
 		setExtendedState(Frame.NORMAL);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
@@ -121,7 +122,7 @@ public class VAltaProyecciones extends JFrame {
 		lblNewLabel.setBounds(100, 50, 500, 50);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblPelcula = new JLabel("Pelï¿½cula");
+		JLabel lblPelcula = new JLabel("PelÍcula");
 		lblPelcula.setForeground(Color.WHITE);
 		lblPelcula.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblPelcula.setBounds(100, 135, 288, 31);
