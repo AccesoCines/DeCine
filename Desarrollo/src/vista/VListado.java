@@ -77,26 +77,20 @@ public class VListado extends JFrame {
 	}
 
 	public VListado() {
+		//Copiar para otras ventanas
 		setBounds(new Rectangle(0, 0, 800, 800));
-
-		// Poner icono ventana
 		setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
-
 		setExtendedState(Frame.NORMAL);
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
+		getContentPane().setBackground(new Color(233, 69, 75));
 		contentPane = new JPanel();
 		contentPane.setBounds(new Rectangle(0, 0, 800, 800));
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
 		getContentPane().setBackground(new Color(233, 69, 75));
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(380, 217, -337, -153);
-		contentPane.add(scrollPane);
+		//Hasta aquí y sobreescribir todo
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(new Object[][] {
@@ -189,6 +183,11 @@ public class VListado extends JFrame {
 		contentPane.add(cbSalas);
 		
 		JButton btnInfo = new JButton("");
+		btnInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnInfo.setBounds(650, 380, 100, 80);
 		btnInfo.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/Info.png")));
 		btnInfo.setContentAreaFilled(false);
