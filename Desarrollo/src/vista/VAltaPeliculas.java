@@ -4,8 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Frame;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -46,6 +50,7 @@ public class VAltaPeliculas extends JPanel {
 
 		setBounds(0, 0, 800, 800);
 		contentPane = new JPanel();
+		contentPane.setBounds(new Rectangle(0, 0, 800,800));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		contentPane.setBackground(new Color(233, 69, 75));
@@ -81,6 +86,16 @@ public class VAltaPeliculas extends JPanel {
 		contentPane.add(fechaInicio);
 		
 		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		dateChooser.setBounds(242, 153, 121, 31);
+		contentPane.add(dateChooser);ççJDateChooser dateChooser = new JDateChooser();
+		dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		dateChooser.setBounds(242, 153, 121, 31);
 		contentPane.add(dateChooser);
 		
@@ -121,6 +136,21 @@ public class VAltaPeliculas extends JPanel {
 		lblSinopsis.setForeground(Color.WHITE);
 		lblSinopsis.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		contentPane.add(lblSinopsis);
+		
+		JButton cancelar = new JButton("");
+		cancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		cancelar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				//TOODO FALTA PROBAR CUANDO ESTÉ LA VENTANA DE LISTADOS
+				((java.awt.Window) getParent()).dispose();
+				VListado list = new VListado();
+				list.setVisible(true);
+				}
+		});
+		cancelar.setBounds(35, 560, 244, 107);
+		contentPane.add(cancelar);
+		cancelar.setContentAreaFilled(false);
 		
 	}
 }

@@ -2,12 +2,12 @@ package vista;
 
 import javax.swing.JPanel;
 
-public class VModPeliculas extends JPanel {
+public class VModPelicula extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public VModPeliculas() {
+	public VModPelicula() {
 
 	}
 
