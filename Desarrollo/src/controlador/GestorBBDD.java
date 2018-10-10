@@ -1,6 +1,7 @@
 package controlador;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -364,6 +365,31 @@ public class GestorBBDD {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+	public MetaDato cargarMetaDatos() {
+		MetaDato metaDatos = null;
+		try {
+			DatabaseMetaData dbmeta = con.getMetaData();
+			metaDatos.setNombreBD(dbmeta.getDatabaseProductName());
+			metaDatos.setDriver(dbmeta.getDriverName());
+			metaDatos.setUrl(dbmeta.getURL());
+			metaDatos.setUsuario(dbmeta.getUserName());
+			ResultSet rs = dbmeta.getColumns(null, null, null, null);
+			while(rs.next()) {
+				metaDatos.a = rs.getString("TABLE_SCHEM");
+				String nombre = rs.getString("TABLE_NAME");
+			}
+						
+			
+			return metaDatos;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 /*

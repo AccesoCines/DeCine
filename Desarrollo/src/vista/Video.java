@@ -48,7 +48,7 @@ public class Video extends JFrame {
 	 */
 	public Video() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 868, 480);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -56,8 +56,8 @@ public class Video extends JFrame {
 		wb = new JWebBrowser();
 		
 		wb.setBarsVisible(false);
-		wb.navigate("https://www.youtube.com/watch?v=GKiHB5AzihE");
-		
+		wb.navigate("http://www.sensacine.com/_video/iblogvision.aspx?cmedia=19558059");
+	
 	}
 
 }
