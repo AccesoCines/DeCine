@@ -34,11 +34,11 @@ public class PostgreSQL {
 	   //gb.guardarPelicula(p);
 	    //gb.guardarEmpleado(e);
 	    //gb.guardarSala(sala);
-	    p.añadirProyeccion(new Proyeccion(sala,p,new java.sql.Time(20,30,00)));
-	    p.añadirProyeccion(new Proyeccion(sala,p, new java.sql.Time(21,30,00)));
-	    p.añadirProyeccion(new Proyeccion(sala,p, new java.sql.Time(22,30,00)));
-	    p.añadirProyeccion(new Proyeccion(sala,p, new java.sql.Time(23,30,00)));
-	    p.añadirProyeccion(new Proyeccion(sala,p, new java.sql.Time(00,30,00)));
+	    p.anadirProyeccion(new Proyeccion(sala,p,new java.sql.Time(20,30,00)));
+	    p.anadirProyeccion(new Proyeccion(sala,p, new java.sql.Time(21,30,00)));
+	    p.anadirProyeccion(new Proyeccion(sala,p, new java.sql.Time(22,30,00)));
+	    p.anadirProyeccion(new Proyeccion(sala,p, new java.sql.Time(23,30,00)));
+	    p.anadirProyeccion(new Proyeccion(sala,p, new java.sql.Time(00,30,00)));
 //	    ArrayList<Pelicula> peliculas = p.cargarPeliculas();
 	    
 	    gb.guardarProyecciones(p);

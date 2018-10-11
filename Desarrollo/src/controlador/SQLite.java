@@ -22,7 +22,7 @@ public class SQLite{
 	   //new java.sql.Date(2018, 6, 15), new java.sql.Date(2018, 7, 10)
 	    Proyeccion pro = new Proyeccion ( sala, p, new java.sql.Time (20, 30, 00));
 
-	    p.añadirProyeccion(pro);
+	    p.anadirProyeccion(pro);
 	    
 		  boolean correcto = gb.guardarProyeccionesQL(p);
 	    if(correcto) {

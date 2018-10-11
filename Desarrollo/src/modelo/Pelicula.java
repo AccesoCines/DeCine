@@ -177,7 +177,7 @@ public class Pelicula {
 		return proyecciones;
 	}
 
-	public void añadirProyeccion(Proyeccion proyeccion) {
+	public void anadirProyeccion(Proyeccion proyeccion) {
 		proyecciones.add(proyeccion);
 	}
 

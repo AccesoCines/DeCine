@@ -22,7 +22,6 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
 
-import com.sun.glass.ui.Window;
 import com.toedter.calendar.JDateChooser;
 
 import modelo.Cargo;
