@@ -19,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 
 import controlador.DB4o;
 import modelo.Empleado;
+import modelo.Pelicula;
+import modelo.Sala;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -46,17 +48,29 @@ import javax.swing.JFormattedTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class VListado extends JFrame {
 
 	private JPanel contentPane;
 
-	private static ArrayList<Empleado> empleados;
 	private static DefaultTableModel model;
 	private static JTable table;
 	private JFrame jframe = this;
 	private static String bbdd;
 	private VMetaDatos vmd = new VMetaDatos();
+	private static VListado frame;
+	private String cine;
+	private ArrayList<Pelicula> peliculas = new ArrayList<>();
+	private ArrayList<Empleado> empleados = new ArrayList<>();
+	private ArrayList<Sala> salas = new ArrayList<>();
+	private JComboBox cbPeliculas;
+	private JComboBox cbEmpleados;
+	private JComboBox cbSalas;
+	private int peliSeleccionada = -1;
+	private int empleSeleccionado = -1;
+	private int salaSeleccionada = -1;
 
 	/**
 	 * Launch the application.
@@ -65,8 +79,9 @@ public class VListado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VListado frame = new VListado();
+					frame = new VListado();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -105,13 +120,9 @@ public class VListado extends JFrame {
 		alta.setBorder(null);
 		alta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				VAltaEmpl ae = new VAltaEmpl();
-				jframe.setContentPane(ae);
-				ae.setVisible(true);
-				//jframe.setLayout(getLayout());
-				//jframe.setContentPane(new VAltaEmpl());
-				//jframe.repaint();
+				Object[] opciones = { "Empleado", "Sala", "Pelícuola" };
+				JOptionPane.showOptionDialog(frame, "Elige una opción", "Selecciona", JOptionPane.YES_NO_CANCEL_OPTION, 
+						JOptionPane.PLAIN_MESSAGE, null, opciones, null);
 
 			}
 		});
@@ -149,6 +160,33 @@ public class VListado extends JFrame {
 		contentPane.add(historico);
 		
 		JComboBox cbCines = new JComboBox();
+		cbCines.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				try {
+					cine = e.getItem().toString();
+					System.out.println(cine);
+					
+					peliculas = Pelicula.cargarPeliculas(elegirBBDD(cine));
+					for(Pelicula p:peliculas) {
+						cbPeliculas.addItem(p.getTitulo());
+					}
+					cbPeliculas.setSelectedIndex(-1);
+					empleados = Empleado.cargarEmpleados(elegirBBDD(cine));
+					for(Empleado emple:empleados) {
+						cbEmpleados.addItem(emple.getNombre() + " " +emple.getApellido());
+					}
+					cbEmpleados.setSelectedIndex(-1);
+					salas = Sala.cargarSalas(elegirBBDD(cine));
+					for(Sala s:salas) {
+						cbSalas.addItem(s.getNumero());
+					}
+					cbSalas.setSelectedIndex(-1);
+				}catch(Exception ex) {
+					System.out.println(ex);
+				}
+				
+			}
+		});
 		cbCines.setModel(new DefaultComboBoxModel(new String[] {"Pr\u00EDncipe", "Zubiarte 3D", "Azul"}));
 		cbCines.setSize(350, 40);
 		cbCines.setLocation(146, 75);
@@ -159,7 +197,17 @@ public class VListado extends JFrame {
 		cbCines.setSelectedIndex(-1);
 		contentPane.add(cbCines);
 		
-		JComboBox cbEmpleados = new JComboBox();
+		cbEmpleados = new JComboBox();
+		cbEmpleados.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				try {
+					empleSeleccionado = cbEmpleados.getSelectedIndex();
+					System.out.println(cbEmpleados.getSelectedIndex());
+				}catch(Exception exc) {
+					System.out.println(exc);
+				}
+			}
+		});
 		cbEmpleados.setForeground(Color.WHITE);
 		cbEmpleados.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbEmpleados.setBorder(new LineBorder(Color.WHITE, 3, true));
@@ -168,7 +216,17 @@ public class VListado extends JFrame {
 		cbEmpleados.setSelectedIndex(-1);
 		contentPane.add(cbEmpleados);
 		
-		JComboBox cbPeliculas = new JComboBox();
+		cbPeliculas = new JComboBox();
+		cbPeliculas.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				try {
+					peliSeleccionada = cbPeliculas.getSelectedIndex();
+					System.out.println(cbPeliculas.getSelectedIndex());
+				}catch(Exception exc) {
+					System.out.println(exc);
+				}
+			}
+		});
 		cbPeliculas.setForeground(Color.WHITE);
 		cbPeliculas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbPeliculas.setBorder(new LineBorder(Color.WHITE, 3, true));
@@ -177,7 +235,17 @@ public class VListado extends JFrame {
 		cbPeliculas.setSelectedIndex(-1);
 		contentPane.add(cbPeliculas);
 		
-		JComboBox cbSalas = new JComboBox();
+		cbSalas = new JComboBox();
+		cbSalas.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				try {
+					salaSeleccionada = cbSalas.getSelectedIndex();
+					System.out.println(cbSalas.getSelectedIndex());
+				}catch(Exception exc) {
+					System.out.println(exc);
+				}
+			}
+		});
 		cbSalas.setForeground(Color.WHITE);
 		cbSalas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbSalas.setBorder(new LineBorder(Color.WHITE, 3, true));
@@ -248,9 +316,7 @@ public class VListado extends JFrame {
 
 			model.insertRow(model.getRowCount(), new Object[] { e.getNombre(), e.getApellido() });
 		}
-		
 	}
-	
 	private String elegirBBDD(String nombreBd) {
 		switch (nombreBd) {
 			case "Príncipe":

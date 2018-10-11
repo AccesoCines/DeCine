@@ -406,6 +406,59 @@ public class GestorBBDD {
 		
 	}
 
+
+	public ArrayList<Empleado> cargarEmpleados() {
+		ArrayList<Empleado> empleados = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Empleado"+'"'+" WHERE ALTA=true ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				empleados.add(new Empleado(
+						rs.getString("nombre"),
+						rs.getString("apellido"),
+						rs.getString("cargo").equals("camarero")?
+												Cargo.camarero:
+							rs.getString("cargo").equals("portero")?
+												Cargo.portero:
+							rs.getString("cargo").equals("acomodadorResponsableBar")?
+												Cargo.acomodadorResponsableBar:
+							rs.getString("cargo").equals("reponsableSala")?
+												Cargo.responsableSala:
+							rs.getString("cargo").equals("responsableCine")?
+												Cargo.responsableCine:
+												Cargo.mantenimiento,
+						rs.getDate("fechacontratacion"),
+						rs.getDate("fechanacimiento"),
+						rs.getString("nacionalidad"),
+						rs.getDate("fechafincontrato"),
+						rs.getBoolean("alta")
+						));
+			}
+			if(empleados.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay empleados", null, 0);
+				return null;
+			}else {
+				return empleados;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	public ArrayList<Empleado> cargarEmpleadosQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ArrayList<Sala> cargarSalasQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 /*
 	public ArrayList<Sala> cargarSalasQL() {
 		// TODO Auto-generated method stub

@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -42,8 +43,24 @@ public class Empleado {
 		}
 		return correcto;
 	}
-	
 
+	public static ArrayList<Empleado> cargarEmpleados(String bbdd){
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		ArrayList<Empleado> empleados = new ArrayList<>();
+		switch(bbdd) {
+			case "postgre":
+				empleados = gb.cargarEmpleados();
+				break;
+			case "sqlite":
+				empleados = gb.cargarEmpleadosQL();
+				break;
+			case "db4o":
+				empleados = DB4o.mostrarListEmple();
+				break;
+		}
+		return empleados;
+	}
+	
 	public Empleado(String nombre, String apellido, Cargo cargo, Date fechaContratacion, Date fechaNacimiento,
 			String nacionalidad, Date fechaFinContrato, boolean alta) {
 		super();

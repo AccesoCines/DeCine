@@ -78,7 +78,7 @@ public class Sala {
 		proyecciones = new ArrayList<>();
 	}
 	
-	public ArrayList<Sala> cargarSalas() {
+	public static ArrayList<Sala> cargarSalas(String bbdd) {
 		GestorBBDD gb = new GestorBBDD(bbdd);
 		ArrayList<Sala> salas = new ArrayList<>();
 		switch(bbdd) {
@@ -86,7 +86,7 @@ public class Sala {
 			salas = gb.cargarSalas();
 			break;
 		case "sqlite":
-			//salas = gb.cargarSalasQL();
+			salas = gb.cargarSalasQL();
 			break;
 		case "db4o":
 			salas = DB4o.mostrarListSala();

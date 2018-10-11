@@ -21,11 +21,18 @@ public class Pelicula {
 	private java.sql.Date fechaFin;
 	private boolean alta;
 	private int id;
-	private String bbdd = "db4o"; 
-	
+	private static String bbdd; 
 	private ArrayList<Proyeccion> proyecciones;
 	
-	public ArrayList<Pelicula> cargarPeliculas(){
+	public static String getBbdd() {
+		return bbdd;
+	}
+
+	public static void setBbdd(String bbdd) {
+		Pelicula.bbdd = bbdd;
+	}
+
+	public static ArrayList<Pelicula> cargarPeliculas(String bbdd){
 		GestorBBDD gb = new GestorBBDD(bbdd);
 		ArrayList<Pelicula> pelis = new ArrayList<>();
 		switch(bbdd) {
