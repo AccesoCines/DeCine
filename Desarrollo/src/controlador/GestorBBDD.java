@@ -376,13 +376,26 @@ public class GestorBBDD {
 			metaDatos.setDriver(dbmeta.getDriverName());
 			metaDatos.setUrl(dbmeta.getURL());
 			metaDatos.setUsuario(dbmeta.getUserName());
-			ResultSet rs = dbmeta.getColumns(null, null, null, null);
+			ResultSet rs = dbmeta.getTables(null, null, null, null);
 			while(rs.next()) {
-				metaDatos.a = rs.getString("TABLE_SCHEM");
-				String nombre = rs.getString("TABLE_NAME");
+				String nombreTabla = rs.getString("TABLE_NAME");
+				String esquema = rs.getString("TABLE_SCHEM");
+				String clavePrimaria="";
+				ResultSet rsp = dbmeta.getPrimaryKeys(null, null, nombreTabla);
+				while(rsp.next()) {
+					clavePrimaria = rsp.getString("PK_NAME");
+				}
+				Tabla tabla = new Tabla(nombreTabla,esquema,clavePrimaria);
+				metaDatos.anadirTabla(tabla);
+				ResultSet rsc = dbmeta.getColumns(null, null, nombreTabla, null);
+				while(rsc.next()) {
+					tabla.anadirColumna(new Columna(
+								rsc.getString("DATA_TYPE"),
+								rsc.getInt("NULLABLE")==1?true:false,
+								rsc.getString("COLUMN_NAME")
+							));
+				}
 			}
-						
-			
 			return metaDatos;
 		} catch (SQLException e) {
 			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());

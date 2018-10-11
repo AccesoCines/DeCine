@@ -7,22 +7,18 @@ public class MetaDato {
 	private String driver;
 	private String url;
 	private String usuario;
-	private ArrayList<Columna> columnas;
+	private ArrayList<Tabla> tablas;
 	
 	public MetaDato(String nombreBD, String driver, String url, String usuario) {
 		this.nombreBD = nombreBD;
 		this.driver = driver;
 		this.url = url;
 		this.usuario = usuario;
-		columnas = new ArrayList<>();
+		tablas = new ArrayList<>();
 	}
-	
-	
 
 	public MetaDato() {
 	}
-
-
 
 	public String getNombreBD() {
 		return nombreBD;
@@ -56,11 +52,11 @@ public class MetaDato {
 		this.usuario = usuario;
 	}
 
-	public ArrayList<Columna> getColumnas() {
-		return columnas;
+	public ArrayList<Tabla> getTablas() {
+		return tablas;
 	}
 	
-	public void anadirColumnas(Columna columna) {
-		columnas.add(columna);
+	public void anadirTabla(Tabla tabla) {
+		tablas.add(tabla);
 	}
 }

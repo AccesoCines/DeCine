@@ -26,7 +26,7 @@ public class VMetaDatos extends JFrame {
 	private JPanel contentPane;
 	private static DefaultTableModel model;
 	private static JTable table;
-	private static ArrayList<MetaDato> metadatos;
+	private static MetaDato metadatos;
 	
 	/**
 	 * Launch the application.
