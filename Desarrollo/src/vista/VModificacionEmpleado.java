@@ -23,6 +23,7 @@ public class VModificacionEmpleado extends JFrame {
 	private JTextField txtApellido;
 	private JTextField txtNacionalidad;
 	private JTextField txtNombre;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
