@@ -25,6 +25,9 @@ import modelo.Empleado;
 import modelo.MetaDato;
 import modelo.Tabla;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VMetaDatos extends JFrame {
 
@@ -37,6 +40,7 @@ public class VMetaDatos extends JFrame {
 	private static JLabel txtUrl;
 	private static JLabel txtUsuario;
 	private static String bbdd;
+	private static VMetaDatos frame;
 	
 	/**
 	 * Launch the application.
@@ -45,7 +49,7 @@ public class VMetaDatos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VMetaDatos frame = new VMetaDatos();
+					frame = new VMetaDatos();
 					frame.setVisible(true);
 					
 					
@@ -94,6 +98,7 @@ public class VMetaDatos extends JFrame {
 	 * Create the frame.
 	 */
 	public VMetaDatos() {
+		
 		setBounds(new Rectangle(0, 0, 800, 800));
 		setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
 		setExtendedState(Frame.NORMAL);
@@ -106,6 +111,8 @@ public class VMetaDatos extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		getContentPane().setBackground(new Color(233, 69, 75));
+		
+		setLocationRelativeTo(null);
 		
 		JLabel lblMetadatos = new JLabel("| Metadatos");
 		lblMetadatos.setForeground(Color.WHITE);
@@ -195,6 +202,19 @@ public class VMetaDatos extends JFrame {
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtUsuario.setBounds(236, 298, 501, 31);
 		contentPane.add(txtUsuario);
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VListado vl = new VListado();
+				vl.setVisible(true);
+				frame.dispose();
+			}
+		});
+		button.setContentAreaFilled(false);
+		button.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botVOLVER.png")));
+		button.setBounds(600, 50, 137, 80);
+		contentPane.add(button);
 		
 		
 	}
