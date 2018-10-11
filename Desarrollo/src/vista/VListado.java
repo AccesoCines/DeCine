@@ -24,6 +24,7 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -42,6 +43,7 @@ import java.awt.Cursor;
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JFormattedTextField;
+import javax.swing.DefaultComboBoxModel;
 
 public class VListado extends JFrame {
 
@@ -51,6 +53,8 @@ public class VListado extends JFrame {
 	private static DefaultTableModel model;
 	private static JTable table;
 	private JFrame jframe = this;
+	private static String bbdd;
+	private VMetaDatos vmd = new VMetaDatos();
 
 	/**
 	 * Launch the application.
@@ -64,12 +68,7 @@ public class VListado extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				empleados = DB4o.mostrarListEmple();
-				model = (DefaultTableModel) table.getModel();
-				for (Empleado e : empleados) {
-
-					model.insertRow(model.getRowCount(), new Object[] { e.getNombre(), e.getApellido() });
-				}
+				
 			}
 
 		});
@@ -104,9 +103,7 @@ public class VListado extends JFrame {
 		alta.setBorder(null);
 		alta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-					
-				
+
 				VAltaEmpl ae = new VAltaEmpl();
 				jframe.setContentPane(ae);
 				ae.setVisible(true);
@@ -150,6 +147,7 @@ public class VListado extends JFrame {
 		contentPane.add(historico);
 		
 		JComboBox cbCines = new JComboBox();
+		cbCines.setModel(new DefaultComboBoxModel(new String[] {"Comercial", "Cl\u00E1sico", "Experimental"}));
 		cbCines.setSize(350, 31);
 		cbCines.setLocation(350, 74);
 		cbCines.setBorder(new LineBorder(Color.WHITE, 3, true));
@@ -185,7 +183,13 @@ public class VListado extends JFrame {
 		JButton btnInfo = new JButton("");
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String cine = elegirBBDD(cbCines.getSelectedItem().toString());
+				if(!cine.equals("")) {
+					vmd.setBbdd(elegirBBDD(cbCines.getSelectedItem().toString()));
+					vmd.cargarFormulario();
+					vmd.setVisible(true);
+					jframe.dispose();
+				}
 			}
 		});
 		btnInfo.setBounds(650, 380, 100, 80);
@@ -195,5 +199,26 @@ public class VListado extends JFrame {
 
 		setLocationRelativeTo(null);
 
+		empleados = DB4o.mostrarListEmple();
+		model = (DefaultTableModel) table.getModel();
+		for (Empleado e : empleados) {
+
+			model.insertRow(model.getRowCount(), new Object[] { e.getNombre(), e.getApellido() });
+		}
+		
+	}
+	
+	private String elegirBBDD(String nombreBd) {
+		switch (nombreBd) {
+			case "Comercial":
+				return "sqlite";
+			case "Clásico":
+				return "db4o";
+			case "Experimental":
+				return "postgre";
+			default:
+				JOptionPane.showMessageDialog(getParent(), "Debes elegir un cine en el desplegable", "Error", JOptionPane.ERROR_MESSAGE);
+				return "";
+		}
 	}
 }

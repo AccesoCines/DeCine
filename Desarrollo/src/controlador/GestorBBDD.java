@@ -372,25 +372,26 @@ public class GestorBBDD {
 		MetaDato metaDatos = null;
 		try {
 			DatabaseMetaData dbmeta = con.getMetaData();
+			metaDatos = new MetaDato();
 			metaDatos.setNombreBD(dbmeta.getDatabaseProductName());
 			metaDatos.setDriver(dbmeta.getDriverName());
 			metaDatos.setUrl(dbmeta.getURL());
 			metaDatos.setUsuario(dbmeta.getUserName());
-			ResultSet rs = dbmeta.getTables(null, null, null, null);
+			ResultSet rs = dbmeta.getTables(null, "public", "%", null);
 			while(rs.next()) {
 				String nombreTabla = rs.getString("TABLE_NAME");
 				String esquema = rs.getString("TABLE_SCHEM");
 				String clavePrimaria="";
 				ResultSet rsp = dbmeta.getPrimaryKeys(null, null, nombreTabla);
 				while(rsp.next()) {
-					clavePrimaria = rsp.getString("PK_NAME");
+					clavePrimaria = rsp.getString("COLUMN_NAME");
 				}
 				Tabla tabla = new Tabla(nombreTabla,esquema,clavePrimaria);
 				metaDatos.anadirTabla(tabla);
 				ResultSet rsc = dbmeta.getColumns(null, null, nombreTabla, null);
 				while(rsc.next()) {
 					tabla.anadirColumna(new Columna(
-								rsc.getString("DATA_TYPE"),
+								rsc.getString("TYPE_NAME"),
 								rsc.getInt("NULLABLE")==1?true:false,
 								rsc.getString("COLUMN_NAME")
 							));

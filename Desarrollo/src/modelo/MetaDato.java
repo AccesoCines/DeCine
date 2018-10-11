@@ -18,6 +18,7 @@ public class MetaDato {
 	}
 
 	public MetaDato() {
+		tablas = new ArrayList<>();
 	}
 
 	public String getNombreBD() {
