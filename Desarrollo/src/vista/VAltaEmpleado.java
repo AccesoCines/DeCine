@@ -139,9 +139,9 @@ public class VAltaEmpleado extends JFrame {
 				break;
 				}
 				
-				Empleado emple = new Empleado(txtnombre.getText(), txtapellido.getText(), car, txtfecCont., (Date)txtfecNac.getDate(), txtnaci.getText(), (Date)txtfecFinCon.getDate(), true);
+				//Empleado emple = new Empleado(txtnombre.getText(), txtapellido.getText(), car, (Date) txtfecCont.getDate(), (Date)txtfecNac.getDate(), txtnaci.getText(), (Date)txtfecFinCon.getDate(), true);
 	
-				emple.guardarEmpleado();
+				//emple.guardarEmpleado();
 				
 				//TODO: PROBAR SI FUNSIONA
 			}
