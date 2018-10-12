@@ -2,16 +2,15 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Frame;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
 
-public class VDatos extends JFrame {
+public class VInfoCine extends JFrame {
 
 	private JPanel contentPane;
 
@@ -22,7 +21,7 @@ public class VDatos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VDatos frame = new VDatos();
+					VInfoCine frame = new VInfoCine();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,23 +33,22 @@ public class VDatos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VDatos() {
+	public VInfoCine() {
+		
+		setBounds(new Rectangle(0, 0, 800, 800));
 		
 		// Poner icono ventana
-	    setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
+		setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
+		
+		setExtendedState(Frame.NORMAL);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(0, 0, 800, 800);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.RED);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerDateModel());
-		spinner.setBounds(221, 147, 147, 70);
-		contentPane.add(spinner);
 	}
+
 }
