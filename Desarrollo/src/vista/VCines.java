@@ -76,7 +76,7 @@ public class VCines extends JFrame {
 		setBounds(0, 0, 800, 800);
 		
 		setExtendedState(Frame.NORMAL);	
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
 		
 	/*	

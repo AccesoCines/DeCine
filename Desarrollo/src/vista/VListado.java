@@ -97,7 +97,7 @@ public class VListado extends JFrame {
 		setBounds(new Rectangle(0, 0, 800, 800));
 		setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
 		setExtendedState(Frame.NORMAL);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
 		getContentPane().setBackground(new Color(233, 69, 75));
 		contentPane = new JPanel();

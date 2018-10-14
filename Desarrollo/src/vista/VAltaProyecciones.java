@@ -58,6 +58,7 @@ public class VAltaProyecciones extends JFrame {
 	private static ArrayList<Pelicula> peliculas;
 	private static ArrayList<Sala> salas;
 	private Time hora = new Time(new Date().getTime());
+	private static String bbdd;
 	
 	/**
 	 * Launch the application.
@@ -68,7 +69,7 @@ public class VAltaProyecciones extends JFrame {
 				try {
 					frame = new VAltaProyecciones();
 					
-					peliculas = new Pelicula().cargarPeliculas();
+					peliculas = new Pelicula().cargarPeliculas(bbdd);
 					String[] pelis = new String[peliculas.size()];
 					int i = 0;
 					for(Pelicula p :peliculas) {
@@ -79,7 +80,7 @@ public class VAltaProyecciones extends JFrame {
 					cbPeliculas.setModel(dfb);
 					if(peliculas!=null) cbPeliculas.setModel(dfb);
 					
-					salas = new Sala().cargarSalas();
+					salas = new Sala().cargarSalas(bbdd);
 					Integer[] salasAr = new Integer[salas.size()];
 					int j = 0;
 					for(Sala s : salas) {
