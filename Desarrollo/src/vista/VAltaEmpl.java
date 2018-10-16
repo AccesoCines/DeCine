@@ -134,7 +134,7 @@ public class VAltaEmpl extends JPanel {
 			}
 		});
 		ok.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
-		ok.setBounds(619, 44, 91, 80);
+		ok.setBounds(651, 50, 91, 80);
 		contentPane.add(ok);
 		ok.setContentAreaFilled(false);
 		
