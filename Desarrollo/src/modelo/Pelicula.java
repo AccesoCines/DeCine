@@ -66,7 +66,7 @@ public class Pelicula {
 		return correcto;
 	}
 	
-	public boolean guardarPelicula() {
+	public boolean guardarPelicula(String bbdd) {
 		GestorBBDD gb = new GestorBBDD(bbdd);	
 		return gb.guardarPelicula(this);
 	}

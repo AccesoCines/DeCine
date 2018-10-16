@@ -11,11 +11,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import com.toedter.calendar.JDateChooser;
+
+import controlador.GestorBBDD;
+import modelo.Pelicula;
+
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.awt.event.ActionEvent;
+import javax.swing.DropMode;
+import javax.swing.JTextArea;
 
 public class VModPelicula extends JFrame {
 
@@ -26,6 +37,12 @@ public class VModPelicula extends JFrame {
 	private JTextField txtActorPrincipal;
 	private JTextField txtActorSecundario;
 	private JTextField txtDuracion;
+	private static VModPelicula frame;
+	private JTextField txtTrailer;
+	private JTextArea txtSinopsis;
+	private JDateChooser txtFecIni;
+	private JDateChooser txtFecFin;
+	private String bbdd;
 
 	/**
 	 * Launch the application.
@@ -34,7 +51,7 @@ public class VModPelicula extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VModPelicula frame = new VModPelicula();
+					frame = new VModPelicula();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -77,120 +94,181 @@ public class VModPelicula extends JFrame {
 		contentPane.add(cine);
 		
 		JButton btnOk = new JButton("");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String titulo = txtTitulo.getText();
+				int anyo=0;
+				int duracion=0;
+				try {
+					anyo = Integer.parseInt(txtAnyoEstreno.getText());
+					duracion = Integer.parseInt(txtDuracion.getText());
+				}catch(NumberFormatException ex) {
+					JOptionPane.showMessageDialog(getParent(), "Comprueba que el año y la duración "
+							+ "son números", "Error", JOptionPane.WARNING_MESSAGE);
+					
+				}
+				String director = txtDirector.getText();
+				String actorPrin = txtActorPrincipal.getText();
+				String actorSecun = txtActorSecundario.getText();
+				Date fechaIni = (Date) txtFecIni.getDate();
+				Date fechaFin = (Date) txtFecFin.getDate();
+				String trailer = txtTrailer.getText();
+				String sinopsis = txtSinopsis.getText();
+				
+				if(titulo.equals("") || director.equals("") || actorPrin.equals("")
+						|| actorSecun.equals("") || fechaIni.toString().equals("") ||
+						fechaFin.toString().equals("") || trailer.equals("") ||
+						sinopsis.equals("") || anyo==0 || duracion==0) {
+					JOptionPane.showMessageDialog(getParent(), "Debes rellenar todos los campos"
+							, "Error", JOptionPane.WARNING_MESSAGE);
+				}else {
+					Pelicula p = new Pelicula(titulo,anyo,director,actorPrin,actorSecun,sinopsis,
+							duracion,trailer,fechaIni,fechaFin,true);
+					boolean correcto = p.guardarPelicula(bbdd);
+					if(correcto) {
+						JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
+								, "Guardado", JOptionPane.PLAIN_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(getParent(), "Error al guardar la película"
+								, "Error", JOptionPane.WARNING_MESSAGE);
+					}
+					
+				}
+			}
+		});
 		btnOk.setContentAreaFilled(false);
-		btnOk.setBounds(603, 50, 126, 99);
+		btnOk.setBounds(670, 30, 91, 80);
 		contentPane.add(btnOk);
 		btnOk.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
 		
 		JLabel titulo = new JLabel("T\u00EDtulo: ");
 		titulo.setForeground(Color.WHITE);
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		titulo.setBounds(50, 167, 112, 31);
+		titulo.setBounds(50, 144, 112, 25);
 		contentPane.add(titulo);
 		
 		JLabel anyoEstreno = new JLabel("A\u00F1o de estreno:");
 		anyoEstreno.setForeground(Color.WHITE);
 		anyoEstreno.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		anyoEstreno.setBounds(50, 211, 192, 31);
+		anyoEstreno.setBounds(50, 180, 192, 25);
 		contentPane.add(anyoEstreno);
 		
 		JLabel director = new JLabel("Director:");
 		director.setForeground(Color.WHITE);
 		director.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		director.setBounds(50, 257, 112, 31);
+		director.setBounds(50, 216, 112, 25);
 		contentPane.add(director);
 		
 		JLabel actorPrincipal = new JLabel("Actor principal:");
 		actorPrincipal.setForeground(Color.WHITE);
 		actorPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		actorPrincipal.setBounds(50, 301, 225, 31);
+		actorPrincipal.setBounds(50, 252, 181, 25);
 		contentPane.add(actorPrincipal);
 		
 		JLabel actorSecundario = new JLabel("Actor secundario:");
 		actorSecundario.setForeground(Color.WHITE);
 		actorSecundario.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		actorSecundario.setBounds(50, 346, 225, 31);
+		actorSecundario.setBounds(50, 288, 204, 25);
 		contentPane.add(actorSecundario);
 		
 		JLabel sinopsis = new JLabel("Sinopsis:");
 		sinopsis.setForeground(Color.WHITE);
 		sinopsis.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		sinopsis.setBounds(50, 390, 225, 31);
+		sinopsis.setBounds(50, 468, 186, 25);
 		contentPane.add(sinopsis);
 		
 		JLabel duracion = new JLabel("Duraci\u00F3n:");
 		duracion.setForeground(Color.WHITE);
 		duracion.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		duracion.setBounds(50, 434, 225, 31);
+		duracion.setBounds(50, 324, 153, 25);
 		contentPane.add(duracion);
 		
 		JLabel trailer = new JLabel("Trailer: ");
 		trailer.setForeground(Color.WHITE);
 		trailer.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		trailer.setBounds(50, 490, 225, 31);
+		trailer.setBounds(50, 432, 171, 25);
 		contentPane.add(trailer);
 		
 		JLabel fechaInicio = new JLabel("Fecha inicio:");
 		fechaInicio.setForeground(Color.WHITE);
 		fechaInicio.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		fechaInicio.setBounds(50, 534, 225, 31);
+		fechaInicio.setBounds(50, 360, 181, 25);
 		contentPane.add(fechaInicio);
 		
 		JLabel fechaFin = new JLabel("Fecha fin:");
 		fechaFin.setForeground(Color.WHITE);
 		fechaFin.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		fechaFin.setBounds(50, 578, 225, 31);
+		fechaFin.setBounds(50, 396, 171, 25);
 		contentPane.add(fechaFin);
 		
 		txtTitulo = new JTextField();
 		txtTitulo.setColumns(10);
-		txtTitulo.setBounds(315, 167, 204, 22);
+		txtTitulo.setBounds(252, 144, 380, 25);
 		contentPane.add(txtTitulo);
 		
 		txtAnyoEstreno = new JTextField();
 		txtAnyoEstreno.setColumns(10);
-		txtAnyoEstreno.setBounds(315, 211, 204, 22);
+		txtAnyoEstreno.setBounds(252, 180, 112, 25);
 		contentPane.add(txtAnyoEstreno);
 		
 		txtDirector = new JTextField();
 		txtDirector.setColumns(10);
-		txtDirector.setBounds(315, 257, 204, 22);
+		txtDirector.setBounds(252, 216, 380, 25);
 		contentPane.add(txtDirector);
 		
 		txtActorPrincipal = new JTextField();
 		txtActorPrincipal.setColumns(10);
-		txtActorPrincipal.setBounds(315, 301, 204, 22);
+		txtActorPrincipal.setBounds(252, 252, 380, 25);
 		contentPane.add(txtActorPrincipal);
 		
 		txtActorSecundario = new JTextField();
 		txtActorSecundario.setColumns(10);
-		txtActorSecundario.setBounds(315, 346, 205, 22);
+		txtActorSecundario.setBounds(251, 288, 381, 25);
 		contentPane.add(txtActorSecundario);
-		
-		JTextPane txtSinopsis = new JTextPane();
-		txtSinopsis.setBounds(315, 390, 204, 22);
-		contentPane.add(txtSinopsis);
 		
 		txtDuracion = new JTextField();
 		txtDuracion.setColumns(10);
-		txtDuracion.setBounds(315, 434, 205, 22);
+		txtDuracion.setBounds(252, 324, 112, 25);
 		contentPane.add(txtDuracion);
 		
-		JDateChooser txtFecIni = new JDateChooser();
-		txtFecIni.setBounds(315, 534, 204, 22);
+		txtFecIni = new JDateChooser();
+		txtFecIni.setBounds(252, 360, 204, 25);
 		contentPane.add(txtFecIni);
 		
-		JDateChooser txtFecFin = new JDateChooser();
-		txtFecFin.setBounds(315, 578, 204, 22);
+		txtFecFin = new JDateChooser();
+		txtFecFin.setBounds(252, 396, 204, 25);
 		contentPane.add(txtFecFin);
 		
 		JButton btnCancelar = new JButton("");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+				VListado vl = new VListado();
+				vl.setVisible(true);
+			}
+		});
 		btnCancelar.setContentAreaFilled(false);
-		btnCancelar.setBounds(60, 633, 244, 107);
+		btnCancelar.setBounds(23, 666, 181, 80);
 		contentPane.add(btnCancelar);
 		btnCancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+
+		
+		txtTrailer = new JTextField();
+		txtTrailer.setColumns(10);
+		txtTrailer.setBounds(252, 432, 380, 25);
+		contentPane.add(txtTrailer);
+		
+		txtSinopsis = new JTextArea();
+		txtSinopsis.setLineWrap(true);
+		txtSinopsis.setColumns(10);
+		txtSinopsis.setBounds(252, 468, 380, 223);
+		contentPane.add(txtSinopsis);
 		
 		setLocationRelativeTo(null);
 		
+	}
+
+	public void setBbdd(String bbdd) {
+		this.bbdd = bbdd;
 	}
 }

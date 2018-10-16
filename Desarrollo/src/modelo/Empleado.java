@@ -27,7 +27,7 @@ public class Empleado {
 	// Más de 5 años : Responsable salón de cine
 	private List<Sala> salas;
 	//LA BBDD LA CARGA EN VENTANA LISTADO
-	public boolean guardarEmpleado() {
+	public boolean guardarEmpleado(String bbdd) {
 		GestorBBDD gb = new GestorBBDD(bbdd);
 		boolean correcto = false;
 		switch(bbdd) {
@@ -63,7 +63,6 @@ public class Empleado {
 	
 	public Empleado(String nombre, String apellido, Cargo cargo, Date fechaContratacion, Date fechaNacimiento,
 			String nacionalidad, Date fechaFinContrato, boolean alta) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cargo = cargo;
