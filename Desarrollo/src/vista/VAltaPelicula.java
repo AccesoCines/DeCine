@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,8 +17,13 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import com.toedter.calendar.JYearChooser;
+
+import modelo.Cargo;
+
 import javax.swing.JTextPane;
 
 public class VAltaPelicula extends JFrame {
@@ -80,6 +87,11 @@ public class VAltaPelicula extends JFrame {
 		btnOk.setBounds(609, 38, 126, 99);
 		contentPane.add(btnOk);
 		btnOk.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		 // TODO VALIDACIONES
+				
+			
 		
 		txtDuracion = new JTextField();
 		txtDuracion.setColumns(10);
