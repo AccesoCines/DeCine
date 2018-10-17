@@ -47,7 +47,10 @@ public class VCines extends JFrame {
 	private JRadioButton rbYelmo;
 	private JLabel lbAdvertenciaCines;
 	private ButtonGroup btnGroup;
-	private JButton botonCartelera;
+	private JButton btnEntrarCines;
+	private JButton btnInfoCines;
+	private JButton cancelar;
+	private JButton volver;
 
 	/**
 	 * Launch the application.
@@ -73,108 +76,79 @@ public class VCines extends JFrame {
 		// Poner icono ventana
 		setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
 		
-		setBounds(0, 0, 800, 800);
+	//	setBounds(0, 0, 800, 800);
 		
 		setExtendedState(Frame.NORMAL);	
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
 		
-	/*	
-		contentPane = new JPanel();
-		contentPane.setBounds(new Rectangle(0, 0, 800, 800));
-		contentPane.setBorder(null);
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		getContentPane().setBackground(new Color(233, 69, 75));
-*/
-		
+	
 		contentPane.setBackground(new Color(233, 69, 75));
 		contentPane.setForeground(new Color(233, 69, 75));
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setBounds(100, 100, 1200, 1200);
+		setBounds(100, 100, 800, 800);
 
-		
-	//	JButton botonAlta = new JButton(new ImageIcon("botALTA.png"));
-	//	botonAlta.setBounds (0, 0, 0, 0);
-	//	contentPane.add(botonAlta);
-		
-		/*M�todo mostrado por Gregg Bolinger en JavaRanch*/ImageIcon icon = new ImageIcon("..\\imagenes\\imagenesBOTONES\\botALTA.png");
-		Image img = icon.getImage(); //convertimos icon en una imagen
-		 //creamos una imagen nueva d�ndole las dimensiones que queramos a la antigua		
-		Image otraimg = img.getScaledInstance(452,350,java.awt.Image.SCALE_SMOOTH);
-		ImageIcon otroicon = new ImageIcon(otraimg);
-		
-		JButton botonCartelera = new JButton(new ImageIcon(VCines.class.getResource("/imagenes/CLAQUETAS/clac cartelera.png")));
-		botonCartelera.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-				System.out.println("He pulsado");
-				
-
-				if ( rbPrincipe.isSelected()) {
-					
-					lbAdvertenciaCines.setVisible(false);
-					
-				}
-				else
-				{
-					lbAdvertenciaCines.setVisible(true);
-					
-				}
-				
-			}
-		});
-		//botonCartelera.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		botonCartelera.setBounds(new Rectangle(100, 100, 452, 350));
-		botonCartelera.setAlignmentX(Component.CENTER_ALIGNMENT);
-		botonCartelera.setPreferredSize(new Dimension(452, 350));
-		botonCartelera.setSelectedIcon(new ImageIcon("..\\imagenes\\imagenesBOTONES\\botALTA.png"));
-		botonCartelera.setContentAreaFilled(false);
-		botonCartelera.setContentAreaFilled(false);
-		botonCartelera.setBorderPainted(false);
-
-		
-		botonCartelera.setBounds(133, 177, 131, 97);
-		contentPane.add(botonCartelera);
-		botonCartelera.setMargin(null);
-
-		
-		
-	
-		botonCartelera.addActionListener(new ActionListener() {
+	//
+		JButton btnEntrarCines = new JButton("");
+		btnEntrarCines.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-
-				
-				
-		
+				//TO DO CAMBIAR VENTANA A LA QUE VA
+			VAltaSalas salas = new VAltaSalas();
+			salas.setVisible(true);
+			VCines.this.dispose();		
 			}
 		});
+		btnEntrarCines.setContentAreaFilled(false);
+		btnEntrarCines.setBounds(231, 123, 107, 89);
+		contentPane.add(btnEntrarCines);
+		btnEntrarCines.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/CLAQUETAS/clac CARTELERA.png")));
 		
 		
-		Image img2 = icon.getImage(); //convertimos icon en una imagen
-		Image otraimg2 = img.getScaledInstance(452,350,java.awt.Image.SCALE_SMOOTH); //creamos una imagen nueva d�ndole las dimensiones que queramos a la antigua		
-		ImageIcon otroicon2 = new ImageIcon(otraimg2);
-		JButton btBotonSalas = new JButton(new ImageIcon(VCines.class.getResource("/imagenes/CLAQUETAS/clac SALAS.png")));
-		btBotonSalas.setFont(new Font("Tahoma", Font.PLAIN, 20));
-
-		btBotonSalas.setContentAreaFilled(false);
-		btBotonSalas.setBorderPainted(false);
-		//botonSalas.setBorderPainted(false);
-		
-		btBotonSalas.setBounds(1028, 18, 657, 520);
-		contentPane.add(btBotonSalas);
-		
-		
-		btBotonSalas.addActionListener(new ActionListener() {
+		JButton btnInfoCines = new JButton("");
+		btnInfoCines.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				//TO DO CAMBIAR VENTANA A LA QUE VA
+				VInfoCines cines = new VInfoCines();
+				cines.setVisible(true);
+				VCines.this.dispose();					
 			}
 		});
+		btnInfoCines.setContentAreaFilled(false);
+		btnInfoCines.setBounds(441, 123, 107, 89);
+		contentPane.add(btnInfoCines);
+		btnInfoCines.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/CLAQUETAS/clac infocine.png")));
 
+		JButton cancelar = new JButton("");
+		cancelar.setBorderPainted(false);
+		cancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		cancelar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				VCines.this.dispose();
+				}
+		});
+		cancelar.setBounds(37, 599, 244, 107);
+		contentPane.add(cancelar);
+		cancelar.setContentAreaFilled(false);
+		
+		
+//		
+//	
+//		btnEntrarCines.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				
+//				String texto="Seleccionar cine";
+//				btnEntrarCines.setToolTipText(texto);
+//				
+//				
+//		
+//			}
+//		});
+		
+		
+		
 		
 		
 		
@@ -211,7 +185,7 @@ public class VCines extends JFrame {
 		JRadioButton rbPrincipe = new JRadioButton("  PR\u00CDNCIPE (Cine Comercial)");
 		rbPrincipe.setForeground(Color.WHITE);
 		rbPrincipe.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		rbPrincipe.setBounds(159, 329, 2000, 46);
+		rbPrincipe.setBounds(198, 317, 482, 46);
 		contentPane.add(rbPrincipe);
 		rbPrincipe.setContentAreaFilled(false);
 		
@@ -219,7 +193,7 @@ public class VCines extends JFrame {
 		JRadioButton rbZubiarte = new JRadioButton("  ZUBIARTE 3D (Cine documental)");
 		rbZubiarte.setForeground(Color.WHITE);
 		rbZubiarte.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		rbZubiarte.setBounds(159, 400, 2000, 46);
+		rbZubiarte.setBounds(198, 388, 482, 46);
 		contentPane.add(rbZubiarte);
 		rbZubiarte.setContentAreaFilled(false);
 		
@@ -227,7 +201,7 @@ public class VCines extends JFrame {
 		JRadioButton rbAzul = new JRadioButton("  AZUL (Cine Experimental)");
 		rbAzul.setForeground(Color.WHITE);
 		rbAzul.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		rbAzul.setBounds(159, 467, 2000, 46);
+		rbAzul.setBounds(198, 455, 482, 46);
 		contentPane.add(rbAzul);
 		rbAzul.setContentAreaFilled(false);
 		
@@ -235,7 +209,7 @@ public class VCines extends JFrame {
 		JRadioButton rbYelmo = new JRadioButton("  JUNIOR YELMO (Cine Infantil)");
 		rbYelmo.setForeground(Color.WHITE);
 		rbYelmo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		rbYelmo.setBounds(159, 542, 2000, 46);
+		rbYelmo.setBounds(198, 530, 482, 46);
 		contentPane.add(rbYelmo);
 		rbYelmo.setContentAreaFilled(false);
 		
@@ -251,23 +225,19 @@ public class VCines extends JFrame {
 		    
 		    
 		    
-		    JLabel lbAdvertenciaCines = new JLabel("Seleccionar Cine");
-		    lbAdvertenciaCines.setVisible(false);
+		    JLabel lbAdvertenciaCines = new JLabel("Seleccionar un cine para continuar");
+		    if (rbPrincipe.isSelected() || rbZubiarte.isSelected() || rbAzul.isSelected() || rbYelmo.isSelected()) {
+			    lbAdvertenciaCines.setVisible(false);
+		    }else
+		    {
+			    lbAdvertenciaCines.setVisible(false);
+
+		    }
 		    lbAdvertenciaCines.setBackground(Color.GREEN);
 		    lbAdvertenciaCines.setHorizontalAlignment(SwingConstants.CENTER);
-		    lbAdvertenciaCines.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		    lbAdvertenciaCines.setBounds(294, 220, 242, 51);
+		    lbAdvertenciaCines.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		    lbAdvertenciaCines.setBounds(226, 254, 344, 51);
 		    contentPane.add(lbAdvertenciaCines);
-
-
-		    setLocationRelativeTo(null);
-		
+		    
 	}
-	
-
-	
-	
-	
-	
-	
 }

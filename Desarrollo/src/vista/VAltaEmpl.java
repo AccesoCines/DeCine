@@ -130,7 +130,7 @@ public class VAltaEmpl extends JPanel {
 	
 				emple.guardarEmpleado(bbdd);
 				
-				//TODO: PROBAR SI FUNSIONA
+				//TO DO PROBAR SI FUNSIONA
 			}
 		});
 		ok.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));

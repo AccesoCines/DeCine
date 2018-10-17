@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Frame;
@@ -17,6 +18,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import com.toedter.calendar.JYearChooser;
 import javax.swing.JSpinner;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VAltaSalas extends JFrame {
 
@@ -83,6 +86,7 @@ public class VAltaSalas extends JFrame {
 		contentPane.add(dimPantalla);
 		
 		JCheckBox accDiscapac = new JCheckBox("Accesible discapacitados: ");
+		accDiscapac.setContentAreaFilled(false);
 		accDiscapac.setForeground(Color.WHITE);
 		accDiscapac.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		accDiscapac.setBounds(50, 406, 325, 31);
@@ -104,12 +108,8 @@ public class VAltaSalas extends JFrame {
 		txtResponsable.setBounds(450, 506, 300, 31);
 		contentPane.add(txtResponsable);
 		
-		JButton btnOk = new JButton("");
-		btnOk.setContentAreaFilled(false);
-		btnOk.setBounds(627, 50, 107, 89);
-		contentPane.add(btnOk);
-		btnOk.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
-		
+
+
 		JButton btnCancelar = new JButton("");
 		btnCancelar.setContentAreaFilled(false);
 		btnCancelar.setBounds(50, 637, 181, 80);
