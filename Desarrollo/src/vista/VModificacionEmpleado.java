@@ -128,6 +128,35 @@ public class VModificacionEmpleado extends JFrame {
 		contentPane.add(btnOk);
 		btnOk.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botOK.png")));
 		
+		btnOk.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e){
+			
+			//TODO MOSTRAR UN MENSAJE DE ERROR EN CASO DE QUE LA FECHA DE CONTRATACIÓN INDIQUE QUE NO CORRESPONDE
+			
+			/*de 0 a 1 año : portero, camarero.
+			 * de 1 a 3 años: acomodador o responsable de bar
+			 * de 3 a 5 años responsable de sala
+			 * más de 5 años responsable del salón de cine
+			 *
+			 */
+			
+			java.util.Date fechaConUtil = txtFecCont.getDate();
+			java.sql.Date fechaCon = new java.sql.Date(fechaConUtil.getTime());
+			
+				
+				
+		
+			
+		
+			
+		
+		
+				
+		}
+		});
+		
+	
+		
 		txtFecCont = new JDateChooser();
 		txtFecCont.setBounds(285, 350, 205, 31);
 		contentPane.add(txtFecCont);
