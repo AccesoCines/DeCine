@@ -227,4 +227,10 @@ public class VAltaEmpl extends JPanel {
 	public JPanel getPanelVentana() {
 		return this;
 	}
+
+
+	public void setbbdd(String bbdd2) {
+		// TODO Auto-generated method stub
+		this.bbdd = bbdd2;
+	}
 }

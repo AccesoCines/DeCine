@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 public class VAltaSalas extends JFrame {
 
 	private JPanel contentPane;
+	private String bbdd;
 
 	/**
 	 * Launch the application.
@@ -139,5 +140,10 @@ public class VAltaSalas extends JFrame {
 		contentPane.add(txtAforo);
 		
 		setLocationRelativeTo(null);
+	}
+
+	public void setbbdd(String bbdd) {
+		// TODO Auto-generated method stub
+		this.bbdd = bbdd;
 	}
 }

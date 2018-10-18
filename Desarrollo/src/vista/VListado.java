@@ -120,10 +120,30 @@ public class VListado extends JFrame {
 		alta.setBorder(null);
 		alta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Object[] opciones = { "Empleado", "Sala", "Pelícuola" };
-				JOptionPane.showOptionDialog(frame, "Elige una opción", "Selecciona", JOptionPane.YES_NO_CANCEL_OPTION, 
+				Object[] opciones = { "Empleado", "Sala", "Película" };
+				int opcion = JOptionPane.showOptionDialog(frame, "Elige una opción", "Selecciona", JOptionPane.YES_NO_CANCEL_OPTION, 
 						JOptionPane.PLAIN_MESSAGE, null, opciones, null);
-
+				switch(opcion) {
+					case 0:
+						VAltaEmpl valtae = new VAltaEmpl();
+						valtae.setVisible(true);
+						valtae.setbbdd(bbdd);
+						frame.dispose();
+						break;
+					case 1:
+						VAltaSalas valtas = new VAltaSalas();
+						valtas.setVisible(true);
+						valtas.setbbdd(bbdd);
+						frame.dispose();
+						break;
+					case 2:
+						VAltaPelicula valtap = new VAltaPelicula();
+						valtap.setVisible(true);
+						valtap.setBbdd(bbdd);
+						frame.dispose();
+						break;
+				}
+				
 			}
 		});
 		alta.setIcon(new ImageIcon(VListado.class.getResource("../imagenes/BOTONES/botALTA.png")));
