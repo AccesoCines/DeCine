@@ -34,6 +34,8 @@ import java.awt.Component;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Frame;
@@ -90,16 +92,46 @@ public class VCines extends JFrame {
 		contentPane.setLayout(null);
 		setBounds(100, 100, 800, 800);
 
-	//
+	/*
 		JButton btnEntrarCines = new JButton("");
 		btnEntrarCines.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//TO DO CAMBIAR VENTANA A LA QUE VA
+				if (rbZubiarte.isSelected() || rbPrincipe.isSelected() || rbAzul.isSelected()) {
+					
+					
+				}
+					
+					
+					
+					
+					
+				else {
+					
+		
+							try {
+								String cine = elegirBBDD(cbCines.getSelectedItem().toString());
+								if(!cine.equals("")) {	
+									vmd.setBbdd(elegirBBDD(cbCines.getSelectedItem().toString()));
+									vmd.cargarFormulario();
+									vmd.setVisible(true);
+									jframe.dispose();
+								}
+							}catch(NullPointerException ex ) {
+								JOptionPane.showMessageDialog(getParent(), "Debes elegir un cine en el desplegable", "Error", JOptionPane.WARNING_MESSAGE);
+							}						
+					});
+		
+		
+		
+				
 			VAltaSalas salas = new VAltaSalas();
 			salas.setVisible(true);
 			VCines.this.dispose();		
 			}
 		});
+		
+		*/
 		btnEntrarCines.setContentAreaFilled(false);
 		btnEntrarCines.setBounds(231, 123, 107, 89);
 		contentPane.add(btnEntrarCines);
