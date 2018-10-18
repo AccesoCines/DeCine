@@ -30,6 +30,7 @@ public class VLogin extends JFrame {
 	private JTextField JUsuario;
 	private JButton btn;
 	private JPasswordField jPassw;
+	private JButton btnTrans;
 
 	public static void main(String[] args) {
 
@@ -55,6 +56,93 @@ public class VLogin extends JFrame {
 
 		getContentPane().setBackground(new Color(233, 69, 75));
 		getContentPane().setLayout(null);
+	//	btnTrans.setContentAreaFilled(false);
+
+		
+		
+		btn = new JButton("");
+		btn.setBorderPainted(false);
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				String Usuario = "administrador";
+				String Contrasenya = "cines1510";
+				String Pass = new String(jPassw.getPassword());
+				if (JUsuario.getText().equals(Usuario) && Pass.equals(Contrasenya)) {
+					VListado vl = new VListado();
+					vl.setVisible(true);
+				}else {
+					if(!JUsuario.getText().equals(Usuario)) {
+						JOptionPane.showMessageDialog(null, "Usuario incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+					}else if(!Pass.equals(Contrasenya)){
+						JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
+	//btn.setBackground(new Color(240, 240, 240));
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		btn.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/entrarAdminis.png")));
+		btn.setBounds(33, 199, 266, 67);
+		btn.setContentAreaFilled(false);
+		getContentPane().add(btn);
+		
+		
+	
+		btnTrans = new JButton("");
+		btnTrans.setBorderPainted(false);
+		btnTrans.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				
+				}
+			}
+		);
+	//btn.setBackground(new Color(240, 240, 240));
+		btnTrans.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		btnTrans.setIcon(new ImageIcon(getClass().getResource("")));
+		btnTrans.setBounds(448, 453, 646, 312);
+		btnTrans.setContentAreaFilled(false);
+		getContentPane().add(btnTrans);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 
 		JUsuario = new JTextField();
 		JUsuario.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -76,40 +164,11 @@ public class VLogin extends JFrame {
 		lblContrasenya.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblContrasenya.setBounds(26, 135, 152, 31);
 		getContentPane().add(lblContrasenya);
-		
-		btn = new JButton("");
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evento) {
-				String Usuario = "administrador";
-				String Contrasenya = "cines1510";
-				String Pass = new String(jPassw.getPassword());
-				if (JUsuario.getText().equals(Usuario) && Pass.equals(Contrasenya)) {
-					VListado vl = new VListado();
-					vl.setVisible(true);
-				}else {
-					if(!JUsuario.getText().equals(Usuario)) {
-						JOptionPane.showMessageDialog(null, "Usuario incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
-					}else if(!Pass.equals(Contrasenya)){
-						JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-					}
-				}
-			}
-		});
-		btn.setBackground(new Color(240, 240, 240));
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-						
-		btn.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botENTRAR.png")));
-		btn.setBounds(26, 205, 140, 80);
-		btn.setContentAreaFilled(false);
-		getContentPane().add(btn);
 
 		JLabel imagen = new JLabel("");
 		imagen.setBackground(new Color(233, 69, 75));
 		imagen.setIcon(new ImageIcon(VLogin.class.getResource("/imagenes/CLAQUETAS/PantallaPrincipal.png")));
-		imagen.setBounds(0, 0, 1921, 1011);
+		imagen.setBounds(281, 79, 1921, 1011);
 		getContentPane().add(imagen);
 
 		// Poner icono ventana
