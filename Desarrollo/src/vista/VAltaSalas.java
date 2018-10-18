@@ -17,14 +17,21 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import com.toedter.calendar.JYearChooser;
+
+import modelo.Empleado;
+import modelo.Sala;
+
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class VAltaSalas extends JFrame {
 
 	private JPanel contentPane;
 	private String bbdd;
+	private ArrayList<Empleado> responsables;
+	private JComboBox txtResponsable;
 
 	/**
 	 * Launch the application.
@@ -105,11 +112,10 @@ public class VAltaSalas extends JFrame {
 		responsable.setBounds(50, 506, 300, 31);
 		contentPane.add(responsable);
 		
-		JComboBox txtResponsable = new JComboBox();
+		txtResponsable = new JComboBox();
 		txtResponsable.setBounds(450, 506, 300, 31);
 		contentPane.add(txtResponsable);
 		
-
 
 		JButton btnCancelar = new JButton("");
 		btnCancelar.setContentAreaFilled(false);
@@ -147,10 +153,13 @@ public class VAltaSalas extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean dis = accDiscapac.isSelected();
-				int responsable = txtResponsable.getSelectedIndex();
+				Empleado responsable = responsables.get(txtResponsable.getSelectedIndex());
 				String pantalla = txtDimPantalla.getSelectedItem().toString();
 				int numero = (int) txtNumSala.getValue();
 				int anyo = txtAnyoInag.getValue();
+				int aforo = (int) txtAforo.getValue();
+				Sala s = new Sala(numero,aforo,pantalla,anyo,dis,responsable,true);
+				s.guardarSala(bbdd);
 			}
 		});
 		button.setContentAreaFilled(false);
@@ -164,5 +173,12 @@ public class VAltaSalas extends JFrame {
 	public void setbbdd(String bbdd) {
 		// TODO Auto-generated method stub
 		this.bbdd = bbdd;
+	}
+	
+	public void cargarEmpleados(String bbdd) {
+		responsables = Empleado.cargarEmpleadosResp(bbdd);
+		for(Empleado resp:responsables) {
+			txtResponsable.addItem(resp.getNombre()+" "+resp.getApellido());
+		}
 	}
 }

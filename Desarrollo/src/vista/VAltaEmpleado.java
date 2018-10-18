@@ -36,6 +36,7 @@ public class VAltaEmpleado extends JFrame {
 	private JDateChooser txtfecNac;
 	private JDateChooser txtfecFinCon;
 	private String bbdd;
+	private static VAltaEmpleado frame;
 	
 	public void setBbdd(String bbdd) {
 		this.bbdd = bbdd;
@@ -48,7 +49,7 @@ public class VAltaEmpleado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VAltaEmpleado frame = new VAltaEmpleado();
+					frame = new VAltaEmpleado();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -103,9 +104,10 @@ public class VAltaEmpleado extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				//TOODO FALTA PROBAR CUANDO EST� LA VENTANA DE LISTADOS
-				((java.awt.Window) getParent()).dispose();
 				VListado list = new VListado();
 				list.setVisible(true);
+				frame.dispose();
+				
 				}
 		});
 		

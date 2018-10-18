@@ -191,13 +191,13 @@ public class DB4o {
 
 
 
-		public static void guardarPeli(Pelicula p){
+		public static boolean guardarPeli(Pelicula p){
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		db.store(p);
 		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
 		db.close();
-		
+		return true;
 	}
 	
 	public static void eliminarPeli(Pelicula p) {
@@ -280,13 +280,13 @@ public class DB4o {
 		return listaPeliculas;
 	}
 	
-	public static void guardarSala(Sala s){
+	public static boolean guardarSala(Sala s){
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		db.store(s);
 		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
 		db.close();
-		
+		return true;
 	}
 	
 	public static void eliminarSala(Sala s) {
@@ -335,6 +335,11 @@ public class DB4o {
 		}
 		db.close();
 		return true;
+	}
+
+	public static ArrayList<Empleado> mostrarListEmpleResp() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	/*public ArrayList<Proyeccion> mostrarListaProyecciones(){

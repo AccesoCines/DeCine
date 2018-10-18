@@ -132,6 +132,7 @@ public class VListado extends JFrame {
 						break;
 					case 1:
 						VAltaSalas valtas = new VAltaSalas();
+						valtas.cargarEmpleados(elegirBBDD(cine));
 						valtas.setVisible(true);
 						valtas.setbbdd(elegirBBDD(cine));
 						frame.dispose();

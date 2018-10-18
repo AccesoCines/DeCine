@@ -61,6 +61,23 @@ public class Empleado {
 		return empleados;
 	}
 	
+	public static ArrayList<Empleado> cargarEmpleadosResp(String bbdd){
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		ArrayList<Empleado> empleados = new ArrayList<>();
+		switch(bbdd) {
+			case "postgre":
+				empleados = gb.cargarEmpleadosResp();
+				break;
+			case "sqlite":
+				empleados = gb.cargarEmpleadosRespQL();
+				break;
+			case "db4o":
+				empleados = DB4o.mostrarListEmpleResp();
+				break;
+		}
+		return empleados;
+	}
+	
 	public Empleado(String nombre, String apellido, Cargo cargo, Date fechaContratacion, Date fechaNacimiento,
 			String nacionalidad, Date fechaFinContrato, boolean alta) {
 		this.nombre = nombre;

@@ -68,7 +68,6 @@ public class Sala {
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
 			Empleado responsable) {
-		super();
 		this.numero = numero;
 		this.aforo = aforo;
 		this.dimPantalla = dimPantalla;
@@ -92,6 +91,23 @@ public class Sala {
 			salas = DB4o.mostrarListSala();
 		}
 		return salas;
+	}
+	
+	public boolean guardarSala(String bbdd) {
+		GestorBBDD gb = new GestorBBDD(bbdd);	
+		boolean correcto = false;
+		switch(bbdd) {
+		case "postgre":
+			correcto = gb.guardarSala(this);
+			break;
+		case "sqlite":
+			correcto = gb.guardarSalaQL(this);
+			break;
+		case "db4o":
+			correcto = DB4o.guardarSala(this);
+			break;
+		}
+		return correcto;
 	}
 
 	public void anadirProyeccion(Proyeccion proyeccion) {

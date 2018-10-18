@@ -68,7 +68,19 @@ public class Pelicula {
 	
 	public boolean guardarPelicula(String bbdd) {
 		GestorBBDD gb = new GestorBBDD(bbdd);	
-		return gb.guardarPelicula(this);
+		boolean correcto = false;
+		switch(bbdd) {
+		case "postgre":
+			correcto = gb.guardarPelicula(this);
+			break;
+		case "sqlite":
+			correcto = gb.guardarPeliculaQL(this);
+			break;
+		case "db4o":
+			correcto = DB4o.guardarPeli(this);
+			break;
+		}
+		return correcto;
 	}
 	
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
