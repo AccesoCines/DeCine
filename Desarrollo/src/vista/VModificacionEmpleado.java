@@ -99,7 +99,7 @@ public class VModificacionEmpleado extends JFrame {
 		btnCancelar.setContentAreaFilled(false);
 		btnCancelar.setBounds(50, 587, 181, 80);
 		contentPane.add(btnCancelar);
-		btnCancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		btnCancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		
 		JButton btnOk = new JButton("");
 		btnOk.addActionListener(new ActionListener() {
@@ -126,7 +126,7 @@ public class VModificacionEmpleado extends JFrame {
 		btnOk.setContentAreaFilled(false);
 		btnOk.setBounds(647, 50, 91, 80);
 		contentPane.add(btnOk);
-		btnOk.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
+		btnOk.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botOK.png")));
 		
 		txtFecCont = new JDateChooser();
 		txtFecCont.setBounds(285, 350, 205, 31);

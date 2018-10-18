@@ -57,7 +57,7 @@ setBounds(new Rectangle(0, 0, 800, 800));
 		
 		JButton cancelar = new JButton("");
 		cancelar.setBorderPainted(false);
-		cancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		cancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		cancelar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -71,7 +71,7 @@ setBounds(new Rectangle(0, 0, 800, 800));
 		
 		JButton volver = new JButton("");
 		volver.setBorderPainted(false);
-		volver.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botVOLVER.png")));
+		volver.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botVOLVER.png")));
 		volver.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

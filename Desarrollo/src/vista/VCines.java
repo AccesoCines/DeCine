@@ -103,7 +103,7 @@ public class VCines extends JFrame {
 		btnEntrarCines.setContentAreaFilled(false);
 		btnEntrarCines.setBounds(231, 123, 107, 89);
 		contentPane.add(btnEntrarCines);
-		btnEntrarCines.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/CLAQUETAS/clac CARTELERA.png")));
+		btnEntrarCines.setIcon(new ImageIcon(getClass().getResource("/imagenes/CLAQUETAS/clac CARTELERA.png")));
 		
 		
 		JButton btnInfoCines = new JButton("");
@@ -118,11 +118,11 @@ public class VCines extends JFrame {
 		btnInfoCines.setContentAreaFilled(false);
 		btnInfoCines.setBounds(441, 123, 107, 89);
 		contentPane.add(btnInfoCines);
-		btnInfoCines.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/CLAQUETAS/clac infocine.png")));
+		btnInfoCines.setIcon(new ImageIcon(getClass().getResource("/imagenes/CLAQUETAS/clac infocine.png")));
 
 		JButton cancelar = new JButton("");
 		cancelar.setBorderPainted(false);
-		cancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		cancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		cancelar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

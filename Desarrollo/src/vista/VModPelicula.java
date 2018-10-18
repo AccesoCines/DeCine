@@ -139,7 +139,7 @@ public class VModPelicula extends JFrame {
 		btnOk.setContentAreaFilled(false);
 		btnOk.setBounds(670, 30, 91, 80);
 		contentPane.add(btnOk);
-		btnOk.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
+		btnOk.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botOK.png")));
 		
 		JLabel titulo = new JLabel("T\u00EDtulo: ");
 		titulo.setForeground(Color.WHITE);
@@ -250,7 +250,7 @@ public class VModPelicula extends JFrame {
 		btnCancelar.setContentAreaFilled(false);
 		btnCancelar.setBounds(23, 666, 181, 80);
 		contentPane.add(btnCancelar);
-		btnCancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		btnCancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 
 		
 		txtTrailer = new JTextField();

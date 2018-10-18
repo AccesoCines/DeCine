@@ -130,13 +130,13 @@ public class VModificacionSala extends JFrame {
 		btnOk.setContentAreaFilled(false);
 		btnOk.setBounds(616, 50, 108, 88);
 		contentPane.add(btnOk);
-		btnOk.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
+		btnOk.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botOK.png")));
 		
 		JButton btnCancelar = new JButton("");
 		btnCancelar.setContentAreaFilled(false);
 		btnCancelar.setBounds(51, 602, 178, 88);
 		contentPane.add(btnCancelar);
-		btnCancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		btnCancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		
 		setLocationRelativeTo(null);
 	}

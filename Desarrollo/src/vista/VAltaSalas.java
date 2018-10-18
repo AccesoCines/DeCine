@@ -86,7 +86,7 @@ public class VAltaSalas extends JFrame {
 		dimPantalla.setBounds(50, 356, 300, 31);
 		contentPane.add(dimPantalla);
 		
-		JCheckBox accDiscapac = new JCheckBox("Accesible discapacitados: ");
+		JCheckBox accDiscapac = new JCheckBox(" Accesible discapacitados ");
 		accDiscapac.setContentAreaFilled(false);
 		accDiscapac.setForeground(Color.WHITE);
 		accDiscapac.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -115,7 +115,7 @@ public class VAltaSalas extends JFrame {
 		btnCancelar.setContentAreaFilled(false);
 		btnCancelar.setBounds(50, 637, 181, 80);
 		contentPane.add(btnCancelar);
-		btnCancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		btnCancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		
 		JLabel altaSala = new JLabel("| Alta Sala");
 		altaSala.setForeground(Color.WHITE);
@@ -125,6 +125,9 @@ public class VAltaSalas extends JFrame {
 		
 		JComboBox txtDimPantalla = new JComboBox();
 		txtDimPantalla.setBounds(450, 356, 300, 31);
+		txtDimPantalla.addItem("Extreme Digital Cinema");
+		txtDimPantalla.addItem("Cinemascope");
+		txtDimPantalla.addItem("IMAX");
 		contentPane.add(txtDimPantalla);
 		
 		JYearChooser txtAnyoInag = new JYearChooser();
@@ -138,6 +141,22 @@ public class VAltaSalas extends JFrame {
 		JSpinner txtAforo = new JSpinner();
 		txtAforo.setBounds(450, 311, 300, 31);
 		contentPane.add(txtAforo);
+		
+		
+		JButton button = new JButton("");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean dis = accDiscapac.isSelected();
+				int responsable = txtResponsable.getSelectedIndex();
+				String pantalla = txtDimPantalla.getSelectedItem().toString();
+				int numero = (int) txtNumSala.getValue();
+				int anyo = txtAnyoInag.getValue();
+			}
+		});
+		button.setContentAreaFilled(false);
+		button.setBounds(659, 37, 91, 80);
+		contentPane.add(button);
+		button.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botOK.png")));
 		
 		setLocationRelativeTo(null);
 	}

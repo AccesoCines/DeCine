@@ -97,13 +97,13 @@ public class VAltaPelicula extends JFrame {
 		btnCancelar.setContentAreaFilled(false);
 		btnCancelar.setBounds(50, 647, 181, 80);
 		contentPane.add(btnCancelar);
-		btnCancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		btnCancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		
 		JButton btnOk = new JButton("");
 		btnOk.setContentAreaFilled(false);
 		btnOk.setBounds(669, 34, 91, 80);
 		contentPane.add(btnOk);
-		btnOk.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
+		btnOk.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botOK.png")));
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String titulo = txtTitulo.getText();
@@ -119,8 +119,10 @@ public class VAltaPelicula extends JFrame {
 				String director = txtDirector.getText();
 				String actorPrin = txtActorPrincipal.getText();
 				String actorSecun = txtActorSecundario.getText();
-				Date fechaIni = (Date) txtFechaInicio.getDate();
-				Date fechaFin = (Date) txtFechaFin.getDate();
+				java.util.Date fechaIniUtil =  txtFechaInicio.getDate();
+				java.sql.Date fechaIni = new java.sql.Date(fechaIniUtil.getTime());
+				java.util.Date fechaFinUtil =  txtFechaFin.getDate();
+				java.sql.Date fechaFin = new java.sql.Date(fechaFinUtil.getTime());
 				String trailer = txtTrailer.getText();
 				String sinopsis = txtSinopsis.getText();
 				

@@ -125,21 +125,21 @@ public class VListado extends JFrame {
 						JOptionPane.PLAIN_MESSAGE, null, opciones, null);
 				switch(opcion) {
 					case 0:
-						VAltaEmpl valtae = new VAltaEmpl();
+						VAltaEmpleado valtae = new VAltaEmpleado();
 						valtae.setVisible(true);
-						valtae.setbbdd(bbdd);
+						valtae.setBbdd(elegirBBDD(cine));
 						frame.dispose();
 						break;
 					case 1:
 						VAltaSalas valtas = new VAltaSalas();
 						valtas.setVisible(true);
-						valtas.setbbdd(bbdd);
+						valtas.setbbdd(elegirBBDD(cine));
 						frame.dispose();
 						break;
 					case 2:
 						VAltaPelicula valtap = new VAltaPelicula();
 						valtap.setVisible(true);
-						valtap.setBbdd(bbdd);
+						valtap.setBbdd(elegirBBDD(cine));
 						frame.dispose();
 						break;
 				}

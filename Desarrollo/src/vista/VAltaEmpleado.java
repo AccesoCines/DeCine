@@ -32,6 +32,14 @@ public class VAltaEmpleado extends JFrame {
 	private JTextField txtnombre;
 	private JTextField txtapellido;
 	private JTextField txtnaci;
+	private JDateChooser txtfecCont;
+	private JDateChooser txtfecNac;
+	private JDateChooser txtfecFinCon;
+	private String bbdd;
+	
+	public void setBbdd(String bbdd) {
+		this.bbdd = bbdd;
+	}
 
 	/**
 	 * Launch the application.
@@ -84,9 +92,13 @@ public class VAltaEmpleado extends JFrame {
 		txtcargo.setBounds(333, 266, 205, 22);
 		contentPane.add(txtcargo);
 		
+		for(Cargo cargo:Cargo.values()) {
+			txtcargo.addItem(cargo);	//TODO si da tiempo poner los textos bien
+		}
+		
 	
 		JButton cancelar = new JButton("");
-		cancelar.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botCANCELAR.png")));
+		cancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		cancelar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
@@ -116,7 +128,7 @@ public class VAltaEmpleado extends JFrame {
 				if (txtnaci.getText().toCharArray().length<2) {
 					JOptionPane.showMessageDialog(null, "No admite menos de dos letras..", "Error en nacionalidad", JOptionPane.ERROR_MESSAGE);
 				}
-				Cargo car = Cargo.camarero;
+				/*Cargo car = Cargo.camarero;
 
 			switch(txtcargo.getSelectedItem().toString()){
 				case "camarero":
@@ -137,26 +149,40 @@ public class VAltaEmpleado extends JFrame {
 				case "responsableSala":
 					car = Cargo.responsableSala;
 				break;
-				}
+				}*/
+				Cargo car = (Cargo) txtcargo.getSelectedItem();
 				
-				//Empleado emple = new Empleado(txtnombre.getText(), txtapellido.getText(), car, (Date) txtfecCont.getDate(), (Date)txtfecNac.getDate(), txtnaci.getText(), (Date)txtfecFinCon.getDate(), true);
+				java.util.Date fechaConUtil = txtfecCont.getDate();
+				java.util.Date fechaNacUtil = txtfecNac.getDate();
+				java.util.Date fechaFinutil = txtfecFinCon.getDate();
+				java.sql.Date fechaCon = new java.sql.Date(fechaConUtil.getTime());
+				java.sql.Date fechaNac = new java.sql.Date(fechaNacUtil.getTime());
+				java.sql.Date fechaFin = new java.sql.Date(fechaFinutil.getTime());
+				
+				Empleado emple = new Empleado(txtnombre.getText(), txtapellido.getText(), car, fechaCon, fechaNac, txtnaci.getText(), fechaFin, true);
 	
-				//emple.guardarEmpleado();
-				
+				boolean correcto = emple.guardarEmpleado(bbdd);
+				if(correcto) {
+					JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
+							, "Guardado", JOptionPane.PLAIN_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(getParent(), "Error al guardar la película"
+							, "Error", JOptionPane.WARNING_MESSAGE);
+				}
 				//TODO: PROBAR SI FUNSIONA
 			}
 		});
 		
-		ok.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/BOTONES/botOK.png")));
+		ok.setIcon(new ImageIcon(VAltaEmpleado.class.getResource("/imagenes/BOTONES/botOK.png")));
 		ok.setBounds(619, 44, 126, 99);
 		contentPane.add(ok);
 		ok.setContentAreaFilled(false);
 		
-		JDateChooser txtfecCont = new JDateChooser();
+		txtfecCont = new JDateChooser();
 		txtfecCont.setBounds(333, 326, 205, 22);
 		contentPane.add(txtfecCont);
 		
-		JDateChooser txtfecNac = new JDateChooser();
+		txtfecNac = new JDateChooser();
 		txtfecNac.setBounds(333, 378, 205, 22);
 		contentPane.add(txtfecNac);
 		
@@ -165,7 +191,7 @@ public class VAltaEmpleado extends JFrame {
 		txtnaci.setBounds(333, 427, 205, 22);
 		contentPane.add(txtnaci);
 		
-		JDateChooser txtfecFinCon = new JDateChooser();
+		txtfecFinCon = new JDateChooser();
 		txtfecFinCon.setBounds(333, 485, 203, 22);
 		contentPane.add(txtfecFinCon);
 		
