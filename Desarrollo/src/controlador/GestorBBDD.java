@@ -1,15 +1,19 @@
 package controlador;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
-import modelo.Empleado;
-import modelo.Pelicula;
-import modelo.Sala;
+import javax.swing.JOptionPane;
+
+import modelo.*;
+
 
 public class GestorBBDD {
 	
@@ -41,7 +45,7 @@ public class GestorBBDD {
 			
 			break;
 		case "sqlite":
-			url = "jdbc:sqlite:SQLiteExperimental.db";
+			url = "jdbc:sqlite:NuevaQL.db";
 		    try {
 				Class.forName("org.sqlite.JDBC");
 				con = DriverManager.getConnection(url);
@@ -53,7 +57,10 @@ public class GestorBBDD {
 				e.printStackTrace();
 			}
 			
-			break;			
+			break;		
+		case "db4o":
+			
+			break;
 		}
 	}
 
@@ -83,10 +90,6 @@ public class GestorBBDD {
 	public boolean guardarSalaQL(Sala sala) {
 		try {
 			
-			/*
-			 * public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
-			Empleado responsable, boolean alta)
-			 */
 			String query = "INSERT INTO Sala (numero,aforo,dimensiones_pantalla,"
 					+ "ano_inauguracion,discapacidad,id_responsable, alta, id) VALUES(?,?,?,?,?,?,?, (select max (id) from Sala)+1)";
 			PreparedStatement ps = con.prepareStatement(query);
@@ -161,8 +164,8 @@ public class GestorBBDD {
 	public boolean guardarPelicula(Pelicula pelicula) {
 		try {
 			String query = "INSERT INTO "+'"'+"Pelicula"+'"'+" (titulo,ano_estreno,director,actor_principal,"
-					+ "actor_secundario,duracion,trailer,alta) VALUES(?,?,"
-					+ "?,?,?,?,?,?)";
+					+ "actor_secundario,duracion,trailer,alta,sinopsis,fecha_inicio,fecha_fin) VALUES(?,?,"
+					+ "?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, pelicula.getTitulo());
 			ps.setInt(2, pelicula.getAnoEstreno());		
@@ -172,7 +175,9 @@ public class GestorBBDD {
 			ps.setInt(6, pelicula.getDuracion());
 			ps.setString(7, pelicula.getTrailer());
 			ps.setBoolean(8, pelicula.isAlta());
-			
+			ps.setString(9, pelicula.getSinopsis());
+			ps.setDate(10, pelicula.getFechaInicio());
+			ps.setDate(11, pelicula.getFechaFin());
 			ps.execute();
 			ps.close();
 			return true;
@@ -184,21 +189,12 @@ public class GestorBBDD {
 		
 	}
 	
-/*
- * public Pelicula(String titulo, int anoEstreno, 
- * String director, String actorPrincipal, 
- * String actorSecundario,
-			String sinopsis, int duracion, 
-			String trailer, Date fechaInicio, 
-			Date fechaFin, boolean b) {
- */
+
 
 	
 	public boolean guardarPeliculaQL(Pelicula pelicula) {
 		try {
-			String query = "INSERT INTO Pelicula (titulo,ano_estreno,director,actor_principal,"
-					+ "actor_secundario,sinopsis,duracion,trailer,fecha_Inicio,fecha_Fin,alta) VALUES(?,?,"
-					+ "?,?,?,?,?,?,?,?,?, (select max (id) from Empleado)+1)";
+			String query = "INSERT INTO Pelicula (titulo,ano_estreno,director,actor_principal,actor_secundario,sinopsis,duracion,trailer,fecha_Inicio,fecha_Fin,alta,id) VALUES(?,?,?,?,?,?,?,?,?,?,?, (select max (id) from Pelicula)+1)";
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, pelicula.getTitulo());
 			ps.setInt(2, pelicula.getAnoEstreno());		
@@ -221,4 +217,252 @@ public class GestorBBDD {
 		}
 		
 	}
+	
+	public boolean guardarProyecciones(Pelicula pelicula) {
+		try {
+			PreparedStatement ps = null;
+			for(Proyeccion proyeccion:pelicula.getProyecciones()) {
+				String query = "INSERT INTO "+'"'+"Proyeccion"+'"'+" (id_sala,id_pelicula,hora,alta) VALUES(?,?,"
+						+ "?,?)";
+				ps = con.prepareStatement(query);
+				ps.setInt(1, proyeccion.getSala().getId());		
+				ps.setInt(2, pelicula.getId());
+				ps.setTime(3, proyeccion.getHora());
+				ps.setBoolean(4, proyeccion.isAlta());
+				ps.execute();
+			}
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
+	
+	public boolean guardarProyeccionesQL(Pelicula pelicula) {
+		try {
+			PreparedStatement ps = null;
+			for(Proyeccion proyeccion:pelicula.getProyecciones()) {
+				String query = "INSERT INTO Proyeccion(id_sala,id_pelicula,hora,alta, id) VALUES( ?,?,"
+						+ "?,?, (select max (id) from Proyeccion)+1)";
+				ps = con.prepareStatement(query);
+				ps.setInt(1, proyeccion.getSala().getId());		
+				ps.setInt(2, pelicula.getId());
+				ps.setTime(3, proyeccion.getHora());
+				ps.setBoolean(4, proyeccion.isAlta());
+				ps.execute();
+			}
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
+	
+	
+	public ArrayList<Pelicula> cargarPeliculas() {
+		ArrayList<Pelicula> peliculas = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Pelicula"+'"'+" WHERE ALTA=true AND fecha_inicio<current_date and fecha_fin>current_date ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				peliculas.add(new Pelicula(
+						rs.getString("titulo"),
+						rs.getInt("ano_estreno"),
+						rs.getString("director"),
+						rs.getString("actor_principal"),
+						rs.getString("actor_secundario"),
+						rs.getString("sinopsis"),
+						rs.getInt("duracion"),
+						rs.getString("trailer"),
+						rs.getDate("fecha_inicio"),
+						rs.getDate("fecha_fin"),
+						rs.getBoolean("alta"),
+						rs.getInt("id")
+						));
+			}
+			if(peliculas.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay peliculas", null, 0);
+				return null;
+			}else {
+				return peliculas;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
+	public ArrayList<Pelicula> cargarPeliculasQL() {
+		ArrayList<Pelicula> peliculas = new ArrayList<>();
+		
+		//SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}';
+		try {
+			String query = "SELECT * FROM Pelicula WHERE ALTA=1 AND fecha_inicio<current_date and fecha_fin>current_date ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				peliculas.add(new Pelicula(
+						rs.getString("titulo"),
+						rs.getInt("ano_estreno"),
+						rs.getString("director"),
+						rs.getString("actor_principal"),
+						rs.getString("actor_secundario"),
+						rs.getString("sinopsis"),
+						rs.getInt("duracion"),
+						rs.getString("trailer"),
+						rs.getDate("fecha_inicio"),
+						rs.getDate("fecha_fin"),
+						rs.getBoolean("alta"),
+						rs.getInt("id")
+						));
+			}
+			if(peliculas.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay peliculas", null, 0);
+				return null;
+			}else {
+				return peliculas;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	public ArrayList<Sala> cargarSalas() {
+		ArrayList<Sala> salas = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Sala"+'"'+" WHERE ALTA=true ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				salas.add(new Sala(
+						rs.getInt("numero"),
+						rs.getInt("aforo"),
+						rs.getString("dimensiones_pantalla"),
+						rs.getInt("ano_inauguracion"),
+						rs.getBoolean("discapacidad"),
+						rs.getInt("id")
+						));
+			}
+			if(salas.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay salas", null, 0);
+				return null;
+			}else {
+				return salas;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	public MetaDato cargarMetaDatos() {
+		MetaDato metaDatos = null;
+		try {
+			DatabaseMetaData dbmeta = con.getMetaData();
+			metaDatos = new MetaDato();
+			metaDatos.setNombreBD(dbmeta.getDatabaseProductName());
+			metaDatos.setDriver(dbmeta.getDriverName());
+			metaDatos.setUrl(dbmeta.getURL());
+			metaDatos.setUsuario(dbmeta.getUserName());
+			ResultSet rs = dbmeta.getTables(null, "public", "%", null);
+			while(rs.next()) {
+				String nombreTabla = rs.getString("TABLE_NAME");
+				String esquema = rs.getString("TABLE_SCHEM");
+				String clavePrimaria="";
+				ResultSet rsp = dbmeta.getPrimaryKeys(null, null, nombreTabla);
+				while(rsp.next()) {
+					clavePrimaria = rsp.getString("COLUMN_NAME");
+				}
+				Tabla tabla = new Tabla(nombreTabla,esquema,clavePrimaria);
+				metaDatos.anadirTabla(tabla);
+				ResultSet rsc = dbmeta.getColumns(null, null, nombreTabla, null);
+				while(rsc.next()) {
+					tabla.anadirColumna(new Columna(
+								rsc.getString("TYPE_NAME"),
+								rsc.getInt("NULLABLE")==1?true:false,
+								rsc.getString("COLUMN_NAME")
+							));
+				}
+			}
+			return metaDatos;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+
+	public ArrayList<Empleado> cargarEmpleados() {
+		ArrayList<Empleado> empleados = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Empleado"+'"'+" WHERE ALTA=true ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				empleados.add(new Empleado(
+						rs.getString("nombre"),
+						rs.getString("apellido"),
+						rs.getString("cargo").equals("camarero")?
+												Cargo.camarero:
+							rs.getString("cargo").equals("portero")?
+												Cargo.portero:
+							rs.getString("cargo").equals("acomodadorResponsableBar")?
+												Cargo.acomodadorResponsableBar:
+							rs.getString("cargo").equals("reponsableSala")?
+												Cargo.responsableSala:
+							rs.getString("cargo").equals("responsableCine")?
+												Cargo.responsableCine:
+												Cargo.mantenimiento,
+						rs.getDate("fechacontratacion"),
+						rs.getDate("fechanacimiento"),
+						rs.getString("nacionalidad"),
+						rs.getDate("fechafincontrato"),
+						rs.getBoolean("alta")
+						));
+			}
+			if(empleados.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay empleados", null, 0);
+				return null;
+			}else {
+				return empleados;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	public ArrayList<Empleado> cargarEmpleadosQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public ArrayList<Sala> cargarSalasQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+/*
+	public ArrayList<Sala> cargarSalasQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	*/
 }

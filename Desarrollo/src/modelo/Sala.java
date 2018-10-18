@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import controlador.DB4o;
 import controlador.GestorBBDD;
 
 public class Sala {
@@ -16,13 +17,18 @@ public class Sala {
 	private Empleado responsable;
 	private boolean alta;
 	private int id;
-	private String bbdd = "postgre"; //TODO cambiar por variable desde la ventana anterior
-	//Cuando se carga la ventana hay que traer aquí la variable de que BBDD es para pasarla al new GestorBBDD
+	private String bbdd = "db4o"; //TODO cambiar por variable desde la ventana anterior
+	//Cuando se carga la ventana hay que traer aquï¿½ la variable de que BBDD es para pasarla al new GestorBBDD
 	
 	private ArrayList<Proyeccion> proyecciones;
 	private ArrayList<Empleado> empleados;
 	
 	public Sala() {	}
+	
+	public Sala(Empleado responsable,int numero) {
+		this.responsable = responsable;
+		this.numero = numero;
+	}
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
 			Empleado responsable, boolean alta) {
@@ -70,6 +76,22 @@ public class Sala {
 		this.discapacidad = discapacidad;
 		this.setResponsable(responsable);
 		proyecciones = new ArrayList<>();
+	}
+	
+	public static ArrayList<Sala> cargarSalas(String bbdd) {
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		ArrayList<Sala> salas = new ArrayList<>();
+		switch(bbdd) {
+		case "postgre":
+			salas = gb.cargarSalas();
+			break;
+		case "sqlite":
+			salas = gb.cargarSalasQL();
+			break;
+		case "db4o":
+			salas = DB4o.mostrarListSala();
+		}
+		return salas;
 	}
 
 	public void anadirProyeccion(Proyeccion proyeccion) {
@@ -150,12 +172,6 @@ public class Sala {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public ArrayList<Sala> cargarSalas() {
-		GestorBBDD gb = new GestorBBDD(bbdd);	
-		return gb.cargarSalas();
-		
 	}
 
 	

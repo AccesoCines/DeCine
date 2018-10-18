@@ -7,102 +7,115 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.Frame;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Rectangle;
+
 
 public class VLogin extends JFrame {
- 
 
-	private JPanel contentPane;
+	private JPanel fondo;
 	private JPasswordField passwordField;
-	private JPasswordField JPassword;
-	private JTextField textField;
+	private JTextField JUsuario;
 	private JButton btn;
+	private JPasswordField jPassw;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VLogin().setVisible(true);
-        
-            }
-        });
-		
-	}
 
-	/**
-	 * Create the frame.
-	 */
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				new VLogin().setVisible(true);
+
+			}
+
+		});
+	}
+	
 	public VLogin() {
+
+		setTitle("ACCESO");
+		setExtendedState(Frame.MAXIMIZED_BOTH);
 		
-			btn = new JButton("");
-				btn.addActionListener( new ActionListener () { 
-				public void actionPerformed( ActionEvent evento ) { 
-					String usuario = textField.getText();
-			        String contrasena = new String(JPassword.getPassword()); 
-		
-				
-				if(textField.getText().equals("cines1510") && JPassword.equals("12345")){
-					
-				}
-				}
-				});
-	
-		getContentPane().setBackground(new Color(255, 99, 71));
+		jPassw = new JPasswordField();
+		jPassw.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		jPassw.setBounds(new Rectangle(0, 0, 0, 31));
+		jPassw.setBounds(188, 135, 230, 31);
+		getContentPane().add(jPassw);
+
+		getContentPane().setBackground(new Color(233, 69, 75));
 		getContentPane().setLayout(null);
-		
-		JPassword = new JPasswordField();
-		JPassword.setBounds(157, 113, 230, 22);
-		getContentPane().add(JPassword);
-	
-		JPassword.setBounds(157, 113, 230, 22);
-		getContentPane().add(JPassword);
-		
-		textField = new JTextField();
-		textField.setBounds(157, 78, 230, 22);
-		getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblDecine = new JLabel("DeCine");
-		lblDecine.setFont(new Font("Tahoma", Font.BOLD, 19));
-		lblDecine.setBounds(341, 13, 124, 16);
-		getContentPane().add(lblDecine);
-		
+
+		JUsuario = new JTextField();
+		JUsuario.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		JUsuario.setBounds(new Rectangle(0, 0, 0, 31));
+		JUsuario.setBounds(188, 79, 230, 31);
+		getContentPane().add(JUsuario);
+		JUsuario.setColumns(10);
+
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(71, 80, 74, 19);
+		lblUsuario.setBounds(new Rectangle(0, 0, 0, 31));
+		lblUsuario.setForeground(Color.WHITE);
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblUsuario.setBounds(26, 79, 152, 31);
 		getContentPane().add(lblUsuario);
-		
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setBounds(71, 116, 74, 16);
-		getContentPane().add(lblContrasea);
+
+		JLabel lblContrasenya = new JLabel("Contrase\u00F1a:");
+		lblContrasenya.setBounds(new Rectangle(0, 0, 0, 31));
+		lblContrasenya.setForeground(Color.WHITE);
+		lblContrasenya.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblContrasenya.setBounds(26, 135, 152, 31);
+		getContentPane().add(lblContrasenya);
 		
 		btn = new JButton("");
-		btn.setVerticalAlignment(SwingConstants.TOP);
+		btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				String Usuario = "administrador";
+				String Contrasenya = "cines1510";
+				String Pass = new String(jPassw.getPassword());
+				if (JUsuario.getText().equals(Usuario) && Pass.equals(Contrasenya)) {
+					VListado vl = new VListado();
+					vl.setVisible(true);
+				}else {
+					if(!JUsuario.getText().equals(Usuario)) {
+						JOptionPane.showMessageDialog(null, "Usuario incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+					}else if(!Pass.equals(Contrasenya)){
+						JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
 		btn.setBackground(new Color(240, 240, 240));
 		btn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btn.setIcon(new ImageIcon("D:\\Desktop\\cine\\DeCine\\Desarrollo\\src\\imagenes\\BOTONES\\botENTRAR.png"));
-		btn.setBounds(12, 195, 768, 250);
+						
+		btn.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botENTRAR.png")));
+		btn.setBounds(26, 205, 140, 80);
 		btn.setContentAreaFilled(false);
-		
 		getContentPane().add(btn);
 
-		
+		JLabel imagen = new JLabel("");
+		imagen.setBackground(new Color(233, 69, 75));
+		imagen.setIcon(new ImageIcon(VLogin.class.getResource("/imagenes/CLAQUETAS/PantallaPrincipal.png")));
+		imagen.setBounds(0, 0, 1921, 1011);
+		getContentPane().add(imagen);
+
 		// Poner icono ventana
-	    setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
+		setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 979, 505);
-	
-		
-			}
+		setBounds(100, 100, 1591, 751);
+
+	}
 }

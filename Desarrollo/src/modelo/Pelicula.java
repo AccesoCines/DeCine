@@ -21,14 +21,54 @@ public class Pelicula {
 	private java.sql.Date fechaFin;
 	private boolean alta;
 	private int id;
-	private String bbdd = "postgre"; //TODO cambiar por variable desde la ventana anterior
-	//Cuando se carga la ventana hay que traer aqu� la variable de que BBDD es para pasarla al new GestorBBDD
-	
+	private static String bbdd; 
 	private ArrayList<Proyeccion> proyecciones;
 	
-	public ArrayList<Pelicula> cargarPeliculas(){
+	public static String getBbdd() {
+		return bbdd;
+	}
+
+	public static void setBbdd(String bbdd) {
+		Pelicula.bbdd = bbdd;
+	}
+
+	public static ArrayList<Pelicula> cargarPeliculas(String bbdd){
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		ArrayList<Pelicula> pelis = new ArrayList<>();
+		switch(bbdd) {
+			case "postgre":
+				pelis = gb.cargarPeliculas();
+				break;
+			case "sqlite":
+				pelis = gb.cargarPeliculasQL();
+				break;
+			case "db4o":
+				pelis = DB4o.mostrarListPeli();
+				break;
+		}
+		return pelis;
+	}
+	
+	public boolean guardarProyecciones() {
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		boolean correcto = false;
+		switch(bbdd) {
+		case "postgre":
+			correcto = gb.guardarProyecciones(this);
+			break;
+		case "sqlite":
+			correcto = gb.guardarProyeccionesQL(this);
+			break;
+		case "db4o":
+			correcto = DB4o.guardarProyecciones(this);
+			break;
+		}
+		return correcto;
+	}
+	
+	public boolean guardarPelicula(String bbdd) {
 		GestorBBDD gb = new GestorBBDD(bbdd);	
-		return gb.cargarPeliculas();
+		return gb.guardarPelicula(this);
 	}
 	
 	public Pelicula(String titulo, int anoEstreno, String director, String actorPrincipal, String actorSecundario,
@@ -38,7 +78,7 @@ public class Pelicula {
 		this.director = director;
 		this.actorPrincipal = actorPrincipal;
 		this.actorSecundario = actorSecundario;
-		this.setSinopsis(sinopsis);
+		this.sinopsis = sinopsis;
 		this.duracion = duracion;
 		this.trailer = trailer;
 		this.fechaInicio = fechaInicio;
@@ -144,7 +184,7 @@ public class Pelicula {
 		return proyecciones;
 	}
 
-	public void a�adirProyeccion(Proyeccion proyeccion) {
+	public void anadirProyeccion(Proyeccion proyeccion) {
 		proyecciones.add(proyeccion);
 	}
 

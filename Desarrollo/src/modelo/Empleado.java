@@ -1,8 +1,12 @@
 package modelo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import controlador.DB4o;
+import controlador.GestorBBDD;
 
 public class Empleado {
 	private String nombre;
@@ -14,16 +18,51 @@ public class Empleado {
 	private java.sql.Date fechaFinContrato;
 	private boolean alta;
 	private int id;
+	private String bbdd;
+
 
 	// De 0 a 1 año : Portero , camarero
 	// De 1 a 3 años : Acomodador o responsable del bar
 	// De 3 a 5 años : Responsable de sala
 	// Más de 5 años : Responsable salón de cine
 	private List<Sala> salas;
+	//LA BBDD LA CARGA EN VENTANA LISTADO
+	public boolean guardarEmpleado(String bbdd) {
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		boolean correcto = false;
+		switch(bbdd) {
+		case "postgre":
+			correcto = gb.guardarEmpleado(this);
+			break;
+		case "sqlite":
+			correcto = gb.guardarEmpleado(this);
+			break;
+		case "db4o":
+			correcto = DB4o.guardarEmple(this);
+			break;
+		}
+		return correcto;
+	}
 
+	public static ArrayList<Empleado> cargarEmpleados(String bbdd){
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		ArrayList<Empleado> empleados = new ArrayList<>();
+		switch(bbdd) {
+			case "postgre":
+				empleados = gb.cargarEmpleados();
+				break;
+			case "sqlite":
+				empleados = gb.cargarEmpleadosQL();
+				break;
+			case "db4o":
+				empleados = DB4o.mostrarListEmple();
+				break;
+		}
+		return empleados;
+	}
+	
 	public Empleado(String nombre, String apellido, Cargo cargo, Date fechaContratacion, Date fechaNacimiento,
 			String nacionalidad, Date fechaFinContrato, boolean alta) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cargo = cargo;
@@ -34,8 +73,12 @@ public class Empleado {
 		this.alta = alta;
 	}
 
-	public Empleado(String nombre, String apellido, Cargo cargo, java.sql.Date fechaNacimiento,
-			String nacionalidad,java.sql.Date fechaContratacion, java.sql.Date fechaFinContrato ) {
+	public Empleado() {
+		
+	}
+	
+	public Empleado(String nombre, String apellido, Cargo cargo, Date fechaNacimiento,
+			String nacionalidad,Date fechaContratacion, Date fechaFinContrato ) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cargo = cargo;
