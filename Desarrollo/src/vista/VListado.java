@@ -139,7 +139,7 @@ public class VListado extends JFrame {
 			}
 		});
 		alta.setIcon(new ImageIcon(VListado.class.getResource("../imagenes/BOTONES/botALTA.png")));
-		alta.setBounds(50, 50, 100, 80);
+		alta.setBounds(50, 508, 100, 80);
 		alta.setContentAreaFilled(false);
 		contentPane.add(alta);
 
@@ -176,7 +176,7 @@ public class VListado extends JFrame {
 		});
 		modificacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		modificacion.setBorder(null);
-		modificacion.setBounds(50, 225,228, 80);
+		modificacion.setBounds(322, 508,228, 80);
 		modificacion.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botMODIFICAC.png")));
 		modificacion.setContentAreaFilled(false);
 		contentPane.add(modificacion);
@@ -188,7 +188,7 @@ public class VListado extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		baja.setBounds(50, 134,107, 80);
+		baja.setBounds(190, 508,107, 80);
 		baja.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botBAJA.png")));
 		baja.setContentAreaFilled(false);
 		contentPane.add(baja);
@@ -196,7 +196,7 @@ public class VListado extends JFrame {
 		JButton historico = new JButton("");
 		historico.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		historico.setBorder(null);
-		historico.setBounds(50, 318,174, 80);
+		historico.setBounds(562, 508,174, 80);
 		historico.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botHIST.png")));
 		historico.setContentAreaFilled(false);
 		contentPane.add(historico);
@@ -246,7 +246,7 @@ public class VListado extends JFrame {
 		});
 		cbCines.setModel(new DefaultComboBoxModel(new String[] {"--Elige un cine--","Pr\u00EDncipe", "Zubiarte 3D", "Azul"}));
 		cbCines.setSize(350, 31); 
-		cbCines.setLocation(427, 67);
+		cbCines.setLocation(248, 150);
 		cbCines.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbCines.setForeground(Color.WHITE);
 		cbCines.setBackground(new Color(233, 69, 75));
@@ -269,7 +269,7 @@ public class VListado extends JFrame {
 		cbEmpleados.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbEmpleados.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbEmpleados.setBackground(new Color(233, 69, 75));
-		cbEmpleados.setBounds(427, 109, 350, 31);
+		cbEmpleados.setBounds(248, 225, 350, 31);
 		cbEmpleados.addItem("--Elige un empleado--");
 		cbEmpleados.setSelectedIndex(0);
 		contentPane.add(cbEmpleados);
@@ -289,7 +289,7 @@ public class VListado extends JFrame {
 		cbPeliculas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbPeliculas.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbPeliculas.setBackground(new Color(233, 69, 75));
-		cbPeliculas.setBounds(427, 151, 350, 31);
+		cbPeliculas.setBounds(248, 304, 350, 31);
 		cbPeliculas.addItem("--Elige una pelicula--");
 		cbPeliculas.setSelectedIndex(0);
 		contentPane.add(cbPeliculas);
@@ -309,7 +309,7 @@ public class VListado extends JFrame {
 		cbSalas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbSalas.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbSalas.setBackground(new Color(233, 69, 75));
-		cbSalas.setBounds(427, 193, 350, 40);
+		cbSalas.setBounds(248, 374, 350, 40);
 		cbSalas.addItem("--Elige una sala--");
 		cbSalas.setSelectedIndex(0);
 		contentPane.add(cbSalas);
@@ -331,7 +331,7 @@ public class VListado extends JFrame {
 				
 			}
 		});
-		btnInfo.setBounds(50, 409, 100, 80);
+		btnInfo.setBounds(322, 639, 100, 80);
 		btnInfo.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/Info.png")));
 		btnInfo.setContentAreaFilled(false);
 		contentPane.add(btnInfo);
@@ -341,7 +341,7 @@ public class VListado extends JFrame {
 		lblCine.setLabelFor(cbCines);
 		lblCine.setForeground(Color.WHITE);
 		lblCine.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblCine.setBounds(291, 67, 126, 31);
+		lblCine.setBounds(0, 150, 126, 31);
 		contentPane.add(lblCine);
 		
 		JLabel lblEmpleado = new JLabel("Empleado ");
@@ -349,7 +349,7 @@ public class VListado extends JFrame {
 		lblEmpleado.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEmpleado.setForeground(Color.WHITE);
 		lblEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblEmpleado.setBounds(291, 109, 126, 31);
+		lblEmpleado.setBounds(66, 225, 126, 31);
 		contentPane.add(lblEmpleado);
 		
 		JLabel lblPelcula = new JLabel("Pel\u00EDcula ");
@@ -357,7 +357,7 @@ public class VListado extends JFrame {
 		lblPelcula.setLabelFor(cbPeliculas);
 		lblPelcula.setForeground(Color.WHITE);
 		lblPelcula.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblPelcula.setBounds(291, 151, 126, 31);
+		lblPelcula.setBounds(42, 304, 126, 31);
 		contentPane.add(lblPelcula);
 		
 		JLabel lblSala = new JLabel("Sala ");
@@ -365,8 +365,19 @@ public class VListado extends JFrame {
 		lblSala.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSala.setForeground(Color.WHITE);
 		lblSala.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblSala.setBounds(291, 193, 126, 31);
+		lblSala.setBounds(12, 379, 126, 31);
 		contentPane.add(lblSala);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(66, 66, 56, 16);
+		contentPane.add(label);
+		
+		JLabel lblGestinDe = new JLabel("| Gesti\u00F3n de cines");
+		lblGestinDe.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblGestinDe.setForeground(Color.WHITE);
+		lblGestinDe.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblGestinDe.setBounds(-11, 51, 274, 31);
+		contentPane.add(lblGestinDe);
 
 		setLocationRelativeTo(null);
 
