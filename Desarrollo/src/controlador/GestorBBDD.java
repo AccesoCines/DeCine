@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -302,7 +304,7 @@ public class GestorBBDD {
 	}
 
 	
-	public ArrayList<Pelicula> cargarPeliculasQL() {
+	public ArrayList<Pelicula> cargarPeliculasQL() throws ParseException {
 		ArrayList<Pelicula> peliculas = new ArrayList<>();
 		
 		//SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}';
@@ -310,6 +312,11 @@ public class GestorBBDD {
 			String query = "SELECT * FROM Pelicula WHERE ALTA=1 AND fecha_inicio<current_date and fecha_fin>current_date ";
 			ResultSet rs = con.createStatement().executeQuery(query);
 			while(rs.next()) {
+				SimpleDateFormat format  = new SimpleDateFormat("yyyy-MM-dd");
+				java.util.Date parsed = format.parse(rs.getString("fecha_inicio"));
+				java.sql.Date fechaIni = new java.sql.Date(parsed.getTime());
+				java.util.Date parsed2 = format.parse(rs.getString("fecha_fin"));
+				java.sql.Date fechaFin = new java.sql.Date(parsed2.getTime());
 				peliculas.add(new Pelicula(
 						rs.getString("titulo"),
 						rs.getInt("ano_estreno"),
@@ -319,8 +326,8 @@ public class GestorBBDD {
 						rs.getString("sinopsis"),
 						rs.getInt("duracion"),
 						rs.getString("trailer"),
-						rs.getDate("fecha_inicio"),
-						rs.getDate("fecha_fin"),
+						fechaIni,
+						fechaFin,
 						rs.getBoolean("alta"),
 						rs.getInt("id")
 						));

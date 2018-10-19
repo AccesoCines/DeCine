@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ public class Pelicula {
 		Pelicula.bbdd = bbdd;
 	}
 
-	public static ArrayList<Pelicula> cargarPeliculas(String bbdd){
+	public static ArrayList<Pelicula> cargarPeliculas(String bbdd) throws ParseException{
 		GestorBBDD gb = new GestorBBDD(bbdd);
 		ArrayList<Pelicula> pelis = new ArrayList<>();
 		switch(bbdd) {
