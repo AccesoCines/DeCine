@@ -56,7 +56,6 @@ public class VListado extends JFrame {
 	private JPanel contentPane;
 
 	private static DefaultTableModel model;
-	private static JTable table;
 	private JFrame jframe = this;
 	private static String bbdd;
 	private VMetaDatos vmd = new VMetaDatos();
@@ -65,12 +64,13 @@ public class VListado extends JFrame {
 	private ArrayList<Pelicula> peliculas = new ArrayList<>();
 	private ArrayList<Empleado> empleados = new ArrayList<>();
 	private ArrayList<Sala> salas = new ArrayList<>();
-	private JComboBox cbPeliculas;
-	private JComboBox cbEmpleados;
-	private JComboBox cbSalas;
-	private int peliSeleccionada = -1;
-	private int empleSeleccionado = -1;
-	private int salaSeleccionada = -1;
+	private JComboBox<String> cbPeliculas;
+	private JComboBox<String> cbEmpleados;
+	private JComboBox<String> cbSalas;
+	private int peliSeleccionada = 0;
+	private int empleSeleccionado = 0;
+	private int salaSeleccionada = 0;
+	private boolean primeraVuelta = true;
 
 	/**
 	 * Launch the application.
@@ -106,14 +106,6 @@ public class VListado extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		getContentPane().setBackground(new Color(233, 69, 75));
-		//Hasta aquí y sobreescribir todo
-
-		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {
-
-		}, new String[] { "New column", "New column", "New column", "New column", "New column" }));
-		table.setBounds(50, 472, 700, 270);
-		contentPane.add(table);
 
 		JButton alta = new JButton("");
 		alta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -134,7 +126,6 @@ public class VListado extends JFrame {
 						VAltaSalas valtas = new VAltaSalas();
 						valtas.cargarEmpleados(elegirBBDD(cine));
 						valtas.setVisible(true);
-						valtas.setbbdd(elegirBBDD(cine));
 						frame.dispose();
 						break;
 					case 2:
@@ -148,14 +139,44 @@ public class VListado extends JFrame {
 			}
 		});
 		alta.setIcon(new ImageIcon(VListado.class.getResource("../imagenes/BOTONES/botALTA.png")));
-		alta.setBounds(533, 50, 100, 80);
+		alta.setBounds(50, 50, 100, 80);
 		alta.setContentAreaFilled(false);
 		contentPane.add(alta);
 
 		JButton modificacion = new JButton("");
+		modificacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if((cbEmpleados.getSelectedIndex()!=0 && cbPeliculas.getSelectedIndex()!=0)||
+						(cbEmpleados.getSelectedIndex()!=0 && cbSalas.getSelectedIndex()!=0)||
+						(cbPeliculas.getSelectedIndex()!=0 && cbSalas.getSelectedIndex()!=0)
+					) {
+					JOptionPane.showMessageDialog(getParent(), "Sólo puedes elegir un desplegable: "
+							+ "\n Empleado o película o sala.", "Error", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				if(cbEmpleados.getSelectedIndex()!=0) {
+					VModificacionEmpleado vme = new VModificacionEmpleado();
+					vme.setVisible(true);
+					vme.setEmpleado(empleados.get(cbEmpleados.getSelectedIndex()-1));
+					frame.dispose();
+				}
+				if(cbPeliculas.getSelectedIndex()!=0) {
+					VModPelicula vmp = new VModPelicula();
+					vmp.setVisible(true);
+					vmp.setPelicula(peliculas.get(cbPeliculas.getSelectedIndex()-1));
+					frame.dispose();
+				}
+				if(cbSalas.getSelectedIndex()!=0) {
+					VModificacionSala vms = new VModificacionSala();
+					vms.setVisible(true);
+					vms.setSala(salas.get(cbSalas.getSelectedIndex()-1));
+					frame.dispose();
+				}
+			}
+		});
 		modificacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		modificacion.setBorder(null);
-		modificacion.setBounds(533, 350,228, 80);
+		modificacion.setBounds(50, 225,228, 80);
 		modificacion.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botMODIFICAC.png")));
 		modificacion.setContentAreaFilled(false);
 		contentPane.add(modificacion);
@@ -167,7 +188,7 @@ public class VListado extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		baja.setBounds(533, 150,107, 80);
+		baja.setBounds(50, 134,107, 80);
 		baja.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botBAJA.png")));
 		baja.setContentAreaFilled(false);
 		contentPane.add(baja);
@@ -175,7 +196,7 @@ public class VListado extends JFrame {
 		JButton historico = new JButton("");
 		historico.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		historico.setBorder(null);
-		historico.setBounds(533, 250,174, 80);
+		historico.setBounds(50, 318,174, 80);
 		historico.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botHIST.png")));
 		historico.setContentAreaFilled(false);
 		contentPane.add(historico);
@@ -184,38 +205,53 @@ public class VListado extends JFrame {
 		cbCines.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				try {
+					
 					cine = e.getItem().toString();
+					if(cine.equals("--Elige un cine--")) primeraVuelta=true;
 					System.out.println(cine);
+					//TODO se repiten
+					cbPeliculas.removeAllItems();
+					cbEmpleados.removeAllItems();
+					cbSalas.removeAllItems();
+					peliculas.clear();
+					empleados.clear(); 
+					salas.clear();
 					
 					peliculas = Pelicula.cargarPeliculas(elegirBBDD(cine));
+					cbPeliculas.addItem("--Elige una película--");
 					for(Pelicula p:peliculas) {
 						cbPeliculas.addItem(p.getTitulo());
 					}
-					cbPeliculas.setSelectedIndex(-1);
+					cbPeliculas.setSelectedIndex(0);
+					
 					empleados = Empleado.cargarEmpleados(elegirBBDD(cine));
+					cbEmpleados.addItem("--Elige un empleado--");
 					for(Empleado emple:empleados) {
 						cbEmpleados.addItem(emple.getNombre() + " " +emple.getApellido());
 					}
-					cbEmpleados.setSelectedIndex(-1);
+					cbEmpleados.setSelectedIndex(0);
+					
 					salas = Sala.cargarSalas(elegirBBDD(cine));
+					cbSalas.addItem("--Elige una sala--");
 					for(Sala s:salas) {
-						cbSalas.addItem(s.getNumero());
+						cbSalas.addItem(String.valueOf(s.getNumero()));
 					}
-					cbSalas.setSelectedIndex(-1);
+					cbSalas.setSelectedIndex(0);
+					primeraVuelta=false;
 				}catch(Exception ex) {
 					System.out.println(ex);
 				}
 				
 			}
 		});
-		cbCines.setModel(new DefaultComboBoxModel(new String[] {"Pr\u00EDncipe", "Zubiarte 3D", "Azul"}));
-		cbCines.setSize(350, 40);
-		cbCines.setLocation(146, 75);
+		cbCines.setModel(new DefaultComboBoxModel(new String[] {"--Elige un cine--","Pr\u00EDncipe", "Zubiarte 3D", "Azul"}));
+		cbCines.setSize(350, 31); 
+		cbCines.setLocation(427, 67);
 		cbCines.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbCines.setForeground(Color.WHITE);
 		cbCines.setBackground(new Color(233, 69, 75));
 		cbCines.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		cbCines.setSelectedIndex(-1);
+		cbCines.setSelectedIndex(0);
 		contentPane.add(cbCines);
 		
 		cbEmpleados = new JComboBox();
@@ -233,8 +269,9 @@ public class VListado extends JFrame {
 		cbEmpleados.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbEmpleados.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbEmpleados.setBackground(new Color(233, 69, 75));
-		cbEmpleados.setBounds(146, 152, 350, 40);
-		cbEmpleados.setSelectedIndex(-1);
+		cbEmpleados.setBounds(427, 109, 350, 31);
+		cbEmpleados.addItem("--Elige un empleado--");
+		cbEmpleados.setSelectedIndex(0);
 		contentPane.add(cbEmpleados);
 		
 		cbPeliculas = new JComboBox();
@@ -252,8 +289,9 @@ public class VListado extends JFrame {
 		cbPeliculas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbPeliculas.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbPeliculas.setBackground(new Color(233, 69, 75));
-		cbPeliculas.setBounds(146, 225, 350, 40);
-		cbPeliculas.setSelectedIndex(-1);
+		cbPeliculas.setBounds(427, 151, 350, 31);
+		cbPeliculas.addItem("--Elige una pelicula--");
+		cbPeliculas.setSelectedIndex(0);
 		contentPane.add(cbPeliculas);
 		
 		cbSalas = new JComboBox();
@@ -271,8 +309,9 @@ public class VListado extends JFrame {
 		cbSalas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbSalas.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbSalas.setBackground(new Color(233, 69, 75));
-		cbSalas.setBounds(146, 300, 350, 40);
-		cbSalas.setSelectedIndex(-1);
+		cbSalas.setBounds(427, 193, 350, 40);
+		cbSalas.addItem("--Elige una sala--");
+		cbSalas.setSelectedIndex(0);
 		contentPane.add(cbSalas);
 		
 		JButton btnInfo = new JButton("");
@@ -280,7 +319,7 @@ public class VListado extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String cine = elegirBBDD(cbCines.getSelectedItem().toString());
-					if(!cine.equals("")) {	
+					if(!cine.equals("--Elige un cine--")) {	
 						vmd.setBbdd(elegirBBDD(cbCines.getSelectedItem().toString()));
 						vmd.cargarFormulario();
 						vmd.setVisible(true);
@@ -292,7 +331,7 @@ public class VListado extends JFrame {
 				
 			}
 		});
-		btnInfo.setBounds(50, 350, 100, 80);
+		btnInfo.setBounds(50, 409, 100, 80);
 		btnInfo.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/Info.png")));
 		btnInfo.setContentAreaFilled(false);
 		contentPane.add(btnInfo);
@@ -302,7 +341,7 @@ public class VListado extends JFrame {
 		lblCine.setLabelFor(cbCines);
 		lblCine.setForeground(Color.WHITE);
 		lblCine.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblCine.setBounds(10, 80, 126, 31);
+		lblCine.setBounds(291, 67, 126, 31);
 		contentPane.add(lblCine);
 		
 		JLabel lblEmpleado = new JLabel("Empleado ");
@@ -310,7 +349,7 @@ public class VListado extends JFrame {
 		lblEmpleado.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEmpleado.setForeground(Color.WHITE);
 		lblEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblEmpleado.setBounds(10, 155, 126, 31);
+		lblEmpleado.setBounds(291, 109, 126, 31);
 		contentPane.add(lblEmpleado);
 		
 		JLabel lblPelcula = new JLabel("Pel\u00EDcula ");
@@ -318,7 +357,7 @@ public class VListado extends JFrame {
 		lblPelcula.setLabelFor(cbPeliculas);
 		lblPelcula.setForeground(Color.WHITE);
 		lblPelcula.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblPelcula.setBounds(10, 230, 126, 31);
+		lblPelcula.setBounds(291, 151, 126, 31);
 		contentPane.add(lblPelcula);
 		
 		JLabel lblSala = new JLabel("Sala ");
@@ -326,17 +365,16 @@ public class VListado extends JFrame {
 		lblSala.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSala.setForeground(Color.WHITE);
 		lblSala.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblSala.setBounds(10, 305, 126, 31);
+		lblSala.setBounds(291, 193, 126, 31);
 		contentPane.add(lblSala);
 
 		setLocationRelativeTo(null);
 
-		empleados = DB4o.mostrarListEmple();
-		model = (DefaultTableModel) table.getModel();
+		/*empleados = DB4o.mostrarListEmple();
 		for (Empleado e : empleados) {
 
 			model.insertRow(model.getRowCount(), new Object[] { e.getNombre(), e.getApellido() });
-		}
+		}*/
 	}
 	private String elegirBBDD(String nombreBd) {
 		switch (nombreBd) {
@@ -347,7 +385,8 @@ public class VListado extends JFrame {
 			case "Azul":
 				return "postgre";
 			default:
-				JOptionPane.showMessageDialog(getParent(), "Debes elegir un cine en el desplegable", "Error", JOptionPane.ERROR_MESSAGE);
+				if(!primeraVuelta)
+					JOptionPane.showMessageDialog(getParent(), "Debes elegir un cine en el desplegable", "Error", JOptionPane.ERROR_MESSAGE);
 				return "";
 		}
 	}

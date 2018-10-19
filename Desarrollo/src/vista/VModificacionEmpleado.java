@@ -236,4 +236,9 @@ public class VModificacionEmpleado extends JFrame {
 		
 		setLocationRelativeTo(null);
 	}
+
+	public void setEmpleado(Empleado empleado) {
+		// TODO Auto-generated method stub
+		
+	}
 }

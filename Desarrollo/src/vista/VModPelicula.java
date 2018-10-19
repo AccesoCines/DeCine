@@ -271,4 +271,9 @@ public class VModPelicula extends JFrame {
 	public void setBbdd(String bbdd) {
 		this.bbdd = bbdd;
 	}
+
+	public void setPelicula(Pelicula pelicula) {
+		// TODO Auto-generated method stub
+		
+	}
 }

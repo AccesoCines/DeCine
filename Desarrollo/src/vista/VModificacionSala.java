@@ -14,6 +14,9 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import com.toedter.calendar.JYearChooser;
+
+import modelo.Sala;
+
 import javax.swing.JSpinner;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -139,6 +142,11 @@ public class VModificacionSala extends JFrame {
 		btnCancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		
 		setLocationRelativeTo(null);
+	}
+
+	public void setSala(Sala sala) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
