@@ -168,7 +168,7 @@ public class VAltaEmpleado extends JFrame {
 					JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
 							, "Guardado", JOptionPane.PLAIN_MESSAGE);
 				}else {
-					JOptionPane.showMessageDialog(getParent(), "Error al guardar la película"
+					JOptionPane.showMessageDialog(getParent(), "Error al guardar la pelï¿½cula"
 							, "Error", JOptionPane.WARNING_MESSAGE);
 				}
 				//TODO: PROBAR SI FUNSIONA
@@ -252,5 +252,9 @@ public class VAltaEmpleado extends JFrame {
 		contentPane.add(lblCine);
 		
 		setLocationRelativeTo(null);
+	}
+
+	public void setbbdd(String bbdd) {
+		this.bbdd = bbdd;
 	}
 }

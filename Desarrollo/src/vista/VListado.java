@@ -109,11 +109,11 @@ public class VListado extends JFrame {
 
 		JButton alta = new JButton("");
 		alta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		alta.setBorder(null);
+		alta.setBorder(null); 
 		alta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Object[] opciones = { "Empleado", "Sala", "Película" };
-				int opcion = JOptionPane.showOptionDialog(frame, "Elige una opción", "Selecciona", JOptionPane.YES_NO_CANCEL_OPTION, 
+				Object[] opciones = { "Empleado", "Sala", "Pelï¿½cula" };
+				int opcion = JOptionPane.showOptionDialog(frame, "Elige una opciï¿½n", "Selecciona", JOptionPane.YES_NO_CANCEL_OPTION, 
 						JOptionPane.PLAIN_MESSAGE, null, opciones, null);
 				switch(opcion) {
 					case 0:
@@ -150,8 +150,8 @@ public class VListado extends JFrame {
 						(cbEmpleados.getSelectedIndex()!=0 && cbSalas.getSelectedIndex()!=0)||
 						(cbPeliculas.getSelectedIndex()!=0 && cbSalas.getSelectedIndex()!=0)
 					) {
-					JOptionPane.showMessageDialog(getParent(), "Sólo puedes elegir un desplegable: "
-							+ "\n Empleado o película o sala.", "Error", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(getParent(), "Sï¿½lo puedes elegir un desplegable: "
+							+ "\n Empleado o pelï¿½cula o sala.", "Error", JOptionPane.WARNING_MESSAGE);
 				}
 				
 				if(cbEmpleados.getSelectedIndex()!=0) {
@@ -218,7 +218,7 @@ public class VListado extends JFrame {
 					salas.clear();
 					
 					peliculas = Pelicula.cargarPeliculas(elegirBBDD(cine));
-					cbPeliculas.addItem("--Elige una película--");
+					cbPeliculas.addItem("--Elige una pelï¿½cula--");
 					for(Pelicula p:peliculas) {
 						cbPeliculas.addItem(p.getTitulo());
 					}
@@ -259,7 +259,7 @@ public class VListado extends JFrame {
 			public void itemStateChanged(ItemEvent e) {
 				try {
 					empleSeleccionado = cbEmpleados.getSelectedIndex();
-					System.out.println(cbEmpleados.getSelectedIndex());
+					empleBool = true;
 				}catch(Exception exc) {
 					System.out.println(exc);
 				}
@@ -279,7 +279,7 @@ public class VListado extends JFrame {
 			public void itemStateChanged(ItemEvent e) {
 				try {
 					peliSeleccionada = cbPeliculas.getSelectedIndex();
-					System.out.println(cbPeliculas.getSelectedIndex());
+					peliBool = true;
 				}catch(Exception exc) {
 					System.out.println(exc);
 				}
@@ -299,7 +299,7 @@ public class VListado extends JFrame {
 			public void itemStateChanged(ItemEvent e) {
 				try {
 					salaSeleccionada = cbSalas.getSelectedIndex();
-					System.out.println(cbSalas.getSelectedIndex());
+					salaBool = true;
 				}catch(Exception exc) {
 					System.out.println(exc);
 				}
@@ -389,7 +389,7 @@ public class VListado extends JFrame {
 	}
 	private String elegirBBDD(String nombreBd) {
 		switch (nombreBd) {
-			case "Príncipe":
+			case "Prï¿½ncipe":
 				return "sqlite";
 			case "Zubiarte 3D":
 				return "db4o";

@@ -24,6 +24,8 @@ import javax.swing.JButton;
 public class VModificacionSala extends JFrame {
 
 	private JPanel contentPane;
+	private String bbdd;
+	private Sala sala;
 
 	/**
 	 * Launch the application.

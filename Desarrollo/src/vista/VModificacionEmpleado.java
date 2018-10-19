@@ -131,12 +131,12 @@ public class VModificacionEmpleado extends JFrame {
 		btnOk.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e){
 			
-			//TODO MOSTRAR UN MENSAJE DE ERROR EN CASO DE QUE LA FECHA DE CONTRATACIÓN INDIQUE QUE NO CORRESPONDE
+			//TODO MOSTRAR UN MENSAJE DE ERROR EN CASO DE QUE LA FECHA DE CONTRATACIï¿½N INDIQUE QUE NO CORRESPONDE
 			
-			/*de 0 a 1 año : portero, camarero.
-			 * de 1 a 3 años: acomodador o responsable de bar
-			 * de 3 a 5 años responsable de sala
-			 * más de 5 años responsable del salón de cine
+			/*de 0 a 1 aï¿½o : portero, camarero.
+			 * de 1 a 3 aï¿½os: acomodador o responsable de bar
+			 * de 3 a 5 aï¿½os responsable de sala
+			 * mï¿½s de 5 aï¿½os responsable del salï¿½n de cine
 			 *
 			 */
 			

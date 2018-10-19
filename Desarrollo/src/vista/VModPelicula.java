@@ -44,6 +44,10 @@ public class VModPelicula extends JFrame {
 	private JDateChooser txtFecFin;
 	private String bbdd;
 
+	public void setPelicula(Pelicula pelicula) {
+		this.pelicula = pelicula;
+	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -103,8 +107,8 @@ public class VModPelicula extends JFrame {
 					anyo = Integer.parseInt(txtAnyoEstreno.getText());
 					duracion = Integer.parseInt(txtDuracion.getText());
 				}catch(NumberFormatException ex) {
-					JOptionPane.showMessageDialog(getParent(), "Comprueba que el año y la duración "
-							+ "son números", "Error", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(getParent(), "Comprueba que el aï¿½o y la duraciï¿½n "
+							+ "son nï¿½meros", "Error", JOptionPane.WARNING_MESSAGE);
 					
 				}
 				String director = txtDirector.getText();
@@ -129,7 +133,7 @@ public class VModPelicula extends JFrame {
 						JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
 								, "Guardado", JOptionPane.PLAIN_MESSAGE);
 					}else {
-						JOptionPane.showMessageDialog(getParent(), "Error al guardar la película"
+						JOptionPane.showMessageDialog(getParent(), "Error al guardar la pelï¿½cula"
 								, "Error", JOptionPane.WARNING_MESSAGE);
 					}
 					

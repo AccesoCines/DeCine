@@ -112,8 +112,8 @@ public class VAltaPelicula extends JFrame {
 				try {
 					duracion = Integer.parseInt(txtDuracion.getText());
 				}catch(NumberFormatException ex) {
-					JOptionPane.showMessageDialog(getParent(), "Comprueba que la duración "
-							+ "es un número", "Error", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(getParent(), "Comprueba que la duraciï¿½n "
+							+ "es un nï¿½mero", "Error", JOptionPane.WARNING_MESSAGE);
 					
 				}
 				String director = txtDirector.getText();
@@ -140,7 +140,7 @@ public class VAltaPelicula extends JFrame {
 						JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
 								, "Guardado", JOptionPane.PLAIN_MESSAGE);
 					}else {
-						JOptionPane.showMessageDialog(getParent(), "Error al guardar la película"
+						JOptionPane.showMessageDialog(getParent(), "Error al guardar la pelï¿½cula"
 								, "Error", JOptionPane.WARNING_MESSAGE);
 					}
 					
