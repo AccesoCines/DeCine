@@ -46,13 +46,12 @@ public class VCines extends JFrame {
 	private JRadioButton rbPrincipe;
 	private JRadioButton rbZubiarte;
 	private JRadioButton rbAzul;
-	private JRadioButton rbYelmo;
-	private JLabel lbAdvertenciaCines;
 	private ButtonGroup btnGroup;
 	private JButton btnEntrarCines;
 	private JButton btnInfoCines;
 	private JButton cancelar;
 	private JButton volver;
+	private JButton btnCartelera;
 
 	/**
 	 * Launch the application.
@@ -132,13 +131,36 @@ public class VCines extends JFrame {
 		});
 		
 		*/
-		btnEntrarCines.setContentAreaFilled(false);
-		btnEntrarCines.setBounds(231, 123, 107, 89);
-		contentPane.add(btnEntrarCines);
-		btnEntrarCines.setIcon(new ImageIcon(getClass().getResource("/imagenes/CLAQUETAS/clac CARTELERA.png")));
+		//btnEntrarCines.setContentAreaFilled(false);
+	//	btnEntrarCines.setBounds(231, 123, 107, 89);
+	//	contentPane.add(btnEntrarCines);
+	//	btnEntrarCines.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/CLAQUETAS/clac CARTELERA.png")));
 		
 		
-		JButton btnInfoCines = new JButton("");
+		
+		
+		JButton btnCartelera;
+		btnCartelera = new JButton("");
+		btnCartelera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//TO DO CAMBIAR VENTANA A LA QUE VA (cartelera)
+				//VInfoCines cines = new VInfoCines();
+				//cines.setVisible(true);
+				//VCines.this.dispose();					
+			}
+		});
+		btnCartelera.setContentAreaFilled(false);
+		btnCartelera.setBounds(179, 123, 107, 89);
+		contentPane.add(btnCartelera);
+		btnCartelera.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/CLAQUETAS/clac cartelera.png")));
+
+		
+		
+		
+		
+		
+		
+		 btnInfoCines = new JButton("");
 		btnInfoCines.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//TO DO CAMBIAR VENTANA A LA QUE VA
@@ -237,14 +259,6 @@ public class VCines extends JFrame {
 		contentPane.add(rbAzul);
 		rbAzul.setContentAreaFilled(false);
 		
-		
-		JRadioButton rbYelmo = new JRadioButton("  JUNIOR YELMO (Cine Infantil)");
-		rbYelmo.setForeground(Color.WHITE);
-		rbYelmo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		rbYelmo.setBounds(198, 530, 482, 46);
-		contentPane.add(rbYelmo);
-		rbYelmo.setContentAreaFilled(false);
-		
 		 
 		
 		
@@ -252,24 +266,11 @@ public class VCines extends JFrame {
 		    btnGroup.add(rbPrincipe);
 		    btnGroup.add(rbZubiarte);
 		    btnGroup.add(rbAzul);
-		    btnGroup.add(rbYelmo);
-		    
-		    
-		    
-		    
-		    JLabel lbAdvertenciaCines = new JLabel("Seleccionar un cine para continuar");
-		    if (rbPrincipe.isSelected() || rbZubiarte.isSelected() || rbAzul.isSelected() || rbYelmo.isSelected()) {
-			    lbAdvertenciaCines.setVisible(false);
+		    if (rbPrincipe.isSelected() || rbZubiarte.isSelected() || rbAzul.isSelected()) {
 		    }else
 		    {
-			    lbAdvertenciaCines.setVisible(false);
 
 		    }
-		    lbAdvertenciaCines.setBackground(Color.GREEN);
-		    lbAdvertenciaCines.setHorizontalAlignment(SwingConstants.CENTER);
-		    lbAdvertenciaCines.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		    lbAdvertenciaCines.setBounds(226, 254, 344, 51);
-		    contentPane.add(lbAdvertenciaCines);
 		    
 	}
 }

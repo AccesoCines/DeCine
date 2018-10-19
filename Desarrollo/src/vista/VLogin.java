@@ -31,13 +31,14 @@ public class VLogin extends JFrame {
 	private JButton btn;
 	private JPasswordField jPassw;
 	private JButton btnTrans;
+	private static VLogin frame;
 
 	public static void main(String[] args) {
 
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new VLogin().setVisible(true);
-
+				frame= 	new VLogin();
+				frame.setVisible(true);
 			}
 
 		});
@@ -79,11 +80,7 @@ public class VLogin extends JFrame {
 				}
 			}
 		});
-	//btn.setBackground(new Color(240, 240, 240));
-		btn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+
 		
 		btn.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/entrarAdminis.png")));
 		btn.setBounds(33, 199, 266, 67);
@@ -93,18 +90,18 @@ public class VLogin extends JFrame {
 		
 	
 		btnTrans = new JButton("");
-		btnTrans.setBorderPainted(false);
 		btnTrans.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evento) {
-				
+	
+				VCines ventCines = 	new VCines();
+				ventCines.setVisible(true);
+				System.out.println("Boton ir a cines");
+			
 				}
 			}
 		);
 	//btn.setBackground(new Color(240, 240, 240));
-		btnTrans.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		
 		
 		btnTrans.setIcon(new ImageIcon(getClass().getResource("")));
 		btnTrans.setBounds(448, 453, 646, 312);
@@ -112,38 +109,6 @@ public class VLogin extends JFrame {
 		getContentPane().add(btnTrans);
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-
 		JUsuario = new JTextField();
 		JUsuario.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		JUsuario.setBounds(new Rectangle(0, 0, 0, 31));
