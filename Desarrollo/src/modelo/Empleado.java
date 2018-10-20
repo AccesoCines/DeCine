@@ -127,7 +127,6 @@ public class Empleado {
 
 	public Empleado(String nombre, String apellido, Cargo cargo, Date fechaContratacion, Date fechaNacimiento,
 			String nacionalidad, Date fechaFinContrato, boolean alta, int id) {
-		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.cargo = cargo;

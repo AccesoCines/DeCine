@@ -24,6 +24,8 @@ import modelo.Empleado;
 import modelo.Sala;
 
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -142,11 +144,11 @@ public class VAltaSalas extends JFrame {
 		txtAnyoInag.setBounds(450, 456, 300, 31);
 		contentPane.add(txtAnyoInag);
 		
-		JSpinner txtNumSala = new JSpinner();
+		JSpinner txtNumSala = new JSpinner(new SpinnerNumberModel(0, 0, 1000, 1));
 		txtNumSala.setBounds(450, 265, 300, 31);
 		contentPane.add(txtNumSala);
 		
-		JSpinner txtAforo = new JSpinner();
+		JSpinner txtAforo = new JSpinner(new SpinnerNumberModel(50, 1, 1000, 5));
 		txtAforo.setBounds(450, 311, 300, 31);
 		contentPane.add(txtAforo);
 		

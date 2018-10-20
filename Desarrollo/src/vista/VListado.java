@@ -176,6 +176,8 @@ public class VListado extends JFrame {
 						VModificacionSala vms = new VModificacionSala();
 						vms.setVisible(true);
 						vms.setBbdd(elegirBBDD(cine));
+						vms.setCine(cine);
+						vms.setResponsables(elegirBBDD(cine));
 						vms.setSala(salas.get(cbSalas.getSelectedIndex()-1));
 						frame.dispose();
 					}

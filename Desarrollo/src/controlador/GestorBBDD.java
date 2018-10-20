@@ -352,14 +352,34 @@ public class GestorBBDD {
 			String query = "SELECT * FROM "+'"'+"Sala"+'"'+" WHERE ALTA=true ";
 			ResultSet rs = con.createStatement().executeQuery(query);
 			while(rs.next()) {
+				String queryRes = "SELECT * FROM "+'"'+"Empleado"+'"'+" WHERE ID=?";
+				PreparedStatement ps = con.prepareStatement(queryRes);
+				ps.setInt(1, rs.getInt("id_responsable"));
+				ResultSet rsr = ps.executeQuery();
+				Empleado resp = new Empleado();
+				while(rsr.next()) {
+					resp = new Empleado(
+							rsr.getString("nombre"),
+							rsr.getString("apellido"),
+							Cargo.valueOf(rsr.getString("cargo")),
+							rsr.getDate("fechacontratacion"),
+							rsr.getDate("fechanacimiento"),
+							rsr.getString("nacionalidad"),
+							rsr.getDate("fechafincontrato"),
+							rsr.getBoolean("alta"),
+							rsr.getInt("id")
+							);
+				}
 				salas.add(new Sala(
 						rs.getInt("numero"),
 						rs.getInt("aforo"),
 						rs.getString("dimensiones_pantalla"),
 						rs.getInt("ano_inauguracion"),
 						rs.getBoolean("discapacidad"),
+						resp,
 						rs.getInt("id")
 						));
+
 			}
 			if(salas.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "No hay salas", null, 0);
@@ -554,7 +574,7 @@ public class GestorBBDD {
 			ps.setDate(6, empleado.getFechaContratacion());
 			ps.setDate(7, empleado.getFechaFinContrato());
 			ps.setInt(8, empleado.getId());
-			ps.execute();
+			ps.executeUpdate();
 			ps.close();
 			return true;
 		} catch (SQLException e) {
@@ -571,10 +591,39 @@ public class GestorBBDD {
 	}
 
 
-/*
-	public ArrayList<Sala> cargarSalasQL() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean modificarSala(Sala sala) {
+		try {
+			String query = "UPDATE "+'"'+"Sala"+'"'+ " SET numero = ?, aforo = ?, "
+					+ "dimensiones_pantalla = ?, ano_inauguracion = ?, discapacidad = ?,"
+					+ " id_responsable = ? where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, sala.getNumero());
+			ps.setInt(2, sala.getAforo());
+			ps.setString(3, sala.getDimPantalla());
+			ps.setInt(4, sala.getAnoInauguracion());
+			ps.setBoolean(5, sala.isDiscapacidad());
+			ps.setInt(6, sala.getResponsable().getId());
+			ps.setInt(7, sala.getId());
+			int lineas = ps.executeUpdate();
+			ps.close();
+			if(lineas==1) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
-	*/
+
+
+	public boolean modificarSalaQL(Sala sala) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 }

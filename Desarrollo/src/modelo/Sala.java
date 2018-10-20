@@ -17,7 +17,7 @@ public class Sala {
 	private Empleado responsable;
 	private boolean alta;
 	private int id;
-	private String bbdd = "db4o"; //TODO cambiar por variable desde la ventana anterior
+	private String bbdd; //TODO cambiar por variable desde la ventana anterior
 	//Cuando se carga la ventana hay que traer aqu� la variable de que BBDD es para pasarla al new GestorBBDD
 	
 	private ArrayList<Proyeccion> proyecciones;
@@ -64,7 +64,18 @@ public class Sala {
 		this.id = id;
 		proyecciones = new ArrayList<>();
 	}
-
+	
+	
+	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
+			Empleado responsable, int id) {
+		this.numero = numero;
+		this.aforo = aforo;
+		this.dimPantalla = dimPantalla;
+		this.anoInauguracion = anoInauguracion;
+		this.discapacidad = discapacidad;
+		this.responsable = responsable;
+		this.id = id;
+	}
 
 	public Sala(int numero, int aforo, String dimPantalla, int anoInauguracion, boolean discapacidad,
 			Empleado responsable) {
@@ -110,6 +121,23 @@ public class Sala {
 		return correcto;
 	}
 
+	public boolean modificarSala(String bbdd2) {
+		GestorBBDD gb = new GestorBBDD(bbdd2);	
+		boolean correcto = false;
+		switch(bbdd2) {
+		case "postgre":
+			correcto = gb.modificarSala(this);
+			break;
+		case "sqlite":
+			correcto = gb.modificarSalaQL(this);
+			break;
+		case "db4o":
+			correcto = DB4o.modificarSala(this);
+			break;
+		}
+		return correcto;
+	}
+	
 	public void anadirProyeccion(Proyeccion proyeccion) {
 		proyecciones.add(proyeccion);
 	}
@@ -189,6 +217,8 @@ public class Sala {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 
 	
 }
