@@ -43,15 +43,16 @@ import java.awt.Frame;
 public class VCines extends JFrame {
 
 	private JPanel contentPane;
-	private JRadioButton rbPrincipe;
-	private JRadioButton rbZubiarte;
-	private JRadioButton rbAzul;
-	private ButtonGroup btnGroup;
+	public static JRadioButton rbPrincipe;
+	public static JRadioButton rbZubiarte;
+	public static JRadioButton rbAzul;
+	public static ButtonGroup btnGroup;
 	private JButton btnEntrarCines;
 	private JButton btnInfoCines;
 	private JButton cancelar;
 	private JButton volver;
 	private JButton btnCartelera;
+	private static String[] nombres;
 
 	/**
 	 * Launch the application.
@@ -62,6 +63,10 @@ public class VCines extends JFrame {
 				try {
 					VCines frame = new VCines();
 					frame.setVisible(true);
+					
+					
+		
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -163,10 +168,26 @@ public class VCines extends JFrame {
 		 btnInfoCines = new JButton("");
 		btnInfoCines.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//TO DO CAMBIAR VENTANA A LA QUE VA
-				VInfoCines cines = new VInfoCines();
-				cines.setVisible(true);
-				VCines.this.dispose();					
+				
+				//VInfoCine cines = new VInfoCine();
+				//cines.setVisible(true);
+				//VCines.this.dispose();
+				
+			//	if (VCines.rbZubiarte.isSelected()) {
+			//		VInfoCine.textFieldNombreCine.setText("Zubiardfdfd");
+				
+				VInfoCine mod= new VInfoCine();
+				if (rbZubiarte.isSelected()) {
+					mod.textFieldNombreCine.setText("Zubiarte");
+					VCines.this.setVisible(false);
+					VCines.this.dispose();
+					mod.setLocationRelativeTo(null);
+					    mod.setVisible(true);
+
+					
+				}
+							//	}
+				
 			}
 		});
 		btnInfoCines.setContentAreaFilled(false);
@@ -259,7 +280,7 @@ public class VCines extends JFrame {
 		contentPane.add(rbAzul);
 		rbAzul.setContentAreaFilled(false);
 		
-		 
+		String [] nombres = {"Cinesa Zubiarte 3D", "Cine Príncipe", "Cine Azul" };
 		
 		
 		  ButtonGroup btnGroup = new ButtonGroup();
