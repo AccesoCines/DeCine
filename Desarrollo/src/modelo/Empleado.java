@@ -35,10 +35,27 @@ public class Empleado {
 			correcto = gb.guardarEmpleado(this);
 			break;
 		case "sqlite":
-			correcto = gb.guardarEmpleado(this);
+			correcto = gb.guardarEmpleadoQL(this);
 			break;
 		case "db4o":
 			correcto = DB4o.guardarEmple(this);
+			break;
+		}
+		return correcto;
+	}
+	
+	public boolean modificarEmpleado(String bbdd2) {
+		GestorBBDD gb = new GestorBBDD(bbdd2);
+		boolean correcto = false;
+		switch(bbdd2) {
+		case "postgre":
+			correcto = gb.modificarEmpleado(this);
+			break;
+		case "sqlite":
+			correcto = gb.modificarEmpleadoQL(this);
+			break;
+		case "db4o":
+			correcto = DB4o.modificarEmple(this);
 			break;
 		}
 		return correcto;
@@ -202,5 +219,7 @@ public class Empleado {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	
 	
 }

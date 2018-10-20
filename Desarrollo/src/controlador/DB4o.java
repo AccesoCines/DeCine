@@ -137,7 +137,7 @@ public class DB4o {
 		db.close();
 	}
 		
-	public static void modificarEmple(Empleado e) {
+	public static boolean modificarEmple(Empleado e) {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		
@@ -147,6 +147,7 @@ public class DB4o {
 		db.store(e);
 		javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
 		db.close();
+		return true;
 	}
 	
 	public static ArrayList <Empleado> mostrarListEmple() {

@@ -39,6 +39,8 @@ public class VModificacionEmpleado extends JFrame {
 	private JDateChooser txtFecCont;
 	private JDateChooser txtFecNac;
 	private JDateChooser txtFecFinCon;
+	private JLabel cine;
+	private int id;
 
 	/**
 	 * Launch the application.
@@ -102,64 +104,44 @@ public class VModificacionEmpleado extends JFrame {
 		btnCancelar.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botCANCELAR.png")));
 		
 		JButton btnOk = new JButton("");
-		btnOk.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String nombre = txtNombre.getText();
-				String apellido = txtApellido.getText();
-				Cargo cargo = (Cargo) txtCargo.getSelectedItem();
-				Date fechaCont = (Date) txtFecCont.getDate();
-				Date fechaNac = (Date) txtFecNac.getDate();
-				Date fechaFinCon = (Date) txtFecFinCon.getDate();
-				String nacionalidad = txtNacionalidad.getText();
-				if(nombre.equals("") || apellido.equals("") ||txtCargo.getSelectedIndex()==-1
-						|| nacionalidad.equals("") || fechaCont.toString().equals("")
-						|| fechaNac.toString().equals("") || fechaFinCon.toString().equals("")) {
-					JOptionPane.showMessageDialog(getParent(), "Debes rellenar todos los campos"
-							, "Error", JOptionPane.WARNING_MESSAGE);
-				}else {
-					Empleado emple = new Empleado(nombre,apellido,cargo,fechaCont,fechaNac,nacionalidad,
-							fechaFinCon,true);
-					boolean correcto = emple.guardarEmpleado(bbdd);
-					if(correcto) {
-						JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
-								, "Guardado", JOptionPane.PLAIN_MESSAGE);
-					}else {
-						JOptionPane.showMessageDialog(getParent(), "Error al guardar la pel�cula"
-								, "Error", JOptionPane.WARNING_MESSAGE);
-					}
-				}
-			}
-		});
 		btnOk.setContentAreaFilled(false);
 		btnOk.setBounds(647, 50, 91, 80);
 		contentPane.add(btnOk);
 		btnOk.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botOK.png")));
 		
 		btnOk.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e){
-			
-			//TODO MOSTRAR UN MENSAJE DE ERROR EN CASO DE QUE LA FECHA DE CONTRATACI�N INDIQUE QUE NO CORRESPONDE
-			
-			/*de 0 a 1 a�o : portero, camarero.
-			 * de 1 a 3 a�os: acomodador o responsable de bar
-			 * de 3 a 5 a�os responsable de sala
-			 * m�s de 5 a�os responsable del sal�n de cine
-			 *
-			 */
-			
-			java.util.Date fechaConUtil = txtFecCont.getDate();
-			java.sql.Date fechaCon = new java.sql.Date(fechaConUtil.getTime());
-			
-				
-				
-		
-			
-		
-			
-		
-		
-				
-		}
+			public void actionPerformed(ActionEvent e) {
+				String nombre = txtNombre.getText();
+				String apellido = txtApellido.getText();
+				Cargo cargo = (Cargo) txtCargo.getSelectedItem();
+				java.util.Date fechaConUtil = txtFecCont.getDate();
+				java.util.Date fechaNacUtil = txtFecNac.getDate();
+				java.util.Date fechaFinutil = txtFecFinCon.getDate();
+				java.sql.Date fechaCon = new java.sql.Date(fechaConUtil.getTime());
+				java.sql.Date fechaNac = new java.sql.Date(fechaNacUtil.getTime());
+				java.sql.Date fechaFin = new java.sql.Date(fechaFinutil.getTime());
+				String nacionalidad = txtNacionalidad.getText();
+				if(nombre.equals("") || apellido.equals("") ||txtCargo.getSelectedIndex()==-1
+						|| nacionalidad.equals("") || fechaCon.toString().equals("")
+						|| fechaNac.toString().equals("") || fechaFin.toString().equals("")) {
+					JOptionPane.showMessageDialog(getParent(), "Debes rellenar todos los campos"
+							, "Error", JOptionPane.WARNING_MESSAGE);
+				}else if(fechaConUtil.after(fechaFinutil) || fechaNacUtil.after(fechaConUtil)) {
+					JOptionPane.showMessageDialog(getParent(), "Las fechas no son correctas"
+							, "Error", JOptionPane.WARNING_MESSAGE);
+				}else {
+					Empleado emple = new Empleado(nombre,apellido,cargo,fechaCon,fechaNac,nacionalidad,
+							fechaFin,true,id);
+					boolean correcto = emple.modificarEmpleado(bbdd);
+					if(correcto) {
+						JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
+								, "Guardado", JOptionPane.PLAIN_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(getParent(), "Error al guardar el empleado"
+								, "Error", JOptionPane.WARNING_MESSAGE);
+					}
+				}
+			}
 		});
 		
 	
@@ -229,11 +211,11 @@ public class VModificacionEmpleado extends JFrame {
 		lblModificacinEmpleado.setBounds(50, 50, 330, 31);
 		contentPane.add(lblModificacinEmpleado);
 		
-		JLabel label_17 = new JLabel("cine");
-		label_17.setForeground(Color.WHITE);
-		label_17.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label_17.setBounds(75, 100, 225, 31);
-		contentPane.add(label_17);
+		cine = new JLabel("cine");
+		cine.setForeground(Color.WHITE);
+		cine.setFont(new Font("Tahoma", Font.BOLD, 25));
+		cine.setBounds(75, 100, 225, 31);
+		contentPane.add(cine);
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
@@ -246,11 +228,23 @@ public class VModificacionEmpleado extends JFrame {
 
 	public void setEmpleado(Empleado empleado) {
 		// TODO Auto-generated method stub
-		
+		txtNombre.setText(empleado.getNombre());
+		txtApellido.setText(empleado.getApellido());
+		txtCargo.setSelectedItem(empleado.getCargo());
+		txtFecCont.setDate(empleado.getFechaContratacion());
+		txtFecNac.setDate(empleado.getFechaNacimiento());
+		txtNacionalidad.setText(empleado.getNacionalidad());
+		txtFecFinCon.setDate(empleado.getFechaFinContrato());
+		this.id = empleado.getId();
 	}
 
-	public void setBbdd(String elegirBBDD) {
+	public void setBbdd(String bbdd) {
 		// TODO Auto-generated method stub
 		this.bbdd = bbdd;
+	}
+
+	public void setCine(String cine) {
+		// TODO Auto-generated method stub
+		this.cine.setText(cine);
 	}
 }

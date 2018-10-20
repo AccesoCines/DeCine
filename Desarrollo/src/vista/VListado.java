@@ -159,14 +159,15 @@ public class VListado extends JFrame {
 					if(cbEmpleados.getSelectedIndex()!=0) {
 						VModificacionEmpleado vme = new VModificacionEmpleado();
 						vme.setVisible(true);
-						vme.setBbdd(elegirBBDD(bbdd));
+						vme.setBbdd(elegirBBDD(cine));
+						vme.setCine(cine);
 						vme.setEmpleado(empleados.get(cbEmpleados.getSelectedIndex()-1));
 						frame.dispose();
 					}
 					if(cbPeliculas.getSelectedIndex()!=0) {
 						VModPelicula vmp = new VModPelicula();
 						vmp.setVisible(true);
-						vmp.setBbdd(elegirBBDD(bbdd));
+						vmp.setBbdd(elegirBBDD(cine));
 						vmp.setCine(cine);
 						vmp.setPelicula(peliculas.get(cbPeliculas.getSelectedIndex()-1));
 						frame.dispose();
@@ -174,7 +175,7 @@ public class VListado extends JFrame {
 					if(cbSalas.getSelectedIndex()!=0) {
 						VModificacionSala vms = new VModificacionSala();
 						vms.setVisible(true);
-						vms.setBbdd(elegirBBDD(bbdd));
+						vms.setBbdd(elegirBBDD(cine));
 						vms.setSala(salas.get(cbSalas.getSelectedIndex()-1));
 						frame.dispose();
 					}
@@ -397,6 +398,7 @@ public class VListado extends JFrame {
 	private String elegirBBDD(String nombreBd) {
 		switch (nombreBd) {
 			case "Pr\u00edcipe":
+			case "Príncipe":
 				return "sqlite";
 			case "Zubiarte 3D":
 				return "db4o";

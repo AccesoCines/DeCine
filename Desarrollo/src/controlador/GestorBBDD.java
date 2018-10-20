@@ -440,7 +440,8 @@ public class GestorBBDD {
 						rs.getDate("fechanacimiento"),
 						rs.getString("nacionalidad"),
 						rs.getDate("fechafincontrato"),
-						rs.getBoolean("alta")
+						rs.getBoolean("alta"),
+						rs.getInt("id")
 						));
 			}
 			if(empleados.isEmpty()) {
@@ -536,6 +537,37 @@ public class GestorBBDD {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+	public boolean modificarEmpleado(Empleado empleado) {
+		try {
+			String query = "UPDATE "+'"'+"Empleado"+'"'+ " SET nombre = ?, apellido = ?, "
+					+ "cargo = ?, fechanacimiento = ?, nacionalidad = ?, fechacontratacion = ?,"
+					+ " fechafincontrato = ? where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, empleado.getNombre());
+			ps.setString(2, empleado.getApellido());		
+			ps.setString(3, empleado.getCargo().toString());
+			ps.setDate(4, empleado.getFechaNacimiento());
+			ps.setString(5, empleado.getNacionalidad());
+			ps.setDate(6, empleado.getFechaContratacion());
+			ps.setDate(7, empleado.getFechaFinContrato());
+			ps.setInt(8, empleado.getId());
+			ps.execute();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+
+	public boolean modificarEmpleadoQL(Empleado empleado) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 
