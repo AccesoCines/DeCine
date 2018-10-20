@@ -20,6 +20,8 @@ import modelo.Sala;
 import javax.swing.JSpinner;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VModificacionSala extends JFrame {
 
@@ -132,6 +134,10 @@ public class VModificacionSala extends JFrame {
 		contentPane.add(txtNumSala);
 		
 		JButton btnOk = new JButton("");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnOk.setContentAreaFilled(false);
 		btnOk.setBounds(616, 50, 108, 88);
 		contentPane.add(btnOk);

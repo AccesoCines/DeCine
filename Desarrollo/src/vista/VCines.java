@@ -46,13 +46,14 @@ public class VCines extends JFrame {
 	public static JRadioButton rbPrincipe;
 	public static JRadioButton rbZubiarte;
 	public static JRadioButton rbAzul;
-	public static ButtonGroup btnGroup;
 	private JButton btnEntrarCines;
 	private JButton btnInfoCines;
 	private JButton cancelar;
 	private JButton volver;
 	private JButton btnCartelera;
 	private static String[] nombres;
+	public static boolean verdadero;
+	public static ButtonGroup btnGroup;
 
 	/**
 	 * Launch the application.
@@ -177,14 +178,27 @@ public class VCines extends JFrame {
 			//		VInfoCine.textFieldNombreCine.setText("Zubiardfdfd");
 				
 				VInfoCine mod= new VInfoCine();
-				if (rbZubiarte.isSelected()) {
+				if (rbZubiarte.getAction() != null) {
+					verdadero = true;	
+				}else {
+					
+					verdadero = false;
+				}
+				if (verdadero) {
+					mod.setVisible(true);
 					mod.textFieldNombreCine.setText("Zubiarte");
 					VCines.this.setVisible(false);
 					VCines.this.dispose();
 					mod.setLocationRelativeTo(null);
-					    mod.setVisible(true);
-
+					    mod.setVisible(true);		
+				}else {
 					
+					mod.setVisible(true);
+					mod.textFieldNombreCine.setText("Zubiarte");
+					VCines.this.setVisible(false);
+					VCines.this.dispose();
+					mod.setLocationRelativeTo(null);
+					    mod.setVisible(true);		
 				}
 							//	}
 				
@@ -287,11 +301,11 @@ public class VCines extends JFrame {
 		    btnGroup.add(rbPrincipe);
 		    btnGroup.add(rbZubiarte);
 		    btnGroup.add(rbAzul);
-		    if (rbPrincipe.isSelected() || rbZubiarte.isSelected() || rbAzul.isSelected()) {
-		    }else
-		    {
+		//    if (rbPrincipe.isSelected() || rbZubiarte.isSelected() || rbAzul.isSelected()) {
+		 //   }else
+		  //  {
 
-		    }
+		  //  }
 		    
 	}
 }
