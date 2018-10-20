@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -159,7 +161,14 @@ public class VAltaSalas extends JFrame {
 				int anyo = txtAnyoInag.getValue();
 				int aforo = (int) txtAforo.getValue();
 				Sala s = new Sala(numero,aforo,pantalla,anyo,dis,responsable,true);
-				s.guardarSala(bbdd);
+				boolean correcto = s.guardarSala(bbdd);
+				if(correcto) {
+					JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
+							, "Guardado", JOptionPane.PLAIN_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(getParent(), "Error al guardar la pel�cula"
+							, "Error", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		button.setContentAreaFilled(false);
@@ -176,6 +185,7 @@ public class VAltaSalas extends JFrame {
 	}
 	
 	public void cargarEmpleados(String bbdd) {
+		this.bbdd = bbdd;
 		responsables = Empleado.cargarEmpleadosResp(bbdd);
 		for(Empleado resp:responsables) {
 			txtResponsable.addItem(resp.getNombre()+" "+resp.getApellido());

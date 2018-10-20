@@ -42,7 +42,7 @@ public class VVerHistorico extends JFrame {
 		// Poner icono ventana
 				setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());
 				
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -103,7 +103,7 @@ public class VAltaProyecciones extends JFrame {
 	public VAltaProyecciones() {
 		setTitle("Horarios proyecci�n");
 		setExtendedState(Frame.NORMAL);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 800, 800);
 		setLocationRelativeTo(null);
 		setIconImage(new ImageIcon(getClass().getResource("../imagenes/icono.png")).getImage());

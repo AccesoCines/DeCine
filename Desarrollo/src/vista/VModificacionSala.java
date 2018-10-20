@@ -151,4 +151,10 @@ public class VModificacionSala extends JFrame {
 		
 	}
 
+	public void setBbdd(String bbdd) {
+		// TODO Auto-generated method stub
+		this.bbdd = bbdd;
+		
+	}
+
 }

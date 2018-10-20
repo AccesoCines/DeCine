@@ -43,10 +43,9 @@ public class VModPelicula extends JFrame {
 	private JDateChooser txtFecIni;
 	private JDateChooser txtFecFin;
 	private String bbdd;
-
-	public void setPelicula(Pelicula pelicula) {
-		this.pelicula = pelicula;
-	}
+	private Pelicula pelicula;
+	private String cine;
+	private JLabel txtCine;
 
 	/**
 	 * Launch the application.
@@ -91,11 +90,11 @@ public class VModPelicula extends JFrame {
 		modificacionPelicula.setBounds(50, 41, 330, 31);
 		contentPane.add(modificacionPelicula);
 		
-		JLabel cine = new JLabel("cine");
-		cine.setForeground(Color.WHITE);
-		cine.setFont(new Font("Tahoma", Font.BOLD, 25));
-		cine.setBounds(100, 102, 225, 31);
-		contentPane.add(cine);
+		txtCine = new JLabel("cine");
+		txtCine.setForeground(Color.WHITE);
+		txtCine.setFont(new Font("Tahoma", Font.BOLD, 25));
+		txtCine.setBounds(100, 102, 225, 31);
+		contentPane.add(txtCine);
 		
 		JButton btnOk = new JButton("");
 		btnOk.addActionListener(new ActionListener() {
@@ -114,8 +113,10 @@ public class VModPelicula extends JFrame {
 				String director = txtDirector.getText();
 				String actorPrin = txtActorPrincipal.getText();
 				String actorSecun = txtActorSecundario.getText();
-				Date fechaIni = (Date) txtFecIni.getDate();
-				Date fechaFin = (Date) txtFecFin.getDate();
+				java.util.Date fechaIniU = txtFecIni.getDate();
+				Date fechaIni = new Date(fechaIniU.getTime());
+				java.util.Date fechaFinU = txtFecFin.getDate();
+				Date fechaFin = new Date(fechaFinU.getTime());
 				String trailer = txtTrailer.getText();
 				String sinopsis = txtSinopsis.getText();
 				
@@ -277,7 +278,21 @@ public class VModPelicula extends JFrame {
 	}
 
 	public void setPelicula(Pelicula pelicula) {
+		txtTitulo.setText(pelicula.getTitulo());
+		txtAnyoEstreno.setText(String.valueOf(pelicula.getAnoEstreno()));
+		txtDirector.setText(pelicula.getDirector());
+		txtActorPrincipal.setText(pelicula.getActorPrincipal());
+		txtActorSecundario.setText(pelicula.getActorSecundario());
+		txtDuracion.setText(String.valueOf(pelicula.getDuracion()));
+		txtFecIni.setDate(pelicula.getFechaInicio());
+		txtFecFin.setDate(pelicula.getFechaFin());
+		txtTrailer.setText(pelicula.getTrailer());
+		txtSinopsis.setText(pelicula.getSinopsis());
+	}
+
+	public void setCine(String cine) {
 		// TODO Auto-generated method stub
-		
+		this.cine=cine;
+		txtCine.setText(cine);
 	}
 }

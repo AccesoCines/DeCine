@@ -152,7 +152,7 @@ public class VCines extends JFrame {
 		btnCartelera.setContentAreaFilled(false);
 		btnCartelera.setBounds(179, 123, 107, 89);
 		contentPane.add(btnCartelera);
-		btnCartelera.setIcon(new ImageIcon(VAltaEmpl.class.getResource("/imagenes/CLAQUETAS/clac cartelera.png")));
+		btnCartelera.setIcon(new ImageIcon(getClass().getResource("/imagenes/CLAQUETAS/clac cartelera.png")));
 
 		
 		

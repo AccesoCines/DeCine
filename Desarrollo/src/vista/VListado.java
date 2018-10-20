@@ -71,7 +71,10 @@ public class VListado extends JFrame {
 	private int empleSeleccionado = 0;
 	private int salaSeleccionada = 0;
 	private boolean primeraVuelta = true;
-
+	private boolean empleBool;
+	private boolean peliBool;
+	private boolean salaBool;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -112,8 +115,8 @@ public class VListado extends JFrame {
 		alta.setBorder(null); 
 		alta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Object[] opciones = { "Empleado", "Sala", "Pel�cula" };
-				int opcion = JOptionPane.showOptionDialog(frame, "Elige una opci�n", "Selecciona", JOptionPane.YES_NO_CANCEL_OPTION, 
+				Object[] opciones = { "Empleado", "Sala", "Pel\u00edcula" };
+				int opcion = JOptionPane.showOptionDialog(frame, "Elige una opci\u00f3n", "Selecciona", JOptionPane.YES_NO_CANCEL_OPTION, 
 						JOptionPane.PLAIN_MESSAGE, null, opciones, null);
 				switch(opcion) {
 					case 0:
@@ -150,27 +153,31 @@ public class VListado extends JFrame {
 						(cbEmpleados.getSelectedIndex()!=0 && cbSalas.getSelectedIndex()!=0)||
 						(cbPeliculas.getSelectedIndex()!=0 && cbSalas.getSelectedIndex()!=0)
 					) {
-					JOptionPane.showMessageDialog(getParent(), "S�lo puedes elegir un desplegable: "
-							+ "\n Empleado o pel�cula o sala.", "Error", JOptionPane.WARNING_MESSAGE);
-				}
-				
-				if(cbEmpleados.getSelectedIndex()!=0) {
-					VModificacionEmpleado vme = new VModificacionEmpleado();
-					vme.setVisible(true);
-					vme.setEmpleado(empleados.get(cbEmpleados.getSelectedIndex()-1));
-					frame.dispose();
-				}
-				if(cbPeliculas.getSelectedIndex()!=0) {
-					VModPelicula vmp = new VModPelicula();
-					vmp.setVisible(true);
-					vmp.setPelicula(peliculas.get(cbPeliculas.getSelectedIndex()-1));
-					frame.dispose();
-				}
-				if(cbSalas.getSelectedIndex()!=0) {
-					VModificacionSala vms = new VModificacionSala();
-					vms.setVisible(true);
-					vms.setSala(salas.get(cbSalas.getSelectedIndex()-1));
-					frame.dispose();
+					JOptionPane.showMessageDialog(getParent(), "S\u00f3lo puedes elegir un desplegable: "
+							+ "\n Empleado o pel\u00edcula o sala.", "Error", JOptionPane.WARNING_MESSAGE);
+				}else {
+					if(cbEmpleados.getSelectedIndex()!=0) {
+						VModificacionEmpleado vme = new VModificacionEmpleado();
+						vme.setVisible(true);
+						vme.setBbdd(elegirBBDD(bbdd));
+						vme.setEmpleado(empleados.get(cbEmpleados.getSelectedIndex()-1));
+						frame.dispose();
+					}
+					if(cbPeliculas.getSelectedIndex()!=0) {
+						VModPelicula vmp = new VModPelicula();
+						vmp.setVisible(true);
+						vmp.setBbdd(elegirBBDD(bbdd));
+						vmp.setCine(cine);
+						vmp.setPelicula(peliculas.get(cbPeliculas.getSelectedIndex()-1));
+						frame.dispose();
+					}
+					if(cbSalas.getSelectedIndex()!=0) {
+						VModificacionSala vms = new VModificacionSala();
+						vms.setVisible(true);
+						vms.setBbdd(elegirBBDD(bbdd));
+						vms.setSala(salas.get(cbSalas.getSelectedIndex()-1));
+						frame.dispose();
+					}
 				}
 			}
 		});
@@ -218,7 +225,7 @@ public class VListado extends JFrame {
 					salas.clear();
 					
 					peliculas = Pelicula.cargarPeliculas(elegirBBDD(cine));
-					cbPeliculas.addItem("--Elige una pel�cula--");
+					cbPeliculas.addItem("--Elige una pel\u00edcula--");
 					for(Pelicula p:peliculas) {
 						cbPeliculas.addItem(p.getTitulo());
 					}
@@ -389,7 +396,7 @@ public class VListado extends JFrame {
 	}
 	private String elegirBBDD(String nombreBd) {
 		switch (nombreBd) {
-			case "Pr�ncipe":
+			case "Pr\u00edcipe":
 				return "sqlite";
 			case "Zubiarte 3D":
 				return "db4o";

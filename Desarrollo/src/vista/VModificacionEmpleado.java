@@ -120,6 +120,13 @@ public class VModificacionEmpleado extends JFrame {
 					Empleado emple = new Empleado(nombre,apellido,cargo,fechaCont,fechaNac,nacionalidad,
 							fechaFinCon,true);
 					boolean correcto = emple.guardarEmpleado(bbdd);
+					if(correcto) {
+						JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
+								, "Guardado", JOptionPane.PLAIN_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(getParent(), "Error al guardar la pel�cula"
+								, "Error", JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			}
 		});
@@ -240,5 +247,10 @@ public class VModificacionEmpleado extends JFrame {
 	public void setEmpleado(Empleado empleado) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void setBbdd(String elegirBBDD) {
+		// TODO Auto-generated method stub
+		this.bbdd = bbdd;
 	}
 }
