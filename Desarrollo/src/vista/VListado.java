@@ -142,7 +142,7 @@ public class VListado extends JFrame {
 			}
 		});
 		alta.setIcon(new ImageIcon(VListado.class.getResource("../imagenes/BOTONES/botALTA.png")));
-		alta.setBounds(50, 508, 100, 80);
+		alta.setBounds(51, 626, 100, 80);
 		alta.setContentAreaFilled(false);
 		contentPane.add(alta);
 
@@ -186,7 +186,7 @@ public class VListado extends JFrame {
 		});
 		modificacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		modificacion.setBorder(null);
-		modificacion.setBounds(322, 508,228, 80);
+		modificacion.setBounds(460, 626,228, 80);
 		modificacion.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botMODIFICAC.png")));
 		modificacion.setContentAreaFilled(false);
 		contentPane.add(modificacion);
@@ -204,7 +204,7 @@ public class VListado extends JFrame {
 							+ "\n Empleado o pel\u00edcula o sala.", "Error", JOptionPane.WARNING_MESSAGE);
 				}else {
 					if(cbEmpleados.getSelectedIndex()!=0) {
-						int opcion = JOptionPane.showConfirmDialog(getParent(), "¿Quieres dar de baja este empleado?");
+						int opcion = JOptionPane.showConfirmDialog(getParent(), "ï¿½Quieres dar de baja este empleado?");
 						Empleado emple = empleados.get(cbEmpleados.getSelectedIndex()-1);
 						if(opcion==0) {
 							boolean correcto = emple.bajaEmpleado(elegirBBDD(cine));
@@ -218,7 +218,7 @@ public class VListado extends JFrame {
 						}
 					}
 					if(cbPeliculas.getSelectedIndex()!=0) {
-						int opcion = JOptionPane.showConfirmDialog(getParent(), "¿Quieres dar de baja esta pelicula?");
+						int opcion = JOptionPane.showConfirmDialog(getParent(), "ï¿½Quieres dar de baja esta pelicula?");
 						Pelicula peli = peliculas.get(cbPeliculas.getSelectedIndex()-1);
 						if(opcion==0) {
 							boolean correcto =peli.bajaPelicula(elegirBBDD(cine));
@@ -232,7 +232,7 @@ public class VListado extends JFrame {
 						}
 					}
 					if(cbSalas.getSelectedIndex()!=0) {
-						int opcion = JOptionPane.showConfirmDialog(getParent(), "¿Quieres dar de baja esta sala?");
+						int opcion = JOptionPane.showConfirmDialog(getParent(), "ï¿½Quieres dar de baja esta sala?");
 						Sala sala = salas.get(cbSalas.getSelectedIndex()-1);
 						if(opcion==0) {
 							boolean correcto =sala.bajaSala(elegirBBDD(cine));
@@ -248,7 +248,7 @@ public class VListado extends JFrame {
 				}
 			}
 		});
-		baja.setBounds(190, 508,107, 80);
+		baja.setBounds(257, 629,107, 80);
 		baja.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botBAJA.png")));
 		baja.setContentAreaFilled(false);
 		contentPane.add(baja);
@@ -256,12 +256,13 @@ public class VListado extends JFrame {
 		JButton historico = new JButton("");
 		historico.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		historico.setBorder(null);
-		historico.setBounds(562, 508,174, 80);
+		historico.setBounds(338, 132,174, 80);
 		historico.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/botHIST.png")));
 		historico.setContentAreaFilled(false);
 		contentPane.add(historico);
 		
 		JComboBox cbCines = new JComboBox();
+		cbCines.setOpaque(false);
 		cbCines.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				try {
@@ -304,11 +305,11 @@ public class VListado extends JFrame {
 				
 			}
 		});
-		cbCines.setModel(new DefaultComboBoxModel(new String[] {"--Elige un cine--","Pr\u00EDncipe", "Zubiarte 3D", "Azul"}));
-		cbCines.setSize(350, 31); 
-		cbCines.setLocation(248, 150);
+		cbCines.setModel(new DefaultComboBoxModel(new String[] {"Elige un cine", "Pr\u00EDncipe", "Zubiarte 3D", "Azul"}));
+		cbCines.setSize(350, 46); 
+		cbCines.setLocation(343, 257);
 		cbCines.setBorder(new LineBorder(Color.WHITE, 3, true));
-		cbCines.setForeground(Color.WHITE);
+		cbCines.setForeground(Color.RED);
 		cbCines.setBackground(new Color(233, 69, 75));
 		cbCines.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbCines.setSelectedIndex(0);
@@ -329,7 +330,7 @@ public class VListado extends JFrame {
 		cbEmpleados.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbEmpleados.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbEmpleados.setBackground(new Color(233, 69, 75));
-		cbEmpleados.setBounds(248, 225, 350, 31);
+		cbEmpleados.setBounds(343, 364, 350, 40);
 		cbEmpleados.addItem("--Elige un empleado--");
 		cbEmpleados.setSelectedIndex(0);
 		contentPane.add(cbEmpleados);
@@ -349,7 +350,7 @@ public class VListado extends JFrame {
 		cbPeliculas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbPeliculas.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbPeliculas.setBackground(new Color(233, 69, 75));
-		cbPeliculas.setBounds(248, 304, 350, 31);
+		cbPeliculas.setBounds(343, 458, 350, 40);
 		cbPeliculas.addItem("--Elige una pelicula--");
 		cbPeliculas.setSelectedIndex(0);
 		contentPane.add(cbPeliculas);
@@ -369,7 +370,7 @@ public class VListado extends JFrame {
 		cbSalas.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbSalas.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbSalas.setBackground(new Color(233, 69, 75));
-		cbSalas.setBounds(248, 374, 350, 40);
+		cbSalas.setBounds(343, 550, 350, 40);
 		cbSalas.addItem("--Elige una sala--");
 		cbSalas.setSelectedIndex(0);
 		contentPane.add(cbSalas);
@@ -391,7 +392,7 @@ public class VListado extends JFrame {
 				
 			}
 		});
-		btnInfo.setBounds(322, 639, 100, 80);
+		btnInfo.setBounds(551, 129, 100, 80);
 		btnInfo.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/Info.png")));
 		btnInfo.setContentAreaFilled(false);
 		contentPane.add(btnInfo);
@@ -400,32 +401,32 @@ public class VListado extends JFrame {
 		lblCine.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCine.setLabelFor(cbCines);
 		lblCine.setForeground(Color.WHITE);
-		lblCine.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblCine.setBounds(66, 150, 126, 31);
+		lblCine.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblCine.setBounds(133, 261, 126, 31);
 		contentPane.add(lblCine);
 		
 		JLabel lblEmpleado = new JLabel("Empleado ");
 		lblEmpleado.setLabelFor(cbEmpleados);
 		lblEmpleado.setHorizontalAlignment(SwingConstants.LEFT);
 		lblEmpleado.setForeground(Color.WHITE);
-		lblEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblEmpleado.setBounds(66, 225, 126, 31);
+		lblEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblEmpleado.setBounds(130, 368, 198, 31);
 		contentPane.add(lblEmpleado);
 		
 		JLabel lblPelcula = new JLabel("Pel\u00EDcula ");
 		lblPelcula.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPelcula.setLabelFor(cbPeliculas);
 		lblPelcula.setForeground(Color.WHITE);
-		lblPelcula.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblPelcula.setBounds(66, 304, 126, 31);
+		lblPelcula.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblPelcula.setBounds(133, 462, 126, 31);
 		contentPane.add(lblPelcula);
 		
 		JLabel lblSala = new JLabel("Sala ");
 		lblSala.setLabelFor(cbSalas);
 		lblSala.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSala.setForeground(Color.WHITE);
-		lblSala.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblSala.setBounds(66, 379, 126, 31);
+		lblSala.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblSala.setBounds(136, 563, 126, 31);
 		contentPane.add(lblSala);
 		
 		JLabel label = new JLabel("");
@@ -435,8 +436,8 @@ public class VListado extends JFrame {
 		JLabel lblGestinDe = new JLabel("| Gesti\u00F3n de cines");
 		lblGestinDe.setHorizontalAlignment(SwingConstants.LEFT);
 		lblGestinDe.setForeground(Color.WHITE);
-		lblGestinDe.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblGestinDe.setBounds(66, 51, 274, 31);
+		lblGestinDe.setFont(new Font("Tahoma", Font.BOLD, 40));
+		lblGestinDe.setBounds(36, 55, 592, 31);
 		contentPane.add(lblGestinDe);
 
 		setLocationRelativeTo(null);
@@ -450,7 +451,7 @@ public class VListado extends JFrame {
 	private String elegirBBDD(String nombreBd) {
 		switch (nombreBd) {
 			case "Pr\u00edcipe":
-			case "Príncipe":
+			case "Prï¿½ncipe":
 				return "sqlite";
 			case "Zubiarte 3D":
 				return "db4o";

@@ -53,7 +53,8 @@ public class VCines extends JFrame {
 	private JButton btnCartelera;
 	private static String[] nombres;
 	public static boolean verdadero;
-	public static ButtonGroup btnGroup;
+	public static ButtonGroup grupoBotones;
+	public static VCines verCines;
 
 	/**
 	 * Launch the application.
@@ -149,10 +150,9 @@ public class VCines extends JFrame {
 		btnCartelera = new JButton("");
 		btnCartelera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//TO DO CAMBIAR VENTANA A LA QUE VA (cartelera)
-				//VInfoCines cines = new VInfoCines();
-				//cines.setVisible(true);
-				//VCines.this.dispose();					
+				VVerCartelera cartel = new VVerCartelera();
+				cartel.setVisible(true);
+				VCines.this.dispose();					
 			}
 		});
 		btnCartelera.setContentAreaFilled(false);
@@ -176,17 +176,26 @@ public class VCines extends JFrame {
 				
 			//	if (VCines.rbZubiarte.isSelected()) {
 			//		VInfoCine.textFieldNombreCine.setText("Zubiardfdfd");
-				
 				VInfoCine mod= new VInfoCine();
-				if (rbZubiarte.getAction() != null) {
+
+				VInfoCine.textFieldNombreCine.setText("Zubiarte 3D");
+				VCines.this.setVisible(false);
+				VCines.this.dispose();
+				mod.setLocationRelativeTo(null);
+				    mod.setVisible(true);		
+
+			
+/*			
+ * 	VInfoCine mod= new VInfoCine();
+				if ((rbZubiarte).isEnabled()) {
 					verdadero = true;	
 				}else {
 					
 					verdadero = false;
 				}
-				if (verdadero) {
+				if (verdadero == true) {
 					mod.setVisible(true);
-					mod.textFieldNombreCine.setText("Zubiarte");
+					VInfoCine.textFieldNombreCine.setText("Zubiarte");
 					VCines.this.setVisible(false);
 					VCines.this.dispose();
 					mod.setLocationRelativeTo(null);
@@ -194,16 +203,19 @@ public class VCines extends JFrame {
 				}else {
 					
 					mod.setVisible(true);
-					mod.textFieldNombreCine.setText("Zubiarte");
+					VInfoCine.textFieldNombreCine.setText("Zubiarte");
 					VCines.this.setVisible(false);
 					VCines.this.dispose();
 					mod.setLocationRelativeTo(null);
 					    mod.setVisible(true);		
 				}
+ */
 							//	}
 				
 			}
 		});
+		
+		
 		btnInfoCines.setContentAreaFilled(false);
 		btnInfoCines.setBounds(441, 123, 107, 89);
 		contentPane.add(btnInfoCines);
@@ -297,10 +309,12 @@ public class VCines extends JFrame {
 		String [] nombres = {"Cinesa Zubiarte 3D", "Cine Príncipe", "Cine Azul" };
 		
 		
-		  ButtonGroup btnGroup = new ButtonGroup();
-		    btnGroup.add(rbPrincipe);
-		    btnGroup.add(rbZubiarte);
-		    btnGroup.add(rbAzul);
+		
+		
+		  ButtonGroup grupoBotones = new ButtonGroup();
+		  grupoBotones.add(rbPrincipe);
+		  grupoBotones.add(rbZubiarte);
+		  grupoBotones.add(rbAzul);
 		//    if (rbPrincipe.isSelected() || rbZubiarte.isSelected() || rbAzul.isSelected()) {
 		 //   }else
 		  //  {

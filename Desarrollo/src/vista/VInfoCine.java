@@ -18,11 +18,12 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class VInfoCine extends JFrame {
 
 	private JPanel contentPane;
-	public static VInfoCine frame;
+	private static VInfoCine frame;
 	public static JTextField textFieldNombreCine;
 	private static JLabel txtTipo;
 	private static JLabel txtFechFund;
@@ -158,6 +159,8 @@ public class VInfoCine extends JFrame {
 		volver.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botVOLVER.png")));
 		
 		textFieldNombreCine = new JTextField();
+		textFieldNombreCine.setHorizontalAlignment(SwingConstants.RIGHT);
+		textFieldNombreCine.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		textFieldNombreCine.setBounds(455, 61, 295, 66);
 		contentPane.add(textFieldNombreCine);
 		textFieldNombreCine.setColumns(10);
@@ -167,7 +170,7 @@ public class VInfoCine extends JFrame {
 				VCines cines = new VCines();
 				cines.setVisible(true);
 				
-				frame.dispose();
+				VInfoCine.this.dispose();
 			}
 		});
 		
