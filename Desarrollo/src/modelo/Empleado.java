@@ -106,7 +106,7 @@ public class Empleado {
 				empleados = gb.cargarEmpleadosBajaQL();
 				break;
 			case "db4o":
-				empleados = DB4o.mostrarListEmpleBaja();
+				empleados = DB4o.historicoEmple();
 				break;
 		}
 		return empleados;

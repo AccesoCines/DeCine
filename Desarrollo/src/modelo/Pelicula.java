@@ -57,7 +57,7 @@ public class Pelicula {
 				pelis = gb.cargarPeliculasBajaQL();
 				break;
 			case "db4o":
-				pelis = DB4o.mostrarListPeliBaja();
+				pelis = DB4o.historicoPeli();
 				break;
 		}
 		return pelis;
@@ -92,6 +92,23 @@ public class Pelicula {
 			break;
 		case "db4o":
 			correcto = DB4o.guardarPeli(this);
+			break;
+		}
+		return correcto;
+	}
+	
+	public boolean modificarPelicula(String bbdd) {
+		GestorBBDD gb = new GestorBBDD(bbdd);	
+		boolean correcto = false;
+		switch(bbdd) {
+		case "postgre":
+			correcto = gb.modificarPelicula(this);
+			break;
+		case "sqlite":
+			correcto = gb.modificarPeliculaQL(this);
+			break;
+		case "db4o":
+			correcto = DB4o.modificarPeli(this);
 			break;
 		}
 		return correcto;

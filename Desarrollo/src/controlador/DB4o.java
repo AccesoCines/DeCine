@@ -212,7 +212,7 @@ public class DB4o {
 		return true;
 	}
 		
-	public static void modificarPeli(Pelicula p) {
+	public static boolean modificarPeli(Pelicula p) {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		
@@ -222,6 +222,7 @@ public class DB4o {
 		db.store(p);
 		//javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
 		db.close();
+		return true;
 	}
 	
 	public static ArrayList <Sala> mostrarListSala() {
@@ -359,8 +360,8 @@ public class DB4o {
 		
 		db.close();
 		return listaEmpleado;
-		return null;
 	}
+	/*
 
 	public static ArrayList<Empleado> mostrarListEmpleBaja() {
 		// TODO Auto-generated method stub
