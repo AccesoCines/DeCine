@@ -10,18 +10,33 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
+import modelo.Pelicula;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VVerCartelera extends JFrame {
 
 	private JPanel contentPane;
 	private static VVerCartelera vCart;
 	private JTable table;
+	private JLabel lblcine;
+	private String bbdd;
+	private static DefaultTableModel model = new DefaultTableModel();
+	private ArrayList<Pelicula> peliculas;
 
 	/**
 	 */
@@ -69,7 +84,7 @@ public class VVerCartelera extends JFrame {
 
 			}
 		});
-		volver.setBounds(68, 553, 158, 89);
+		volver.setBounds(50, 640, 158, 89);
 		contentPane.add(volver);
 		volver.setContentAreaFilled(false);
 		;
@@ -82,17 +97,69 @@ public class VVerCartelera extends JFrame {
 		lblLCartelera.setBounds(50, 70, 169, 31);
 		contentPane.add(lblLCartelera);
 
-		JLabel label = new JLabel("cine");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		label.setBounds(121, 140, 45, 31);
-		contentPane.add(label);
+		lblcine = new JLabel("cine");
+		lblcine.setForeground(Color.WHITE);
+		lblcine.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblcine.setBounds(121, 140, 601, 31);
+		contentPane.add(lblcine);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(52, 200, 670, 430);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 0, 670, 430);
+		panel.add(scrollPane);
 		
 		table = new JTable();
-		table.setBounds(121, 473, 455, -241);
-		contentPane.add(table);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Pelicula p = peliculas.get(table.getSelectedRow());
+	            VVerDatosPelicula vdp = new VVerDatosPelicula();
+	            vdp.cargarDatos(p);
+	            vdp.setVisible(true);
+			}
+		});
+		scrollPane.setViewportView(table);
 
+		table.setModel(new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Titulo", "Director", "Actor principal","Duracion"
+				}
+			));
 		setLocationRelativeTo(null);
 
+		/*table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+	        public void valueChanged(ListSelectionEvent event) {
+	            Pelicula p = peliculas.get(table.getSelectedRow());
+	            VVerDatosPelicula vdp = new VVerDatosPelicula();
+	            vdp.cargarDatos(p);
+	            vdp.setVisible(true);
+	        }
+
+	    });*/
+	}
+
+	public void setcine(String text) {
+		this.lblcine.setText(text);
+		System.out.println(text);
+	}
+
+	public void setBBDD(String bbdd) {
+		try {
+			peliculas = Pelicula.cargarPeliculas(bbdd);
+			model = (DefaultTableModel) table.getModel();
+			for(Pelicula p:peliculas) {
+				model.addRow(new Object[]{p.getTitulo(),p.getDirector(),p.getActorPrincipal(),p.getDuracion()});
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

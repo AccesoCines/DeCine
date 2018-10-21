@@ -179,7 +179,7 @@ public class DB4o {
 		return true;
 	}
 
-	public static void modificarPeli(Pelicula p) {
+	public static boolean modificarPeli(Pelicula p) {
 
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), BDCine);
 

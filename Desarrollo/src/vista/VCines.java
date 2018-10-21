@@ -104,9 +104,22 @@ public class VCines extends JFrame {
 		btnCartelera = new JButton("");
 		btnCartelera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				VVerCartelera cartel = new VVerCartelera();
-				cartel.setVisible(true);
-				VCines.this.dispose();					
+				VVerCartelera vme = new VVerCartelera();
+				vme.setVisible(true);
+				if(rbZubiarte.isSelected()) {
+					vme.setcine(rbZubiarte.getText());
+					vme.setBBDD("db4o");		
+				}
+				if(rbAzul.isSelected()) {
+					vme.setcine(rbAzul.getText());
+					vme.setBBDD("postgre");
+				}
+				if(rbPrincipe.isSelected()) {
+					vme.setcine(rbPrincipe.getText());
+					vme.setBBDD("sqlite");
+				}
+
+				VCines.this.dispose();
 			}
 		});
 		btnCartelera.setContentAreaFilled(false);
@@ -123,20 +136,23 @@ public class VCines extends JFrame {
 		 btnInfoCines = new JButton("");
 		btnInfoCines.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				VInfoCine mod= new VInfoCine();
+				VInfoCine vme = new VInfoCine();
+				vme.setVisible(true);
+				if(rbZubiarte.isSelected()) {
+					vme.setcine(rbZubiarte.getText());
+					vme.setBBDD("sqlite");		
+				}
+				if(rbAzul.isSelected()) {
+					vme.setcine(rbAzul.getText());
+					vme.setBBDD("postgre");
+				}
+				if(rbPrincipe.isSelected()) {
+					vme.setcine(rbPrincipe.getText());
+					vme.setBBDD("db4o");
+				}
 
-			
-				    
-				    if(rbZubiarte.isSelected()) {
-						VInfoCine vme = new VInfoCine();
-						vme.setVisible(true);
-						vme.setcine(rbZubiarte.getText());
-						VCines.this.dispose();
-					}
-			
-
-				
+				VCines.this.dispose();
 			}
 		});
 		
@@ -152,9 +168,8 @@ public class VCines extends JFrame {
 		cancelar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				VCines.this.dispose();
-				}
-		});
+				
+			}});
 		cancelar.setBounds(37, 599, 244, 107);
 		contentPane.add(cancelar);
 		cancelar.setContentAreaFilled(false);

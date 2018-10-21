@@ -46,10 +46,9 @@ public class VVerDatosPelicula extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VVerDatosPelicula frame = new VVerDatosPelicula();
-					frame.setVisible(true);
-					NativeInterface.open();
-					contentPane.add(wb);
+					//VVerDatosPelicula frame = new VVerDatosPelicula();
+					//frame.setVisible(true);
+					
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -136,7 +135,7 @@ public class VVerDatosPelicula extends JFrame {
 		JLabel lblTrailer = new JLabel("Trailer:");
 		lblTrailer.setForeground(Color.WHITE);
 		lblTrailer.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblTrailer.setBounds(411, 566, 105, 31);
+		lblTrailer.setBounds(411, 538, 105, 31);
 		contentPane.add(lblTrailer);
 		
 		JLabel lblSinopsis = new JLabel("Sinopsis:");
@@ -148,7 +147,7 @@ public class VVerDatosPelicula extends JFrame {
 		txtSinopsis = new JTextArea();
 		txtSinopsis.setLineWrap(true);
 		txtSinopsis.setColumns(10);
-		txtSinopsis.setBounds(311, 444, 372, 84);
+		txtSinopsis.setBounds(311, 444, 577, 84);
 		contentPane.add(txtSinopsis);
 		
 		/*panelTrailer = new JPanel();
@@ -207,9 +206,10 @@ public class VVerDatosPelicula extends JFrame {
 		
 		wb = new JWebBrowser();
 		wb.setBarsVisible(false);
-		wb.setBounds(80, 610, 836, 330);
+		wb.setBounds(119, 579, 769, 364);
 		//wb.navigate("http://www.sensacine.com/_video/iblogvision.aspx?cmedia=19558059");
-		
+		NativeInterface.open();
+		contentPane.add(wb);
 		
 		setLocationRelativeTo(null);
 	}

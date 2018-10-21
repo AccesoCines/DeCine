@@ -89,7 +89,7 @@ public class VAltaPelicula extends JFrame {
 		JButton btnCancelar = new JButton("");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				VAltaPelicula.this.dispose();
 				VListado vl = new VListado();
 				vl.setVisible(true);
 			}

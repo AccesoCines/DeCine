@@ -106,7 +106,7 @@ public class VAltaEmpleado extends JFrame {
 				//TOODO FALTA PROBAR CUANDO EST� LA VENTANA DE LISTADOS
 				VListado list = new VListado();
 				list.setVisible(true);
-				frame.dispose();
+				VAltaEmpleado.this.dispose();
 				
 				}
 		});

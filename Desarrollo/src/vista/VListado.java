@@ -125,19 +125,19 @@ public class VListado extends JFrame {
 						valtae.setBbdd(elegirBBDD(cine));
 						valtae.setVisible(true);
 						valtae.setBbdd(elegirBBDD(cine));
-						frame.dispose();
+						//frame.dispose();
 						break;
 					case 1:
 						VAltaSalas valtas = new VAltaSalas();
 						valtas.cargarEmpleados(elegirBBDD(cine));
 						valtas.setVisible(true);
-						frame.dispose();
+						//frame.dispose();
 						break;
 					case 2:
 						VAltaPelicula valtap = new VAltaPelicula();
 						valtap.setVisible(true);
 						valtap.setBbdd(elegirBBDD(cine));
-						frame.dispose();
+						//frame.dispose();
 						break;
 				}
 				

@@ -23,15 +23,15 @@ import javax.swing.SwingConstants;
 public class VInfoCine extends JFrame {
 
 	private JPanel contentPane;
+	private String bbdd;
 	private static VInfoCine frame;
-	public static JTextField textFieldNombreCine;
 	private static JLabel txtTipo;
 	private static JLabel txtFechFund;
 	private static  JLabel txtDireccion;
 	private static JLabel txtTelefono;
 	private static JLabel txtNumSalas;
 	//public static String[] nombres;
-	
+	private JLabel textFieldNombreCine;
 
 	
 
@@ -158,12 +158,11 @@ public class VInfoCine extends JFrame {
 		contentPane.add(volver);
 		volver.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botVOLVER.png")));
 		
-		textFieldNombreCine = new JTextField();
-		textFieldNombreCine.setHorizontalAlignment(SwingConstants.RIGHT);
-		textFieldNombreCine.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		textFieldNombreCine.setBounds(455, 61, 295, 66);
+		textFieldNombreCine = new JLabel("Tipo");
+		textFieldNombreCine.setForeground(Color.WHITE);
+		textFieldNombreCine.setFont(new Font("Tahoma", Font.BOLD, 25));
+		textFieldNombreCine.setBounds(198, 102, 401, 25);
 		contentPane.add(textFieldNombreCine);
-		textFieldNombreCine.setColumns(10);
 		
 		volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -181,6 +180,12 @@ public class VInfoCine extends JFrame {
 	public void setcine (String cin) {
 		
 		textFieldNombreCine.setText(cin);
+	}
+
+
+	public void setBBDD(String bbdd) {
+		this.bbdd = bbdd;
+		
 	}
 	
 	
