@@ -211,7 +211,7 @@ public class VListado extends JFrame {
 						if(opcion==0) {
 							boolean correcto = emple.bajaEmpleado(elegirBBDD(cine));
 							if(correcto) {
-								JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
+								JOptionPane.showMessageDialog(getParent(), "¡Borrado correctamente!"
 										, "Guardado", JOptionPane.PLAIN_MESSAGE);
 							}else {
 								JOptionPane.showMessageDialog(getParent(), "Error al borrar el empleado"
@@ -343,7 +343,7 @@ public class VListado extends JFrame {
 				
 			}
 		});
-		cbCines.setModel(new DefaultComboBoxModel(new String[] {"--Elige un cine--", "Pr\u00EDncipe", "Zubiarte 3D", "Azul"}));
+		cbCines.setModel(new DefaultComboBoxModel(new String[] {"--Elige un cine--", "Principe", "Zubiarte 3D", "Azul"}));
 		cbCines.setSize(350, 46); 
 		cbCines.setLocation(343, 257);
 		cbCines.setBorder(new LineBorder(Color.WHITE, 3, true));
@@ -512,6 +512,7 @@ public class VListado extends JFrame {
 			case "Pr\u00edcipe":
 			case "Prï¿½ncipe":
 			case "Príncipe":
+			case "Principe":
 				return "sqlite";
 			case "Zubiarte 3D":
 				return "db4o";

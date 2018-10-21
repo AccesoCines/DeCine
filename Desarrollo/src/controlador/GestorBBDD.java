@@ -334,16 +334,25 @@ public class GestorBBDD {
 	public ArrayList<Pelicula> cargarPeliculasQL() throws ParseException {
 		ArrayList<Pelicula> peliculas = new ArrayList<>();
 		
-		//SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}';
 		try {
-			String query = "SELECT * FROM Pelicula WHERE ALTA=1 AND fecha_inicio<current_date and fecha_fin>current_date ";
+			String query = "SELECT * FROM Pelicula WHERE ALTA=1 ";
 			ResultSet rs = con.createStatement().executeQuery(query);
 			while(rs.next()) {
+				boolean alta;
+				int n =	rs.getInt("alta");
+				if (n==1) {
+					alta=true;
+				}else {
+					alta=false;
+				}
+				/*
 				SimpleDateFormat format  = new SimpleDateFormat("yyyy-MM-dd");
-				java.util.Date parsed = format.parse(rs.getString("fecha_inicio"));
+				java.util.Date parsed = format.parse(rs.getString("fecha_Inicio"));
 				java.sql.Date fechaIni = new java.sql.Date(parsed.getTime());
-				java.util.Date parsed2 = format.parse(rs.getString("fecha_fin"));
+				java.util.Date parsed2 = format.parse(rs.getString("fecha_Fin"));
 				java.sql.Date fechaFin = new java.sql.Date(parsed2.getTime());
+				*/
+				
 				peliculas.add(new Pelicula(
 						rs.getString("titulo"),
 						rs.getInt("ano_estreno"),
@@ -353,9 +362,9 @@ public class GestorBBDD {
 						rs.getString("sinopsis"),
 						rs.getInt("duracion"),
 						rs.getString("trailer"),
-						fechaIni,
-						fechaFin,
-						rs.getBoolean("alta"),
+						rs.getDate("fecha_inicio"),
+						rs.getDate("fecha_fin"),
+						alta,
 						rs.getInt("id")
 						));
 			}
@@ -636,15 +645,22 @@ public class GestorBBDD {
 	public ArrayList<Sala> cargarSalasQL() {
 		ArrayList<Sala> salas = new ArrayList<>();
 		try {
-			String query = "SELECT * FROM  Sala WHERE ALTA=true ";
+			String query = "SELECT * FROM  Sala WHERE ALTA=1 ";
 			ResultSet rs = con.createStatement().executeQuery(query);
 			while(rs.next()) {
-				String queryRes = "SELECT * FROM Empleado WHERE ID=?";
+				String queryRes = "SELECT* FROM Empleado WHERE id=?";
 				PreparedStatement ps = con.prepareStatement(queryRes);
-				ps.setInt(1, rs.getInt("id_responsable"));
+				ps.setInt(1, rs.getInt("Id_responsable"));
 				ResultSet rsr = ps.executeQuery();
 				Empleado resp = new Empleado();
 				while(rsr.next()) {
+					boolean alta;
+					int n =	rsr.getInt("alta");
+					if (n==1) {
+						alta=true;
+					}else {
+						alta=false;
+					}
 					resp = new Empleado(
 							rsr.getString("nombre"),
 							rsr.getString("apellido"),
@@ -653,7 +669,7 @@ public class GestorBBDD {
 							rsr.getDate("fechanacimiento"),
 							rsr.getString("nacionalidad"),
 							rsr.getDate("fechafincontrato"),
-							rsr.getBoolean("alta"),
+							alta,
 							rsr.getInt("id")
 							);
 				}
@@ -764,16 +780,32 @@ public class GestorBBDD {
 
 
 	public boolean bajaEmpleadoQL(Empleado empleado) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String query = "UPDATE Empleado SET alta = 0 where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, empleado.getId());
+			ps.executeUpdate();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
-
 	public ArrayList<Empleado> cargarEmpleadosRespQL() {
 		ArrayList<Empleado> empleados = new ArrayList<>();
 		try {
 			String query = "SELECT * FROM  Empleado  WHERE ALTA=1 AND cargo='responsableSala' ";
 			ResultSet rs = con.createStatement().executeQuery(query);
 			while(rs.next()) {
+				boolean alta;
+				int n =	rs.getInt("alta");
+				if (n==1) {
+					alta=true;
+				}else {
+					alta=false;
+				}
 				empleados.add(new Empleado(
 						rs.getString("nombre"),
 						rs.getString("apellido"),
@@ -788,11 +820,10 @@ public class GestorBBDD {
 							rs.getString("cargo").equals("responsableCine")?
 												Cargo.responsableCine:
 												Cargo.mantenimiento,
-						rs.getDate("fechacontratacion"),
-						rs.getDate("fechanacimiento"),
-						rs.getString("nacionalidad"),
-						rs.getDate("fechafincontrato"),
-						rs.getBoolean("alta"),
+												rs.getDate("fechacontratacion"),
+												rs.getDate("fechanacimiento"),
+												rs.getString("nacionalidad"),
+												rs.getDate("fechafincontrato"),						alta,
 						rs.getInt("id") //Importante!!!!
 						));
 			}
@@ -811,26 +842,106 @@ public class GestorBBDD {
 	
 
 	public ArrayList<Empleado> cargarEmpleadosQL() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Empleado> empleados = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM Empleado WHERE ALTA=1 ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				boolean alta;
+				int n =	rs.getInt("alta");
+				if (n==1) {
+					alta=true;
+				}else {
+					alta=false;
+				}
+				empleados.add(new Empleado(
+						rs.getString("nombre"),
+						rs.getString("apellido"),
+						rs.getString("cargo").equals("camarero")?
+												Cargo.camarero:
+							rs.getString("cargo").equals("portero")?
+												Cargo.portero:
+							rs.getString("cargo").equals("acomodadorResponsableBar")?
+												Cargo.acomodadorResponsableBar:
+							rs.getString("cargo").equals("reponsableSala")?
+												Cargo.responsableSala:
+							rs.getString("cargo").equals("responsableCine")?
+												Cargo.responsableCine:
+												Cargo.mantenimiento,
+												rs.getDate("fechacontratacion"),
+												rs.getDate("fechanacimiento"),
+												rs.getString("nacionalidad"),
+												rs.getDate("fechafincontrato"),						alta,
+						rs.getInt("id")
+						));
+			}
+			if(empleados.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay empleados", null, 0);
+				return null;
+			}else {
+				return empleados;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 	}
-	
 	public boolean modificarEmpleadoQL(Empleado empleado) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String query = "UPDATE Empleado SET nombre = ?, apellido = ?, "
+					+ "cargo = ?, fechanacimiento = ?, nacionalidad = ?, fechacontratacion = ?,"
+					+ " fechafincontrato = ? where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, empleado.getNombre());
+			ps.setString(2, empleado.getApellido());		
+			ps.setString(3, empleado.getCargo().toString());
+			ps.setDate(4, empleado.getFechaNacimiento());
+			ps.setString(5, empleado.getNacionalidad());
+			ps.setDate(6, empleado.getFechaContratacion());
+			ps.setDate(7, empleado.getFechaFinContrato());
+			ps.setInt(8, empleado.getId());
+			ps.executeUpdate();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 
 	public boolean bajaPeliculaQL(Pelicula pelicula) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String query = "UPDATE Pelicula SET alta = 0 where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, pelicula.getId());
+			ps.executeUpdate();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
 
-
-	public boolean bajaSalaQL(Sala sala) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean bajaSalaQR(Sala sala) {
+		try {
+			String query = "UPDATE Sala SET alta = 0 where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, sala.getId());
+			ps.executeUpdate();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
+		
 
 
 	public ArrayList<Empleado> cargarEmpleadosBaja() {
