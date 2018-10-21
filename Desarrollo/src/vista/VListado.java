@@ -121,6 +121,7 @@ public class VListado extends JFrame {
 				switch(opcion) {
 					case 0:
 						VAltaEmpleado valtae = new VAltaEmpleado();
+						valtae.setBbdd(elegirBBDD(cine));
 						valtae.setVisible(true);
 						valtae.setBbdd(elegirBBDD(cine));
 						frame.dispose();
@@ -204,7 +205,7 @@ public class VListado extends JFrame {
 							+ "\n Empleado o pel\u00edcula o sala.", "Error", JOptionPane.WARNING_MESSAGE);
 				}else {
 					if(cbEmpleados.getSelectedIndex()!=0) {
-						int opcion = JOptionPane.showConfirmDialog(getParent(), "ï¿½Quieres dar de baja este empleado?");
+						int opcion = JOptionPane.showConfirmDialog(getParent(), "¿Quieres dar de baja este empleado?");
 						Empleado emple = empleados.get(cbEmpleados.getSelectedIndex()-1);
 						if(opcion==0) {
 							boolean correcto = emple.bajaEmpleado(elegirBBDD(cine));
@@ -218,7 +219,7 @@ public class VListado extends JFrame {
 						}
 					}
 					if(cbPeliculas.getSelectedIndex()!=0) {
-						int opcion = JOptionPane.showConfirmDialog(getParent(), "ï¿½Quieres dar de baja esta pelicula?");
+						int opcion = JOptionPane.showConfirmDialog(getParent(), "¿Quieres dar de baja esta pelicula?");
 						Pelicula peli = peliculas.get(cbPeliculas.getSelectedIndex()-1);
 						if(opcion==0) {
 							boolean correcto =peli.bajaPelicula(elegirBBDD(cine));
@@ -232,7 +233,7 @@ public class VListado extends JFrame {
 						}
 					}
 					if(cbSalas.getSelectedIndex()!=0) {
-						int opcion = JOptionPane.showConfirmDialog(getParent(), "ï¿½Quieres dar de baja esta sala?");
+						int opcion = JOptionPane.showConfirmDialog(getParent(), "¿Quieres dar de baja esta sala?");
 						Sala sala = salas.get(cbSalas.getSelectedIndex()-1);
 						if(opcion==0) {
 							boolean correcto =sala.bajaSala(elegirBBDD(cine));
@@ -305,7 +306,7 @@ public class VListado extends JFrame {
 				
 			}
 		});
-		cbCines.setModel(new DefaultComboBoxModel(new String[] {"Elige un cine", "Pr\u00EDncipe", "Zubiarte 3D", "Azul"}));
+		cbCines.setModel(new DefaultComboBoxModel(new String[] {"--Elige un cine--", "Pr\u00EDncipe", "Zubiarte 3D", "Azul"}));
 		cbCines.setSize(350, 46); 
 		cbCines.setLocation(343, 257);
 		cbCines.setBorder(new LineBorder(Color.WHITE, 3, true));
@@ -330,7 +331,7 @@ public class VListado extends JFrame {
 		cbEmpleados.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbEmpleados.setBorder(new LineBorder(Color.WHITE, 3, true));
 		cbEmpleados.setBackground(new Color(233, 69, 75));
-		cbEmpleados.setBounds(343, 364, 350, 40);
+		cbEmpleados.setBounds(343, 365, 350, 40);
 		cbEmpleados.addItem("--Elige un empleado--");
 		cbEmpleados.setSelectedIndex(0);
 		contentPane.add(cbEmpleados);
@@ -439,19 +440,26 @@ public class VListado extends JFrame {
 		lblGestinDe.setFont(new Font("Tahoma", Font.BOLD, 40));
 		lblGestinDe.setBounds(36, 55, 592, 31);
 		contentPane.add(lblGestinDe);
+		
+		JButton btProyecciones = new JButton("");
+		btProyecciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btProyecciones.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/proyecciones80alto.png")));
+		btProyecciones.setContentAreaFilled(false);
+		btProyecciones.setBorder(null);
+		btProyecciones.setBounds(51, 132, 250, 80);
+		contentPane.add(btProyecciones);
 
 		setLocationRelativeTo(null);
 
-		/*empleados = DB4o.mostrarListEmple();
-		for (Empleado e : empleados) {
-
-			model.insertRow(model.getRowCount(), new Object[] { e.getNombre(), e.getApellido() });
-		}*/
 	}
 	private String elegirBBDD(String nombreBd) {
 		switch (nombreBd) {
 			case "Pr\u00edcipe":
 			case "Prï¿½ncipe":
+			case "Príncipe":
 				return "sqlite";
 			case "Zubiarte 3D":
 				return "db4o";

@@ -65,5 +65,5 @@ public class PostgreSQL {
 		} else {
 			JOptionPane.showMessageDialog(null, "Error", null, 0);
 		}*/
-}
+	}}
 
