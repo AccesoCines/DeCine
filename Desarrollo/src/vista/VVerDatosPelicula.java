@@ -25,7 +25,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class VVerPelicula extends JFrame {
+public class VVerDatosPelicula extends JFrame {
 
 	private static JPanel contentPane;
 	//private static VVerPelicula frame;
@@ -46,7 +46,7 @@ public class VVerPelicula extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VVerPelicula frame = new VVerPelicula();
+					VVerDatosPelicula frame = new VVerDatosPelicula();
 					frame.setVisible(true);
 					NativeInterface.open();
 					contentPane.add(wb);
@@ -68,7 +68,7 @@ public class VVerPelicula extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VVerPelicula() {
+	public VVerDatosPelicula() {
 		
 		setBounds(new Rectangle(0, 0, 800, 800));
 		
@@ -195,9 +195,10 @@ public class VVerPelicula extends JFrame {
 		JButton volver = new JButton("");
 		volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VVerPelicula.this.dispose();
+				VVerDatosPelicula.this.dispose();
 			}
 		});
+	
 		volver.setContentAreaFilled(false);
 		volver.setBounds(726, 164, 138, 89);
 		contentPane.add(volver);
