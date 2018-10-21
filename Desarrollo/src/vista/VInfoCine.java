@@ -178,4 +178,10 @@ public class VInfoCine extends JFrame {
 		
 		
 	}
+	public void setcine (String cin) {
+		
+		textFieldNombreCine.setText(cin);
+	}
+	
+	
 }
