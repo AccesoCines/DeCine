@@ -46,6 +46,7 @@ public class VModPelicula extends JFrame {
 	private Pelicula pelicula;
 	private String cine;
 	private JLabel txtCine;
+	private int id;
 
 	/**
 	 * Launch the application.
@@ -128,8 +129,8 @@ public class VModPelicula extends JFrame {
 							, "Error", JOptionPane.WARNING_MESSAGE);
 				}else {
 					Pelicula p = new Pelicula(titulo,anyo,director,actorPrin,actorSecun,sinopsis,
-							duracion,trailer,fechaIni,fechaFin,true);
-					boolean correcto = p.guardarPelicula(bbdd);
+							duracion,trailer,fechaIni,fechaFin,true,id);
+					boolean correcto = p.modificarPelicula(bbdd);
 					if(correcto) {
 						JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
 								, "Guardado", JOptionPane.PLAIN_MESSAGE);
@@ -278,6 +279,7 @@ public class VModPelicula extends JFrame {
 	}
 
 	public void setPelicula(Pelicula pelicula) {
+		this.id = pelicula.getId();
 		txtTitulo.setText(pelicula.getTitulo());
 		txtAnyoEstreno.setText(String.valueOf(pelicula.getAnoEstreno()));
 		txtDirector.setText(pelicula.getDirector());

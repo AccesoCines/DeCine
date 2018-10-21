@@ -1010,12 +1010,45 @@ public class GestorBBDD {
 
 
 	public boolean modificarPelicula(Pelicula pelicula) {
-		
-		return false;
+		try {
+			String query = "UPDATE "+'"'+"Pelicula"+'"'+ " SET titulo = ?, ano_estreno = ?, "
+					+ "director = ?, actor_principal = ?, actor_secundario = ?, "
+					+ "duracion = ?, trailer = ?, sinopsis=?, fecha_inicio=?,"
+					+ "fecha_fin=? where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, pelicula.getTitulo());
+			ps.setInt(2, pelicula.getAnoEstreno());		
+			ps.setString(3, pelicula.getDirector());
+			ps.setString(4, pelicula.getActorPrincipal());
+			ps.setString(5, pelicula.getActorSecundario());
+			ps.setInt(6, pelicula.getDuracion());
+			ps.setString(7, pelicula.getTrailer());
+			ps.setString(8, pelicula.getSinopsis());
+			ps.setDate(9, pelicula.getFechaInicio());
+			ps.setDate(10, pelicula.getFechaFin());
+			ps.setInt(11, pelicula.getId());
+			int lineas = ps.executeUpdate();
+			ps.close();
+			if(lineas==1) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 
 	public boolean modificarPeliculaQL(Pelicula pelicula) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public boolean bajaSalaQL(Sala sala) {
 		// TODO Auto-generated method stub
 		return false;
 	}
