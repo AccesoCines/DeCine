@@ -46,10 +46,10 @@ public class Pelicula {
 		return pelis;
 	}
 	
-	public boolean guardarProyecciones() {
-		GestorBBDD gb = new GestorBBDD(bbdd);
+	public boolean guardarProyecciones(String bbdd2) {
+		GestorBBDD gb = new GestorBBDD(bbdd2);
 		boolean correcto = false;
-		switch(bbdd) {
+		switch(bbdd2) {
 		case "postgre":
 			correcto = gb.guardarProyecciones(this);
 			break;

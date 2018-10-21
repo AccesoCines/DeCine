@@ -69,26 +69,7 @@ public class VAltaProyecciones extends JFrame {
 				try {
 					frame = new VAltaProyecciones();
 					
-					peliculas = new Pelicula().cargarPeliculas(bbdd);
-					String[] pelis = new String[peliculas.size()];
-					int i = 0;
-					for(Pelicula p :peliculas) {
-						pelis[i] = p.getTitulo();
-						i++;
-					}
-					DefaultComboBoxModel dfb = new DefaultComboBoxModel(pelis);
-					cbPeliculas.setModel(dfb);
-					if(peliculas!=null) cbPeliculas.setModel(dfb);
 					
-					salas = new Sala().cargarSalas(bbdd);
-					Integer[] salasAr = new Integer[salas.size()];
-					int j = 0;
-					for(Sala s : salas) {
-						salasAr[j] = s.getNumero();
-						j++;
-					}
-					dfb = new DefaultComboBoxModel(salasAr);
-					if(salasAr!=null) cbSalas.setModel(dfb);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -99,8 +80,9 @@ public class VAltaProyecciones extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws ParseException 
 	 */
-	public VAltaProyecciones() {
+	public VAltaProyecciones() throws ParseException {
 		setTitle("Horarios proyecci�n");
 		setExtendedState(Frame.NORMAL);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -258,7 +240,8 @@ public class VAltaProyecciones extends JFrame {
 				if(horasSet.size() != horas.size()) {
 					javax.swing.JOptionPane.showMessageDialog(null ,"No puedes repetir pases","Error", JOptionPane.WARNING_MESSAGE);
 				}else {
-					boolean correcto = peli.guardarProyecciones();
+					
+					boolean correcto = peli.guardarProyecciones(bbdd);
 					if(correcto) javax.swing.JOptionPane.showMessageDialog(null ,"Guardado correctamente!","OK",JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -284,5 +267,33 @@ public class VAltaProyecciones extends JFrame {
 		
 		
 		
+	}
+
+	public void cargarDatos(String bbdd) throws ParseException {
+		peliculas = new Pelicula().cargarPeliculas(bbdd);
+		String[] pelis = new String[peliculas.size()];
+		int i = 0;
+		for(Pelicula p :peliculas) {
+			pelis[i] = p.getTitulo();
+			i++;
+		}
+		DefaultComboBoxModel dfb = new DefaultComboBoxModel(pelis);
+		cbPeliculas.setModel(dfb);
+		if(peliculas!=null) cbPeliculas.setModel(dfb);
+		
+		salas = new Sala().cargarSalas(bbdd);
+		Integer[] salasAr = new Integer[salas.size()];
+		int j = 0;
+		for(Sala s : salas) {
+			salasAr[j] = s.getNumero();
+			j++;
+		}
+		dfb = new DefaultComboBoxModel(salasAr);
+		if(salasAr!=null) cbSalas.setModel(dfb);
+	}
+	
+	public void setBbdd(String elegirBBDD) {
+		// TODO Auto-generated method stub
+		this.bbdd = elegirBBDD;
 	}
 }

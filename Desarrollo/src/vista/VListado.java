@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -444,6 +445,21 @@ public class VListado extends JFrame {
 		JButton btProyecciones = new JButton("");
 		btProyecciones.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					String cine = cbCines.getSelectedItem().toString();
+					if(!cine.equals("--Elige un cine--")) {	
+						VAltaProyecciones vap = new VAltaProyecciones();
+						vap.setBbdd(elegirBBDD(cine));
+						vap.cargarDatos(elegirBBDD(cine));
+						vap.setVisible(true);
+						jframe.dispose();
+					}
+				}catch(NullPointerException ex ) {
+					JOptionPane.showMessageDialog(getParent(), "Debes elegir un cine en el desplegable", "Error", JOptionPane.WARNING_MESSAGE);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btProyecciones.setIcon(new ImageIcon(getClass().getResource("../imagenes/BOTONES/proyecciones80alto.png")));
