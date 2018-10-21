@@ -172,6 +172,10 @@ public class Empleado {
 		this.setId(id);
 	}
 
+	public Empleado(Cargo responsablesala) {
+		this.cargo = responsablesala;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

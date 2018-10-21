@@ -15,11 +15,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JTable;
 
 public class VVerCartelera extends JFrame {
 
 	private JPanel contentPane;
 	private static VVerCartelera vCart;
+	private JTable table;
 
 	/**
 	 */
@@ -85,78 +87,10 @@ public class VVerCartelera extends JFrame {
 		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		label.setBounds(121, 140, 45, 31);
 		contentPane.add(label);
-
-		JLabel lblTtulo = new JLabel("T\u00EDtulo 1");
-		lblTtulo.setForeground(Color.WHITE);
-		lblTtulo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo.setBounds(68, 230, 273, 31);
-		contentPane.add(lblTtulo);
-
-		JLabel lblTtulo_1 = new JLabel("T\u00EDtulo 2");
-		lblTtulo_1.setForeground(Color.WHITE);
-		lblTtulo_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_1.setBounds(68, 278, 273, 31);
-		contentPane.add(lblTtulo_1);
-
-		JLabel lblTtulo_2 = new JLabel("T\u00EDtulo 3");
-		lblTtulo_2.setForeground(Color.WHITE);
-		lblTtulo_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_2.setBounds(68, 322, 273, 31);
-		contentPane.add(lblTtulo_2);
-
-		JLabel lblTtulo_3 = new JLabel("T\u00EDtulo 4");
-		lblTtulo_3.setForeground(Color.WHITE);
-		lblTtulo_3.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_3.setBounds(68, 366, 273, 31);
-		contentPane.add(lblTtulo_3);
-
-		JLabel lblTtulo_4 = new JLabel("T\u00EDtulo 5");
-		lblTtulo_4.setForeground(Color.WHITE);
-		lblTtulo_4.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_4.setBounds(68, 410, 273, 31);
-		contentPane.add(lblTtulo_4);
-
-		JLabel lblTtulo_5 = new JLabel("T\u00EDtulo 6");
-		lblTtulo_5.setForeground(Color.WHITE);
-		lblTtulo_5.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_5.setBounds(68, 450, 273, 31);
-		contentPane.add(lblTtulo_5);
-
-		JLabel lblTtulo_6 = new JLabel("T\u00EDtulo 7");
-		lblTtulo_6.setForeground(Color.WHITE);
-		lblTtulo_6.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_6.setBounds(408, 230, 273, 31);
-		contentPane.add(lblTtulo_6);
-
-		JLabel lblTtulo_7 = new JLabel("T\u00EDtulo 8");
-		lblTtulo_7.setForeground(Color.WHITE);
-		lblTtulo_7.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_7.setBounds(408, 278, 273, 31);
-		contentPane.add(lblTtulo_7);
-
-		JLabel lblTtulo_8 = new JLabel("T\u00EDtulo 9");
-		lblTtulo_8.setForeground(Color.WHITE);
-		lblTtulo_8.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_8.setBounds(408, 322, 273, 31);
-		contentPane.add(lblTtulo_8);
-
-		JLabel lblTtulo_9 = new JLabel("T\u00EDtulo 10");
-		lblTtulo_9.setForeground(Color.WHITE);
-		lblTtulo_9.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_9.setBounds(408, 366, 273, 31);
-		contentPane.add(lblTtulo_9);
-
-		JLabel lblTtulo_10 = new JLabel("T\u00EDtulo 11");
-		lblTtulo_10.setForeground(Color.WHITE);
-		lblTtulo_10.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_10.setBounds(408, 410, 273, 31);
-		contentPane.add(lblTtulo_10);
-
-		JLabel lblTtulo_11 = new JLabel("T\u00EDtulo 12");
-		lblTtulo_11.setForeground(Color.WHITE);
-		lblTtulo_11.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblTtulo_11.setBounds(408, 450, 273, 31);
-		contentPane.add(lblTtulo_11);
+		
+		table = new JTable();
+		table.setBounds(121, 473, 455, -241);
+		contentPane.add(table);
 
 		setLocationRelativeTo(null);
 
