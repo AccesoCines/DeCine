@@ -115,7 +115,7 @@ public class Sala {
 			salas = gb.cargarSalasBajaQL();
 			break;
 		case "db4o":
-			salas = DB4o.mostrarListSalaBaja();
+			salas = DB4o.historicoSalas();
 		}
 		return salas;
 	}

@@ -898,5 +898,17 @@ public class GestorBBDD {
 	}
 
 
+	public boolean modificarPelicula(Pelicula pelicula) {
+		
+		return false;
+	}
+
+
+	public boolean modificarPeliculaQL(Pelicula pelicula) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 
 }
