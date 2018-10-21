@@ -128,13 +128,14 @@ public class DB4o {
 		return true;
 	}
 	
-	public static void eliminarEmple(Empleado e) {
+	public static boolean eliminarEmple(Empleado e) {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		e.setAlta(false);
 		//No se elimina el empleado, el atributo alta pasa a false.
-		javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
+		//javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
 		db.close();
+		return true;
 	}
 		
 	public static boolean modificarEmple(Empleado e) {
@@ -201,13 +202,14 @@ public class DB4o {
 		return true;
 	}
 	
-	public static void eliminarPeli(Pelicula p) {
+	public static boolean eliminarPeli(Pelicula p) {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		p.setAlta(false);
 		//No se elimina la pelicula, el atributo alta pasa a false.
 		javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
 		db.close();
+		return true;
 	}
 		
 	public static void modificarPeli(Pelicula p) {
@@ -290,16 +292,17 @@ public class DB4o {
 		return true;
 	}
 	
-	public static void eliminarSala(Sala s) {
+	public static boolean eliminarSala(Sala s) {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		s.setAlta(false);
 		//No se elimina la sala, el atributo alta pasa a false.
-		javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
+		//javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
 		db.close();
+		return true;
 	}
 		
-	public static void modificarSala(Sala s) {
+	public static boolean modificarSala(Sala s) {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		
@@ -307,8 +310,9 @@ public class DB4o {
 		//s.setApellido(getText(jlabel2));
 		
 		db.store(s);
-		javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
+		//javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
 		db.close();
+		return true;
 	}
 	
 	public static ArrayList<Sala> historicoSalas() {

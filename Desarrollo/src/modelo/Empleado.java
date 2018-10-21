@@ -61,6 +61,23 @@ public class Empleado {
 		return correcto;
 	}
 
+	public boolean bajaEmpleado(String bbdd2) {
+		GestorBBDD gb = new GestorBBDD(bbdd2);
+		boolean correcto = false;
+		switch(bbdd2) {
+		case "postgre":
+			correcto = gb.bajaEmpleado(this);
+			break;
+		case "sqlite":
+			correcto = gb.bajaEmpleadoQL(this);
+			break;
+		case "db4o":
+			correcto = DB4o.eliminarEmple(this);
+			break;
+		}
+		return correcto;
+	}
+	
 	public static ArrayList<Empleado> cargarEmpleados(String bbdd){
 		GestorBBDD gb = new GestorBBDD(bbdd);
 		ArrayList<Empleado> empleados = new ArrayList<>();

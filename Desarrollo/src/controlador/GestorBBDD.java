@@ -190,10 +190,7 @@ public class GestorBBDD {
 		}
 		
 	}
-	
 
-
-	
 	public boolean guardarPeliculaQL(Pelicula pelicula) {
 		try {
 			String query = "INSERT INTO Pelicula (titulo,ano_estreno,director,actor_principal,actor_secundario,sinopsis,duracion,trailer,fecha_Inicio,fecha_Fin,alta,id) VALUES(?,?,?,?,?,?,?,?,?,?,?, (select max (id) from Pelicula)+1)";
@@ -239,9 +236,7 @@ public class GestorBBDD {
 			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
 			e.printStackTrace();
 			return false;
-		}
-		
-		
+		}	
 	}
 	
 	public boolean guardarProyeccionesQL(Pelicula pelicula) {
@@ -264,8 +259,6 @@ public class GestorBBDD {
 			e.printStackTrace();
 			return false;
 		}
-		
-		
 	}
 	
 	
@@ -394,9 +387,6 @@ public class GestorBBDD {
 		}
 	}
 
-	
-	
-
 	public MetaDato cargarMetaDatos() {
 		MetaDato metaDatos = null;
 		try {
@@ -431,10 +421,8 @@ public class GestorBBDD {
 			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
 			e.printStackTrace();
 			return null;
-		}
-		
+		}	
 	}
-
 
 	public ArrayList<Empleado> cargarEmpleados() {
 		ArrayList<Empleado> empleados = new ArrayList<>();
@@ -477,7 +465,6 @@ public class GestorBBDD {
 		}
 	}
 
-	
 	public ArrayList<Empleado> cargarEmpleadosResp() {
 		ArrayList<Empleado> empleados = new ArrayList<>();
 		try {
@@ -519,17 +506,51 @@ public class GestorBBDD {
 		}
 	}
 	
-	public ArrayList<Empleado> cargarEmpleadosRespQL() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean bajaEmpleado(Empleado empleado) {
+		try {
+			String query = "UPDATE "+'"'+"Empleado"+'"'+ " SET alta = false where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, empleado.getId());
+			ps.executeUpdate();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
-
-	public ArrayList<Empleado> cargarEmpleadosQL() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public boolean bajaPelicula(Pelicula pelicula) {
+		try {
+			String query = "UPDATE "+'"'+"Pelicula"+'"'+ " SET alta = false where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, pelicula.getId());
+			ps.executeUpdate();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
-
-
+	
+	public boolean bajaSala(Sala sala) {
+		try {
+			String query = "UPDATE "+'"'+"Sala"+'"'+ " SET alta = false where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, sala.getId());
+			ps.executeUpdate();
+			ps.close();
+			return true;
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
+	}
+		
 	public ArrayList<Sala> cargarSalasQL() {
 		ArrayList<Sala> salas = new ArrayList<>();
 		try {
@@ -559,7 +580,6 @@ public class GestorBBDD {
 		}
 	}
 
-
 	public boolean modificarEmpleado(Empleado empleado) {
 		try {
 			String query = "UPDATE "+'"'+"Empleado"+'"'+ " SET nombre = ?, apellido = ?, "
@@ -583,13 +603,6 @@ public class GestorBBDD {
 			return false;
 		}
 	}
-
-
-	public boolean modificarEmpleadoQL(Empleado empleado) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 	public boolean modificarSala(Sala sala) {
 		try {
@@ -615,15 +628,46 @@ public class GestorBBDD {
 			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
 			e.printStackTrace();
 			return false;
-		}
-		
+		}		
 	}
-
 
 	public boolean modificarSalaQL(Sala sala) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public boolean bajaEmpleadoQL(Empleado empleado) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ArrayList<Empleado> cargarEmpleadosRespQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Empleado> cargarEmpleadosQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public boolean modificarEmpleadoQL(Empleado empleado) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public boolean bajaPeliculaQL(Pelicula pelicula) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public boolean bajaSalaQL(Sala sala) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 
 }

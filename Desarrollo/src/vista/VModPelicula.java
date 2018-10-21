@@ -134,7 +134,7 @@ public class VModPelicula extends JFrame {
 						JOptionPane.showMessageDialog(getParent(), "Guardado correctamente!"
 								, "Guardado", JOptionPane.PLAIN_MESSAGE);
 					}else {
-						JOptionPane.showMessageDialog(getParent(), "Error al guardar la pel�cula"
+						JOptionPane.showMessageDialog(getParent(), "Error al guardar la pel\u00edcula"
 								, "Error", JOptionPane.WARNING_MESSAGE);
 					}
 					

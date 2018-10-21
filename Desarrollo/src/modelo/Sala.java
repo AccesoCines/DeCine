@@ -138,6 +138,23 @@ public class Sala {
 		return correcto;
 	}
 	
+	public boolean bajaSala(String bbdd2) {
+		GestorBBDD gb = new GestorBBDD(bbdd2);	
+		boolean correcto = false;
+		switch(bbdd2) {
+		case "postgre":
+			correcto = gb.bajaSala(this);
+			break;
+		case "sqlite":
+			correcto = gb.bajaSalaQL(this);
+			break;
+		case "db4o":
+			correcto = DB4o.eliminarSala(this);
+			break;
+		}
+		return correcto;
+	}
+	
 	public void anadirProyeccion(Proyeccion proyeccion) {
 		proyecciones.add(proyeccion);
 	}
@@ -217,6 +234,8 @@ public class Sala {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 
 
 

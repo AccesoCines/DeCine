@@ -236,4 +236,21 @@ public class Pelicula {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public boolean bajaPelicula(String bbdd2) {
+		GestorBBDD gb = new GestorBBDD(bbdd2);
+		boolean correcto = false;
+		switch(bbdd2) {
+		case "postgre":
+			correcto = gb.bajaPelicula(this);
+			break;
+		case "sqlite":
+			correcto = gb.bajaPeliculaQL(this);
+			break;
+		case "db4o":
+			correcto = DB4o.eliminarPeli(this);
+			break;
+		}
+		return correcto;
+	}
 }
