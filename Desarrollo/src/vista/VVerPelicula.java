@@ -16,11 +16,28 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 import com.toedter.calendar.JYearChooser;
+
+import chrriis.dj.nativeswing.swtimpl.NativeInterface;
+import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+import modelo.Pelicula;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VVerPelicula extends JFrame {
 
-	private JPanel contentPane;
+	private static JPanel contentPane;
+	//private static VVerPelicula frame;
+	private static JPanel panelTrailer;
+	private JTextArea txtSinopsis;
+	private JLabel txtTitulo;
+	private JLabel txtDirector;
+	private JLabel txtActorPrin;
+	private JLabel txtActorSecun;
+	private JLabel txtDuracion;
+	private JLabel txtAnyo;
+	private static JWebBrowser wb;
 
 	/**
 	 * Launch the application.
@@ -31,11 +48,21 @@ public class VVerPelicula extends JFrame {
 				try {
 					VVerPelicula frame = new VVerPelicula();
 					frame.setVisible(true);
+					NativeInterface.open();
+					contentPane.add(wb);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+			@Override
+			public void run() {
+				NativeInterface.close();
+			}
+		}));
 	}
 
 	/**
@@ -118,58 +145,82 @@ public class VVerPelicula extends JFrame {
 		lblSinopsis.setBounds(71, 435, 228, 31);
 		contentPane.add(lblSinopsis);
 		
-		JTextArea txtSinopsis = new JTextArea();
+		txtSinopsis = new JTextArea();
 		txtSinopsis.setLineWrap(true);
 		txtSinopsis.setColumns(10);
 		txtSinopsis.setBounds(311, 444, 372, 84);
 		contentPane.add(txtSinopsis);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(80, 610, 836, 330);
-		contentPane.add(panel);
+		/*panelTrailer = new JPanel();
+		panelTrailer.setBounds(80, 610, 836, 330);
+		contentPane.add(panelTrailer);
+		panelTrailer.setLayout(null);
+		*/
+		txtTitulo = new JLabel("(sin datos)");
+		txtTitulo.setForeground(Color.WHITE);
+		txtTitulo.setFont(new Font("Tahoma", Font.BOLD, 25));
+		txtTitulo.setBounds(311, 165, 205, 31);
+		contentPane.add(txtTitulo);
 		
-		JLabel lblsinDatos = new JLabel("(sin datos)");
-		lblsinDatos.setForeground(Color.WHITE);
-		lblsinDatos.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblsinDatos.setBounds(311, 165, 205, 31);
-		contentPane.add(lblsinDatos);
+		txtDirector = new JLabel("(sin datos)");
+		txtDirector.setForeground(Color.WHITE);
+		txtDirector.setFont(new Font("Tahoma", Font.BOLD, 25));
+		txtDirector.setBounds(311, 253, 205, 31);
+		contentPane.add(txtDirector);
 		
-		JLabel label = new JLabel("(sin datos)");
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label.setBounds(311, 253, 205, 31);
-		contentPane.add(label);
+		txtActorPrin = new JLabel("(sin datos)");
+		txtActorPrin.setForeground(Color.WHITE);
+		txtActorPrin.setFont(new Font("Tahoma", Font.BOLD, 25));
+		txtActorPrin.setBounds(311, 297, 205, 31);
+		contentPane.add(txtActorPrin);
 		
-		JLabel label_1 = new JLabel("(sin datos)");
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label_1.setBounds(311, 297, 205, 31);
-		contentPane.add(label_1);
+		txtActorSecun = new JLabel("(sin datos)");
+		txtActorSecun.setForeground(Color.WHITE);
+		txtActorSecun.setFont(new Font("Tahoma", Font.BOLD, 25));
+		txtActorSecun.setBounds(311, 347, 205, 31);
+		contentPane.add(txtActorSecun);
 		
-		JLabel label_2 = new JLabel("(sin datos)");
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label_2.setBounds(311, 347, 205, 31);
-		contentPane.add(label_2);
+		txtDuracion = new JLabel("(sin datos)");
+		txtDuracion.setForeground(Color.WHITE);
+		txtDuracion.setFont(new Font("Tahoma", Font.BOLD, 25));
+		txtDuracion.setBounds(311, 391, 205, 31);
+		contentPane.add(txtDuracion);
 		
-		JLabel label_3 = new JLabel("(sin datos)");
-		label_3.setForeground(Color.WHITE);
-		label_3.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label_3.setBounds(311, 391, 205, 31);
-		contentPane.add(label_3);
-		
-		JLabel label_4 = new JLabel("(sin datos)");
-		label_4.setForeground(Color.WHITE);
-		label_4.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label_4.setBounds(311, 209, 205, 31);
-		contentPane.add(label_4);
+		txtAnyo = new JLabel("(sin datos)");
+		txtAnyo.setForeground(Color.WHITE);
+		txtAnyo.setFont(new Font("Tahoma", Font.BOLD, 25));
+		txtAnyo.setBounds(311, 209, 205, 31);
+		contentPane.add(txtAnyo);
 		
 		JButton volver = new JButton("");
+		volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VVerPelicula.this.dispose();
+			}
+		});
 		volver.setContentAreaFilled(false);
 		volver.setBounds(726, 164, 138, 89);
 		contentPane.add(volver);
 		volver.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botVOLVER.png")));
 		
+		
+		wb = new JWebBrowser();
+		wb.setBarsVisible(false);
+		wb.setBounds(80, 610, 836, 330);
+		//wb.navigate("http://www.sensacine.com/_video/iblogvision.aspx?cmedia=19558059");
+		
+		
 		setLocationRelativeTo(null);
+	}
+	
+	public void cargarDatos(Pelicula p) {
+		txtTitulo.setText(p.getTitulo());
+		txtSinopsis.setText(p.getSinopsis());
+		txtDirector.setText(p.getDirector());
+		txtActorPrin.setText(p.getActorPrincipal());
+		txtActorSecun.setText(p.getActorSecundario());
+		txtDuracion.setText(String.valueOf(p.getDuracion()));
+		txtAnyo.setText(String.valueOf(p.getAnoEstreno()));
+		wb.navigate(p.getTrailer());
 	}
 }
