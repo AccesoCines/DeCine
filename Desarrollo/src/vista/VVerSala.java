@@ -46,9 +46,10 @@ public class VVerSala extends JFrame {
 		getContentPane().setBackground(new Color(233, 69, 75));
 		setContentPane(contentPane);
 		getContentPane().setBackground(new Color(233, 69, 75));
+		contentPane.setLayout(null);
 		
 		JLabel lblLSala = new JLabel("l Sala");
-		lblLSala.setBounds(50, 70, 134, 31);
+		lblLSala.setBounds(49, 70, 60, 31);
 		lblLSala.setForeground(Color.WHITE);
 		lblLSala.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		contentPane.add(lblLSala);
@@ -56,7 +57,7 @@ public class VVerSala extends JFrame {
 		JLabel label = new JLabel("cine");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		label.setBounds(120, 124, 145, 37);
+		label.setBounds(120, 140, 45, 31);
 		contentPane.add(label);
 		
 		setLocationRelativeTo(null);

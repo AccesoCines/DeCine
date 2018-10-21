@@ -68,7 +68,7 @@ public class VVerHistorico extends JFrame {
 		JLabel lblCine = new JLabel("cine");
 		lblCine.setForeground(Color.WHITE);
 		lblCine.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblCine.setBounds(120, 124, 145, 37);
+		lblCine.setBounds(120, 140, 145, 37);
 		contentPane.add(lblCine);
 	
 		setLocationRelativeTo(null);
