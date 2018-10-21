@@ -192,6 +192,8 @@ public class VCines extends JFrame {
 		  grupoBotones.add(rbPrincipe);
 		  grupoBotones.add(rbZubiarte);
 		  grupoBotones.add(rbAzul);
+		  
+		  setLocationRelativeTo(null);
 		    
 	}
 }

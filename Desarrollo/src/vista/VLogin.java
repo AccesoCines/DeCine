@@ -97,6 +97,7 @@ public class VLogin extends JFrame {
 				ventCines.setVisible(true);
 				System.out.println("Boton ir a cines");
 			
+			
 				}
 			}
 		);

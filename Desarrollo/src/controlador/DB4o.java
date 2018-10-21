@@ -123,7 +123,7 @@ public class DB4o {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		db.store(e);
-		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
+		//javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
 		db.close();
 		return true;
 	}
@@ -146,7 +146,7 @@ public class DB4o {
 		//e.setApellido(getText(jlabel2));
 		
 		db.store(e);
-		javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
+		//javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
 		db.close();
 		return true;
 	}
@@ -158,7 +158,7 @@ public class DB4o {
 		ArrayList<Empleado> listaEmpleados = new ArrayList<Empleado>();
 		ObjectSet<Empleado> result = db.queryByExample(em);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay empleados.");
+			//javax.swing.JOptionPane.showMessageDialog(null, "No hay empleados.");
 		}
 		while (result.hasNext()) {
 		Empleado e = result.next();
@@ -179,7 +179,7 @@ public class DB4o {
 		ArrayList<Empleado> listaEmpleados = new ArrayList<>();
 		ObjectSet<Empleado> result = db.queryByExample(em);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay empleados en hist�rico.");
+			//javax.swing.JOptionPane.showMessageDialog(null, "No hay empleados en hist�rico.");
 		}
 		while (result.hasNext()) {
 		Empleado e = result.next();
@@ -197,7 +197,7 @@ public class DB4o {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		db.store(p);
-		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
+		//javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
 		db.close();
 		return true;
 	}
@@ -207,7 +207,7 @@ public class DB4o {
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		p.setAlta(false);
 		//No se elimina la pelicula, el atributo alta pasa a false.
-		javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
+		//javax.swing.JOptionPane.showMessageDialog(null, "Eliminado");
 		db.close();
 		return true;
 	}
@@ -220,7 +220,7 @@ public class DB4o {
 		//p.setApellido(getText(jlabel2));
 		
 		db.store(p);
-		javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
+		//javax.swing.JOptionPane.showMessageDialog(null, "Modificado");
 		db.close();
 	}
 	
@@ -232,7 +232,7 @@ public class DB4o {
 		ArrayList<Sala> listaSalas = new ArrayList<Sala>();
 		ObjectSet<Sala> result = db.queryByExample(sa);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas.");
+			//javax.swing.JOptionPane.showMessageDialog(null, "No hay salas.");
 		}else {
 			while (result.hasNext()) {
 			Sala s = result.next();
@@ -252,7 +252,7 @@ public class DB4o {
 		ArrayList<Pelicula> listaPeliculas = new ArrayList<Pelicula>();
 		ObjectSet<Pelicula> result = db.queryByExample(pe);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas.");
+			//javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas.");
 		}else {
 			while (result.hasNext()) {
 				Pelicula p = (Pelicula) result.next();
@@ -272,7 +272,7 @@ public class DB4o {
 		ArrayList<Pelicula> listaPeliculas = new ArrayList<>();
 		ObjectSet<Pelicula> result = db.queryByExample(pe);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas en historico.");
+			//javax.swing.JOptionPane.showMessageDialog(null, "No hay peliculas en historico.");
 		}
 		while (result.hasNext()) {
 		Pelicula p = result.next();
@@ -287,7 +287,7 @@ public class DB4o {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		db.store(s);
-		javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
+		//javax.swing.JOptionPane.showMessageDialog(null, "Guardado");
 		db.close();
 		return true;
 	}
@@ -322,7 +322,7 @@ public class DB4o {
 		ArrayList<Sala> listaSalas = new ArrayList<>();
 		ObjectSet<Sala> result = db.queryByExample(sa);
 		if (result.size() == 0){
-			javax.swing.JOptionPane.showMessageDialog(null, "No hay salas en historico.");
+			//javax.swing.JOptionPane.showMessageDialog(null, "No hay salas en historico.");
 		}
 		while (result.hasNext()) {
 			Sala s = result.next();
@@ -342,10 +342,10 @@ public class DB4o {
 		return true;
 	}
 
-	/*public static ArrayList<Empleado> mostrarListEmpleResp() {
+	public static ArrayList<Empleado> mostrarListEmpleResp() {
 		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
 		
-		Empleado empl = new Empleado();
+		Empleado empl = new Empleado(Cargo.responsableSala);
 		
 		ArrayList<Empleado> listaEmpleado = new ArrayList<Empleado>();
 		ObjectSet<Empleado> result = db.queryByExample(empl);
@@ -359,8 +359,8 @@ public class DB4o {
 		
 		db.close();
 		return listaEmpleado;
-		return null;
-	}*/
+	
+	}
 	
 	/*public ArrayList<Proyeccion> mostrarListaProyecciones(){
 		ArrayList<Proyeccion> proyecciones = new ArrayList<>();
