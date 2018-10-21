@@ -95,6 +95,23 @@ public class Empleado {
 		return empleados;
 	}
 	
+	public static ArrayList<Empleado> cargarEmpleadosBaja(String bbdd){
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		ArrayList<Empleado> empleados = new ArrayList<>();
+		switch(bbdd) {
+			case "postgre":
+				empleados = gb.cargarEmpleadosBaja();
+				break;
+			case "sqlite":
+				empleados = gb.cargarEmpleadosBajaQL();
+				break;
+			case "db4o":
+				empleados = DB4o.mostrarListEmpleBaja();
+				break;
+		}
+		return empleados;
+	}
+	
 	public static ArrayList<Empleado> cargarEmpleadosResp(String bbdd){
 		GestorBBDD gb = new GestorBBDD(bbdd);
 		ArrayList<Empleado> empleados = new ArrayList<>();
