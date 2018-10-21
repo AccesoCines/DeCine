@@ -296,6 +296,40 @@ public class GestorBBDD {
 		}
 	}
 
+	public ArrayList<Pelicula> cargarPeliculasBaja() {
+		ArrayList<Pelicula> peliculas = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Pelicula"+'"'+" WHERE ALTA=false AND fecha_inicio<current_date and fecha_fin>current_date ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				peliculas.add(new Pelicula(
+						rs.getString("titulo"),
+						rs.getInt("ano_estreno"),
+						rs.getString("director"),
+						rs.getString("actor_principal"),
+						rs.getString("actor_secundario"),
+						rs.getString("sinopsis"),
+						rs.getInt("duracion"),
+						rs.getString("trailer"),
+						rs.getDate("fecha_inicio"),
+						rs.getDate("fecha_fin"),
+						rs.getBoolean("alta"),
+						rs.getInt("id")
+						));
+			}
+			if(peliculas.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay peliculas", null, 0);
+				return null;
+			}else {
+				return peliculas;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	
 	public ArrayList<Pelicula> cargarPeliculasQL() throws ParseException {
 		ArrayList<Pelicula> peliculas = new ArrayList<>();
@@ -343,6 +377,54 @@ public class GestorBBDD {
 		ArrayList<Sala> salas = new ArrayList<>();
 		try {
 			String query = "SELECT * FROM "+'"'+"Sala"+'"'+" WHERE ALTA=true ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				String queryRes = "SELECT * FROM "+'"'+"Empleado"+'"'+" WHERE ID=?";
+				PreparedStatement ps = con.prepareStatement(queryRes);
+				ps.setInt(1, rs.getInt("id_responsable"));
+				ResultSet rsr = ps.executeQuery();
+				Empleado resp = new Empleado();
+				while(rsr.next()) {
+					resp = new Empleado(
+							rsr.getString("nombre"),
+							rsr.getString("apellido"),
+							Cargo.valueOf(rsr.getString("cargo")),
+							rsr.getDate("fechacontratacion"),
+							rsr.getDate("fechanacimiento"),
+							rsr.getString("nacionalidad"),
+							rsr.getDate("fechafincontrato"),
+							rsr.getBoolean("alta"),
+							rsr.getInt("id")
+							);
+				}
+				salas.add(new Sala(
+						rs.getInt("numero"),
+						rs.getInt("aforo"),
+						rs.getString("dimensiones_pantalla"),
+						rs.getInt("ano_inauguracion"),
+						rs.getBoolean("discapacidad"),
+						resp,
+						rs.getInt("id")
+						));
+
+			}
+			if(salas.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay salas", null, 0);
+				return null;
+			}else {
+				return salas;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<Sala> cargarSalasBaja() {
+		ArrayList<Sala> salas = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Sala"+'"'+" WHERE ALTA=false ";
 			ResultSet rs = con.createStatement().executeQuery(query);
 			while(rs.next()) {
 				String queryRes = "SELECT * FROM "+'"'+"Empleado"+'"'+" WHERE ID=?";
@@ -748,6 +830,71 @@ public class GestorBBDD {
 	public boolean bajaSalaQL(Sala sala) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	public ArrayList<Empleado> cargarEmpleadosBaja() {
+		ArrayList<Empleado> empleados = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Empleado"+'"'+" WHERE ALTA=false ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				empleados.add(new Empleado(
+						rs.getString("nombre"),
+						rs.getString("apellido"),
+						rs.getString("cargo").equals("camarero")?
+												Cargo.camarero:
+							rs.getString("cargo").equals("portero")?
+												Cargo.portero:
+							rs.getString("cargo").equals("acomodadorResponsableBar")?
+												Cargo.acomodadorResponsableBar:
+							rs.getString("cargo").equals("reponsableSala")?
+												Cargo.responsableSala:
+							rs.getString("cargo").equals("responsableCine")?
+												Cargo.responsableCine:
+												Cargo.mantenimiento,
+						rs.getDate("fechacontratacion"),
+						rs.getDate("fechanacimiento"),
+						rs.getString("nacionalidad"),
+						rs.getDate("fechafincontrato"),
+						rs.getBoolean("alta"),
+						rs.getInt("id")
+						));
+			}
+			if(empleados.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay empleados", null, 0);
+				return null;
+			}else {
+				return empleados;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	public ArrayList<Empleado> cargarEmpleadosBajaQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+	public ArrayList<Sala> cargarSalasBajaQL() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	public ArrayList<Pelicula> cargarPeliculasBajaQL() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

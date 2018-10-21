@@ -346,6 +346,21 @@ public class DB4o {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public static ArrayList<Empleado> mostrarListEmpleBaja() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static ArrayList<Sala> mostrarListSalaBaja() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static ArrayList<Pelicula> mostrarListPeliBaja() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	/*public ArrayList<Proyeccion> mostrarListaProyecciones(){
 		ArrayList<Proyeccion> proyecciones = new ArrayList<>();

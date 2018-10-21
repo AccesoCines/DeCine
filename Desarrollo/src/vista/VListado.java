@@ -256,6 +256,42 @@ public class VListado extends JFrame {
 		contentPane.add(baja);
 
 		JButton historico = new JButton("");
+		historico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object[] opciones = { "Empleado", "Sala", "Pel\u00edcula" };
+				int opcion = JOptionPane.showOptionDialog(frame, "Elige una opci\u00f3n", "Selecciona", JOptionPane.YES_NO_CANCEL_OPTION, 
+						JOptionPane.PLAIN_MESSAGE, null, opciones, null);
+				VVerHistorico vvh = new VVerHistorico();
+				switch(opcion) {
+					case 0:
+						ArrayList<Empleado> empleados = Empleado.cargarEmpleadosBaja(elegirBBDD(cine));
+						vvh.setEmpleados(empleados);
+						vvh.setCine(cine);
+						vvh.ponerModel("empleado");
+						vvh.setVisible(true);
+						frame.dispose();
+						break;
+					case 1:
+						ArrayList<Sala> salas = Sala.cargarSalasBaja(elegirBBDD(cine));
+						vvh.setSalas(salas);
+						vvh.setCine(cine);
+						vvh.ponerModel("sala");
+						vvh.setVisible(true);
+						frame.dispose();
+						break;
+					case 2:
+						ArrayList<Pelicula> peliculas = new ArrayList<>();
+						peliculas = Pelicula.cargarPeliculasBaja(elegirBBDD(cine));
+						vvh.setPeliculas(peliculas);
+						vvh.setCine(cine);
+						vvh.ponerModel("pelicula");
+						vvh.setVisible(true);
+						frame.dispose();
+						break;
+					}
+				
+			}
+		});
 		historico.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		historico.setBorder(null);
 		historico.setBounds(338, 132,174, 80);

@@ -104,6 +104,22 @@ public class Sala {
 		return salas;
 	}
 	
+	public static ArrayList<Sala> cargarSalasBaja(String elegirBBDD) {
+		GestorBBDD gb = new GestorBBDD(elegirBBDD);
+		ArrayList<Sala> salas = new ArrayList<>();
+		switch(elegirBBDD) {
+		case "postgre":
+			salas = gb.cargarSalasBaja();
+			break;
+		case "sqlite":
+			salas = gb.cargarSalasBajaQL();
+			break;
+		case "db4o":
+			salas = DB4o.mostrarListSalaBaja();
+		}
+		return salas;
+	}
+	
 	public boolean guardarSala(String bbdd) {
 		GestorBBDD gb = new GestorBBDD(bbdd);	
 		boolean correcto = false;
@@ -234,6 +250,8 @@ public class Sala {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 
 
 

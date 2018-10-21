@@ -46,6 +46,23 @@ public class Pelicula {
 		return pelis;
 	}
 	
+	public static ArrayList<Pelicula> cargarPeliculasBaja(String elegirBBDD) {
+		GestorBBDD gb = new GestorBBDD(elegirBBDD);
+		ArrayList<Pelicula> pelis = new ArrayList<>();
+		switch(elegirBBDD) {
+			case "postgre":
+				pelis = gb.cargarPeliculasBaja();
+				break;
+			case "sqlite":
+				pelis = gb.cargarPeliculasBajaQL();
+				break;
+			case "db4o":
+				pelis = DB4o.mostrarListPeliBaja();
+				break;
+		}
+		return pelis;
+	}
+	
 	public boolean guardarProyecciones(String bbdd2) {
 		GestorBBDD gb = new GestorBBDD(bbdd2);
 		boolean correcto = false;
@@ -253,4 +270,6 @@ public class Pelicula {
 		}
 		return correcto;
 	}
+
+	
 }
