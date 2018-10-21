@@ -614,9 +614,13 @@ public class GestorBBDD {
 			ps.setDate(6, empleado.getFechaContratacion());
 			ps.setDate(7, empleado.getFechaFinContrato());
 			ps.setInt(8, empleado.getId());
-			ps.executeUpdate();
+			int lineas = ps.executeUpdate();
 			ps.close();
-			return true;
+			if(lineas==1) {
+				return true;
+			}else {
+				return false;
+			}
 		} catch (SQLException e) {
 			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
 			e.printStackTrace();
