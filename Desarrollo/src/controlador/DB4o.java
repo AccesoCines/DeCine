@@ -342,8 +342,23 @@ public class DB4o {
 		return true;
 	}
 
-	public static ArrayList<Empleado> mostrarListEmpleResp() {
-		// TODO Auto-generated method stub
+	/*public static ArrayList<Empleado> mostrarListEmpleResp() {
+		ObjectContainer db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),BDCine);
+		
+		Empleado empl = new Empleado();
+		
+		ArrayList<Empleado> listaEmpleado = new ArrayList<Empleado>();
+		ObjectSet<Empleado> result = db.queryByExample(empl);
+		if (result.size() == 0){
+		}else {
+			while (result.hasNext()) {
+			Empleado e = result.next();
+			listaEmpleado.add(e);
+			}
+		}
+		
+		db.close();
+		return listaEmpleado;
 		return null;
 	}
 
