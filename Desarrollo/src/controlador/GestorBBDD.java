@@ -554,18 +554,37 @@ public class GestorBBDD {
 	public ArrayList<Sala> cargarSalasQL() {
 		ArrayList<Sala> salas = new ArrayList<>();
 		try {
-			String query = "SELECT * FROM Sala WHERE ALTA=true ";
+			String query = "SELECT * FROM  Sala WHERE ALTA=true ";
 			ResultSet rs = con.createStatement().executeQuery(query);
 			while(rs.next()) {
+				String queryRes = "SELECT * FROM Empleado WHERE ID=?";
+				PreparedStatement ps = con.prepareStatement(queryRes);
+				ps.setInt(1, rs.getInt("id_responsable"));
+				ResultSet rsr = ps.executeQuery();
+				Empleado resp = new Empleado();
+				while(rsr.next()) {
+					resp = new Empleado(
+							rsr.getString("nombre"),
+							rsr.getString("apellido"),
+							Cargo.valueOf(rsr.getString("cargo")),
+							rsr.getDate("fechacontratacion"),
+							rsr.getDate("fechanacimiento"),
+							rsr.getString("nacionalidad"),
+							rsr.getDate("fechafincontrato"),
+							rsr.getBoolean("alta"),
+							rsr.getInt("id")
+							);
+				}
 				salas.add(new Sala(
 						rs.getInt("numero"),
 						rs.getInt("aforo"),
 						rs.getString("dimensiones_pantalla"),
 						rs.getInt("ano_inauguracion"),
 						rs.getBoolean("discapacidad"),
+						resp,
 						rs.getInt("id")
-						//En la base de datos SQLite el id está primero (por si da error
 						));
+
 			}
 			if(salas.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "No hay salas", null, 0);
@@ -580,6 +599,7 @@ public class GestorBBDD {
 		}
 	}
 
+			
 	public boolean modificarEmpleado(Empleado empleado) {
 		try {
 			String query = "UPDATE "+'"'+"Empleado"+'"'+ " SET nombre = ?, apellido = ?, "
@@ -632,9 +652,30 @@ public class GestorBBDD {
 	}
 
 	public boolean modificarSalaQL(Sala sala) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			String query = "UPDATE Sala SET numero = ?, aforo = ?, dimensiones_pantalla = ?, ano_inauguracion = ?, discapacidad = ?,  id_responsable = ? where id=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, sala.getNumero());
+			ps.setInt(2, sala.getAforo());
+			ps.setString(3, sala.getDimPantalla());
+			ps.setInt(4, sala.getAnoInauguracion());
+			ps.setBoolean(5, sala.isDiscapacidad());
+			ps.setInt(6, sala.getResponsable().getId());
+			ps.setInt(7, sala.getId());
+			int lineas = ps.executeUpdate();
+			ps.close();
+			if(lineas==1) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return false;
+		}		
 	}
+
 
 	public boolean bajaEmpleadoQL(Empleado empleado) {
 		// TODO Auto-generated method stub
@@ -642,9 +683,46 @@ public class GestorBBDD {
 	}
 
 	public ArrayList<Empleado> cargarEmpleadosRespQL() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Empleado> empleados = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM  Empleado  WHERE ALTA=1 AND cargo='responsableSala' ";
+			ResultSet rs = con.createStatement().executeQuery(query);
+			while(rs.next()) {
+				empleados.add(new Empleado(
+						rs.getString("nombre"),
+						rs.getString("apellido"),
+						rs.getString("cargo").equals("camarero")?
+												Cargo.camarero:
+							rs.getString("cargo").equals("portero")?
+												Cargo.portero:
+							rs.getString("cargo").equals("acomodadorResponsableBar")?
+												Cargo.acomodadorResponsableBar:
+							rs.getString("cargo").equals("reponsableSala")?
+												Cargo.responsableSala:
+							rs.getString("cargo").equals("responsableCine")?
+												Cargo.responsableCine:
+												Cargo.mantenimiento,
+						rs.getDate("fechacontratacion"),
+						rs.getDate("fechanacimiento"),
+						rs.getString("nacionalidad"),
+						rs.getDate("fechafincontrato"),
+						rs.getBoolean("alta"),
+						rs.getInt("id") //Importante!!!!
+						));
+			}
+			if(empleados.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay empleados", null, 0);
+				return null;
+			}else {
+				return empleados;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 	}
+	
 
 	public ArrayList<Empleado> cargarEmpleadosQL() {
 		// TODO Auto-generated method stub
