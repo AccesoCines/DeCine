@@ -32,6 +32,10 @@ public class VInfoCine extends JFrame {
 	public static JLabel txtTelefono;
 	public static JLabel txtNumSalas;
 	public static JTextField textFieldFUND;
+	public static JTextField textFielTipoCine;
+	public static JTextField textFieldDirecc;
+	public static JTextField textFieldTel;
+	public static JTextField textFieldNumSalas;
 	
 	
 
@@ -94,31 +98,25 @@ public class VInfoCine extends JFrame {
 		JLabel lblTipo = new JLabel("Tipo");
 		lblTipo.setForeground(Color.WHITE);
 		lblTipo.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblTipo.setBounds(198, 217, 401, 25);
+		lblTipo.setBounds(106, 205, 401, 25);
 		contentPane.add(lblTipo);
-		
-		JLabel textTipo = new JLabel("");
-		textTipo.setForeground(Color.WHITE);
-		textTipo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		textTipo.setBounds(263, 260, 373, 25);
-		contentPane.add(textTipo);
 		
 		JLabel fechaFundacion = new JLabel("Fecha fundaci\u00F3n: ");
 		fechaFundacion.setForeground(Color.WHITE);
 		fechaFundacion.setFont(new Font("Tahoma", Font.BOLD, 25));
-		fechaFundacion.setBounds(198, 323, 310, 25);
+		fechaFundacion.setBounds(106, 299, 310, 25);
 		contentPane.add(fechaFundacion);
 		
 		JLabel direccion = new JLabel("Direcci\u00F3n:");
 		direccion.setForeground(Color.WHITE);
 		direccion.setFont(new Font("Tahoma", Font.BOLD, 25));
-		direccion.setBounds(199, 425, 127, 25);
+		direccion.setBounds(107, 395, 127, 25);
 		contentPane.add(direccion);
 		
 		JLabel telefono = new JLabel("Tel\u00E9fono: ");
 		telefono.setForeground(Color.WHITE);
 		telefono.setFont(new Font("Tahoma", Font.BOLD, 25));
-		telefono.setBounds(195, 518, 127, 25);
+		telefono.setBounds(103, 491, 127, 25);
 		contentPane.add(telefono);
 		
 		
@@ -126,10 +124,11 @@ public class VInfoCine extends JFrame {
 		JLabel numSalas = new JLabel("N\u00FAmero de salas:");
 		numSalas.setForeground(Color.WHITE);
 		numSalas.setFont(new Font("Tahoma", Font.BOLD, 25));
-		numSalas.setBounds(198, 603, 373, 25);
+		numSalas.setBounds(106, 587, 373, 25);
 		contentPane.add(numSalas);
 		
 		JButton volver = new JButton("New button");
+		volver.setBorder(null);
 		volver.setContentAreaFilled(false);;
 		volver.setBounds(50, 647, 155, 90);
 		contentPane.add(volver);
@@ -140,14 +139,39 @@ public class VInfoCine extends JFrame {
 		textFieldNombreCine.setForeground(Color.WHITE);
 		textFieldNombreCine.setHorizontalAlignment(SwingConstants.LEFT);
 		textFieldNombreCine.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		textFieldNombreCine.setBounds(96, 123, 656, 66);
+		textFieldNombreCine.setBounds(93, 108, 656, 66);
 		contentPane.add(textFieldNombreCine);
 		textFieldNombreCine.setColumns(10);
 		
 		textFieldFUND = new JTextField();
-		textFieldFUND.setBounds(460, 45, 146, 26);
+		textFieldFUND.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textFieldFUND.setBounds(142, 339, 585, 26);
 		contentPane.add(textFieldFUND);
 		textFieldFUND.setColumns(10);
+		
+		textFielTipoCine = new JTextField();
+		textFielTipoCine.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textFielTipoCine.setColumns(10);
+		textFielTipoCine.setBounds(139, 247, 585, 26);
+		contentPane.add(textFielTipoCine);
+		
+		textFieldDirecc = new JTextField();
+		textFieldDirecc.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textFieldDirecc.setColumns(10);
+		textFieldDirecc.setBounds(139, 436, 585, 26);
+		contentPane.add(textFieldDirecc);
+		
+		textFieldTel = new JTextField();
+		textFieldTel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textFieldTel.setColumns(10);
+		textFieldTel.setBounds(139, 534, 585, 26);
+		contentPane.add(textFieldTel);
+		
+		textFieldNumSalas = new JTextField();
+		textFieldNumSalas.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textFieldNumSalas.setColumns(10);
+		textFieldNumSalas.setBounds(139, 628, 585, 26);
+		contentPane.add(textFieldNumSalas);
 		
 		volver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -129,26 +129,42 @@ public class VCines extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				VInfoCine mod= new VInfoCine();
+				
+				
 				    
 				    if(rbZubiarte.isSelected()) {
 						VInfoCine vme = new VInfoCine();
 						vme.setVisible(true);
 						vme.setcine(rbZubiarte.getText());
 						vme.textFieldFUND.setText("2003");
-						VCines.this.dispose();
-						
-						
+						vme.textFieldDirecc.setText("Centro comercial Zubiarte. 48009 Bilbao (Vizcaya)");
+						vme.textFieldNumSalas.setText("10");
+						vme.textFieldTel.setText("944359845");
+						vme.textFielTipoCine.setText("Comercial");
+						VCines.this.dispose();						
 					}
+				    
 				    if(rbPrincipe.isSelected()) {
 						VInfoCine vme = new VInfoCine();
 						vme.setVisible(true);
 						vme.setcine(rbPrincipe.getText());
+						vme.textFieldFUND.setText("1950");
+						vme.textFieldDirecc.setText("San Juan Kalea, 10");
+						vme.textFieldNumSalas.setText("8");
+						vme.textFieldTel.setText("943510306");
+						vme.textFielTipoCine.setText("Documental");
 						VCines.this.dispose();
 					}
+				 
 				    if(rbAzul.isSelected()) {
 						VInfoCine vme = new VInfoCine();
 						vme.setVisible(true);
 						vme.setcine(rbAzul.getText());
+						vme.textFieldFUND.setText("1980");
+						vme.textFieldDirecc.setText("Pza. Zaldiaran, 4");
+						vme.textFieldNumSalas.setText("4");
+						vme.textFieldTel.setText("945253801");
+						vme.textFielTipoCine.setText("Experimental");
 						VCines.this.dispose();
 					}
 				
