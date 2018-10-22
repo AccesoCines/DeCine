@@ -17,6 +17,7 @@ import com.toedter.calendar.JDateChooser;
 
 import modelo.Cargo;
 import modelo.Empleado;
+import modelo.Sala;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,7 +25,10 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class VModificacionEmpleado extends JFrame {
 
@@ -34,13 +38,15 @@ public class VModificacionEmpleado extends JFrame {
 	private JTextField txtNombre;
 	private JTextField textField;
 	private static VModificacionEmpleado frame;
-	private String bbdd;
+	private static String bbdd;
 	private JComboBox txtCargo;
 	private JDateChooser txtFecCont;
 	private JDateChooser txtFecNac;
 	private JDateChooser txtFecFinCon;
 	private JLabel cine;
 	private int id;
+	private ArrayList<Sala> salas;
+	private JTextField cbSalas;
 
 	/**
 	 * Launch the application.
@@ -83,11 +89,41 @@ public class VModificacionEmpleado extends JFrame {
 		txtApellido.setBounds(285, 250, 358, 31);
 		contentPane.add(txtApellido);
 		
+		cbSalas = new JTextField();
+		cbSalas.setEnabled(false);
+		cbSalas.setColumns(10);
+		cbSalas.setBounds(285, 550, 205, 31);
+		contentPane.add(cbSalas);
+		
+		salas = Sala.cargarSalas(bbdd);
+		for(Sala s:salas){
+			if(s.getResponsable().getId()==id) {
+				cbSalas.setText(String.valueOf(s.getNumero()));
+			}
+		}
+		
 		txtCargo = new JComboBox();
+		txtCargo.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getItem().toString().equals("responsableSala")) {
+					cbSalas.setVisible(true);
+					
+				}else {
+					cbSalas.setVisible(false);
+					}
+				
+			}
+		});
 		txtCargo.setBounds(285, 300, 358, 31);
 		contentPane.add(txtCargo);
 		for(Cargo cargo:Cargo.values()) {
 			txtCargo.addItem(cargo);	//TODO si da tiempo poner los textos bien
+		}
+		if(txtCargo.getSelectedItem().toString().equals("respoonsableSala")) {
+			cbSalas.setVisible(true);
+			
+		}else {
+			cbSalas.setVisible(false);
 		}
 		
 		JButton btnCancelar = new JButton("");
@@ -222,7 +258,19 @@ public class VModificacionEmpleado extends JFrame {
 		txtNombre.setBounds(285, 200, 358, 31);
 		contentPane.add(txtNombre);
 		
+		JLabel lblResponsableSala = new JLabel("Responsable sala:");
+		lblResponsableSala.setForeground(Color.WHITE);
+		lblResponsableSala.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblResponsableSala.setBounds(50, 550, 205, 31);
+		contentPane.add(lblResponsableSala);
 		
+		JLabel lblparaCambiarLa = new JLabel("*Para cambiar la sala debes ir a la ventana Modificaci\u00F3n de salas");
+		lblparaCambiarLa.setForeground(Color.WHITE);
+		lblparaCambiarLa.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblparaCambiarLa.setBounds(285, 592, 453, 31);
+		contentPane.add(lblparaCambiarLa);
+		
+
 		setLocationRelativeTo(null);
 	}
 
@@ -238,13 +286,14 @@ public class VModificacionEmpleado extends JFrame {
 		this.id = empleado.getId();
 	}
 
-	public void setBbdd(String bbdd) {
+	public static void setBbdd(String bbdd) {
 		// TODO Auto-generated method stub
-		this.bbdd = bbdd;
+		VModificacionEmpleado.bbdd = bbdd;
 	}
 
 	public void setCine(String cine) {
 		// TODO Auto-generated method stub
 		this.cine.setText(cine);
 	}
+
 }

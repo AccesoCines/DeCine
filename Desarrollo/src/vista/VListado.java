@@ -159,9 +159,9 @@ public class VListado extends JFrame {
 							+ "\n Empleado o pel\u00edcula o sala.", "Error", JOptionPane.WARNING_MESSAGE);
 				}else {
 					if(cbEmpleados.getSelectedIndex()!=0) {
+						VModificacionEmpleado.setBbdd(elegirBBDD(cine));
 						VModificacionEmpleado vme = new VModificacionEmpleado();
 						vme.setVisible(true);
-						vme.setBbdd(elegirBBDD(cine));
 						vme.setCine(cine);
 						vme.setEmpleado(empleados.get(cbEmpleados.getSelectedIndex()-1));
 						frame.dispose();
@@ -347,7 +347,7 @@ public class VListado extends JFrame {
 		cbCines.setSize(350, 46); 
 		cbCines.setLocation(343, 257);
 		cbCines.setBorder(new LineBorder(Color.WHITE, 3, true));
-		cbCines.setForeground(Color.RED);
+		cbCines.setForeground(Color.WHITE);
 		cbCines.setBackground(new Color(233, 69, 75));
 		cbCines.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		cbCines.setSelectedIndex(0);
