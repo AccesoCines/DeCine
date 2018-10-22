@@ -51,10 +51,13 @@ public class VCines extends JFrame {
 	private JButton cancelar;
 	private JButton volver;
 	private JButton btnCartelera;
-	private static String[] nombres;
 	public static boolean verdadero;
 	public static ButtonGroup grupoBotones;
 	public static VCines verCines;
+	
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -128,31 +131,55 @@ public class VCines extends JFrame {
 		btnCartelera.setIcon(new ImageIcon(getClass().getResource("/imagenes/CLAQUETAS/clac cartelera.png")));
 
 		
+		String[] tipo = {"Cine documental","Cine comercial", "Cine experimental" };
+		String[] fechaFund = {"2003", "1950", "1980"};
+		String[] direcciones = {"Centro comercial Zubiarte. 48009 Bilbao (Vizcaya)", "San Juan Kalea, 10", "Plaza Zaldiaran 10"};
+		String[] telefonos = {"944235490", "943510306", "945253801"};
 		
-		
-		
-		
-		
+			
 		 btnInfoCines = new JButton("");
 		btnInfoCines.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				VInfoCine mod= new VInfoCine();
-				VInfoCine vme = new VInfoCine();
-				vme.setVisible(true);
-				if(rbZubiarte.isSelected()) {
-					vme.setcine(rbZubiarte.getText());
-					vme.setBBDD("sqlite");		
-				}
-				if(rbAzul.isSelected()) {
-					vme.setcine(rbAzul.getText());
-					vme.setBBDD("postgre");
-				}
-				if(rbPrincipe.isSelected()) {
-					vme.setcine(rbPrincipe.getText());
-					vme.setBBDD("db4o");
-				}
-
-				VCines.this.dispose();
+				
+				
+				    
+				    if(rbZubiarte.isSelected()) {
+						VInfoCine vme = new VInfoCine();
+						vme.setVisible(true);
+						vme.setcine(rbZubiarte.getText());
+						vme.textFieldFUND.setText("2003");
+						vme.textFieldDirecc.setText("Centro comercial Zubiarte. 48009 Bilbao (Vizcaya)");
+						vme.textFieldNumSalas.setText("10");
+						vme.textFieldTel.setText("944359845");
+						vme.textFielTipoCine.setText("Comercial");
+						VCines.this.dispose();						
+					}
+				    
+				    if(rbPrincipe.isSelected()) {
+						VInfoCine vme = new VInfoCine();
+						vme.setVisible(true);
+						vme.setcine(rbPrincipe.getText());
+						vme.textFieldFUND.setText("1950");
+						vme.textFieldDirecc.setText("San Juan Kalea, 10");
+						vme.textFieldNumSalas.setText("8");
+						vme.textFieldTel.setText("943510306");
+						vme.textFielTipoCine.setText("Documental");
+						VCines.this.dispose();
+					}
+				 
+				    if(rbAzul.isSelected()) {
+						VInfoCine vme = new VInfoCine();
+						vme.setVisible(true);
+						vme.setcine(rbAzul.getText());
+						vme.textFieldFUND.setText("1980");
+						vme.textFieldDirecc.setText("Pza. Zaldiaran, 4");
+						vme.textFieldNumSalas.setText("4");
+						vme.textFieldTel.setText("945253801");
+						vme.textFielTipoCine.setText("Experimental");
+						VCines.this.dispose();
+					}
+				
 			}
 		});
 		
@@ -201,7 +228,6 @@ public class VCines extends JFrame {
 		contentPane.add(rbAzul);
 		rbAzul.setContentAreaFilled(false);
 		
-		String [] nombres = {"Cinesa Zubiarte 3D", "Cine Príncipe", "Cine Azul" };		
 		
 		  ButtonGroup grupoBotones = new ButtonGroup();
 		  grupoBotones.add(rbPrincipe);
