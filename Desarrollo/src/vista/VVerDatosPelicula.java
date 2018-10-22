@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JScrollPane;
@@ -19,11 +20,16 @@ import com.toedter.calendar.JYearChooser;
 
 import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+import modelo.Columna;
 import modelo.Pelicula;
+import modelo.Proyeccion;
+import modelo.Tabla;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class VVerDatosPelicula extends JFrame {
 
@@ -38,6 +44,8 @@ public class VVerDatosPelicula extends JFrame {
 	private JLabel txtDuracion;
 	private JLabel txtAnyo;
 	private static JWebBrowser wb;
+	private JTable table;
+	private static DefaultTableModel model = new DefaultTableModel();
 
 	/**
 	 * Launch the application.
@@ -99,37 +107,37 @@ public class VVerDatosPelicula extends JFrame {
 		JLabel lblTtulo_1 = new JLabel("T\u00EDtulo:");
 		lblTtulo_1.setForeground(Color.WHITE);
 		lblTtulo_1.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblTtulo_1.setBounds(71, 165, 205, 31);
+		lblTtulo_1.setBounds(24, 165, 205, 31);
 		contentPane.add(lblTtulo_1);
 		
 		JLabel lblAoDeEstreno = new JLabel("A\u00F1o de estreno:");
 		lblAoDeEstreno.setForeground(Color.WHITE);
 		lblAoDeEstreno.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblAoDeEstreno.setBounds(71, 209, 205, 31);
+		lblAoDeEstreno.setBounds(24, 211, 205, 31);
 		contentPane.add(lblAoDeEstreno);
 		
 		JLabel lblDirector = new JLabel("Director:");
 		lblDirector.setForeground(Color.WHITE);
 		lblDirector.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblDirector.setBounds(71, 253, 205, 31);
+		lblDirector.setBounds(24, 255, 205, 31);
 		contentPane.add(lblDirector);
 		
 		JLabel lblActorPrincipal = new JLabel("Actor principal:");
 		lblActorPrincipal.setForeground(Color.WHITE);
 		lblActorPrincipal.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblActorPrincipal.setBounds(71, 297, 205, 31);
+		lblActorPrincipal.setBounds(24, 297, 205, 31);
 		contentPane.add(lblActorPrincipal);
 		
 		JLabel lblActorSecundario = new JLabel("Actor secundario:");
 		lblActorSecundario.setForeground(Color.WHITE);
 		lblActorSecundario.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblActorSecundario.setBounds(71, 347, 228, 31);
+		lblActorSecundario.setBounds(24, 349, 228, 31);
 		contentPane.add(lblActorSecundario);
 		
 		JLabel lblDuracin = new JLabel("Duraci\u00F3n:");
 		lblDuracin.setForeground(Color.WHITE);
 		lblDuracin.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblDuracin.setBounds(71, 391, 228, 31);
+		lblDuracin.setBounds(24, 393, 228, 31);
 		contentPane.add(lblDuracin);
 		
 		JLabel lblTrailer = new JLabel("Trailer:");
@@ -141,13 +149,13 @@ public class VVerDatosPelicula extends JFrame {
 		JLabel lblSinopsis = new JLabel("Sinopsis:");
 		lblSinopsis.setForeground(Color.WHITE);
 		lblSinopsis.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblSinopsis.setBounds(71, 435, 228, 31);
+		lblSinopsis.setBounds(24, 435, 228, 31);
 		contentPane.add(lblSinopsis);
 		
 		txtSinopsis = new JTextArea();
 		txtSinopsis.setLineWrap(true);
 		txtSinopsis.setColumns(10);
-		txtSinopsis.setBounds(311, 444, 577, 84);
+		txtSinopsis.setBounds(166, 444, 722, 84);
 		contentPane.add(txtSinopsis);
 		
 		/*panelTrailer = new JPanel();
@@ -158,37 +166,37 @@ public class VVerDatosPelicula extends JFrame {
 		txtTitulo = new JLabel("(sin datos)");
 		txtTitulo.setForeground(Color.WHITE);
 		txtTitulo.setFont(new Font("Tahoma", Font.BOLD, 25));
-		txtTitulo.setBounds(311, 165, 205, 31);
+		txtTitulo.setBounds(262, 165, 316, 31);
 		contentPane.add(txtTitulo);
 		
 		txtDirector = new JLabel("(sin datos)");
 		txtDirector.setForeground(Color.WHITE);
 		txtDirector.setFont(new Font("Tahoma", Font.BOLD, 25));
-		txtDirector.setBounds(311, 253, 205, 31);
+		txtDirector.setBounds(262, 255, 316, 31);
 		contentPane.add(txtDirector);
 		
 		txtActorPrin = new JLabel("(sin datos)");
 		txtActorPrin.setForeground(Color.WHITE);
 		txtActorPrin.setFont(new Font("Tahoma", Font.BOLD, 25));
-		txtActorPrin.setBounds(311, 297, 205, 31);
+		txtActorPrin.setBounds(262, 297, 316, 31);
 		contentPane.add(txtActorPrin);
 		
 		txtActorSecun = new JLabel("(sin datos)");
 		txtActorSecun.setForeground(Color.WHITE);
 		txtActorSecun.setFont(new Font("Tahoma", Font.BOLD, 25));
-		txtActorSecun.setBounds(311, 347, 205, 31);
+		txtActorSecun.setBounds(262, 349, 316, 31);
 		contentPane.add(txtActorSecun);
 		
 		txtDuracion = new JLabel("(sin datos)");
 		txtDuracion.setForeground(Color.WHITE);
 		txtDuracion.setFont(new Font("Tahoma", Font.BOLD, 25));
-		txtDuracion.setBounds(311, 391, 205, 31);
+		txtDuracion.setBounds(262, 393, 316, 31);
 		contentPane.add(txtDuracion);
 		
 		txtAnyo = new JLabel("(sin datos)");
 		txtAnyo.setForeground(Color.WHITE);
 		txtAnyo.setFont(new Font("Tahoma", Font.BOLD, 25));
-		txtAnyo.setBounds(311, 209, 205, 31);
+		txtAnyo.setBounds(262, 211, 316, 31);
 		contentPane.add(txtAnyo);
 		
 		JButton volver = new JButton("");
@@ -199,7 +207,7 @@ public class VVerDatosPelicula extends JFrame {
 		});
 	
 		volver.setContentAreaFilled(false);
-		volver.setBounds(726, 164, 138, 89);
+		volver.setBounds(750, 45, 138, 89);
 		contentPane.add(volver);
 		volver.setIcon(new ImageIcon(getClass().getResource("/imagenes/BOTONES/botVOLVER.png")));
 		
@@ -211,10 +219,31 @@ public class VVerDatosPelicula extends JFrame {
 		NativeInterface.open();
 		contentPane.add(wb);
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(588, 166, 300, 256);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 0, 300, 256);
+		panel.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Sala", "Fecha inicio", "Fecha fin", "Hora"
+			}
+		));
+		
+		
 		setLocationRelativeTo(null);
 	}
 	
-	public void cargarDatos(Pelicula p) {
+	public void cargarDatos(String bbdd, Pelicula p) throws ParseException {
 		txtTitulo.setText(p.getTitulo());
 		txtSinopsis.setText(p.getSinopsis());
 		txtDirector.setText(p.getDirector());
@@ -223,5 +252,13 @@ public class VVerDatosPelicula extends JFrame {
 		txtDuracion.setText(String.valueOf(p.getDuracion()));
 		txtAnyo.setText(String.valueOf(p.getAnoEstreno()));
 		wb.navigate(p.getTrailer());
+		model = (DefaultTableModel) table.getModel();
+		if(bbdd.equals("postgre")) {
+			for(Proyeccion pr:Pelicula.cargarProyecciones(bbdd, p)) {
+				model.addRow(new Object[]{pr.getSala().getNumero(),p.getFechaInicio(),p.getFechaFin(),pr.getHora()});
+			
+			}
+		}
+		
 	}
 }

@@ -25,6 +25,15 @@ public class Sala {
 	
 	public Sala() {	}
 	
+	
+	
+	public Sala(int numero, int id) {
+		this.numero = numero;
+		this.id = id;
+	}
+
+
+
 	public Sala(Empleado responsable,int numero) {
 		this.responsable = responsable;
 		this.numero = numero;

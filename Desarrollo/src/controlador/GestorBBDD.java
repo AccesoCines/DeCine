@@ -239,6 +239,44 @@ public class GestorBBDD {
 		}	
 	}
 	
+	public ArrayList<Proyeccion> cargarProyecciones(Pelicula pelicula) {
+		ArrayList<Proyeccion> proyecciones = new ArrayList<>();
+		try {
+			String query = "SELECT * FROM "+'"'+"Proyeccion"+'"'+" WHERE ALTA=true AND id_pelicula=? ";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, pelicula.getId());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int numSala = rs.getInt("id_sala");
+				PreparedStatement pss = con.prepareStatement("SELECT * FROM "+'"'+"Sala"+'"'+" WHERE id=? ");		
+				pss.setInt(1, numSala);
+				ResultSet rss = pss.executeQuery();
+				Sala s = new Sala();
+				while(rss.next()) {
+					s = new Sala(
+							rss.getInt("id"),
+							rss.getInt("numero")
+							); 
+				}
+				proyecciones.add(new Proyeccion(
+						s,
+						pelicula,
+						rs.getTime("hora")
+						));
+			}
+			if(proyecciones.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "No hay proyecciones", null, 0);
+				return proyecciones;
+			}else {
+				return proyecciones;
+			}
+		} catch (SQLException e) {
+			javax.swing.JOptionPane.showMessageDialog(null ,"Ha ocurrido un problema \n"+e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public boolean guardarProyeccionesQL(Pelicula pelicula) {
 		try {
 			PreparedStatement ps = null;
@@ -1128,6 +1166,12 @@ public class GestorBBDD {
 	public boolean bajaSalaQL(Sala sala) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	public ArrayList<Proyeccion> cargarProyeccionesQL(Pelicula p) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

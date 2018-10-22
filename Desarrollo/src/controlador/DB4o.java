@@ -331,4 +331,9 @@ public class DB4o {
 
 	}
 
+	public static ArrayList<Proyeccion> mostrarListProy(Pelicula p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

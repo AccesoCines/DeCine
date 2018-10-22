@@ -118,7 +118,12 @@ public class VVerCartelera extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				Pelicula p = peliculas.get(table.getSelectedRow());
 	            VVerDatosPelicula vdp = new VVerDatosPelicula();
-	            vdp.cargarDatos(p);
+	            try {
+					vdp.cargarDatos(bbdd,p);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	            vdp.setVisible(true);
 			}
 		});
@@ -151,6 +156,7 @@ public class VVerCartelera extends JFrame {
 
 	public void setBBDD(String bbdd) {
 		try {
+			this.bbdd = bbdd;
 			peliculas = Pelicula.cargarPeliculas(bbdd);
 			model = (DefaultTableModel) table.getModel();
 			for(Pelicula p:peliculas) {

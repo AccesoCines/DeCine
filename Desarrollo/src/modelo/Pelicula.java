@@ -46,6 +46,23 @@ public class Pelicula {
 		return pelis;
 	}
 	
+	public static ArrayList<Proyeccion> cargarProyecciones(String bbdd, Pelicula p) throws ParseException{
+		GestorBBDD gb = new GestorBBDD(bbdd);
+		ArrayList<Proyeccion> proyecciones = new ArrayList<>();
+		switch(bbdd) {
+			case "postgre":
+				proyecciones = gb.cargarProyecciones(p);
+				break;
+			case "sqlite":
+				proyecciones = gb.cargarProyeccionesQL(p);
+				break;
+			case "db4o":
+				proyecciones = DB4o.mostrarListProy(p);
+				break;
+		}
+		return proyecciones;
+	}
+	
 	public static ArrayList<Pelicula> cargarPeliculasBaja(String elegirBBDD) {
 		GestorBBDD gb = new GestorBBDD(elegirBBDD);
 		ArrayList<Pelicula> pelis = new ArrayList<>();
