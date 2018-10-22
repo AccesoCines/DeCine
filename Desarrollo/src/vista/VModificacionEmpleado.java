@@ -96,11 +96,7 @@ public class VModificacionEmpleado extends JFrame {
 		contentPane.add(cbSalas);
 		
 		salas = Sala.cargarSalas(bbdd);
-		for(Sala s:salas){
-			if(s.getResponsable().getId()==id) {
-				cbSalas.setText(String.valueOf(s.getNumero()));
-			}
-		}
+		
 		
 		txtCargo = new JComboBox();
 		txtCargo.addItemListener(new ItemListener() {
@@ -284,6 +280,12 @@ public class VModificacionEmpleado extends JFrame {
 		txtNacionalidad.setText(empleado.getNacionalidad());
 		txtFecFinCon.setDate(empleado.getFechaFinContrato());
 		this.id = empleado.getId();
+		for(Sala s:salas){
+			if(s.getResponsable().getId()==id) {
+				cbSalas.setText(String.valueOf(s.getNumero()));
+				System.out.println(s.getNumero());
+			}
+		}
 	}
 
 	public static void setBbdd(String bbdd) {

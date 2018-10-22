@@ -521,20 +521,11 @@ public class GestorBBDD {
 			String query = "SELECT * FROM "+'"'+"Empleado"+'"'+" WHERE ALTA=true ";
 			ResultSet rs = con.createStatement().executeQuery(query);
 			while(rs.next()) {
+				Cargo cargo = Cargo.valueOf(rs.getString("cargo"));
 				empleados.add(new Empleado(
 						rs.getString("nombre"),
 						rs.getString("apellido"),
-						rs.getString("cargo").equals("camarero")?
-												Cargo.camarero:
-							rs.getString("cargo").equals("portero")?
-												Cargo.portero:
-							rs.getString("cargo").equals("acomodadorResponsableBar")?
-												Cargo.acomodadorResponsableBar:
-							rs.getString("cargo").equals("reponsableSala")?
-												Cargo.responsableSala:
-							rs.getString("cargo").equals("responsableCine")?
-												Cargo.responsableCine:
-												Cargo.mantenimiento,
+						Cargo.valueOf(rs.getString("cargo")),
 						rs.getDate("fechacontratacion"),
 						rs.getDate("fechanacimiento"),
 						rs.getString("nacionalidad"),
@@ -565,17 +556,7 @@ public class GestorBBDD {
 				empleados.add(new Empleado(
 						rs.getString("nombre"),
 						rs.getString("apellido"),
-						rs.getString("cargo").equals("camarero")?
-												Cargo.camarero:
-							rs.getString("cargo").equals("portero")?
-												Cargo.portero:
-							rs.getString("cargo").equals("acomodadorResponsableBar")?
-												Cargo.acomodadorResponsableBar:
-							rs.getString("cargo").equals("reponsableSala")?
-												Cargo.responsableSala:
-							rs.getString("cargo").equals("responsableCine")?
-												Cargo.responsableCine:
-												Cargo.mantenimiento,
+						Cargo.valueOf(rs.getString("cargo")),
 						rs.getDate("fechacontratacion"),
 						rs.getDate("fechanacimiento"),
 						rs.getString("nacionalidad"),
@@ -809,21 +790,12 @@ public class GestorBBDD {
 				empleados.add(new Empleado(
 						rs.getString("nombre"),
 						rs.getString("apellido"),
-						rs.getString("cargo").equals("camarero")?
-												Cargo.camarero:
-							rs.getString("cargo").equals("portero")?
-												Cargo.portero:
-							rs.getString("cargo").equals("acomodadorResponsableBar")?
-												Cargo.acomodadorResponsableBar:
-							rs.getString("cargo").equals("reponsableSala")?
-												Cargo.responsableSala:
-							rs.getString("cargo").equals("responsableCine")?
-												Cargo.responsableCine:
-												Cargo.mantenimiento,
-												rs.getDate("fechacontratacion"),
-												rs.getDate("fechanacimiento"),
-												rs.getString("nacionalidad"),
-												rs.getDate("fechafincontrato"),						alta,
+						Cargo.valueOf(rs.getString("cargo")),
+						rs.getDate("fechacontratacion"),
+						rs.getDate("fechanacimiento"),
+						rs.getString("nacionalidad"),
+						rs.getDate("fechafincontrato"),						
+						alta,
 						rs.getInt("id") //Importante!!!!
 						));
 			}
@@ -857,21 +829,12 @@ public class GestorBBDD {
 				empleados.add(new Empleado(
 						rs.getString("nombre"),
 						rs.getString("apellido"),
-						rs.getString("cargo").equals("camarero")?
-												Cargo.camarero:
-							rs.getString("cargo").equals("portero")?
-												Cargo.portero:
-							rs.getString("cargo").equals("acomodadorResponsableBar")?
-												Cargo.acomodadorResponsableBar:
-							rs.getString("cargo").equals("reponsableSala")?
-												Cargo.responsableSala:
-							rs.getString("cargo").equals("responsableCine")?
-												Cargo.responsableCine:
-												Cargo.mantenimiento,
-												rs.getDate("fechacontratacion"),
-												rs.getDate("fechanacimiento"),
-												rs.getString("nacionalidad"),
-												rs.getDate("fechafincontrato"),						alta,
+						Cargo.valueOf(rs.getString("cargo")),
+						rs.getDate("fechacontratacion"),
+						rs.getDate("fechanacimiento"),
+						rs.getString("nacionalidad"),
+						rs.getDate("fechafincontrato"),						
+						alta,
 						rs.getInt("id")
 						));
 			}
@@ -953,17 +916,7 @@ public class GestorBBDD {
 				empleados.add(new Empleado(
 						rs.getString("nombre"),
 						rs.getString("apellido"),
-						rs.getString("cargo").equals("camarero")?
-												Cargo.camarero:
-							rs.getString("cargo").equals("portero")?
-												Cargo.portero:
-							rs.getString("cargo").equals("acomodadorResponsableBar")?
-												Cargo.acomodadorResponsableBar:
-							rs.getString("cargo").equals("reponsableSala")?
-												Cargo.responsableSala:
-							rs.getString("cargo").equals("responsableCine")?
-												Cargo.responsableCine:
-												Cargo.mantenimiento,
+						Cargo.valueOf(rs.getString("cargo")),
 						rs.getDate("fechacontratacion"),
 						rs.getDate("fechanacimiento"),
 						rs.getString("nacionalidad"),
@@ -1002,17 +955,7 @@ public class GestorBBDD {
 				empleados.add(new Empleado(
 						rs.getString("nombre"),
 						rs.getString("apellido"),
-						rs.getString("cargo").equals("camarero")?
-												Cargo.camarero:
-							rs.getString("cargo").equals("portero")?
-												Cargo.portero:
-							rs.getString("cargo").equals("acomodadorResponsableBar")?
-												Cargo.acomodadorResponsableBar:
-							rs.getString("cargo").equals("reponsableSala")?
-												Cargo.responsableSala:
-							rs.getString("cargo").equals("responsableCine")?
-												Cargo.responsableCine:
-												Cargo.mantenimiento,
+						Cargo.valueOf(rs.getString("cargo")),
 						rs.getDate("fechacontratacion"),
 						rs.getDate("fechanacimiento"),
 						rs.getString("nacionalidad"),
